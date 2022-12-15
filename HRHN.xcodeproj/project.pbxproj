@@ -17,6 +17,7 @@
 		A79120EC294A0A610044E652 /* HRHNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120EB294A0A610044E652 /* HRHNTests.swift */; };
 		A79120F6294A0A610044E652 /* HRHNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120F5294A0A610044E652 /* HRHNUITests.swift */; };
 		A79120F8294A0A610044E652 /* HRHNUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120F7294A0A610044E652 /* HRHNUITestsLaunchTests.swift */; };
+		A7912106294B0C3F0044E652 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7912105294B0C3F0044E652 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7912106294B0C3F0044E652 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +148,9 @@
 			dependencies = (
 			);
 			name = HRHN;
+			packageProductDependencies = (
+				A7912105294B0C3F0044E652 /* SnapKit */,
+			);
 			productName = HRHN;
 			productReference = A79120CE294A0A5F0044E652 /* HRHN.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +223,9 @@
 				Base,
 			);
 			mainGroup = A79120C5294A0A5F0044E652;
+			packageReferences = (
+				A7912104294B0C3F0044E652 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A79120CF294A0A5F0044E652 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -606,6 +614,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A7912104294B0C3F0044E652 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A7912105294B0C3F0044E652 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7912104294B0C3F0044E652 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */ = {
