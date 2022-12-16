@@ -9,14 +9,20 @@
 /* Begin PBXBuildFile section */
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
 		A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D3294A0A5F0044E652 /* SceneDelegate.swift */; };
-		A79120D6294A0A5F0044E652 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D5294A0A5F0044E652 /* ViewController.swift */; };
-		A79120D9294A0A5F0044E652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79120D7294A0A5F0044E652 /* Main.storyboard */; };
 		A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
 		A79120DE294A0A610044E652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A79120DD294A0A610044E652 /* Assets.xcassets */; };
 		A79120E1294A0A610044E652 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79120DF294A0A610044E652 /* LaunchScreen.storyboard */; };
 		A79120EC294A0A610044E652 /* HRHNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120EB294A0A610044E652 /* HRHNTests.swift */; };
 		A79120F6294A0A610044E652 /* HRHNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120F5294A0A610044E652 /* HRHNUITests.swift */; };
 		A79120F8294A0A610044E652 /* HRHNUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120F7294A0A610044E652 /* HRHNUITestsLaunchTests.swift */; };
+		A7912106294B0C3F0044E652 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7912105294B0C3F0044E652 /* SnapKit */; };
+		A791210C294B190E0044E652 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791210B294B190E0044E652 /* TodayViewController.swift */; };
+		A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* SampleModel.swift */; };
+		A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912116294B1AB40044E652 /* SampleRepository.swift */; };
+		A7912119294B1AC20044E652 /* SampleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912118294B1AC20044E652 /* SampleExtension.swift */; };
+		A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791211E294B1B0A0044E652 /* SampleViewModel.swift */; };
+		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
+		A7912125294C40900044E652 /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912124294C40900044E652 /* SampleUI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +46,6 @@
 		A79120CE294A0A5F0044E652 /* HRHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79120D1294A0A5F0044E652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A79120D3294A0A5F0044E652 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A79120D5294A0A5F0044E652 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A79120D8294A0A5F0044E652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A79120DB294A0A5F0044E652 /* HRHN.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HRHN.xcdatamodel; sourceTree = "<group>"; };
 		A79120DD294A0A610044E652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A79120E0294A0A610044E652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +55,13 @@
 		A79120F1294A0A610044E652 /* HRHNUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HRHNUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79120F5294A0A610044E652 /* HRHNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRHNUITests.swift; sourceTree = "<group>"; };
 		A79120F7294A0A610044E652 /* HRHNUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRHNUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A791210B294B190E0044E652 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		A7912114294B1AAB0044E652 /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
+		A7912116294B1AB40044E652 /* SampleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleRepository.swift; sourceTree = "<group>"; };
+		A7912118294B1AC20044E652 /* SampleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleExtension.swift; sourceTree = "<group>"; };
+		A791211E294B1B0A0044E652 /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewModel.swift; sourceTree = "<group>"; };
+		A7912120294B1B440044E652 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A7912124294C40900044E652 /* SampleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7912106294B0C3F0044E652 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,14 +113,15 @@
 		A79120D0294A0A5F0044E652 /* HRHN */ = {
 			isa = PBXGroup;
 			children = (
+				A791210F294B1A3A0044E652 /* Extension */,
+				A7912111294B1A590044E652 /* Model */,
+				A791210E294B1A2A0044E652 /* ViewModel */,
+				A791210D294B1A230044E652 /* View */,
 				A79120D1294A0A5F0044E652 /* AppDelegate.swift */,
 				A79120D3294A0A5F0044E652 /* SceneDelegate.swift */,
-				A79120D5294A0A5F0044E652 /* ViewController.swift */,
-				A79120D7294A0A5F0044E652 /* Main.storyboard */,
 				A79120DD294A0A610044E652 /* Assets.xcassets */,
 				A79120DF294A0A610044E652 /* LaunchScreen.storyboard */,
 				A79120E2294A0A610044E652 /* Info.plist */,
-				A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */,
 			);
 			path = HRHN;
 			sourceTree = "<group>";
@@ -130,6 +143,74 @@
 			path = HRHNUITests;
 			sourceTree = "<group>";
 		};
+		A791210D294B1A230044E652 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A7912123294C40160044E652 /* UI */,
+				A7912122294C40100044E652 /* VC */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A791210E294B1A2A0044E652 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A791211E294B1B0A0044E652 /* SampleViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A791210F294B1A3A0044E652 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A7912118294B1AC20044E652 /* SampleExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A7912111294B1A590044E652 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A7912112294B1A670044E652 /* CoreData */,
+				A7912113294B1A700044E652 /* Repository */,
+				A7912114294B1AAB0044E652 /* SampleModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A7912112294B1A670044E652 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */,
+				A7912120294B1B440044E652 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A7912113294B1A700044E652 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A7912116294B1AB40044E652 /* SampleRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		A7912122294C40100044E652 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				A791210B294B190E0044E652 /* TodayViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		A7912123294C40160044E652 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A7912124294C40900044E652 /* SampleUI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +227,9 @@
 			dependencies = (
 			);
 			name = HRHN;
+			packageProductDependencies = (
+				A7912105294B0C3F0044E652 /* SnapKit */,
+			);
 			productName = HRHN;
 			productReference = A79120CE294A0A5F0044E652 /* HRHN.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +302,9 @@
 				Base,
 			);
 			mainGroup = A79120C5294A0A5F0044E652;
+			packageReferences = (
+				A7912104294B0C3F0044E652 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A79120CF294A0A5F0044E652 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -236,7 +323,6 @@
 			files = (
 				A79120E1294A0A610044E652 /* LaunchScreen.storyboard in Resources */,
 				A79120DE294A0A610044E652 /* Assets.xcassets in Resources */,
-				A79120D9294A0A5F0044E652 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +347,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A79120D6294A0A5F0044E652 /* ViewController.swift in Sources */,
+				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
+				A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */,
+				A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */,
+				A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
+				A7912119294B1AC20044E652 /* SampleExtension.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
+				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
+				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,14 +393,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A79120D7294A0A5F0044E652 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A79120D8294A0A5F0044E652 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A79120DF294A0A610044E652 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -446,7 +530,7 @@
 				INFOPLIST_FILE = HRHN/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,7 +558,7 @@
 				INFOPLIST_FILE = HRHN/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -606,6 +690,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A7912104294B0C3F0044E652 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A7912105294B0C3F0044E652 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7912104294B0C3F0044E652 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */ = {
