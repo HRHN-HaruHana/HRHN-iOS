@@ -23,6 +23,8 @@
 		A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791211E294B1B0A0044E652 /* SampleViewModel.swift */; };
 		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
 		A7912125294C40900044E652 /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912124294C40900044E652 /* SampleUI.swift */; };
+		A79121272950D12A0044E652 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121262950D12A0044E652 /* TabBarController.swift */; };
+		A79121292950D2000044E652 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121282950D2000044E652 /* RecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		A791211E294B1B0A0044E652 /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewModel.swift; sourceTree = "<group>"; };
 		A7912120294B1B440044E652 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A7912124294C40900044E652 /* SampleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUI.swift; sourceTree = "<group>"; };
+		A79121262950D12A0044E652 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A79121282950D2000044E652 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +202,9 @@
 		A7912122294C40100044E652 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				A79121262950D12A0044E652 /* TabBarController.swift */,
 				A791210B294B190E0044E652 /* TodayViewController.swift */,
+				A79121282950D2000044E652 /* RecordViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -349,6 +355,8 @@
 			files = (
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
 				A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */,
+				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
+				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */,
 				A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
