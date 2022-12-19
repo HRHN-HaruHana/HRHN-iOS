@@ -19,12 +19,13 @@
 		A791210C294B190E0044E652 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791210B294B190E0044E652 /* TodayViewController.swift */; };
 		A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* SampleModel.swift */; };
 		A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912116294B1AB40044E652 /* SampleRepository.swift */; };
-		A7912119294B1AC20044E652 /* SampleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912118294B1AC20044E652 /* SampleExtension.swift */; };
 		A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791211E294B1B0A0044E652 /* SampleViewModel.swift */; };
 		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
 		A7912125294C40900044E652 /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912124294C40900044E652 /* SampleUI.swift */; };
 		A79121272950D12A0044E652 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121262950D12A0044E652 /* TabBarController.swift */; };
 		A79121292950D2000044E652 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121282950D2000044E652 /* RecordViewController.swift */; };
+		A791212B2950D5A20044E652 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212A2950D5A20044E652 /* UIView+.swift */; };
+		A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212C2950D5B00044E652 /* UIStackView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,12 +61,13 @@
 		A791210B294B190E0044E652 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		A7912114294B1AAB0044E652 /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
 		A7912116294B1AB40044E652 /* SampleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleRepository.swift; sourceTree = "<group>"; };
-		A7912118294B1AC20044E652 /* SampleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleExtension.swift; sourceTree = "<group>"; };
 		A791211E294B1B0A0044E652 /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewModel.swift; sourceTree = "<group>"; };
 		A7912120294B1B440044E652 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A7912124294C40900044E652 /* SampleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUI.swift; sourceTree = "<group>"; };
 		A79121262950D12A0044E652 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A79121282950D2000044E652 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		A791212A2950D5A20044E652 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		A791212C2950D5B00044E652 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +169,8 @@
 		A791210F294B1A3A0044E652 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				A7912118294B1AC20044E652 /* SampleExtension.swift */,
+				A791212A2950D5A20044E652 /* UIView+.swift */,
+				A791212C2950D5B00044E652 /* UIStackView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -360,9 +363,10 @@
 				A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */,
 				A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
-				A7912119294B1AC20044E652 /* SampleExtension.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
+				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
+				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
 			);
