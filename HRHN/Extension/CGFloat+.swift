@@ -10,7 +10,7 @@ import UIKit
 
 extension CGFloat {
     var adjusted: CGFloat {
-        let ratio: CGFloat = UIScreen.main.bounds.width / 375
+        let ratio: CGFloat = UIScreen.main.bounds.width / 390
         return self * ratio
     }
 }
