@@ -27,6 +27,9 @@
 		A791212B2950D5A20044E652 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212A2950D5A20044E652 /* UIView+.swift */; };
 		A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212C2950D5B00044E652 /* UIStackView+.swift */; };
 		A79121482952259A0044E652 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = A79121472952259A0044E652 /* DeviceKit */; };
+		A791214B295227230044E652 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791214A295227230044E652 /* DeviceManager.swift */; };
+		A791214D295228200044E652 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791214C295228200044E652 /* CGFloat+.swift */; };
+		A791214F295228530044E652 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791214E295228530044E652 /* Double+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		A79121282950D2000044E652 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		A791212A2950D5A20044E652 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		A791212C2950D5B00044E652 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
+		A791214A295227230044E652 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
+		A791214C295228200044E652 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
+		A791214E295228530044E652 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 		A79120D0294A0A5F0044E652 /* HRHN */ = {
 			isa = PBXGroup;
 			children = (
+				A7912149295227140044E652 /* Managers */,
 				A791210F294B1A3A0044E652 /* Extension */,
 				A7912111294B1A590044E652 /* Model */,
 				A791210E294B1A2A0044E652 /* ViewModel */,
@@ -173,6 +180,8 @@
 			children = (
 				A791212A2950D5A20044E652 /* UIView+.swift */,
 				A791212C2950D5B00044E652 /* UIStackView+.swift */,
+				A791214C295228200044E652 /* CGFloat+.swift */,
+				A791214E295228530044E652 /* Double+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -220,6 +229,14 @@
 				A7912124294C40900044E652 /* SampleUI.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		A7912149295227140044E652 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A791214A295227230044E652 /* DeviceManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A791214D295228200044E652 /* CGFloat+.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
 				A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
@@ -367,11 +385,13 @@
 				A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */,
 				A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
+				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
+				A791214F295228530044E652 /* Double+.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
