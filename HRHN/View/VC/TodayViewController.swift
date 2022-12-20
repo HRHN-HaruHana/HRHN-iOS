@@ -10,7 +10,7 @@ import UIKit
 class TodayViewController: UIViewController {
 
     override func viewDidLoad() {
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .systemBackground
         super.viewDidLoad()
     }
 }

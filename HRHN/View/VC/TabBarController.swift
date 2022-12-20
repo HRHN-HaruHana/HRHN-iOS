@@ -17,8 +17,6 @@ class TabBarController: UITabBarController {
 
     private func setUI() {
         tabBar.tintColor = UIColor.red
-        tabBar.unselectedItemTintColor = UIColor.gray
-        tabBar.backgroundColor = UIColor.white
     }
     
     private func setUpTabBar() {
