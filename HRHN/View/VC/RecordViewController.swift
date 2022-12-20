@@ -1,16 +1,17 @@
 //
-//  TodayViewController.swift
+//  RecordViewController.swift
 //  HRHN
 //
-//  Created by Chanhee Jeong on 2022/12/15.
+//  Created by Chanhee Jeong on 2022/12/20.
 //
 
 import UIKit
 
-class TodayViewController: UIViewController {
+class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
         super.viewDidLoad()
     }
+
 }
