@@ -8,37 +8,20 @@
 
 import DeviceKit
 
-public enum DeviceGroup {
-   case fourInches
-   case fiveInches
-   case notches
-   case iPads
-   public var rawValue: [Device] {
-      switch self {
-      case .fourInches:
-         return [.iPhone5s, .iPhoneSE]
-      case .fiveInches:
-        return [.iPhone6, .iPhone6s, .iPhone7, .iPhone8, .simulator(.iPhone8)]
-      case .notches:
-         return Device.allDevicesWithSensorHousing
-      case .iPads:
-         return Device.allPads
-      }
-   }
+private enum DeviceGroup {
+    case homeButtonDevice
+    var rawValue: [Device] {
+        switch self {
+        case .homeButtonDevice:
+            return [.iPhone8, .iPhone8Plus, .iPhoneSE2, .iPhoneSE3]
+        }
+    }
 }
 
 class DeviceManager {
     static let shared: DeviceManager = DeviceManager()
     
-    func isFourIncheDevices() -> Bool {
-       return Device.current.isOneOf(DeviceGroup.fourInches.rawValue)
-    }
-    
-    func isFiveIncheDevices() -> Bool {
-        return Device.current.isOneOf(DeviceGroup.fiveInches.rawValue)
-    }
-    
-    func isIPadDevices() -> Bool {
-       return Device.current.isOneOf(DeviceGroup.iPads.rawValue)
+    func isHomeButtonDevice() -> Bool {
+        return Device.current.isOneOf(DeviceGroup.homeButtonDevice.rawValue)
     }
 }
