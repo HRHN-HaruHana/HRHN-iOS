@@ -31,7 +31,11 @@ final class TodayViewController: UIViewController {
 extension TodayViewController {
     
     @objc func testDidTap(_ sender: UIButton) {
-        
+        let coreDataManger = CoreDataManager.shared
+        coreDataManger.insertChallenge(Challenge(id: UUID(),
+                                          date: tomorrow,
+                                          content: "안녕하세요",
+                                          emoji: Emoji.blue))
         /*
         // 코어데이터 싱글톤 매니저
         let coreDataManger = CoreDataManager.shared

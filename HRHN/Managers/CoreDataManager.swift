@@ -20,15 +20,20 @@ class CoreDataManager {
         guard let context = self.context,
               let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
         
-        let managedObject = NSManagedObject(entity: entity, insertInto: context)
-        managedObject.setValue(challenge.id, forKey: "id")
-        managedObject.setValue(challenge.date, forKey: "date")
-        managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
-        managedObject.setValue(challenge.content, forKey: "content")
-        do {
-            try context.save()
-        } catch {
-            print(error.localizedDescription)
+        let existing = getChallengeOf(challenge.date)
+        if existing.isEmpty {
+            let managedObject = NSManagedObject(entity: entity, insertInto: context)
+            managedObject.setValue(challenge.id, forKey: "id")
+            managedObject.setValue(challenge.date, forKey: "date")
+            managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
+            managedObject.setValue(challenge.content, forKey: "content")
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("이미 등록된 내용이 있습니다")
         }
     }
     
