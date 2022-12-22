@@ -220,7 +220,6 @@
 				A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */,
 				A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */,
 				A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */,
-				A7912120294B1B440044E652 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -246,6 +245,7 @@
 		A7912149295227140044E652 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				A7912120294B1B440044E652 /* CoreDataManager.swift */,
 				A791214A295227230044E652 /* DeviceManager.swift */,
 			);
 			path = Managers;
