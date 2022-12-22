@@ -13,12 +13,6 @@ final class TodayViewController: UIViewController {
     private let sampleSentence: String?
     
     // MARK: - Properties
-    private lazy var testButton: UIButton = {
-        $0.configuration = .filled()
-        $0.setTitle("코어데이터테스트", for: .normal)
-        $0.addTarget(self, action: #selector(testDidTap(_:)), for: .primaryActionTriggered)
-        return $0
-    }(UIButton())
     
     private lazy var titleLabel: UILabel = {
         $0.text = "오늘의 챌린지"
@@ -43,11 +37,12 @@ final class TodayViewController: UIViewController {
         return $0
     }(UIView())
     
-    private lazy var stackView: UIStackView = {
+    private lazy var emptyStackView: UIStackView = {
         $0.spacing = 20
         $0.alignment = .center
         $0.distribution = .fill
         $0.axis = .vertical
+        return $0
     }(UIStackView())
     
     private lazy var challengeLabel: UILabel = {
@@ -68,17 +63,19 @@ final class TodayViewController: UIViewController {
     }(UILabel())
     
     private lazy var addButton: UIButton = {
-        $0.setTitle("Button", for: .normal)
+        $0.setTitle("챌린지 추가", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .point
-        $0.layer.cornerRadius = 50
+        $0.layer.cornerRadius = 20
         $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20)
+        $0.addTarget(self, action: #selector(addButtonDidTap(_:)), for: .primaryActionTriggered)
+        return $0
     }(UIButton(type: .system))
 
     // MARK: - LifeCycle
     
     init() {
-        self.sampleSentence = "텍스트가 길어졌을 경우의 레이아웃 입니다"
+        self.sampleSentence = nil // TEST HERE
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -97,12 +94,12 @@ final class TodayViewController: UIViewController {
 // MARK: - Functions
 extension TodayViewController {
     
-    @objc func testDidTap(_ sender: UIButton) {
-        
+    @objc func settingsDidTap(_ sender: UIButton) {
+        // TODO: - GO TO SETTINGS
     }
     
-    @objc func settingsDidTap(_ sender: UIButton) {
-        
+    @objc func addButtonDidTap(_ sender: UIButton) {
+        // TODO: - GO TO ADD-CHALLENGE
     }
     
 }
@@ -130,13 +127,29 @@ extension TodayViewController {
             $0.height.equalTo(400.constraintMultiplierTargetValue.adjusted)
         }
         
-        cardView.addSubviews(challengeLabel)
-        
-        challengeLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.adjusted)
-            $0.centerY.equalToSuperview()
+        if sampleSentence != nil {
+            cardView.addSubviews(challengeLabel)
+            
+            challengeLabel.snp.makeConstraints {
+                $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.adjusted)
+                $0.centerY.equalToSuperview()
+            }
+        } else {
+            cardView.addSubviews(emptyStackView)
+            emptyStackView.addArrangedSubviews(emptyLabel, addButton)
+            
+            emptyStackView.snp.makeConstraints {
+                $0.center.equalTo(cardView.snp.center)
+            }
+            
+            addButton.snp.makeConstraints {
+                $0.width.equalTo(109)
+                $0.height.equalTo(40)
+            }
+            
+            
         }
-        
+   
     }
     
     private func setNavigationBar() {
