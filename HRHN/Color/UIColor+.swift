@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UIColor {
+extension UIColor {
     static func resolvedColor(_ color: Color) -> UIColor? {
         return UIColor(named: color.rawValue)
     }
@@ -28,7 +28,7 @@ public extension UIColor {
 
 // MARK: - Semantic Colors
 
-public extension UIColor {
+extension UIColor {
     
     static let background = resolvedColor(.white)
     
