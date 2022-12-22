@@ -20,8 +20,7 @@
 		A79120F8294A0A610044E652 /* HRHNUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120F7294A0A610044E652 /* HRHNUITestsLaunchTests.swift */; };
 		A7912106294B0C3F0044E652 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7912105294B0C3F0044E652 /* SnapKit */; };
 		A791210C294B190E0044E652 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791210B294B190E0044E652 /* TodayViewController.swift */; };
-		A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* SampleModel.swift */; };
-		A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912116294B1AB40044E652 /* SampleRepository.swift */; };
+		A7912115294B1AAB0044E652 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
 		A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791211E294B1B0A0044E652 /* SampleViewModel.swift */; };
 		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
 		A7912125294C40900044E652 /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912124294C40900044E652 /* SampleUI.swift */; };
@@ -33,6 +32,8 @@
 		A791214B295227230044E652 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791214A295227230044E652 /* DeviceManager.swift */; };
 		A791214D295228200044E652 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791214C295228200044E652 /* CGFloat+.swift */; };
 		A791214F295228530044E652 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791214E295228530044E652 /* Double+.swift */; };
+		A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */; };
+		A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +70,7 @@
 		A79120F5294A0A610044E652 /* HRHNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRHNUITests.swift; sourceTree = "<group>"; };
 		A79120F7294A0A610044E652 /* HRHNUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HRHNUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A791210B294B190E0044E652 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		A7912114294B1AAB0044E652 /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
-		A7912116294B1AB40044E652 /* SampleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleRepository.swift; sourceTree = "<group>"; };
+		A7912114294B1AAB0044E652 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		A791211E294B1B0A0044E652 /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewModel.swift; sourceTree = "<group>"; };
 		A7912120294B1B440044E652 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A7912124294C40900044E652 /* SampleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUI.swift; sourceTree = "<group>"; };
@@ -81,6 +81,8 @@
 		A791214A295227230044E652 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		A791214C295228200044E652 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		A791214E295228530044E652 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,8 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				A7912112294B1A670044E652 /* CoreData */,
-				A7912113294B1A700044E652 /* Repository */,
-				A7912114294B1AAB0044E652 /* SampleModel.swift */,
+				A7912114294B1AAB0044E652 /* Challenge.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,17 +218,11 @@
 			isa = PBXGroup;
 			children = (
 				A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */,
+				A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */,
+				A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */,
 				A7912120294B1B440044E652 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		A7912113294B1A700044E652 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				A7912116294B1AB40044E652 /* SampleRepository.swift */,
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		A7912122294C40100044E652 /* VC */ = {
@@ -396,13 +391,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A791214D295228200044E652 /* CGFloat+.swift in Sources */,
+				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
-				A7912117294B1AB40044E652 /* SampleRepository.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
+				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				50DBEA0D2952EB4C00ED00FD /* Color.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */,
-				A7912115294B1AAB0044E652 /* SampleModel.swift in Sources */,
+				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
