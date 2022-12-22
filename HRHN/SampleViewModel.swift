@@ -2,7 +2,7 @@
 //  SampleViewModel.swift
 //  HRHN
 //
-//  Created by Chanhee Jeong on 2022/12/15.
+//  Created by Chanhee Jeong on 2022/12/23.
 //
 
 import Foundation
