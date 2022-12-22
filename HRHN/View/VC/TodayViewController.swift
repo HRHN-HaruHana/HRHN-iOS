@@ -5,6 +5,13 @@
 //  Created by Chanhee Jeong on 2022/12/15.
 //
 
+//
+//  TodayViewController.swift
+//  HRHN
+//
+//  Created by Chanhee Jeong on 2022/12/15.
+//
+
 import UIKit
 import SnapKit
 
@@ -23,6 +30,7 @@ final class TodayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setNavigationBar()
     }
     
 }
@@ -31,7 +39,11 @@ final class TodayViewController: UIViewController {
 extension TodayViewController {
     
     @objc func testDidTap(_ sender: UIButton) {
-        // TODO: - Delete
+        
+    }
+    
+    @objc func settingsDidTap(_ sender: UIButton) {
+        
     }
     
 }
@@ -44,5 +56,11 @@ extension TodayViewController {
         testButton.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
+    }
+    
+    private func setNavigationBar() {
+        let rightBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsDidTap))
+        rightBarButton.tintColor = .label
+        navigationItem.rightBarButtonItem = rightBarButton
     }
 }
