@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
-		50DBEA0D2952EB4C00ED00FD /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0C2952EB4C00ED00FD /* Color.swift */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
 		A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D3294A0A5F0044E652 /* SceneDelegate.swift */; };
@@ -35,6 +34,11 @@
 		A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
 		A79121692954FB600044E652 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
 		A79121712955E2310044E652 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121702955E2310044E652 /* MockData.swift */; };
+		A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121742955F1180044E652 /* ChallengeCellView.swift */; };
+		A79121792955FBCE0044E652 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121782955FBCE0044E652 /* CustomColor.swift */; };
+		A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217C2956037B0044E652 /* ChallengeCell.swift */; };
+		A79121802956066E0044E652 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217F2956066E0044E652 /* RecordViewModel.swift */; };
+		A791218229560B580044E652 /* RecordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218129560B580044E652 /* RecordHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +60,6 @@
 
 /* Begin PBXFileReference section */
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		50DBEA0C2952EB4C00ED00FD /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A79120CE294A0A5F0044E652 /* HRHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79120D1294A0A5F0044E652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,8 +87,12 @@
 		A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A79121682954FB600044E652 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
-		A791216E2954FE350044E652 /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SampleViewModel.swift; path = HRHN/SampleViewModel.swift; sourceTree = SOURCE_ROOT; };
 		A79121702955E2310044E652 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		A79121742955F1180044E652 /* ChallengeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCellView.swift; sourceTree = "<group>"; };
+		A79121782955FBCE0044E652 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		A791217C2956037B0044E652 /* ChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCell.swift; sourceTree = "<group>"; };
+		A791217F2956066E0044E652 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
+		A791218129560B580044E652 /* RecordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +125,7 @@
 		50DBEA0B2952EB3B00ED00FD /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				50DBEA0C2952EB4C00ED00FD /* Color.swift */,
+				A79121782955FBCE0044E652 /* CustomColor.swift */,
 				50DBEA0E2952EBC300ED00FD /* UIColor+.swift */,
 			);
 			path = Color;
@@ -150,7 +157,7 @@
 				A7912149295227140044E652 /* Managers */,
 				A791210F294B1A3A0044E652 /* Extension */,
 				A7912111294B1A590044E652 /* Model */,
-				A791210E294B1A2A0044E652 /* ViewModel */,
+				A791217E295606630044E652 /* ViewModel */,
 				A791210D294B1A230044E652 /* View */,
 				50DBEA0B2952EB3B00ED00FD /* Color */,
 				A79120D1294A0A5F0044E652 /* AppDelegate.swift */,
@@ -187,14 +194,6 @@
 				A7912122294C40100044E652 /* VC */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A791210E294B1A2A0044E652 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A791216E2954FE350044E652 /* SampleViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A791210F294B1A3A0044E652 /* Extension */ = {
@@ -243,6 +242,9 @@
 			isa = PBXGroup;
 			children = (
 				A7912124294C40900044E652 /* SampleUI.swift */,
+				A79121742955F1180044E652 /* ChallengeCellView.swift */,
+				A791217C2956037B0044E652 /* ChallengeCell.swift */,
+				A791218129560B580044E652 /* RecordHeaderView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -254,6 +256,14 @@
 				A791214A295227230044E652 /* DeviceManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A791217E295606630044E652 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A791217F2956066E0044E652 /* RecordViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,22 +407,26 @@
 			files = (
 				A791214D295228200044E652 /* CGFloat+.swift in Sources */,
 				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
+				A79121792955FBCE0044E652 /* CustomColor.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
-				50DBEA0D2952EB4C00ED00FD /* Color.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				A79121712955E2310044E652 /* MockData.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
+				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
+				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
+				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
+				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
 				50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */,
 			);
