@@ -8,7 +8,7 @@
 import Foundation
 
 enum Emoji: String, Codable {
-    case red = "pink"
+    case red = "red"
     case yellow = "yellow"
     case green = "green"
     case skyblue = "skyblue"
