@@ -33,9 +33,7 @@ final class RecordViewController: UIViewController {
         $0.dataSource = self
         return $0
     }(UITableView(frame: .zero, style: .grouped))
-    
-    
-    
+
     // MARK: - LifeCycle
     
     init(with viewModel: RecordViewModel) {
@@ -99,9 +97,7 @@ extension RecordViewController: UITableViewDataSource {
         return cell
         
     }
-    
-    
-    
+
 }
 
 // MARK: - UITableViewDelegate
