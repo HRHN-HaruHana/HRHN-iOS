@@ -15,7 +15,7 @@ struct ChallengeCellView: View {
     var body: some View {
         HStack(spacing: 10) {
             VStack(alignment: .center) {
-                Image("purple")
+                Image(challenge.emoji.rawValue)
                     .resizable()
                     .frame(width: 50, height: 50)
                 Text(challenge.date.formatted("MM/dd"))
@@ -39,7 +39,7 @@ struct ChallengeCellView: View {
 struct ChallengeCellView_Previews: PreviewProvider {
     static var previews: some View {
 //        List {
-        ChallengeCellView(challenge: Challenge.mock[0])
+        ChallengeCellView(challenge: Challenge.mock[1])
 //        }
     }
 }

@@ -145,10 +145,8 @@ extension TodayViewController {
                 $0.width.equalTo(109)
                 $0.height.equalTo(40)
             }
-            
-            
+
         }
-   
     }
     
     private func setNavigationBar() {

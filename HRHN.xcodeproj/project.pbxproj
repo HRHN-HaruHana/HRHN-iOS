@@ -241,10 +241,8 @@
 		A7912123294C40160044E652 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A7912183295611860044E652 /* Cell */,
 				A7912124294C40900044E652 /* SampleUI.swift */,
-				A79121742955F1180044E652 /* ChallengeCellView.swift */,
-				A791217C2956037B0044E652 /* ChallengeCell.swift */,
-				A791218129560B580044E652 /* RecordHeaderView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -264,6 +262,16 @@
 				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A7912183295611860044E652 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A79121742955F1180044E652 /* ChallengeCellView.swift */,
+				A791217C2956037B0044E652 /* ChallengeCell.swift */,
+				A791218129560B580044E652 /* RecordHeaderView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
