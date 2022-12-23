@@ -67,7 +67,6 @@ final class TodayViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .point
         $0.layer.cornerRadius = 20
-        $0.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20)
         $0.addTarget(self, action: #selector(addButtonDidTap(_:)), for: .primaryActionTriggered)
         return $0
     }(UIButton(type: .system))
@@ -154,7 +153,6 @@ extension TodayViewController {
     
     private func setNavigationBar() {
         let rightBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsDidTap))
-        rightBarButton.tintColor = .label
         navigationItem.rightBarButtonItem = rightBarButton
     }
 }
