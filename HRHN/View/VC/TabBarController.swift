@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
     }
 
     private func setUI() {
-        tabBar.tintColor = UIColor.red
+        tabBar.tintColor = UIColor.point
     }
     
     private func setUpTabBar() {
