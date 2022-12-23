@@ -8,11 +8,11 @@
 import UIKit
 
 extension UIColor {
-    static func resolvedColor(_ color: Color) -> UIColor? {
+    static func resolvedColor(_ color: CustomColor) -> UIColor? {
         return UIColor(named: color.rawValue)
     }
     
-    static func appearanceColor(light: Color, dark: Color) -> UIColor {
+    static func appearanceColor(light: CustomColor, dark: CustomColor) -> UIColor {
         UIColor { traitCollection in
             switch traitCollection.userInterfaceStyle {
             case .light, .unspecified:
