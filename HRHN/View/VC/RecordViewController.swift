@@ -9,13 +9,6 @@ import SwiftUI
 import UIKit
 import SnapKit
 
-struct SampleChallenge {
-    let date: Date
-    let content: String
-    let emoji: String
-}
-
-
 final class RecordViewController: UIViewController {
 
     // MARK: - Properties
