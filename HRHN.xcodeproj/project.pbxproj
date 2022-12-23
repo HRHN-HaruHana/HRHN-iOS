@@ -34,6 +34,7 @@
 		A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */; };
 		A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
 		A79121692954FB600044E652 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
+		A79121712955E2310044E652 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121702955E2310044E652 /* MockData.swift */; };
 		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
 		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A79121682954FB600044E652 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		A79121702955E2310044E652 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,6 +210,7 @@
 			children = (
 				A7912112294B1A670044E652 /* CoreData */,
 				A7912114294B1AAB0044E652 /* Challenge.swift */,
+				A79121702955E2310044E652 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
+				A79121712955E2310044E652 /* MockData.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
