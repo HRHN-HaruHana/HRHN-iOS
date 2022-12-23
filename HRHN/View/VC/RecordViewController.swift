@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordViewController: UIViewController {
+final class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground

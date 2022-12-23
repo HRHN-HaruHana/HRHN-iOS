@@ -6,11 +6,43 @@
 //
 
 import UIKit
+import SnapKit
 
-class TodayViewController: UIViewController {
-
+final class TodayViewController: UIViewController {
+    
+    // MARK: - Properties
+    private lazy var testButton: UIButton = {
+        $0.configuration = .filled()
+        $0.setTitle("코어데이터테스트", for: .normal)
+        $0.addTarget(self, action: #selector(testDidTap(_:)), for: .primaryActionTriggered)
+        return $0
+    }(UIButton())
+    
+    
+    // MARK: - LifeCycle
     override func viewDidLoad() {
-        view.backgroundColor = .systemBackground
         super.viewDidLoad()
+        setUI()
+    }
+    
+}
+
+// MARK: - Functions
+extension TodayViewController {
+    
+    @objc func testDidTap(_ sender: UIButton) {
+        // TODO: - Delete
+    }
+    
+}
+
+// MARK: - UI Functions
+extension TodayViewController {
+    private func setUI(){
+        view.backgroundColor = .systemBackground
+        view.addSubviews(testButton)
+        testButton.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
     }
 }
