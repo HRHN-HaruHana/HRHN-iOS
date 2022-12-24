@@ -99,14 +99,10 @@ extension TodayViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
         // TODO: - GO TO SETTINGS
-        CoreDataManager.shared.deleteChallenge(Date())
-        viewModel.fetchTodayChallenge()
     }
     
     @objc func addButtonDidTap(_ sender: UIButton) {
         // TODO: - GO TO ADD-CHALLENGE
-        CoreDataManager.shared.insertChallenge(Challenge(id: UUID(), date: Date(), content: "오늘의 챌린지 문장이다", emoji: Emoji.none))
-        viewModel.fetchTodayChallenge()
     }
     
 }
