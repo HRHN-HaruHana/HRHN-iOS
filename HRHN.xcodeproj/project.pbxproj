@@ -41,7 +41,6 @@
 		A791218229560B580044E652 /* RecordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218129560B580044E652 /* RecordHeaderView.swift */; };
 		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
 		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
-		A791218C29578B6B0044E652 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218B29578B6B0044E652 /* RecordViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +97,6 @@
 		A791218129560B580044E652 /* RecordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHeaderView.swift; sourceTree = "<group>"; };
 		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
-		A791218B29578B6B0044E652 /* RecordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,11 +262,21 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		A7912183295611860044E652 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A79121742955F1180044E652 /* ChallengeCellView.swift */,
+				A791217C2956037B0044E652 /* ChallengeCell.swift */,
+				A791218129560B580044E652 /* RecordHeaderView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A7912184295775B20044E652 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				A791218B29578B6B0044E652 /* RecordViewModel.swift */,
 				A7912185295775C00044E652 /* TodayViewModel.swift */,
+                A791217F2956066E0044E652 /* RecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -279,24 +287,6 @@
 				A7912188295775E00044E652 /* Obervable.swift */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		A791218A29578B310044E652 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				A791217F2956066E0044E652 /* RecordViewModel.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		A7912183295611860044E652 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				A79121742955F1180044E652 /* ChallengeCellView.swift */,
-				A791217C2956037B0044E652 /* ChallengeCell.swift */,
-				A791218129560B580044E652 /* RecordHeaderView.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,7 +448,6 @@
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A7912189295775E00044E652 /* Obervable.swift in Sources */,
-				A791218C29578B6B0044E652 /* RecordViewModel.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
