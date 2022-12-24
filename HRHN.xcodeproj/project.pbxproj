@@ -50,6 +50,7 @@
 		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 		A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF5295C284200342CC8 /* SettingViewController.swift */; };
 		A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */; };
+		A791218E295799540044E652 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218D295799540044E652 /* NotificationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 		A7ED3EF5295C284200342CC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		A791218D295799540044E652 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 				A79121282950D2000044E652 /* RecordViewController.swift */,
 				505B95342959926A005F00C8 /* ReviewViewController.swift */,
 				A7ED3EF5295C284200342CC8 /* SettingViewController.swift */,
+				A791218D295799540044E652 /* NotificationViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				507089B2295ADE1A00DD8D85 /* View+.swift in Sources */,
 				507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
+				A791218E295799540044E652 /* NotificationViewController.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
 				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
