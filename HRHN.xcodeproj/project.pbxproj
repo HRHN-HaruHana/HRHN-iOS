@@ -21,7 +21,6 @@
 		A7912106294B0C3F0044E652 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7912105294B0C3F0044E652 /* SnapKit */; };
 		A791210C294B190E0044E652 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791210B294B190E0044E652 /* TodayViewController.swift */; };
 		A7912115294B1AAB0044E652 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
-		A791211F294B1B0A0044E652 /* SampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791211E294B1B0A0044E652 /* SampleViewModel.swift */; };
 		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
 		A7912125294C40900044E652 /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912124294C40900044E652 /* SampleUI.swift */; };
 		A79121272950D12A0044E652 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121262950D12A0044E652 /* TabBarController.swift */; };
@@ -35,6 +34,8 @@
 		A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */; };
 		A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
 		A79121692954FB600044E652 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
+		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
+		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +85,8 @@
 		A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeMO+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A79121682954FB600044E652 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
-		A791216E2954FE350044E652 /* SampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SampleViewModel.swift; path = HRHN/SampleViewModel.swift; sourceTree = SOURCE_ROOT; };
+		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
+		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,10 +148,11 @@
 		A79120D0294A0A5F0044E652 /* HRHN */ = {
 			isa = PBXGroup;
 			children = (
+				A7912187295775D50044E652 /* Helper */,
 				A7912149295227140044E652 /* Managers */,
 				A791210F294B1A3A0044E652 /* Extension */,
 				A7912111294B1A590044E652 /* Model */,
-				A791210E294B1A2A0044E652 /* ViewModel */,
+				A7912184295775B20044E652 /* ViewModel */,
 				A791210D294B1A230044E652 /* View */,
 				50DBEA0B2952EB3B00ED00FD /* Color */,
 				A79120D1294A0A5F0044E652 /* AppDelegate.swift */,
@@ -186,14 +189,6 @@
 				A7912122294C40100044E652 /* VC */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A791210E294B1A2A0044E652 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A791216E2954FE350044E652 /* SampleViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A791210F294B1A3A0044E652 /* Extension */ = {
@@ -252,6 +247,22 @@
 				A791214A295227230044E652 /* DeviceManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A7912184295775B20044E652 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A7912185295775C00044E652 /* TodayViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A7912187295775D50044E652 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A7912188295775E00044E652 /* Obervable.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,13 +412,14 @@
 				50DBEA0D2952EB4C00ED00FD /* Color.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
-				A791216F2954FE350044E652 /* SampleViewModel.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
+				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
+				A7912189295775E00044E652 /* Obervable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
