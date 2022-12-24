@@ -32,9 +32,12 @@ final class NotificationViewController: UIViewController {
         content.title = "하루하나"
         content.body = "오늘의 챌린지를 등록하세요!"
 
-        // Trigger
-        // TODO: - Recurring date
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: seconds, repeats: false)
+        // MARK: Recurring date
+        var dateComponents = DateComponents()
+        dateComponents.hour = 06
+        dateComponents.minute = 01
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
         let request = UNNotificationRequest(identifier: "dailyAlert",
                                             content: content,
                                             trigger: trigger)
