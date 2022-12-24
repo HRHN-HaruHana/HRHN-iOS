@@ -16,7 +16,7 @@ final class RecordViewController: UIViewController {
     private let viewModel: RecordViewModel
     
     private lazy var tableView: UITableView = { [weak self] in
-        $0.backgroundColor = .systemBackground
+        $0.backgroundColor = .background
         $0.separatorStyle = .none
         $0.allowsSelection = false
         $0.showsVerticalScrollIndicator = false
@@ -60,7 +60,7 @@ extension RecordViewController {
 // MARK: - UI Functions
 extension RecordViewController {
     private func setUI(){
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .background
         view.addSubviews(tableView)
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()

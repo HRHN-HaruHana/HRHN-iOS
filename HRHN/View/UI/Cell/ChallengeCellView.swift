@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct ChallengeCellView: View {
     
@@ -28,8 +27,7 @@ struct ChallengeCellView: View {
                 .foregroundColor(Color(UIColor.challengeListLabel!))
                 
         }
-        .padding(.vertical, 20)
-        .padding(.horizontal, 20)
+        .padding(20)
         .background(Color(UIColor.challngeListFill!))
         .cornerRadius(16)
     }
