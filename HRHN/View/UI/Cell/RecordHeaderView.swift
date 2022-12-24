@@ -41,7 +41,7 @@ final class RecordHeaderView: UITableViewHeaderFooterView {
 extension RecordHeaderView {
 
     private func setUI() {
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .background
         
         contentView.addSubviews(titleLabel)
         contentView.snp.makeConstraints {

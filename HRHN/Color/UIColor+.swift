@@ -9,7 +9,7 @@ import UIKit
 
 extension UIColor {
     static func resolvedColor(_ color: CustomColor) -> UIColor? {
-        return UIColor(named: color.rawValue)
+        return UIColor(named: color.rawValue)!
     }
     
     static func appearanceColor(light: CustomColor, dark: CustomColor) -> UIColor {
