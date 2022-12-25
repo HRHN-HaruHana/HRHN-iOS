@@ -45,6 +45,12 @@ final class RecordViewController: UIViewController {
         setUI()
         setNavigationBar()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchPreviousChallenges()
+        tableView.reloadData()
+    }
 
 }
 
@@ -79,14 +85,14 @@ extension RecordViewController {
 extension RecordViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.challenges.count
+        viewModel.challenges.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChallengeCell", for: indexPath)
                 as? ChallengeCell else { return UITableViewCell() }
-        cell.configure(with: viewModel.challenges[indexPath.row])
+        cell.configure(with: viewModel.challenges.value[indexPath.row])
         return cell
         
     }

@@ -33,14 +33,14 @@
 		A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */; };
 		A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
 		A79121692954FB600044E652 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
-		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
-		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 		A79121712955E2310044E652 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121702955E2310044E652 /* MockData.swift */; };
 		A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121742955F1180044E652 /* ChallengeCellView.swift */; };
 		A79121792955FBCE0044E652 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121782955FBCE0044E652 /* CustomColor.swift */; };
 		A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217C2956037B0044E652 /* ChallengeCell.swift */; };
 		A79121802956066E0044E652 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217F2956066E0044E652 /* RecordViewModel.swift */; };
 		A791218229560B580044E652 /* RecordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218129560B580044E652 /* RecordHeaderView.swift */; };
+		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
+		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +142,7 @@
 				A79120EA294A0A610044E652 /* HRHNTests */,
 				A79120F4294A0A610044E652 /* HRHNUITests */,
 				A79120CF294A0A5F0044E652 /* Products */,
+				A791218A29578B310044E652 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
