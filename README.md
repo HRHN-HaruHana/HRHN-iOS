@@ -15,6 +15,7 @@
 - CoreData
 - WidgetKit 
 - SnapKit
+- DeviceKit
 
 
 ### Author
