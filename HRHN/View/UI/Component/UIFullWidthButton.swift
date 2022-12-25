@@ -18,12 +18,6 @@ final class UIFullWidthButton: UIButton {
         }
     }
     
-    var isDisabled: Bool = false {
-        didSet {
-            setDisabled()
-        }
-    }
-    
     var withKeyboard: Bool = false {
         didSet {
             setCornerRadius()
@@ -35,10 +29,6 @@ final class UIFullWidthButton: UIButton {
             addAction(action, for: .touchUpInside)
         }
     }
-    
-    private let enabledFillColor: UIColor = .point!
-    private let disabledFillColor: UIColor = .disabled!
-    private let labelColor: UIColor = .reverseLabel
     
     // MARK: Life Cycle
     
@@ -60,15 +50,6 @@ private extension UIFullWidthButton {
         configuration?.attributedTitle = titleAttribute
     }
     
-    func setDisabled() {
-        isUserInteractionEnabled = !isDisabled
-        if isDisabled {
-            configuration?.baseBackgroundColor = disabledFillColor
-        } else {
-            configuration?.baseBackgroundColor = enabledFillColor
-        }
-    }
-    
     func setCornerRadius() {
         if withKeyboard {
             configuration?.cornerStyle = .fixed
@@ -79,8 +60,8 @@ private extension UIFullWidthButton {
     }
     
     func setUI() {
-        configuration?.baseBackgroundColor = enabledFillColor
-        configuration?.baseForegroundColor = labelColor
+        configuration?.baseBackgroundColor = .point
+        configuration?.baseForegroundColor = .reverseLabel
         configuration?.cornerStyle = .capsule
     }
     
