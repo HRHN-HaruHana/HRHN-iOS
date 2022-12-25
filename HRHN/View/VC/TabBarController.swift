@@ -20,7 +20,7 @@ class TabBarController: UITabBarController {
     }
     
     private func setUpTabBar() {
-        let todayVC = TodayViewController()
+        let todayVC = TodayViewController(viewModel: TodayViewModel())
         let firstTab = UINavigationController(rootViewController: todayVC)
         firstTab.tabBarItem = UITabBarItem(title: "오늘의 챌린지", image: UIImage(systemName: "sparkles"), selectedImage: UIImage(systemName: "sparkles"))
         

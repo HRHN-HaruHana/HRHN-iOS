@@ -10,9 +10,8 @@ import SnapKit
 
 final class TodayViewController: UIViewController {
     
-    private let sampleSentence: String?
-    
     // MARK: - Properties
+    private let viewModel: TodayViewModel
     
     private lazy var titleLabel: UILabel = {
         $0.text = "오늘의 챌린지"
@@ -46,7 +45,6 @@ final class TodayViewController: UIViewController {
     }(UIStackView())
     
     private lazy var challengeLabel: UILabel = {
-        $0.text = sampleSentence ?? ""
         $0.textColor = .challengeCardLabel
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
@@ -70,11 +68,11 @@ final class TodayViewController: UIViewController {
         $0.addTarget(self, action: #selector(addButtonDidTap(_:)), for: .primaryActionTriggered)
         return $0
     }(UIButton(type: .system))
-
+    
     // MARK: - LifeCycle
     
-    init() {
-        self.sampleSentence = nil // TEST HERE
+    init(viewModel: TodayViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -84,8 +82,13 @@ final class TodayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUI()
         setNavigationBar()
+        setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bind()
     }
     
 }
@@ -101,6 +104,24 @@ extension TodayViewController {
         // TODO: - GO TO ADD-CHALLENGE
     }
     
+}
+
+// MARK: - Bindings
+extension TodayViewController {
+    
+    private func bind() {
+        viewModel.fetchTodayChallenge()
+        viewModel.todayChallenge.subscribe { value in
+            DispatchQueue.main.async {
+                self.challengeLabel.text = value
+                if value == nil {
+                    self.makeEmptyState()
+                } else {
+                    self.makeChallengeState()
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UI Functions
@@ -126,26 +147,27 @@ extension TodayViewController {
             $0.height.equalTo(400.constraintMultiplierTargetValue.adjusted)
         }
         
-        if sampleSentence != nil {
-            cardView.addSubviews(challengeLabel)
-            
-            challengeLabel.snp.makeConstraints {
-                $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.adjusted)
-                $0.centerY.equalToSuperview()
-            }
-        } else {
-            cardView.addSubviews(emptyStackView)
-            emptyStackView.addArrangedSubviews(emptyLabel, addButton)
-            
-            emptyStackView.snp.makeConstraints {
-                $0.center.equalTo(cardView.snp.center)
-            }
-            
-            addButton.snp.makeConstraints {
-                $0.width.equalTo(109)
-                $0.height.equalTo(40)
-            }
-
+    }
+    
+    private func makeChallengeState(){
+        emptyStackView.removeFromSuperview()
+        cardView.addSubviews(challengeLabel)
+        challengeLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.adjusted)
+            $0.centerY.equalToSuperview()
+        }
+    }
+    
+    private func makeEmptyState(){
+        challengeLabel.removeFromSuperview()
+        cardView.addSubviews(emptyStackView)
+        emptyStackView.addArrangedSubviews(emptyLabel, addButton)
+        emptyStackView.snp.makeConstraints {
+            $0.center.equalTo(self.cardView.snp.center)
+        }
+        addButton.snp.makeConstraints {
+            $0.width.equalTo(109)
+            $0.height.equalTo(40)
         }
     }
     

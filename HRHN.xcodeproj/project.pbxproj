@@ -33,6 +33,8 @@
 		A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */; };
 		A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
 		A79121692954FB600044E652 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
+		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
+		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 		A79121712955E2310044E652 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121702955E2310044E652 /* MockData.swift */; };
 		A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121742955F1180044E652 /* ChallengeCellView.swift */; };
 		A79121792955FBCE0044E652 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121782955FBCE0044E652 /* CustomColor.swift */; };
@@ -93,6 +95,8 @@
 		A791217C2956037B0044E652 /* ChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCell.swift; sourceTree = "<group>"; };
 		A791217F2956066E0044E652 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		A791218129560B580044E652 /* RecordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHeaderView.swift; sourceTree = "<group>"; };
+		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
+		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,10 +158,11 @@
 		A79120D0294A0A5F0044E652 /* HRHN */ = {
 			isa = PBXGroup;
 			children = (
+				A7912187295775D50044E652 /* Helper */,
 				A7912149295227140044E652 /* Managers */,
 				A791210F294B1A3A0044E652 /* Extension */,
 				A7912111294B1A590044E652 /* Model */,
-				A791217E295606630044E652 /* ViewModel */,
+				A7912184295775B20044E652 /* ViewModel */,
 				A791210D294B1A230044E652 /* View */,
 				50DBEA0B2952EB3B00ED00FD /* Color */,
 				A79120D1294A0A5F0044E652 /* AppDelegate.swift */,
@@ -256,14 +261,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		A791217E295606630044E652 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				A791217F2956066E0044E652 /* RecordViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		A7912183295611860044E652 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +269,23 @@
 				A791218129560B580044E652 /* RecordHeaderView.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		A7912184295775B20044E652 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A7912185295775C00044E652 /* TodayViewModel.swift */,
+                A791217F2956066E0044E652 /* RecordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A7912187295775D50044E652 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A7912188295775E00044E652 /* Obervable.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,9 +442,11 @@
 				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
 				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
+				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
+				A7912189295775E00044E652 /* Obervable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
