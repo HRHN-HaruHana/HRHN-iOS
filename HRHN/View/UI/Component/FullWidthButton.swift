@@ -92,14 +92,16 @@ struct FullWidthButton: View {
 #if DEBUG
 import SwiftUI
 
-struct previewView: View {
+struct FullWidthButtonPreviewView: View {
     @State private var isFullWidthButtonDisabled = true
     
     var body: some View {
         VStack(spacing: 20) {
             FullWidthButton(title: "기본") { }
+                .padding(.horizontal, 20)
             FullWidthButton(title: "비활성화") { }
                 .disable($isFullWidthButtonDisabled)
+                .padding(.horizontal, 20)
             FullWidthButton(title: "키보드") { }
                 .withKeyboard()
             FullWidthButton(title: "키보드 + 비활성화") { }
@@ -114,7 +116,7 @@ struct previewView: View {
 
 struct FullWidthButtonPreviews: PreviewProvider {
     static var previews: some View {
-        previewView()
+        FullWidthButtonPreviewView()
     }
 }
 #endif
