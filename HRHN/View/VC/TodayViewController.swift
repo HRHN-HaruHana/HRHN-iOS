@@ -45,7 +45,6 @@ final class TodayViewController: UIViewController {
     }(UIStackView())
     
     private lazy var challengeLabel: UILabel = {
-        //        $0.text = sampleSentence ?? ""
         $0.textColor = .challengeCardLabel
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0

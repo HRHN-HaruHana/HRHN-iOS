@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TodayViewModel {
+final class TodayViewModel {
     
     var todayChallenge: Observable<String?> = Observable(nil)
     
