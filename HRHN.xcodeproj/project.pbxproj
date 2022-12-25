@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
+		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
@@ -61,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
+		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A79120CE294A0A5F0044E652 /* HRHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50BD589C29580C35009F9556 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */,
+				50BD589F29587240009F9556 /* FullWidthButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		50DBEA0B2952EB3B00ED00FD /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +262,7 @@
 			children = (
 				A7912183295611860044E652 /* Cell */,
 				A7912124294C40900044E652 /* SampleUI.swift */,
+				50BD589C29580C35009F9556 /* Component */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -440,6 +454,8 @@
 				A79121712955E2310044E652 /* MockData.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
+				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
+				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
 				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
 				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
 				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
