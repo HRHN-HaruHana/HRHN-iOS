@@ -27,7 +27,7 @@ struct FullWidthButtonRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> UIFullWidthButton {
         let uiView: UIFullWidthButton = {
             $0.title = title
-            $0.withKeyboard = isOnKeyboard
+            $0.isOnKeyboard = isOnKeyboard
             $0.action = UIAction { _ in
                 action()
             }
@@ -37,7 +37,7 @@ struct FullWidthButtonRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIFullWidthButton, context: Context) {
-        uiView.withKeyboard = isOnKeyboard
+        uiView.isOnKeyboard = isOnKeyboard
     }
 }
 

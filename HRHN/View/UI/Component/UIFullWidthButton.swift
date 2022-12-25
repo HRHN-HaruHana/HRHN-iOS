@@ -18,7 +18,7 @@ final class UIFullWidthButton: UIButton {
         }
     }
     
-    var withKeyboard: Bool = false {
+    var isOnKeyboard: Bool = false {
         didSet {
             setCornerRadius()
         }
@@ -51,7 +51,7 @@ private extension UIFullWidthButton {
     }
     
     func setCornerRadius() {
-        if withKeyboard {
+        if isOnKeyboard {
             configuration?.cornerStyle = .fixed
             configuration?.background.cornerRadius = 0
         } else {
