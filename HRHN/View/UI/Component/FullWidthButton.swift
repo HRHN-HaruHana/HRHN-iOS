@@ -5,83 +5,85 @@
 //  Created by 민채호 on 2022/12/25.
 //
 
-import UIKit
-import SnapKit
+import SwiftUI
 
-final class FullWidthButton: UIButton {
-    
-    // MARK: Properties
-    
-    var title: String = "" {
-        didSet {
-            setLabel()
-        }
-    }
-    
-    var isDisabled: Bool = false {
-        didSet {
-            setDisabled()
-        }
-    }
-    
-    var withKeyboard: Bool = false {
-        didSet {
-            setCornerRadius()
-        }
-    }
-    
-    private let enabledFillColor: UIColor = .point!
-    private let disabledFillColor: UIColor = .disabled!
-    private let labelColor: UIColor = .reverseLabel
-    
-    // MARK: Life Cycle
-    
-    convenience init() {
-        self.init(configuration: .filled())
+// MARK: UIViewRepresentable
 
-        setUI()
-        setLayout()
+struct FullWidthButtonRepresentable: UIViewRepresentable {
+    @Binding var isDisabled: Bool
+    private let title: String
+    private let isOnKeyboard: Bool
+    private let action: () -> Void
+    
+        init(
+            title: String,
+            isDisabled: Binding<Bool> = .constant(false),
+            isOnKeyboard: Bool = false,
+            action: @escaping () -> Void
+        ) {
+            self.title = title
+            self._isDisabled = isDisabled
+            self.isOnKeyboard = isOnKeyboard
+            self.action = action
+        }
+    
+    func makeUIView(context: Context) -> UIFullWidthButton {
+        let uiView: UIFullWidthButton = {
+            $0.title = title
+            $0.isDisabled = isDisabled
+            $0.withKeyboard = isOnKeyboard
+            $0.action = UIAction { _ in
+                action()
+            }
+            return $0
+        }(UIFullWidthButton())
+        return uiView
+    }
+    
+    func updateUIView(_ uiView: UIFullWidthButton, context: Context) {
+        uiView.isDisabled = isDisabled
+        uiView.withKeyboard = isOnKeyboard
     }
 }
 
-// MARK: Methods
+// MARK: View
 
-private extension FullWidthButton {
+struct FullWidthButton: View {
+    @Binding var isDisabled: Bool
+    private let title: String
+    private let action: () -> Void
+    private var isOnKeyboard = false
     
-    func setLabel() {
-        var titleAttribute = AttributedString(title)
-        titleAttribute.font = .systemFont(ofSize: 14)
-        configuration?.attributedTitle = titleAttribute
+    init(
+        title: String,
+        isDisabled: Binding<Bool> = .constant(false),
+        action: @escaping () -> Void
+    ) {
+        self.title = title
+        self._isDisabled = isDisabled
+        self.action = action
     }
     
-    func setDisabled() {
-        isUserInteractionEnabled = !isDisabled
-        if isDisabled {
-            configuration?.baseBackgroundColor = disabledFillColor
-        } else {
-            configuration?.baseBackgroundColor = enabledFillColor
-        }
+    var body: some View {
+        FullWidthButtonRepresentable(
+            title: title,
+            isDisabled: $isDisabled,
+            isOnKeyboard: isOnKeyboard,
+            action: action
+        )
+        .frame(height: 50)
     }
     
-    func setCornerRadius() {
-        if withKeyboard {
-            configuration?.cornerStyle = .fixed
-            configuration?.background.cornerRadius = 0
-        } else {
-            configuration?.cornerStyle = .capsule
-        }
+    func withKeyboard() -> Self {
+        var copy = self
+        copy.isOnKeyboard = true
+        return copy
     }
     
-    func setUI() {
-        configuration?.baseBackgroundColor = enabledFillColor
-        configuration?.baseForegroundColor = labelColor
-        configuration?.cornerStyle = .capsule
-    }
-    
-    func setLayout() {
-        snp.makeConstraints {
-            $0.height.equalTo(50)
-        }
+    func disable(_ isDisabled: Binding<Bool>) -> Self {
+        var copy = self
+        copy._isDisabled = isDisabled
+        return copy
     }
 }
 
@@ -90,33 +92,29 @@ private extension FullWidthButton {
 #if DEBUG
 import SwiftUI
 
-struct UIViewPreview<View: UIView>: UIViewRepresentable {
-    let view: View
-
-    init(_ builder: @escaping () -> View) {
-        view = builder()
-    }
-
-    func makeUIView(context: Context) -> UIView {
-        return view
-    }
-
-    func updateUIView(_ view: UIView, context: Context) {
-        view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        view.setContentHuggingPriority(.defaultHigh, for: .vertical)
+struct previewView: View {
+    @State private var isFullWidthButtonDisabled = true
+    
+    var body: some View {
+        VStack(spacing: 20) {
+            FullWidthButton(title: "기본") { }
+            FullWidthButton(title: "비활성화") { }
+                .disable($isFullWidthButtonDisabled)
+            FullWidthButton(title: "키보드") { }
+                .withKeyboard()
+            FullWidthButton(title: "키보드 + 비활성화") { }
+                .withKeyboard()
+                .disable($isFullWidthButtonDisabled)
+            Button("비활성화 토글") {
+                isFullWidthButtonDisabled.toggle()
+            }
+        }
     }
 }
 
-struct FriendCellPreviews: PreviewProvider {
+struct FullWidthButtonPreviews: PreviewProvider {
     static var previews: some View {
-        UIViewPreview {
-            let button = FullWidthButton()
-            button.title = "다음"
-            button.isDisabled = true
-            button.withKeyboard = true
-            return button
-        }
-        .previewLayout(.sizeThatFits)
+        previewView()
     }
 }
 #endif
