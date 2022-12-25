@@ -106,7 +106,7 @@ extension TodayViewController {
 // MARK: - UI Functions
 extension TodayViewController {
     private func setUI(){
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .background
         view.addSubviews(titleLabel, dateLabel)
         
         titleLabel.snp.makeConstraints {
@@ -145,10 +145,8 @@ extension TodayViewController {
                 $0.width.equalTo(109)
                 $0.height.equalTo(40)
             }
-            
-            
+
         }
-   
     }
     
     private func setNavigationBar() {

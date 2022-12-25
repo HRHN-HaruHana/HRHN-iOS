@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Color: String {
+enum CustomColor: String {
     
     case white
     case black
