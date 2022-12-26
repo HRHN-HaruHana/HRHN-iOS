@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
+		505B95352959926A005F00C8 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B95342959926A005F00C8 /* ReviewViewController.swift */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		505B95342959926A005F00C8 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				A79121262950D12A0044E652 /* TabBarController.swift */,
 				A791210B294B190E0044E652 /* TodayViewController.swift */,
 				A79121282950D2000044E652 /* RecordViewController.swift */,
+				505B95342959926A005F00C8 /* ReviewViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
 				50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */,
+				505B95352959926A005F00C8 /* ReviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
