@@ -18,3 +18,43 @@ final class ReviewViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = ""
     }
 }
+
+// MARK: - Preview
+
+#if DEBUG
+final class ReviewViewNavigationPreview: UIViewController {
+    private let button: UIFullWidthButton = {
+        $0.title = "내비게이션바 확인"
+        return $0
+    }(UIFullWidthButton())
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setButton()
+        setLayout()
+    }
+    
+    func setButton() {
+        button.action = UIAction { _ in
+            self.navigationController?.pushViewController(ReviewViewController(), animated: true)
+        }
+    }
+    
+    func setLayout() {
+        view.addSubview(button)
+        button.snp.makeConstraints {
+            $0.center.horizontalEdges.equalToSuperview().inset(20)
+        }
+    }
+}
+
+import SwiftUI
+
+struct ReviewViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        UINavigationController(rootViewController: ReviewViewNavigationPreview())
+            .toPreview()
+            .ignoresSafeArea()
+    }
+}
+#endif
