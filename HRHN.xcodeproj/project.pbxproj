@@ -10,6 +10,7 @@
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		505B95352959926A005F00C8 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B95342959926A005F00C8 /* ReviewViewController.swift */; };
 		505B953829599976005F00C8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953729599976005F00C8 /* UIViewController+.swift */; };
+		505B953B29599A24005F00C8 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953A29599A24005F00C8 /* ReviewView.swift */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
@@ -26,7 +27,6 @@
 		A791210C294B190E0044E652 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791210B294B190E0044E652 /* TodayViewController.swift */; };
 		A7912115294B1AAB0044E652 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
 		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
-		A7912125294C40900044E652 /* SampleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912124294C40900044E652 /* SampleUI.swift */; };
 		A79121272950D12A0044E652 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121262950D12A0044E652 /* TabBarController.swift */; };
 		A79121292950D2000044E652 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121282950D2000044E652 /* RecordViewController.swift */; };
 		A791212B2950D5A20044E652 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212A2950D5A20044E652 /* UIView+.swift */; };
@@ -69,6 +69,7 @@
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		505B95342959926A005F00C8 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		505B953729599976005F00C8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		505B953A29599A24005F00C8 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -88,7 +89,6 @@
 		A791210B294B190E0044E652 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		A7912114294B1AAB0044E652 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		A7912120294B1B440044E652 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		A7912124294C40900044E652 /* SampleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleUI.swift; sourceTree = "<group>"; };
 		A79121262950D12A0044E652 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A79121282950D2000044E652 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		A791212A2950D5A20044E652 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -136,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		505B9539295999EA005F00C8 /* SwiftUIView */ = {
+			isa = PBXGroup;
+			children = (
+				505B953A29599A24005F00C8 /* ReviewView.swift */,
+			);
+			path = SwiftUIView;
+			sourceTree = "<group>";
+		};
 		50BD589C29580C35009F9556 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,8 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				A7912183295611860044E652 /* Cell */,
-				A7912124294C40900044E652 /* SampleUI.swift */,
 				50BD589C29580C35009F9556 /* Component */,
+				505B9539295999EA005F00C8 /* SwiftUIView */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -460,6 +468,7 @@
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
+				505B953B29599A24005F00C8 /* ReviewView.swift in Sources */,
 				A79121712955E2310044E652 /* MockData.swift in Sources */,
 				507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
@@ -468,7 +477,6 @@
 				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
 				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
 				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
-				A7912125294C40900044E652 /* SampleUI.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
