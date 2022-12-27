@@ -15,6 +15,10 @@ final class ReviewViewController: UIViewController {
     
     private lazy var nextButton: UIFullWidthButton = {
         $0.title = "다음"
+        $0.action = UIAction { _ in
+            self.viewModel.updateChallenge()
+//            self.navigationController?.pushViewController()
+        }
         $0.isEnabled = false
         return $0
     }(UIFullWidthButton())
@@ -43,7 +47,6 @@ final class ReviewViewController: UIViewController {
         setNavigationBar()
         setUI()
         setLayout()
-        nextButtonDidTap()
     }
     
     // MARK: Methods
@@ -82,12 +85,6 @@ final class ReviewViewController: UIViewController {
         reviewViewHC.view.snp.makeConstraints {
             $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalTo(nextButton.snp.top)
-        }
-    }
-    
-    private func nextButtonDidTap() {
-        nextButton.action = UIAction { _ in
-//            self.navigationController?.pushViewController(AddChallengeViewController(), animated: true)
         }
     }
 }

@@ -24,4 +24,15 @@ final class ReviewViewModel: ObservableObject {
             self.lastChallenge = challenges[0]
         }
     }
+    
+    func updateChallenge() {
+        guard let lastChallenge else { return }
+        let updatedChallenge = Challenge(
+            id: lastChallenge.id,
+            date: lastChallenge.date,
+            content: lastChallenge.content,
+            emoji: selectedEmoji
+        )
+        coreDataManager.updateChallenge(updatedChallenge)
+    }
 }
