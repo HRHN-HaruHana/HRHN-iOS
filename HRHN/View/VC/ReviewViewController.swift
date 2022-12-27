@@ -70,10 +70,6 @@ final class ReviewViewController: UIViewController {
     
     private func setUI() {
         view.backgroundColor = .background
-        
-        addChild(reviewViewHC)
-        view.addSubview(reviewViewHC.view)
-        reviewViewHC.didMove(toParent: self)
     }
     
     private func setLayout() {
@@ -82,6 +78,9 @@ final class ReviewViewController: UIViewController {
             $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
+        addChild(reviewViewHC)
+        view.addSubview(reviewViewHC.view)
+        reviewViewHC.didMove(toParent: self)
         reviewViewHC.view.snp.makeConstraints {
             $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalTo(nextButton.snp.top)
