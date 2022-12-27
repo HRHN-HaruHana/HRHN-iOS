@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			children = (
 				A79121782955FBCE0044E652 /* CustomColor.swift */,
 				50DBEA0E2952EBC300ED00FD /* UIColor+.swift */,
+				507089AF295ABC2B00DD8D85 /* Color+.swift */,
 			);
 			path = Color;
 			sourceTree = "<group>";
@@ -155,7 +158,6 @@
 				A79120EA294A0A610044E652 /* HRHNTests */,
 				A79120F4294A0A610044E652 /* HRHNUITests */,
 				A79120CF294A0A5F0044E652 /* Products */,
-				A791218A29578B310044E652 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				A7912185295775C00044E652 /* TodayViewModel.swift */,
-                A791217F2956066E0044E652 /* RecordViewModel.swift */,
+				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -452,6 +454,7 @@
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				A79121712955E2310044E652 /* MockData.swift in Sources */,
+				507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,

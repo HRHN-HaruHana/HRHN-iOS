@@ -41,7 +41,7 @@ extension UIColor {
     
     static let challengeCardFill = resolvedColor(.grayFB)
     static let challengeCardLabel = resolvedColor(.gray4A)
-    static let challngeListFill = resolvedColor(.grayF6)
+    static let challengeListFill = resolvedColor(.grayF6)
     static let challengeListLabel = resolvedColor(.gray81)
     static let settingIconFill = resolvedColor(.grayC5)
     
@@ -52,4 +52,3 @@ extension UIColor {
     static let emojiBlue = resolvedColor(.blue01)
     static let emojiPurple = resolvedColor(.purple01)
 }
-
