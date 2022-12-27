@@ -91,8 +91,10 @@ private extension ReviewView {
 
 // MARK: - Preview
 
+#if DEBUG
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
         ReviewView()
     }
 }
+#endif
