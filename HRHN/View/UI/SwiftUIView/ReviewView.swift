@@ -20,7 +20,7 @@ struct ReviewView: View {
                 .font(.system(size: 25, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer(minLength: 20)
-            Text(viewModel.lastChallenge?.content ?? "")
+            Text(viewModel.previousChallenge?.content ?? "")
                 .foregroundColor(.challengeCardLabel)
                 .padding(20.adjusted)
                 .frame(maxWidth: .infinity)

@@ -9,28 +9,28 @@ import Foundation
 
 final class ReviewViewModel: ObservableObject {
     
-    @Published var lastChallenge: Challenge?
+    @Published var previousChallenge: Challenge?
     @Published var selectedEmoji: Emoji = .none
     
     private let coreDataManager = CoreDataManager.shared
     
     init() {
-        fetchLastChallenge()
+        fetchPreviousChallenge()
     }
     
-    func fetchLastChallenge() {
+    func fetchPreviousChallenge() {
         let challenges = coreDataManager.getChallenges()
         if challenges.count > 0 {
-            self.lastChallenge = challenges[0]
+            self.previousChallenge = challenges[0]
         }
     }
     
     func updateChallenge() {
-        guard let lastChallenge else { return }
+        guard let previousChallenge else { return }
         let updatedChallenge = Challenge(
-            id: lastChallenge.id,
-            date: lastChallenge.date,
-            content: lastChallenge.content,
+            id: previousChallenge.id,
+            date: previousChallenge.date,
+            content: previousChallenge.content,
             emoji: selectedEmoji
         )
         coreDataManager.updateChallenge(updatedChallenge)
