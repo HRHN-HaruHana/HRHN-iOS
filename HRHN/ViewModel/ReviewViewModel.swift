@@ -20,7 +20,7 @@ final class ReviewViewModel: ObservableObject {
     
     func fetchLastChallenge() {
         let challenges = coreDataManager.getChallenges()
-        if challenges.count > 0 && challenges[0].emoji == .none {
+        if challenges.count > 0 {
             self.lastChallenge = challenges[0]
         }
     }
