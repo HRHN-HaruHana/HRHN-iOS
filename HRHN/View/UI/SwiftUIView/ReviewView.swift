@@ -45,12 +45,8 @@ struct ReviewView: View {
             }
             .padding(.horizontal, 15)
             Spacer(minLength: 20)
-            FullWidthButton("다음") {
-                // TODO: Push
-            }
-            .disabled(selectedEmoji == .none)
         }
-        .padding(20)
+        .padding([.horizontal, .top], 20)
         .setBackgroundColor(.background)
     }
 }

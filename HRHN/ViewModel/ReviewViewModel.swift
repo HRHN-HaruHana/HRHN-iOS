@@ -24,8 +24,4 @@ final class ReviewViewModel: ObservableObject {
             self.lastChallenge = challenges[0]
         }
     }
-    
-    func fullWidthButtonDidTap() {
-        
-    }
 }

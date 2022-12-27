@@ -5,13 +5,28 @@
 //  Created by 민채호 on 2022/12/26.
 //
 
+import Combine
 import UIKit
 import SnapKit
 
 final class ReviewViewController: UIViewController {
     
-    private let viewModel: ReviewViewModel
+    // MARK: UI
+    
+    private lazy var nextButton: UIFullWidthButton = {
+        $0.title = "다음"
+        $0.isEnabled = false
+        return $0
+    }(UIFullWidthButton())
+    
     private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(with: viewModel))
+    
+    // MARK: Property
+    
+    private let viewModel: ReviewViewModel
+    private var cancelBag = Set<AnyCancellable>()
+    
+    // MARK: Life Cycle
     
     init(with viewModel: ReviewViewModel) {
         self.viewModel = viewModel
@@ -24,9 +39,26 @@ final class ReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
         setNavigationBar()
         setUI()
         setLayout()
+        nextButtonDidTap()
+    }
+    
+    // MARK: Methods
+    
+    private func bind() {
+        viewModel.$selectedEmoji
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                if $0 == .none {
+                    self?.nextButton.isEnabled = false
+                } else {
+                    self?.nextButton.isEnabled = true
+                }
+            }
+            .store(in: &cancelBag)
     }
     
     private func setNavigationBar() {
@@ -42,8 +74,20 @@ final class ReviewViewController: UIViewController {
     }
     
     private func setLayout() {
+        view.addSubview(nextButton)
+        nextButton.snp.makeConstraints {
+            $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+        
         reviewViewHC.view.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(nextButton.snp.top)
+        }
+    }
+    
+    private func nextButtonDidTap() {
+        nextButton.action = UIAction { _ in
+//            self.navigationController?.pushViewController(AddChallengeViewController(), animated: true)
         }
     }
 }
