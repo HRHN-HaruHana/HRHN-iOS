@@ -48,6 +48,7 @@ struct ReviewView: View {
             .disabled(selectedEmoji == .none)
         }
         .padding(20)
+        .setBackgroundColor(.background)
     }
 }
 
