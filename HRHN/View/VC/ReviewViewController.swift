@@ -9,8 +9,7 @@ import UIKit
 import SnapKit
 
 final class ReviewViewController: UIViewController {
-    private let ReviewViewHC = UIHostingController(rootView: ReviewView())
-    private lazy var UIReviewView = ReviewViewHC.view ?? UIView()
+    private let reviewViewHC = UIHostingController(rootView: ReviewView())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +24,14 @@ final class ReviewViewController: UIViewController {
     
     private func setUI() {
         view.backgroundColor = .background
+        
+        addChild(reviewViewHC)
+        view.addSubview(reviewViewHC.view)
+        reviewViewHC.didMove(toParent: self)
     }
     
     private func setLayout() {
-        view.addSubview(UIReviewView)
-        UIReviewView.snp.makeConstraints {
+        reviewViewHC.view.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
