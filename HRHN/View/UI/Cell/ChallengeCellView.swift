@@ -28,7 +28,7 @@ struct ChallengeCellView: View {
                 
         }
         .padding(20)
-        .background(Color(UIColor.challngeListFill))
+        .background(Color(UIColor.challengeListFill))
         .cornerRadius(16)
     }
 }
