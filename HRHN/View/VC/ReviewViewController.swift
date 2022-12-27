@@ -6,16 +6,32 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ReviewViewController: UIViewController {
+    private let ReviewViewHC = UIHostingController(rootView: ReviewView())
+    private lazy var UIReviewView = ReviewViewHC.view ?? UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
+        setUI()
+        setLayout()
     }
     
     private func setNavigationBar() {
         navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+    private func setUI() {
+        view.backgroundColor = .background
+    }
+    
+    private func setLayout() {
+        view.addSubview(UIReviewView)
+        UIReviewView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
