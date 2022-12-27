@@ -23,7 +23,7 @@ final class ReviewViewController: UIViewController {
         return $0
     }(UIFullWidthButton())
     
-    private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(with: viewModel))
+    private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: viewModel))
     
     // MARK: Property
     
@@ -32,7 +32,7 @@ final class ReviewViewController: UIViewController {
     
     // MARK: Life Cycle
     
-    init(with viewModel: ReviewViewModel) {
+    init(viewModel: ReviewViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -106,7 +106,7 @@ final class ReviewViewNavigationPreview: UIViewController {
     
     func setButton() {
         button.action = UIAction { _ in
-            self.navigationController?.pushViewController(ReviewViewController(with: ReviewViewModel()), animated: true)
+            self.navigationController?.pushViewController(ReviewViewController(viewModel: ReviewViewModel()), animated: true)
         }
     }
     

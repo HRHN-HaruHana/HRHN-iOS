@@ -10,7 +10,7 @@ import SwiftUI
 struct ReviewView: View {
     @ObservedObject private var viewModel: ReviewViewModel
     
-    init(with viewModel: ReviewViewModel) {
+    init(viewModel: ReviewViewModel) {
         self.viewModel = viewModel
     }
     
@@ -93,7 +93,7 @@ private extension ReviewView {
 #if DEBUG
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView(with: ReviewViewModel())
+        ReviewView(viewModel: ReviewViewModel())
     }
 }
 #endif
