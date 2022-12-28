@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LinkTableViewCell: UITableViewCell {
+class SettingCell: UITableViewCell {
     static let identifier = "LinkTableViewCell"
     
     
@@ -50,7 +50,7 @@ class LinkTableViewCell: UITableViewCell {
     }
 }
 
-extension LinkTableViewCell {
+extension SettingCell {
     
     @objc func switchDidChange(_ sender: UISwitch) {
         // TODO: 스위치 제어
