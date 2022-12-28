@@ -21,8 +21,6 @@ struct SettingItem {
     let type: SettingCellType
     let imageName: String
     let link: String?
-//    let toggle: Bool
-//    let time: Date
 }
 
 struct SettingSection {
@@ -31,12 +29,10 @@ struct SettingSection {
     
     static func generateData() -> [SettingSection] {
         return [
-            // NOTIFICATION
             SettingSection(items: [
                 SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.fill", link: nil),
                 SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock.fill", link: nil)
             ], header: "NOTIFICATION"),
-            // SUPPORT
             SettingSection(items: [
                 SettingItem(text: "문의 및 지원", secondaryText: nil, type: .defaultItem, imageName: "phone.fill", link: "https://hrhn.notion.site/d56ff2386c464543bbeb20284e3f3469"),
                 SettingItem(text: "홈페이지", secondaryText: nil, type: .defaultItem, imageName: "globe", link: "https://hrhn.notion.site/f7ecd6dca58046b298ad8debfbcc762e"),
@@ -45,8 +41,6 @@ struct SettingSection {
         ]
     }
 }
-
-
 
 final class SettingViewController: UIViewController {
     
@@ -64,8 +58,7 @@ final class SettingViewController: UIViewController {
     }(UILabel())
     
     private lazy var tableView: UITableView = { [weak self] in
-        $0.register(LinkTableViewCell.self,
-                    forCellReuseIdentifier: LinkTableViewCell.identifier)
+        $0.register(LinkTableViewCell.self, forCellReuseIdentifier: LinkTableViewCell.identifier)
         $0.delegate = self
         $0.dataSource = self
         $0.alwaysBounceVertical = false
@@ -91,17 +84,12 @@ final class SettingViewController: UIViewController {
         setNavigationBar()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
 }
 
 // MARK: - Functions
 extension SettingViewController {
     
     @objc func backButtonDidTap(_ sender: UIButton) {
-        // TODO: - GO TO SETTINGS
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -127,7 +115,6 @@ extension SettingViewController {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-
     }
     
     private func setNavigationBar() {
@@ -150,9 +137,7 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let target = list[indexPath.section].items[indexPath.row]
-        
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: LinkTableViewCell.identifier,
             for: indexPath
