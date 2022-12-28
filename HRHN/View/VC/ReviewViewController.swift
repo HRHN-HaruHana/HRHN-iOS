@@ -11,26 +11,24 @@ import SnapKit
 
 final class ReviewViewController: UIViewController {
     
-    // MARK: UI
+    // MARK: Properties
+    
+    private let viewModel: ReviewViewModel
+    private var cancelBag = Set<AnyCancellable>()
+    
+    private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: viewModel))
     
     private lazy var nextButton: UIFullWidthButton = {
         $0.title = "다음"
         $0.action = UIAction { _ in
             self.viewModel.updateChallenge()
-//            self.navigationController?.pushViewController()
+            //            self.navigationController?.pushViewController()
         }
         $0.isEnabled = false
         return $0
     }(UIFullWidthButton())
     
-    private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: viewModel))
-    
-    // MARK: Property
-    
-    private let viewModel: ReviewViewModel
-    private var cancelBag = Set<AnyCancellable>()
-    
-    // MARK: Life Cycle
+    // MARK: LifeCycle
     
     init(viewModel: ReviewViewModel) {
         self.viewModel = viewModel
@@ -44,14 +42,16 @@ final class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        setNavigationBar()
         setUI()
-        setLayout()
+        setNavigationBar()
     }
+}
+
+// MARK: Bindings
+
+private extension ReviewViewController {
     
-    // MARK: Methods
-    
-    private func bind() {
+    func bind() {
         viewModel.$selectedEmoji
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -63,16 +63,15 @@ final class ReviewViewController: UIViewController {
             }
             .store(in: &cancelBag)
     }
+}
+
+// MARK: UI Functions
+
+private extension ReviewViewController {
     
-    private func setNavigationBar() {
-        navigationController?.navigationBar.topItem?.title = ""
-    }
-    
-    private func setUI() {
+    func setUI() {
         view.backgroundColor = .background
-    }
-    
-    private func setLayout() {
+        
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints {
             $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -85,6 +84,10 @@ final class ReviewViewController: UIViewController {
             $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalTo(nextButton.snp.top)
         }
+    }
+    
+    func setNavigationBar() {
+        navigationController?.navigationBar.topItem?.title = ""
     }
 }
 
