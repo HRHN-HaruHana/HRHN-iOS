@@ -66,6 +66,7 @@ final class AddViewController: UIViewController {
         $0.scrollIndicatorInsets = .zero
         $0.isScrollEnabled = false
         $0.centerVertically()
+        $0.tintColor = .clear
         return $0
     }(UITextView())
     
@@ -158,8 +159,10 @@ extension AddViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.isEmpty {
             placeholderLabel.isHidden = false
+            textView.tintColor = .clear
         } else {
             placeholderLabel.isHidden = true
+            textView.tintColor = .tintColor
         }
     }
 }
