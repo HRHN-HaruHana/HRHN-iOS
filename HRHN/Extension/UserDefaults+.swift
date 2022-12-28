@@ -23,9 +23,9 @@ extension UserDefaults {
         }
     }
     
-    class var notiTime: Bool {
+    class var notiTime: String? {
         get {
-            return UserDefaults.standard.bool(forKey: Keys.notiTime)
+            return UserDefaults.standard.string(forKey: Keys.notiTime)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.notiTime)

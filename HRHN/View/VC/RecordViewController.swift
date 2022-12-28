@@ -58,7 +58,7 @@ final class RecordViewController: UIViewController {
 extension RecordViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
-        let settingVC = SettingViewController()
+        let settingVC = SettingViewController(viewModel: SettingViewModel())
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
     }

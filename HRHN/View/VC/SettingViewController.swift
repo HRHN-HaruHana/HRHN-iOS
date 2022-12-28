@@ -45,8 +45,8 @@ struct SettingSection {
 final class SettingViewController: UIViewController {
     
     // MARK: - Properties
-    
-    let list = SettingSection.generateData()
+    private var viewModel: SettingViewModel
+    private let list = SettingSection.generateData()
     
     private lazy var titleView = UIView()
     private lazy var titleLabel: UILabel = {
@@ -68,7 +68,8 @@ final class SettingViewController: UIViewController {
     
     // MARK: - LifeCycle
     
-    init() {
+    init(viewModel: SettingViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
