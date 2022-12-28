@@ -22,19 +22,44 @@ class LinkTableViewCell: UITableViewCell {
         configuration.secondaryText = item.secondaryText
         configuration.secondaryTextProperties.color = .secondaryLabel
         configuration.image = UIImage(systemName: item.imageName)
+        configuration.imageProperties.tintColor = item.type == .defaultItem ? .settingIconFill : .point
         contentConfiguration = configuration
+        selectionStyle = .none
+        
+        switch item.type {
+        case .alertTime:
+            let timePicker = UIDatePicker()
+            timePicker.datePickerMode = .time
+            timePicker.tintColor = .red
+            // timePicker.setValue(UIColor.tintColor, forKeyPath: "textColor")
+            timePicker.addTarget(self,
+                                 action:#selector(timePickerdidChange(_:)),
+                                 for: .valueChanged)
+            accessoryView = timePicker
+        case .alertToggle:
+            let switchView = UISwitch(frame: .zero)
+            switchView.setOn(false, animated: true)
+            switchView.tag = 1
+            switchView.tintColor = .tintColor
+            switchView.addTarget(self, action: #selector(switchDidChange(_:)), for: .valueChanged)
+            accessoryView = switchView
+        case .defaultItem:
+            return
+        }
+        
     }
-    
 }
 
-extension UIImage {
-   static func imageWithColor(tintColor: UIColor) -> UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
-        tintColor.setFill()
-        UIRectFill(rect)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
+extension LinkTableViewCell {
+    
+    @objc func switchDidChange(_ sender: UISwitch) {
+        print("SWITCH : \(sender.isOn)")
+    }
+    
+    @objc func timePickerdidChange(_ sender: UIDatePicker) {
+        let timePickerView = sender
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        print(formatter.string(from: timePickerView.date))
     }
 }
