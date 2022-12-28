@@ -48,9 +48,11 @@
 		A791218229560B580044E652 /* RecordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218129560B580044E652 /* RecordHeaderView.swift */; };
 		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
 		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
+		A791218E295799540044E652 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218D295799540044E652 /* NotificationViewController.swift */; };
 		A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF5295C284200342CC8 /* SettingViewController.swift */; };
 		A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */; };
-		A791218E295799540044E652 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218D295799540044E652 /* NotificationViewController.swift */; };
+		A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */; };
+		A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,9 +116,11 @@
 		A791218129560B580044E652 /* RecordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHeaderView.swift; sourceTree = "<group>"; };
 		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
+		A791218D295799540044E652 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A7ED3EF5295C284200342CC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
-		A791218D295799540044E652 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +253,7 @@
 				A79121682954FB600044E652 /* Date+.swift */,
 				505B953729599976005F00C8 /* UIViewController+.swift */,
 				507089B1295ADE1A00DD8D85 /* View+.swift */,
+				A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				A7912185295775C00044E652 /* TodayViewModel.swift */,
 				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
+				A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
+				A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				505B953B29599A24005F00C8 /* ReviewView.swift in Sources */,
@@ -504,6 +511,7 @@
 				A7912189295775E00044E652 /* Obervable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
+				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
