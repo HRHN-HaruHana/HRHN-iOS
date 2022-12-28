@@ -30,8 +30,8 @@ class LinkTableViewCell: UITableViewCell {
         case .alertTime:
             let timePicker = UIDatePicker()
             timePicker.datePickerMode = .time
-            timePicker.tintColor = .red
-            // timePicker.setValue(UIColor.tintColor, forKeyPath: "textColor")
+            timePicker.tintColor = .point
+            timePicker.setValue(UIColor.point, forKeyPath: "textColor")
             timePicker.addTarget(self,
                                  action:#selector(timePickerdidChange(_:)),
                                  for: .valueChanged)
@@ -40,7 +40,7 @@ class LinkTableViewCell: UITableViewCell {
             let switchView = UISwitch(frame: .zero)
             switchView.setOn(false, animated: true)
             switchView.tag = 1
-            switchView.tintColor = .tintColor
+            switchView.onTintColor = .point
             switchView.addTarget(self, action: #selector(switchDidChange(_:)), for: .valueChanged)
             accessoryView = switchView
         case .defaultItem:

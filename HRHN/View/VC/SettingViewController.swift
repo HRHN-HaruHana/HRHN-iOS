@@ -33,8 +33,8 @@ struct SettingSection {
         return [
             // NOTIFICATION
             SettingSection(items: [
-                SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.circle.fill", link: nil),
-                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock.circle.fill", link: nil)
+                SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.fill", link: nil),
+                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock", link: nil)
             ], header: "NOTIFICATION"),
             // SUPPORT
             SettingSection(items: [
@@ -53,6 +53,15 @@ final class SettingViewController: UIViewController {
     // MARK: - Properties
     
     let list = SettingSection.generateData()
+    
+    private lazy var titleView = UIView()
+    private lazy var titleLabel: UILabel = {
+        $0.text = "설정"
+        $0.textColor = .label
+        $0.font = .systemFont(ofSize: 25, weight: .bold)
+        $0.numberOfLines = 0
+        return $0
+    }(UILabel())
     
     private lazy var tableView: UITableView = { [weak self] in
         $0.register(LinkTableViewCell.self,
@@ -84,7 +93,6 @@ final class SettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
     }
     
 }
@@ -103,17 +111,28 @@ extension SettingViewController {
 extension SettingViewController {
     private func setUI(){
         view.backgroundColor = .background
-        view.addSubviews(tableView)
-        tableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        view.addSubviews(titleView, tableView)
+        titleView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(76)
         }
+        titleView.addSubviews(titleLabel)
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(20)
+        }
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(titleView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+
     }
     
     private func setNavigationBar() {
         let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonDidTap))
         navigationItem.leftBarButtonItem = leftBarButton
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "설정"
     }
 }
 
@@ -167,5 +186,4 @@ extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return list[section].header
     }
-    
 }
