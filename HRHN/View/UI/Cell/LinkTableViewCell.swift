@@ -13,18 +13,28 @@ class LinkTableViewCell: UITableViewCell {
     
     override func updateConfiguration(using state: UICellConfigurationState) {
         super.updateConfiguration(using: state)
-        
-        var configuration = defaultContentConfiguration().updated(for: state) // valuetype
-        configuration.text = "Hello World"
-        configuration.image = UIImage(systemName: "bell")
-        
-        
-//        if state.isHighlighted || state.isSelected {
-//            configuration.textProperties.color = .red
-//            configuration.imageProperties.tintColor = .yellow
-//        }
-//
+        tintColor = .tintColor
+    }
+    
+    func configureCell(with item: SettingItem){
+        var configuration = defaultContentConfiguration() // valuetype
+        configuration.text = item.text
+        configuration.secondaryText = item.secondaryText
+        configuration.secondaryTextProperties.color = .secondaryLabel
+        configuration.image = UIImage(systemName: item.imageName)
         contentConfiguration = configuration
     }
+    
+}
 
+extension UIImage {
+   static func imageWithColor(tintColor: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        tintColor.setFill()
+        UIRectFill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
