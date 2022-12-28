@@ -42,6 +42,7 @@ final class AddViewController: UIViewController {
         $0.isOnKeyboard = true
         $0.action = UIAction { _ in
             self.viewModel.createChallenge(self.addChallengeTextView.text as String)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         return $0
     }(UIFullWidthButton())
