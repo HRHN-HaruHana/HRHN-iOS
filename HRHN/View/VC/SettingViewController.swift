@@ -118,8 +118,7 @@ extension SettingViewController {
     }
     
     private func setNavigationBar() {
-        let leftBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonDidTap))
-        navigationItem.leftBarButtonItem = leftBarButton
+        navigationController?.navigationBar.topItem?.title = ""
     }
 }
 
