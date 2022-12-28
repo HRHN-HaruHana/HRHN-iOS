@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SwiftUI
 import UIKit
 import SnapKit
 
@@ -119,8 +120,6 @@ final class ReviewViewNavigationPreview: UIViewController {
         }
     }
 }
-
-import SwiftUI
 
 struct ReviewViewController_Preview: PreviewProvider {
     static var previews: some View {
