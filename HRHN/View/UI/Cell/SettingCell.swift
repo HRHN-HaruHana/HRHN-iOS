@@ -44,7 +44,7 @@ class SettingCell: UITableViewCell {
             switchView.addTarget(self, action: #selector(switchDidChange(_:)), for: .valueChanged)
             accessoryView = switchView
         case .defaultItem:
-            return
+            accessoryType = .disclosureIndicator
         }
         
     }
