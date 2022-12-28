@@ -53,13 +53,15 @@ class LinkTableViewCell: UITableViewCell {
 extension LinkTableViewCell {
     
     @objc func switchDidChange(_ sender: UISwitch) {
-        print("SWITCH : \(sender.isOn)")
+        // TODO: 스위치 제어
+        // print("SWITCH : \(sender.isOn)")
     }
     
     @objc func timePickerdidChange(_ sender: UIDatePicker) {
         let timePickerView = sender
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        print(formatter.string(from: timePickerView.date))
+        // TODO: Date 제어
+        // print(formatter.string(from: timePickerView.date))
     }
 }

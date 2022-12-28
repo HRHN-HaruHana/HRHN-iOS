@@ -34,7 +34,7 @@ struct SettingSection {
             // NOTIFICATION
             SettingSection(items: [
                 SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.fill", link: nil),
-                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock", link: nil)
+                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock.fill", link: nil)
             ], header: "NOTIFICATION"),
             // SUPPORT
             SettingSection(items: [
@@ -163,15 +163,11 @@ extension SettingViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let target = list[indexPath.section].items[indexPath.row]
-
         if let url = URL(string: target.link ?? "") {
           let safariView: SFSafariViewController = SFSafariViewController(url: url)
           self.present(safariView, animated: true, completion: nil)
         }
-        
-        print("선택된 셀: \(target)")
     }
     
 }
