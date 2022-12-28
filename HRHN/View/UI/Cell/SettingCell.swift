@@ -38,7 +38,7 @@ class SettingCell: UITableViewCell {
                                  for: .valueChanged)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
-            let date = dateFormatter.date(from: "09:00")
+            let date = dateFormatter.date(from: item.time ?? "09:00")
             timePicker.date = date ?? Date()
             accessoryView = timePicker
         case .alertToggle:
