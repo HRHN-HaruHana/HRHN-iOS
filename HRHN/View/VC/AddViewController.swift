@@ -37,7 +37,7 @@ final class AddViewController: UIViewController {
         return $0
     }(UIView())
     
-    private let doneButton: UIFullWidthButton = {
+    private lazy var doneButton: UIFullWidthButton = {
         $0.title = "완료"
         $0.isOnKeyboard = true
         $0.action = UIAction { _ in
