@@ -97,7 +97,6 @@ final class TodayViewController: UIViewController {
 extension TodayViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
-        // TODO: - GO TO SETTINGS
         let settingVC = SettingViewController()
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
