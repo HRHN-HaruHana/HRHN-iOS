@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SafariServices
 
 enum SettingCellType: String {
     case defaultItem
@@ -19,6 +20,9 @@ struct SettingItem {
     let secondaryText: String?
     let type: SettingCellType
     let imageName: String
+    let link: String?
+//    let toggle: Bool
+//    let time: Date
 }
 
 struct SettingSection {
@@ -29,14 +33,14 @@ struct SettingSection {
         return [
             // NOTIFICATION
             SettingSection(items: [
-                SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.circle.fill"),
-                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock.circle.fill")
+                SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.circle.fill", link: nil),
+                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock.circle.fill", link: nil)
             ], header: "NOTIFICATION"),
             // SUPPORT
             SettingSection(items: [
-                SettingItem(text: "문의 및 지원", secondaryText: nil, type: .defaultItem, imageName: "phone.circle.fill"),
-                SettingItem(text: "홈페이지", secondaryText: nil, type: .defaultItem, imageName: "globe"),
-                SettingItem(text: "오픈소스 라이선스", secondaryText: nil, type: .defaultItem, imageName: "chevron.left.forwardslash.chevron.right")
+                SettingItem(text: "문의 및 지원", secondaryText: nil, type: .defaultItem, imageName: "phone.fill", link: "https://hrhn.notion.site/d56ff2386c464543bbeb20284e3f3469"),
+                SettingItem(text: "홈페이지", secondaryText: nil, type: .defaultItem, imageName: "globe", link: "https://hrhn.notion.site/f7ecd6dca58046b298ad8debfbcc762e"),
+                SettingItem(text: "오픈소스 라이선스", secondaryText: nil, type: .defaultItem, imageName: "chevron.left.forwardslash.chevron.right", link: "https://hrhn.notion.site/2dd3252ad190433392c58f77e975cb18")
             ], header: "SUPPORT")
         ]
     }
@@ -55,7 +59,6 @@ final class SettingViewController: UIViewController {
                     forCellReuseIdentifier: LinkTableViewCell.identifier)
         $0.delegate = self
         $0.dataSource = self
-//        $0.allowsSelection = false
         $0.alwaysBounceVertical = false
         $0.showsVerticalScrollIndicator = false
         return $0
@@ -137,6 +140,19 @@ extension SettingViewController: UITableViewDataSource {
         ) as? LinkTableViewCell else { return UITableViewCell() }
         cell.configureCell(with: target)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let target = list[indexPath.section].items[indexPath.row]
+
+        if let url = URL(string: target.link ?? "") {
+          let safariView: SFSafariViewController = SFSafariViewController(url: url)
+          self.present(safariView, animated: true, completion: nil)
+        }
+        
+        print("선택된 셀: \(target)")
     }
     
 }
