@@ -35,8 +35,8 @@ final class AddViewController: UIViewController {
         return $0
     }(UIView())
     
-    private let nextButton: UIFullWidthButton = {
-        $0.title = "다음"
+    private let doneButton: UIFullWidthButton = {
+        $0.title = "완료"
         $0.isOnKeyboard = true
         return $0
     }(UIFullWidthButton())
@@ -116,21 +116,21 @@ private extension AddViewController {
             addChallengeCard,
             placeholderLabel,
             addChallengeTextView,
-            nextButton
+            doneButton
         )
         
         titleLabel.snp.makeConstraints {
             $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
-        nextButton.snp.makeConstraints {
+        doneButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
         
         addChallengeCardLayoutView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
-            $0.bottom.equalTo(nextButton.snp.top)
+            $0.bottom.equalTo(doneButton.snp.top)
             $0.horizontalEdges.equalToSuperview()
         }
         
