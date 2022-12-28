@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ReviewView: View {
-    @State private var selectedEmoji: Emoji = .none
-    @State private var lastChallenge: Challenge = Challenge.mock[0]
+    @ObservedObject private var viewModel: ReviewViewModel
+    
+    init(viewModel: ReviewViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -17,7 +20,7 @@ struct ReviewView: View {
                 .font(.system(size: 25, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer(minLength: 20)
-            Text(lastChallenge.content)
+            Text(viewModel.previousChallenge?.content ?? "")
                 .foregroundColor(.challengeCardLabel)
                 .padding(20.adjusted)
                 .frame(maxWidth: .infinity)
@@ -42,12 +45,8 @@ struct ReviewView: View {
             }
             .padding(.horizontal, 15)
             Spacer(minLength: 20)
-            FullWidthButton("다음") {
-                // TODO: Push
-            }
-            .disabled(selectedEmoji == .none)
         }
-        .padding(20)
+        .padding([.horizontal, .top], 20)
         .setBackgroundColor(.background)
     }
 }
@@ -66,9 +65,9 @@ private extension ReviewView {
     @ViewBuilder
     func emojiButton(_ emoji: Emoji) -> some View {
         Button {
-            selectedEmoji = emoji
+            viewModel.selectedEmoji = emoji
         } label: {
-            if selectedEmoji == emoji {
+            if viewModel.selectedEmoji == emoji {
                 emojiImage(emoji)
                     .overlay {
                         ZStack {
@@ -94,7 +93,7 @@ private extension ReviewView {
 #if DEBUG
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView()
+        ReviewView(viewModel: ReviewViewModel())
     }
 }
 #endif
