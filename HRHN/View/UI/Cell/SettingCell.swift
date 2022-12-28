@@ -35,6 +35,10 @@ class SettingCell: UITableViewCell {
             timePicker.addTarget(self,
                                  action:#selector(timePickerdidChange(_:)),
                                  for: .valueChanged)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            let date = dateFormatter.date(from: "09:00")
+            timePicker.date = date ?? Date()
             accessoryView = timePicker
         case .alertToggle:
             let switchView = UISwitch(frame: .zero)
