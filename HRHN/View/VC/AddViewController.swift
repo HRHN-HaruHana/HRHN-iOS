@@ -124,7 +124,7 @@ private extension AddViewController {
         }
         
         nextButton.snp.makeConstraints {
-            $0.horizontalEdges.equalTo(view.keyboardLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
         
