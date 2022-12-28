@@ -41,8 +41,7 @@ final class AddViewController: UIViewController {
         $0.title = "완료"
         $0.isOnKeyboard = true
         $0.action = UIAction { _ in
-            self.viewModel.createChallenge(self.addChallengeTextView.text as String)
-            self.navigationController?.popToRootViewController(animated: true)
+            self.doneButtonDidTap()
         }
         return $0
     }(UIFullWidthButton())
@@ -73,6 +72,7 @@ final class AddViewController: UIViewController {
         $0.isScrollEnabled = false
         $0.centerVertically()
         $0.tintColor = .clear
+        $0.returnKeyType = .done
         return $0
     }(UITextView())
     
@@ -166,6 +166,11 @@ private extension AddViewController {
             $0.horizontalEdges.equalTo(addChallengeCard).inset(20.adjusted)
         }
     }
+    
+    func doneButtonDidTap() {
+        self.viewModel.createChallenge(self.addChallengeTextView.text as String)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
 
 // MARK: UITextViewDelegate
@@ -179,6 +184,14 @@ extension AddViewController: UITextViewDelegate {
             placeholderLabel.isHidden = true
             textView.tintColor = .tintColor
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            doneButtonDidTap()
+            return false
+        }
+        return true
     }
 }
 
