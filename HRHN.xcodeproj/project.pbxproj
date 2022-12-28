@@ -17,6 +17,7 @@
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE39295C7539009A57BA /* UITextView+.swift */; };
+		50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE3B295C87B1009A57BA /* AddViewModel.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
@@ -80,6 +81,7 @@
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50C1BE39295C7539009A57BA /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
+		50C1BE3B295C87B1009A57BA /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A79120CE294A0A5F0044E652 /* HRHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -319,6 +321,7 @@
 				A7912185295775C00044E652 /* TodayViewModel.swift */,
 				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
+				50C1BE3B295C87B1009A57BA /* AddViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				A79121792955FBCE0044E652 /* CustomColor.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
+				50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
