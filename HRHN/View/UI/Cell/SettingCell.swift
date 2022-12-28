@@ -9,7 +9,8 @@ import UIKit
 
 class SettingCell: UITableViewCell {
     static let identifier = "LinkTableViewCell"
-    
+    var setAlertHandler: ((Bool) -> Void)?
+    var setTimeHandler: ((String) -> Void)?
     
     override func updateConfiguration(using state: UICellConfigurationState) {
         super.updateConfiguration(using: state)
@@ -42,7 +43,7 @@ class SettingCell: UITableViewCell {
             accessoryView = timePicker
         case .alertToggle:
             let switchView = UISwitch(frame: .zero)
-            switchView.setOn(false, animated: true)
+            switchView.setOn(item.isOn ?? false, animated: true)
             switchView.tag = 1
             switchView.onTintColor = .point
             switchView.addTarget(self, action: #selector(switchDidChange(_:)), for: .valueChanged)
@@ -50,22 +51,19 @@ class SettingCell: UITableViewCell {
         case .defaultItem:
             return
         }
-        
     }
 }
 
 extension SettingCell {
     
     @objc func switchDidChange(_ sender: UISwitch) {
-        // TODO: 스위치 제어
-        // print("SWITCH : \(sender.isOn)")
+        self.setAlertHandler?(sender.isOn)
     }
     
     @objc func timePickerdidChange(_ sender: UIDatePicker) {
         let timePickerView = sender
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        // TODO: Date 제어
-        // print(formatter.string(from: timePickerView.date))
+        self.setTimeHandler?(formatter.string(from: timePickerView.date))
     }
 }

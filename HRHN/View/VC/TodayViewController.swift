@@ -106,6 +106,7 @@ extension TodayViewController {
     
     @objc func addButtonDidTap(_ sender: UIButton) {
         // TODO: - GO TO ADD-CHALLENGE
+        UserDefaults.isNotiAllowed = true
     }
     
     private func requestNotificationAuthorization() {
