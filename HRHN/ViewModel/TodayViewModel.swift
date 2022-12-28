@@ -23,4 +23,13 @@ final class TodayViewModel {
             self.todayChallenge = Observable(nil)
         }
     }
+    
+    func isPreviousChallengeExist() -> Bool {
+        let challenges = coreDataManager.getChallenges()
+        if challenges.count > 0 && challenges[0].emoji == .none {
+            return true
+        } else {
+            return false
+        }
+    }
 }
