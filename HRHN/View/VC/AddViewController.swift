@@ -11,6 +11,8 @@ final class AddViewController: UIViewController {
     
     // MARK: Properties
     
+    private let viewModel: AddViewModel
+    
     private let attributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
         .foregroundColor: UIColor.challengeCardLabel,
@@ -38,6 +40,9 @@ final class AddViewController: UIViewController {
     private let doneButton: UIFullWidthButton = {
         $0.title = "완료"
         $0.isOnKeyboard = true
+        $0.action = UIAction { _ in
+            self.viewModel.createChallenge(self.addChallengeTextView.text as String)
+        }
         return $0
     }(UIFullWidthButton())
     
@@ -71,6 +76,15 @@ final class AddViewController: UIViewController {
     }(UITextView())
     
     // MARK: LifeCycle
+    
+    init(viewModel: AddViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,7 +198,7 @@ final class AddViewNavigationPreview: UIViewController {
     
     func setButton() {
         button.action = UIAction { _ in
-            self.navigationController?.pushViewController(AddViewController(), animated: true)
+            self.navigationController?.pushViewController(AddViewController(viewModel: AddViewModel()), animated: true)
         }
     }
     
