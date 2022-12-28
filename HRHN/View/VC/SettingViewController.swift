@@ -113,9 +113,9 @@ extension SettingViewController {
         view.backgroundColor = .background
         view.addSubviews(titleView, tableView)
         titleView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(76)
+            $0.height.equalTo(66)
         }
         titleView.addSubviews(titleLabel)
         titleLabel.snp.makeConstraints {
