@@ -49,7 +49,7 @@
 		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
 		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 		A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF5295C284200342CC8 /* SettingViewController.swift */; };
-		A7ED3EF8295C2FEF00342CC8 /* LinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* LinkTableViewCell.swift */; };
+		A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +114,7 @@
 		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 		A7ED3EF5295C284200342CC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		A7ED3EF7295C2FEF00342CC8 /* LinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTableViewCell.swift; sourceTree = "<group>"; };
+		A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,7 +305,7 @@
 		A7912183295611860044E652 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				A7ED3EF7295C2FEF00342CC8 /* LinkTableViewCell.swift */,
+				A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */,
 				A79121742955F1180044E652 /* ChallengeCellView.swift */,
 				A791217C2956037B0044E652 /* ChallengeCell.swift */,
 				A791218129560B580044E652 /* RecordHeaderView.swift */,
@@ -470,7 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7ED3EF8295C2FEF00342CC8 /* LinkTableViewCell.swift in Sources */,
+				A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */,
 				A791214D295228200044E652 /* CGFloat+.swift in Sources */,
 				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,

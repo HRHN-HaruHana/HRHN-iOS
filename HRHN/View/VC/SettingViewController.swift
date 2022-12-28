@@ -58,7 +58,7 @@ final class SettingViewController: UIViewController {
     }(UILabel())
     
     private lazy var tableView: UITableView = { [weak self] in
-        $0.register(LinkTableViewCell.self, forCellReuseIdentifier: LinkTableViewCell.identifier)
+        $0.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         $0.delegate = self
         $0.dataSource = self
         $0.alwaysBounceVertical = false
@@ -139,9 +139,9 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let target = list[indexPath.section].items[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: LinkTableViewCell.identifier,
+            withIdentifier: SettingCell.identifier,
             for: indexPath
-        ) as? LinkTableViewCell else { return UITableViewCell() }
+        ) as? SettingCell else { return UITableViewCell() }
         cell.configureCell(with: target)
         return cell
     }
