@@ -56,7 +56,9 @@
 		A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */; };
 		A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */; };
 		A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */; };
-		A7ED3F07295E053600342CC8 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F06295E053600342CC8 /* OnBoardingViewController.swift */; };
+		A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */; };
+		A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */; };
+		A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,7 +130,9 @@
 		A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
-		A7ED3F06295E053600342CC8 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBFirstViewController.swift; sourceTree = "<group>"; };
+		A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBSecondViewController.swift; sourceTree = "<group>"; };
+		A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,7 +359,9 @@
 			isa = PBXGroup;
 			children = (
 				A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */,
-				A7ED3F06295E053600342CC8 /* OnBoardingViewController.swift */,
+				A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */,
+				A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */,
+				A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -508,7 +514,7 @@
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
 				50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */,
-				A7ED3F07295E053600342CC8 /* OnBoardingViewController.swift in Sources */,
+				A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */,
 				50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
@@ -520,6 +526,7 @@
 				507089B2295ADE1A00DD8D85 /* View+.swift in Sources */,
 				507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
+				A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
 				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
@@ -527,6 +534,7 @@
 				507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */,
 				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
+				A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,

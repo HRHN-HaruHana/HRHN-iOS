@@ -1,5 +1,5 @@
 //
-//  OnBoardingViewController.swift
+//  OBThirdViewController.swift
 //  HRHN
 //
 //  Created by Chanhee Jeong on 2022/12/30.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class OnboardingViewController: UIViewController {
+class OBThirdViewController: UIViewController {
     
     private let imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -27,13 +27,13 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        layout()
+        setUI()
     }
 }
 
-extension OnboardingViewController {
+extension OBThirdViewController {
     
-    func layout() {
+    func setUI() {
         view.addSubviews(imageView)
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()

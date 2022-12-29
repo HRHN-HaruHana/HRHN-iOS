@@ -46,9 +46,9 @@ extension OnBoardingPageViewController {
         
         view.backgroundColor = .background
         
-        let page1 = OnboardingViewController(imageName: "onboarding-1")
-        let page2 = OnboardingViewController(imageName: "blue")
-        let page3 = OnboardingViewController(imageName: "green")
+        let page1 = OBFirstViewController(imageName: "onboarding-1")
+        let page2 = OBSecondViewController(imageName: "blue")
+        let page3 = OBThirdViewController(imageName: "green")
         
         pages.append(page1)
         pages.append(page2)
