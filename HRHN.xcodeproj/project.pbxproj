@@ -55,6 +55,8 @@
 		A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */; };
 		A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */; };
 		A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */; };
+		A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */; };
+		A7ED3F07295E053600342CC8 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F06295E053600342CC8 /* OnBoardingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,8 @@
 		A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
+		A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
+		A7ED3F06295E053600342CC8 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +290,7 @@
 		A7912122294C40100044E652 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				A7ED3F05295E021F00342CC8 /* OnBoarding */,
 				A79121262950D12A0044E652 /* TabBarController.swift */,
 				A791210B294B190E0044E652 /* TodayViewController.swift */,
 				A79121282950D2000044E652 /* RecordViewController.swift */,
@@ -344,6 +349,15 @@
 				A7912188295775E00044E652 /* Obervable.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		A7ED3F05295E021F00342CC8 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */,
+				A7ED3F06295E053600342CC8 /* OnBoardingViewController.swift */,
+			);
+			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -494,6 +508,7 @@
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
 				50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */,
+				A7ED3F07295E053600342CC8 /* OnBoardingViewController.swift in Sources */,
 				50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
@@ -518,6 +533,7 @@
 				A7912189295775E00044E652 /* Obervable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
+				A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */,
 				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
