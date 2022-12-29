@@ -23,7 +23,7 @@ final class ReviewViewController: UIViewController {
         $0.title = "다음"
         $0.action = UIAction { _ in
             self.viewModel.updateChallenge()
-            //            self.navigationController?.pushViewController()
+            self.navigationController?.pushViewController(AddViewController(viewModel: AddViewModel()), animated: true)
         }
         $0.isEnabled = false
         return $0
