@@ -12,7 +12,7 @@ extension UserDefaults {
     private enum Keys {
         static let isNotiAllowed = "isNotiAllowed"
         static let notiTime = "notiTime"
-        static let isOnBoarded = "isOnBoarded"
+        static let hasOnBoarded = "hasOnBoarded"
     }
 
     class var isNotiAllowed: Bool {
@@ -33,12 +33,12 @@ extension UserDefaults {
         }
     }
     
-    class var isOnBoarded: Bool {
+    class var hasOnBoarded: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: Keys.isOnBoarded)
+            return UserDefaults.standard.bool(forKey: Keys.hasOnBoarded)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: Keys.isOnBoarded)
+            UserDefaults.standard.set(newValue, forKey: Keys.hasOnBoarded)
         }
     }
 }

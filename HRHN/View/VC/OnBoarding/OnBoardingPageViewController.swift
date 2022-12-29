@@ -40,18 +40,6 @@ class OnBoardingPageViewController: UIPageViewController {
     
 }
 
-// MARK: - Bindings
-extension OnBoardingPageViewController {
-    private func bind() {
-        viewModel.isNotiEnabled.subscribe { value in
-            if value == false {
-                self.nextButtonDidTap()
-            }
-        }
-    }
-}
-
-
 // MARK: - UI Functions
 
 extension OnBoardingPageViewController {
@@ -146,21 +134,21 @@ extension OnBoardingPageViewController {
     }
     
     private func nextButtonDidTap() {
-        if currentIdx == pages.count - 1{
-            let controller = TabBarController()
-            controller.modalPresentationStyle = .fullScreen
-            //      UserDefaults.standard.hasOnboarded = true
-            
-            
-            
-            self.view.window?.rootViewController = controller
-            self.view.window?.rootViewController?.dismiss(animated: false, completion: nil)
-            
+        if currentIdx == pages.count - 1 {
+            goToInitialViewController()
         } else {
             currentIdx += 1
             goToNextPage()
             updateButtonIfNeeded()
         }
+    }
+    
+    private func goToInitialViewController() {
+        viewModel.setOnBoarded()
+        let controller = TabBarController()
+        controller.modalPresentationStyle = .fullScreen
+        self.view.window?.rootViewController = controller
+        self.view.window?.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
     private func updateButtonIfNeeded() {

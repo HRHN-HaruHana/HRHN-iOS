@@ -10,7 +10,6 @@ import UIKit
 final class OnBoardingViewModel {
     
     private let center = UNUserNotificationCenter.current()
-    var isNotiEnabled: Observable<Bool> = Observable(true)
     
     init(){}
     
@@ -24,10 +23,14 @@ final class OnBoardingViewModel {
     }
     
     func setOnBoarded(){
-        UserDefaults.isOnBoarded = false
+        UserDefaults.hasOnBoarded = true
+        if UserDefaults.isNotiAllowed {
+            setNotification(time: UserDefaults.notiTime ?? "09:00")
+        }
     }
     
     func setNotiTime(with time: String){
+        self.setNotiEnabled()
         UserDefaults.notiTime = time
     }
     
@@ -38,7 +41,6 @@ final class OnBoardingViewModel {
     
     func setNotiDisabled() {
         UserDefaults.isNotiAllowed = false
-        self.isNotiEnabled = Observable(false) // VC 에 전달
     }
     
     private func setNotification(time: String) {

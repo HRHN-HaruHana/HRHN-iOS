@@ -45,7 +45,9 @@ class OBThirdViewController: UIViewController {
         $0.textColor = .dim
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 12, weight: .medium)
-        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(disableDidTap)))
+        $0.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(disableDidTap(tapGestureRecognizer:)))
+        $0.addGestureRecognizer(tapGesture)
         $0.numberOfLines = 0
         return $0
     }(UILabel())
@@ -71,6 +73,7 @@ class OBThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        viewModel.requestNotificationAuthorization()
         createTimePicker()
     }
 }
@@ -142,8 +145,9 @@ extension OBThirdViewController {
         viewModel.setNotiTime(with: formatter.string(from: picker.date))
     }
     
-    @objc private func disableDidTap() {
+    @objc func disableDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
         viewModel.setNotiDisabled()
+        timeField.text = "-- : --"
     }
     
 }
