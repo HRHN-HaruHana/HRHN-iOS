@@ -13,8 +13,8 @@ class OnBoardingPageViewController: UIPageViewController {
     
     // MARK: - Properties
     private let viewModel: OnBoardingViewModel = OnBoardingViewModel()
-    var pages = [UIViewController]()
-    let initialPage = 0
+    private var pages = [UIViewController]()
+    private let initialPage = 0
     private var currentIdx = 0
     
     private lazy var backButton: UIButton = {
@@ -181,7 +181,7 @@ extension OnBoardingPageViewController {
         setViewControllers([prevPage], direction: .reverse, animated: animated, completion: completion)
     }
     
-    func removeSwipeGesture(){
+    private func removeSwipeGesture(){
         for view in self.view.subviews {
             if let subView = view as? UIScrollView {
                 subView.isScrollEnabled = false

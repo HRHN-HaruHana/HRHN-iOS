@@ -49,7 +49,7 @@ class OBSecondViewController: UIViewController {
 
 extension OBSecondViewController {
     
-    func setUI() {
+    private func setUI() {
         view.addSubviews(titleLabel, subTitleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.adjusted)

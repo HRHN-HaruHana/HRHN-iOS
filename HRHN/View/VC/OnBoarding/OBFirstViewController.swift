@@ -33,7 +33,7 @@ class OBFirstViewController: UIViewController {
 
 extension OBFirstViewController {
     
-    func setUI() {
+    private func setUI() {
         view.addSubviews(imageView)
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()

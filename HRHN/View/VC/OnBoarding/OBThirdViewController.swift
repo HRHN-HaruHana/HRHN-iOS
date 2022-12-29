@@ -80,7 +80,7 @@ class OBThirdViewController: UIViewController {
 
 extension OBThirdViewController {
     
-    func setUI() {
+    private func setUI() {
         view.addSubviews(titleLabel, subTitleLabel, timeField, disableLabel, descLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.adjusted)
@@ -145,7 +145,7 @@ extension OBThirdViewController {
         viewModel.setNotiTime(with: formatter.string(from: picker.date))
     }
     
-    @objc func disableDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
+    @objc private func disableDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
         viewModel.setNotiDisabled()
         timeField.text = "-- : --"
     }
