@@ -13,7 +13,7 @@
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
 		507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */; };
-		5078EF21295C0DB100DEF5FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078EF20295C0DB100DEF5FB /* AddViewController.swift */; };
+		50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFEA295D765700710B5D /* AddViewController.swift */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE39295C7539009A57BA /* UITextView+.swift */; };
@@ -79,7 +79,7 @@
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		507089B1295ADE1A00DD8D85 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
-		5078EF20295C0DB100DEF5FB /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		50A5FFEA295D765700710B5D /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50C1BE39295C7539009A57BA /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
@@ -286,6 +286,7 @@
 				A79121282950D2000044E652 /* RecordViewController.swift */,
 				505B95342959926A005F00C8 /* ReviewViewController.swift */,
 				A7ED3EF5295C284200342CC8 /* SettingViewController.swift */,
+				50A5FFEA295D765700710B5D /* AddViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -486,6 +487,7 @@
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
+				50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */,
 				50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
@@ -505,7 +507,6 @@
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
-				5078EF21295C0DB100DEF5FB /* AddViewController.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A7912189295775E00044E652 /* Obervable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
