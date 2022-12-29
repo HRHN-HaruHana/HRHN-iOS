@@ -43,11 +43,18 @@ struct SimpleEntry: TimelineEntry {
 struct LockscreenWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
-
+    
+    private let coreDataManager = CoreDataManager.shared
+    
     var body: some View {
         switch widgetFamily {
         case .accessoryRectangular:
-            Text("대충 30자 제한하면 위젯에서도 안잘릴듯 이게 대략 30자")
+            let todayChallenge = coreDataManager.getChallengeOf(Date())
+            if todayChallenge.count > 0 {
+                Text(todayChallenge[0].content)
+            } else {
+                Text("오늘의 챌린지를 등록하세요")
+            }
         default:
             Text("Not Implemented")
         }
