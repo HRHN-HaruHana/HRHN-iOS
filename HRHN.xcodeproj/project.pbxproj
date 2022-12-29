@@ -59,6 +59,7 @@
 		A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */; };
 		A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */; };
 		A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */; };
+		A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,7 @@
 		A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBFirstViewController.swift; sourceTree = "<group>"; };
 		A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBSecondViewController.swift; sourceTree = "<group>"; };
 		A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBThirdViewController.swift; sourceTree = "<group>"; };
+		A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
 				A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */,
 				50C1BE3B295C87B1009A57BA /* AddViewModel.swift */,
+				A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
 				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
 				507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */,
+				A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */,
 				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */,

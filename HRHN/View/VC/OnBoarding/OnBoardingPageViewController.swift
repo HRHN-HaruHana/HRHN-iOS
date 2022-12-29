@@ -11,6 +11,8 @@ import SnapKit
 
 class OnBoardingPageViewController: UIPageViewController {
     
+    // MARK: - Properties
+    private let viewModel: OnBoardingViewModel = OnBoardingViewModel()
     var pages = [UIViewController]()
     let initialPage = 0
     private var currentIdx = 0
@@ -29,7 +31,7 @@ class OnBoardingPageViewController: UIPageViewController {
         }
         return $0
     }(UIFullWidthButton())
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -37,6 +39,20 @@ class OnBoardingPageViewController: UIPageViewController {
     }
     
 }
+
+// MARK: - Bindings
+extension OnBoardingPageViewController {
+    private func bind() {
+        viewModel.isNotiEnabled.subscribe { value in
+            if value == false {
+                self.nextButtonDidTap()
+            }
+        }
+    }
+}
+
+
+// MARK: - UI Functions
 
 extension OnBoardingPageViewController {
     
@@ -48,7 +64,7 @@ extension OnBoardingPageViewController {
         
         let page1 = OBFirstViewController(imageName: "onboarding-1")
         let page2 = OBSecondViewController(imageName: "blue")
-        let page3 = OBThirdViewController(imageName: "green")
+        let page3 = OBThirdViewController(with: viewModel)
         
         pages.append(page1)
         pages.append(page2)
@@ -70,7 +86,6 @@ extension OnBoardingPageViewController {
         }
     }
 }
-
 
 // MARK: - DataSources
 
@@ -125,7 +140,6 @@ extension OnBoardingPageViewController {
     @objc private func backButtonDidTap(_ sender: UIButton) {
         if currentIdx != 0 {
             currentIdx -= 1
-            print("뒤로가기\(currentIdx)")
             goToPreviousPage()
             updateButtonIfNeeded()
         }
@@ -136,6 +150,9 @@ extension OnBoardingPageViewController {
             let controller = TabBarController()
             controller.modalPresentationStyle = .fullScreen
             //      UserDefaults.standard.hasOnboarded = true
+            
+            
+            
             self.view.window?.rootViewController = controller
             self.view.window?.rootViewController?.dismiss(animated: false, completion: nil)
             
