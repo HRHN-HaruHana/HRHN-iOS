@@ -53,6 +53,8 @@
 		A7912189295775E00044E652 /* Obervable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Obervable.swift */; };
 		A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF5295C284200342CC8 /* SettingViewController.swift */; };
 		A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */; };
+		A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */; };
+		A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		A7912188295775E00044E652 /* Obervable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obervable.swift; sourceTree = "<group>"; };
 		A7ED3EF5295C284200342CC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +257,7 @@
 				A79121682954FB600044E652 /* Date+.swift */,
 				505B953729599976005F00C8 /* UIViewController+.swift */,
 				507089B1295ADE1A00DD8D85 /* View+.swift */,
+				A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */,
 				50C1BE39295C7539009A57BA /* UITextView+.swift */,
 			);
 			path = Extension;
@@ -327,6 +332,7 @@
 				A7912185295775C00044E652 /* TodayViewModel.swift */,
 				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
+				A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */,
 				50C1BE3B295C87B1009A57BA /* AddViewModel.swift */,
 			);
 			path = ViewModel;
@@ -491,6 +497,7 @@
 				50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
+				A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				505B953B29599A24005F00C8 /* ReviewView.swift in Sources */,
@@ -511,6 +518,7 @@
 				A7912189295775E00044E652 /* Obervable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
+				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
@@ -688,6 +696,8 @@
 				DEVELOPMENT_TEAM = 562Z37RH3N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HRHN/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "하루하나";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -716,6 +726,8 @@
 				DEVELOPMENT_TEAM = 562Z37RH3N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HRHN/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "하루하나";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
