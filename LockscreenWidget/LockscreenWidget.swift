@@ -10,12 +10,24 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    
+    private let coreDataManager = CoreDataManager.shared
+    
+    private func getTodayChallenge() -> String {
+        let todayChallenge = coreDataManager.getChallengeOf(Date())
+        if todayChallenge.count > 0 {
+            return todayChallenge[0].content
+        } else {
+            return "오늘의 챌린지를 등록하세요"
+        }
+    }
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), challenge: getTodayChallenge())
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+        let entry = SimpleEntry(date: Date(), configuration: configuration, challenge: getTodayChallenge())
         completion(entry)
     }
 
@@ -32,7 +44,8 @@ struct Provider: IntentTimelineProvider {
         
         let entry = SimpleEntry(
             date: currentDate,
-            configuration: configuration
+            configuration: configuration,
+            challenge: getTodayChallenge()
         )
         entries.append(entry)
         
@@ -44,23 +57,17 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let challenge: String
 }
 
 struct LockscreenWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
     
-    private let coreDataManager = CoreDataManager.shared
-    
     var body: some View {
         switch widgetFamily {
         case .accessoryRectangular:
-            let todayChallenge = coreDataManager.getChallengeOf(Date())
-            if todayChallenge.count > 0 {
-                Text(todayChallenge[0].content)
-            } else {
-                Text("오늘의 챌린지를 등록하세요")
-            }
+            Text(entry.challenge)
         default:
             Text("Not Implemented")
         }
@@ -85,8 +92,12 @@ struct LockscreenWidget: Widget {
 
 struct LockscreenWidget_Previews: PreviewProvider {
     static var previews: some View {
-        LockscreenWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
-            .previewDisplayName("Rectangular")
+        LockscreenWidgetEntryView(entry: SimpleEntry(
+            date: Date(),
+            configuration: ConfigurationIntent(),
+            challenge: "오늘의 챌린지를 등록하세요")
+        )
+        .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+        .previewDisplayName("Rectangular")
     }
 }
