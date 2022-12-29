@@ -12,7 +12,6 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Properties
     private let viewModel: TodayViewModel
-    private let center = UNUserNotificationCenter.current()
     
     private lazy var titleLabel: UILabel = {
         $0.text = "오늘의 챌린지"
@@ -83,7 +82,7 @@ final class TodayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        requestNotificationAuthorization()
+        viewModel.requestNotificationAuthorization()
         setNavigationBar()
         setUI()
     }
@@ -106,15 +105,6 @@ extension TodayViewController {
     
     @objc func addButtonDidTap(_ sender: UIButton) {
         // TODO: - GO TO ADD-CHALLENGE
-    }
-    
-    private func requestNotificationAuthorization() {
-        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
-        center.requestAuthorization(options: authOptions) { success, error in
-            if let error = error {
-                print("Auth Error: ", error)
-            }
-        }
     }
 }
 
