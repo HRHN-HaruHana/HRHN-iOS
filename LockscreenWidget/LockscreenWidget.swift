@@ -70,7 +70,7 @@ struct LockscreenWidget: Widget {
             LockscreenWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("오늘의 챌린지")
-        .description("오늘의 챌린지를 볼 수 있습니다.")
+        .description("오늘의 챌린지를 확인합니다.")
         .supportedFamilies([
             .accessoryRectangular
         ])
