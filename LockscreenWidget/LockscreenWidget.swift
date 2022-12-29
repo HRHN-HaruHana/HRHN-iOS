@@ -69,8 +69,8 @@ struct LockscreenWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             LockscreenWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("오늘의 챌린지")
+        .description("오늘의 챌린지를 볼 수 있습니다.")
         .supportedFamilies([
             .accessoryRectangular
         ])
