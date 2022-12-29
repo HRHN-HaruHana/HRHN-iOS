@@ -46,15 +46,16 @@ extension OnBoardingPageViewController {
         
         view.backgroundColor = .background
         
-        let page1 = OnboardingViewController(imageName: "")
-        let page2 = OnboardingViewController(imageName: "")
-        let page3 = OnboardingViewController(imageName: "")
+        let page1 = OnboardingViewController(imageName: "onboarding-1")
+        let page2 = OnboardingViewController(imageName: "blue")
+        let page3 = OnboardingViewController(imageName: "green")
         
         pages.append(page1)
         pages.append(page2)
         pages.append(page3)
         
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
+        removeSwipeGesture()
     }
     
     private func setLayout() {
@@ -74,12 +75,28 @@ extension OnBoardingPageViewController {
 // MARK: - DataSources
 
 extension OnBoardingPageViewController: UIPageViewControllerDataSource {
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        return nil
-    }
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return nil
+        
+        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
+        
+        if currentIndex == 0 {
+            return nil
+        } else {
+            return pages[currentIndex - 1]
+        }
+        
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
+        
+        if currentIndex < pages.count - 1 {
+            return pages[currentIndex + 1]
+        } else {
+            return nil
+        }
     }
     
 }
@@ -87,12 +104,17 @@ extension OnBoardingPageViewController: UIPageViewControllerDataSource {
 // MARK: - Delegates
 
 extension OnBoardingPageViewController: UIPageViewControllerDelegate {
-
-    func pageViewController(_ pageViewController: UIPageViewController,didFinishAnimating finished: Bool,previousViewControllers: [UIViewController],transitionCompleted completed: Bool){
-        guard completed else { return }
-        currentIdx = pageViewController.viewControllers!.first!.view.tag
+    
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        
+        guard let viewControllers = pageViewController.viewControllers else { return }
+        guard let currentIndex = pages.firstIndex(of: viewControllers[0]) else { return }
+        
+        currentIdx = currentIndex
         updateButtonIfNeeded()
     }
+    
     
 }
 
@@ -141,18 +163,24 @@ extension OnBoardingPageViewController {
     }
     
     private func goToNextPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
-      guard let currentPage = viewControllers?[0] else { return }
-      guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
-      
-      setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
+        guard let currentPage = viewControllers?[0] else { return }
+        guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
+        
+        setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
     }
     
     private func goToPreviousPage(animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
-      guard let currentPage = viewControllers?[0] else { return }
-      guard let prevPage = dataSource?.pageViewController(self, viewControllerBefore: currentPage) else { return }
-      
-      setViewControllers([prevPage], direction: .forward, animated: animated, completion: completion)
+        guard let currentPage = viewControllers?[0] else { return }
+        guard let prevPage = dataSource?.pageViewController(self, viewControllerBefore: currentPage) else { return }
+        
+        setViewControllers([prevPage], direction: .reverse, animated: animated, completion: completion)
+    }
+    
+    func removeSwipeGesture(){
+        for view in self.view.subviews {
+            if let subView = view as? UIScrollView {
+                subView.isScrollEnabled = false
+            }
+        }
     }
 }
-
-

@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let windowScene = (scene as? UIWindowScene) else { return }
             self.window = UIWindow(windowScene: windowScene)
             
-            let initialViewController = OnBoardingPageViewController()
+            let initialViewController = OnBoardingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }
