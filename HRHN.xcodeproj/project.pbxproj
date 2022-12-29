@@ -14,6 +14,13 @@
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
 		507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */; };
 		50A50001295D784B00710B5D /* LockscreenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
+		50A50010295D903D00710B5D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
+		50A50011295D908500710B5D /* ChallengeMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */; };
+		50A50012295D908800710B5D /* ChallengeMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */; };
+		50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
+		50A50017295D951600710B5D /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A50016295D951600710B5D /* URL+.swift */; };
+		50A50018295D953200710B5D /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A50016295D951600710B5D /* URL+.swift */; };
 		50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFEA295D765700710B5D /* AddViewController.swift */; };
 		50A5FFF3295D784A00710B5D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF2295D784A00710B5D /* WidgetKit.framework */; };
 		50A5FFF5295D784A00710B5D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF4295D784A00710B5D /* SwiftUI.framework */; };
@@ -109,6 +116,7 @@
 		507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		50A5000B295D8B8300710B5D /* HRHN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRHN.entitlements; sourceTree = "<group>"; };
 		50A5000C295D8BAD00710B5D /* LockscreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockscreenWidgetExtension.entitlements; sourceTree = "<group>"; };
+		50A50016295D951600710B5D /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		50A5FFEA295D765700710B5D /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockscreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A5FFF2295D784A00710B5D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -325,6 +333,7 @@
 				505B953729599976005F00C8 /* UIViewController+.swift */,
 				507089B1295ADE1A00DD8D85 /* View+.swift */,
 				50C1BE39295C7539009A57BA /* UITextView+.swift */,
+				50A50016295D951600710B5D /* URL+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -582,7 +591,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */,
+				50A50011295D908500710B5D /* ChallengeMO+CoreDataClass.swift in Sources */,
+				50A50012295D908800710B5D /* ChallengeMO+CoreDataProperties.swift in Sources */,
+				50A50018295D953200710B5D /* URL+.swift in Sources */,
+				50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */,
 				50A5FFFD295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */,
+				50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */,
+				50A50010295D903D00710B5D /* Challenge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +640,7 @@
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
+				50A50017295D951600710B5D /* URL+.swift in Sources */,
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
 				50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */,
