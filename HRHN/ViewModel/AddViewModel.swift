@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import WidgetKit
 
 final class AddViewModel: ObservableObject {
     
     private let coreDataManager = CoreDataManager.shared
+    private let widgetCenter = WidgetCenter.shared
     
     init() {}
     
@@ -20,5 +22,9 @@ final class AddViewModel: ObservableObject {
             content: content,
             emoji: .none)
         )
+    }
+    
+    func updateWidget() {
+        widgetCenter.reloadAllTimelines()
     }
 }
