@@ -19,7 +19,7 @@ class OBSecondViewController: UIViewController {
     }(UILabel())
     
     private lazy var subTitleLabel: UILabel = {
-        $0.text = "*락스크린 지원 (지원예정: 홈/사이드 위젯)"
+        $0.text = "*잠금화면 지원 (지원예정: 홈/오늘보기)"
         $0.textColor = .dim
         $0.font = .systemFont(ofSize: 12, weight: .medium)
         $0.numberOfLines = 0
