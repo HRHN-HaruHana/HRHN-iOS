@@ -14,7 +14,7 @@ class CoreDataManager {
     static var shared: CoreDataManager = CoreDataManager()
     
     private let persistentContainer: NSPersistentContainer = {
-        let appGroundID = "group.com.chanheejeong.HRHN"
+        let appGroundID = "group.com.HRHN.HRHN"
         let storeURL = URL.storeURL(for: appGroundID, databaseName: "HRHN")
         let storeDescription = NSPersistentStoreDescription(url: storeURL)
         let container = NSPersistentContainer(name: "HRHN")
