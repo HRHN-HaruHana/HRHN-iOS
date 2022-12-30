@@ -13,11 +13,28 @@ final class AddViewController: UIViewController {
     
     private let viewModel: AddViewModel
     
-    private let attributes: [NSAttributedString.Key: Any] = [
+    private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
         .foregroundColor: UIColor.challengeCardLabel,
         .baselineOffset: 2
     ]
+    
+    private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 15, weight: .bold),
+        .foregroundColor: UIColor.challengeCardLabel,
+        .baselineOffset: 2
+    ]
+    
+    private let maxTextLength = 50
+    
+    private var currentTextLength: Int = 0 {
+        didSet {
+            textLengthIndicatorLabel.attributedText = NSAttributedString(
+                string: "\(currentTextLength)/\(maxTextLength)",
+                attributes: lengthTextAttributes
+            )
+        }
+    }
     
     private let titleLabel: UILabel = {
         $0.text = "오늘의 챌린지를\n작성해주세요"
@@ -50,7 +67,7 @@ final class AddViewController: UIViewController {
     private lazy var placeholderLabel: UILabel = {
         $0.attributedText = NSAttributedString(
             string: "오늘의 다짐, 목표, 습관,\n영어문장, 할일 혹은\n무엇이든 좋아요",
-            attributes: attributes
+            attributes: mainTextAttributes
         )
         $0.numberOfLines = 0
         $0.textAlignment = .center
@@ -61,7 +78,7 @@ final class AddViewController: UIViewController {
     private lazy var addChallengeTextView: UITextView = {
         $0.attributedText = NSAttributedString(
             string: " ",
-            attributes: attributes
+            attributes: mainTextAttributes
         )
         $0.backgroundColor = .clear
         $0.textAlignment = .center
@@ -76,6 +93,15 @@ final class AddViewController: UIViewController {
         $0.returnKeyType = .done
         return $0
     }(UITextView())
+    
+    private lazy var textLengthIndicatorLabel: UILabel = {
+        $0.attributedText = NSAttributedString(
+            string: "\(currentTextLength)/\(maxTextLength)",
+            attributes: lengthTextAttributes
+        )
+        $0.layer.opacity = 0.7
+        return $0
+    }(UILabel())
     
     // MARK: LifeCycle
     
@@ -118,7 +144,7 @@ private extension AddViewController {
         
         addChallengeTextView.attributedText = NSAttributedString(
             string: "",
-            attributes: attributes
+            attributes: mainTextAttributes
         )
         addChallengeTextView.delegate = self
         textViewDidChange(addChallengeTextView)
@@ -133,7 +159,8 @@ private extension AddViewController {
             addChallengeCard,
             placeholderLabel,
             addChallengeTextView,
-            doneButton
+            doneButton,
+            textLengthIndicatorLabel
         )
         
         titleLabel.snp.makeConstraints {
@@ -166,6 +193,10 @@ private extension AddViewController {
             $0.center.equalTo(addChallengeCard)
             $0.horizontalEdges.equalTo(addChallengeCard).inset(20.adjusted)
         }
+        
+        textLengthIndicatorLabel.snp.makeConstraints {
+            $0.trailing.bottom.equalTo(addChallengeCard).inset(20.adjusted)
+        }
     }
     
     func doneButtonDidTap() {
@@ -188,6 +219,12 @@ extension AddViewController: UITextViewDelegate {
             textView.tintColor = .tintColor
             doneButton.isEnabled = true
         }
+        
+        if textView.text.count > maxTextLength {
+            textView.text.removeLast()
+        }
+        
+        currentTextLength = textView.text.count
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
