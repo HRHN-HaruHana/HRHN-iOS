@@ -188,6 +188,10 @@ extension AddViewController: UITextViewDelegate {
             textView.tintColor = .tintColor
             doneButton.isEnabled = true
         }
+        
+        if textView.text.count > 30 {
+            textView.text.removeLast()
+        }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
