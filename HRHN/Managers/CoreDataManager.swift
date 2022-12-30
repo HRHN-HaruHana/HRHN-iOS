@@ -13,12 +13,38 @@ class CoreDataManager {
     
     static var shared: CoreDataManager = CoreDataManager()
     
-    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    private lazy var context = appDelegate?.persistentContainer.viewContext
+    private let persistentContainer: NSPersistentContainer = {
+        let appGroundID = "group.com.chanheejeong.HRHN"
+        let storeURL = URL.storeURL(for: appGroundID, databaseName: "HRHN")
+        let storeDescription = NSPersistentStoreDescription(url: storeURL)
+        let container = NSPersistentContainer(name: "HRHN")
+        container.persistentStoreDescriptions = [storeDescription]
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    private lazy var context = persistentContainer.viewContext
+    
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
     
     func insertChallenge(_ challenge: Challenge) {
-        guard let context = self.context,
-              let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
         
         let existing = getChallengeOf(challenge.date)
         if existing.isEmpty {
@@ -38,8 +64,6 @@ class CoreDataManager {
     }
     
     private func fetchChallenges() -> [ChallengeMO] {
-        
-        guard let context = self.context else { return [] }
         
         let fetchRequest = NSFetchRequest<ChallengeMO>(entityName: "Challenge")
         let sort = NSSortDescriptor(key: #keyPath(ChallengeMO.date), ascending: false) // by latest
@@ -76,7 +100,11 @@ class CoreDataManager {
                 result.content = challenge.content
             }
         }
-        appDelegate?.saveContext()
+        do {
+            try context.save()
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
@@ -100,12 +128,15 @@ class CoreDataManager {
     }
     
     func deleteChallenge(_ date: Date) {
-        guard let context = self.context else { return }
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
             let challenge = fetchResults.filter({ isSameDay(date1: date, date2: $0.date) })[0]
             context.delete(challenge)
-            appDelegate?.saveContext()
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
         } else {
             // TODO: - 에러처리
             print("삭제할 데이터가 없습니다.")
@@ -113,13 +144,16 @@ class CoreDataManager {
     }
     
     func deleteAllChallenges() {
-        guard let context = self.context else { return }
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
             for result in fetchResults {
                 context.delete(result)
             }
-            appDelegate?.saveContext()
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
         } else {
             // TODO: - 에러처리
             print("삭제할 데이터가 없습니다.")

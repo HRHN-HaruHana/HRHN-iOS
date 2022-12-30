@@ -170,6 +170,7 @@ private extension AddViewController {
     
     func doneButtonDidTap() {
         self.viewModel.createChallenge(self.addChallengeTextView.text as String)
+        self.viewModel.updateWidget()
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
