@@ -33,6 +33,9 @@ final class TodayViewController: UIViewController {
         $0.backgroundColor = .challengeCardFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
+        $0.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cardDidTap(tapGestureRecognizer:)))
+        $0.addGestureRecognizer(tapGesture)
         return $0
     }(UIView())
     
@@ -104,7 +107,6 @@ extension TodayViewController {
     }
     
     @objc func addButtonDidTap(_ sender: UIButton) {
-        // TODO: - GO TO ADD-CHALLENGE
         if viewModel.isPreviousChallengeExist() {
             let reviewVC = ReviewViewController(viewModel: ReviewViewModel())
             reviewVC.hidesBottomBarWhenPushed = true
@@ -113,6 +115,14 @@ extension TodayViewController {
             let addVC = AddViewController(viewModel: AddViewModel())
             addVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(addVC, animated: true)
+        }
+    }
+    
+    @objc private func cardDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
+        if viewModel.isTodayChallengeExist() {
+            let modifyVC = ModifyViewController(viewModel: ModifyViewModel())
+            modifyVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(modifyVC, animated: true)
         }
     }
 }
