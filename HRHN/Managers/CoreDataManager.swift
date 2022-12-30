@@ -45,12 +45,12 @@ class CoreDataManager {
     
     func insertChallenge(_ challenge: Challenge) {
         guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
-        
         let existing = getChallengeOf(challenge.date)
         if existing.isEmpty {
             let managedObject = NSManagedObject(entity: entity, insertInto: context)
             managedObject.setValue(challenge.id, forKey: "id")
-            managedObject.setValue(challenge.date, forKey: "date")
+            managedObject.setValue(challenge.date.getLocalizedDate()
+                                   , forKey: "date")
             managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
             managedObject.setValue(challenge.content, forKey: "content")
             do {
@@ -112,7 +112,7 @@ class CoreDataManager {
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
-            let resultsByDate = fetchResults.filter({ isSameDay(date1: date, date2: $0.date)})
+            let resultsByDate = fetchResults.filter({ isSameDay(date1: date.getLocalizedDate(), date2: $0.date)})
             for result in resultsByDate {
                 let challenge = Challenge(id: result.id,
                                           date: result.date,
