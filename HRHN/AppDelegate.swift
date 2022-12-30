@@ -5,14 +5,15 @@
 //  Created by Chanhee Jeong on 2022/12/14.
 //
 
-import UIKit
 import CoreData
+import UIKit
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // DB파일 저장위치
+        UNUserNotificationCenter.current().delegate = self
         debugPrint("Documents Directory:", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         return true
     }
@@ -27,3 +28,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+
+// MARK: - Notification Delegate
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .badge, .sound])
+    }
+}

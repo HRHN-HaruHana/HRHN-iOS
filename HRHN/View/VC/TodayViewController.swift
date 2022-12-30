@@ -82,6 +82,7 @@ final class TodayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.requestNotificationAuthorization()
         setNavigationBar()
         setUI()
     }
@@ -97,7 +98,7 @@ final class TodayViewController: UIViewController {
 extension TodayViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
-        let settingVC = SettingViewController()
+        let settingVC = SettingViewController(viewModel: SettingViewModel())
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
     }
@@ -114,7 +115,6 @@ extension TodayViewController {
             navigationController?.pushViewController(addVC, animated: true)
         }
     }
-    
 }
 
 // MARK: - Bindings

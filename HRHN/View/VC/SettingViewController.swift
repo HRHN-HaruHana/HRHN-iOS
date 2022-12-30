@@ -9,44 +9,10 @@ import UIKit
 import SnapKit
 import SafariServices
 
-enum SettingCellType: String {
-    case defaultItem
-    case alertToggle
-    case alertTime
-}
-
-struct SettingItem {
-    let text: String
-    let secondaryText: String?
-    let type: SettingCellType
-    let imageName: String
-    let link: String?
-}
-
-struct SettingSection {
-    let items: [SettingItem]
-    let header: String?
-    
-    static func generateData() -> [SettingSection] {
-        return [
-            SettingSection(items: [
-                SettingItem(text: "알림", secondaryText: "하루 한 번, 알림을 드릴게요", type: .alertToggle, imageName: "bell.fill", link: nil),
-                SettingItem(text: "알림시간", secondaryText: nil, type: .alertTime, imageName: "clock.fill", link: nil)
-            ], header: "NOTIFICATION"),
-            SettingSection(items: [
-                SettingItem(text: "문의 및 지원", secondaryText: nil, type: .defaultItem, imageName: "phone.fill", link: "https://hrhn.notion.site/d56ff2386c464543bbeb20284e3f3469"),
-                SettingItem(text: "홈페이지", secondaryText: nil, type: .defaultItem, imageName: "globe", link: "https://hrhn.notion.site/f7ecd6dca58046b298ad8debfbcc762e"),
-                SettingItem(text: "오픈소스 라이선스", secondaryText: nil, type: .defaultItem, imageName: "chevron.left.forwardslash.chevron.right", link: "https://hrhn.notion.site/2dd3252ad190433392c58f77e975cb18")
-            ], header: "SUPPORT")
-        ]
-    }
-}
-
 final class SettingViewController: UIViewController {
     
     // MARK: - Properties
-    
-    let list = SettingSection.generateData()
+    private var viewModel: SettingViewModel
     
     private lazy var titleView = UIView()
     private lazy var titleLabel: UILabel = {
@@ -68,7 +34,8 @@ final class SettingViewController: UIViewController {
     
     // MARK: - LifeCycle
     
-    init() {
+    init(viewModel: SettingViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -128,26 +95,32 @@ extension SettingViewController {
 extension SettingViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return list.count
+        return viewModel.list.value.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list[section].items.count
+        return viewModel.list.value[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let target = list[indexPath.section].items[indexPath.row]
+        let target = viewModel.list.value[indexPath.section].items[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: SettingCell.identifier,
             for: indexPath
         ) as? SettingCell else { return UITableViewCell() }
         cell.configureCell(with: target)
+        cell.setAlertHandler = {
+            self.viewModel.setNotAllowed(with: $0)
+        }
+        cell.setTimeHandler = {
+            self.viewModel.setNotiTime(with: $0)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let target = list[indexPath.section].items[indexPath.row]
+        let target = viewModel.list.value[indexPath.section].items[indexPath.row]
         if let url = URL(string: target.link ?? "") {
           let safariView: SFSafariViewController = SFSafariViewController(url: url)
           self.present(safariView, animated: true, completion: nil)
@@ -164,6 +137,6 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return list[section].header
+        return viewModel.list.value[section].header
     }
 }

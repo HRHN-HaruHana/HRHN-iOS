@@ -40,6 +40,7 @@ final class AddViewController: UIViewController {
     private lazy var doneButton: UIFullWidthButton = {
         $0.title = "완료"
         $0.isOnKeyboard = true
+        $0.isEnabled = false
         $0.action = UIAction { _ in
             self.doneButtonDidTap()
         }
@@ -181,9 +182,11 @@ extension AddViewController: UITextViewDelegate {
         if textView.text.isEmpty {
             placeholderLabel.isHidden = false
             textView.tintColor = .clear
+            doneButton.isEnabled = false
         } else {
             placeholderLabel.isHidden = true
             textView.tintColor = .tintColor
+            doneButton.isEnabled = true
         }
     }
     
