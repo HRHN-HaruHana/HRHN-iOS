@@ -44,13 +44,13 @@ class CoreDataManager {
     }
     
     func insertChallenge(_ challenge: Challenge) {
+        let targetDate = challenge.date.getLocalizedDate()
         guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
-        let existing = getChallengeOf(challenge.date)
+        let existing = getChallengeOf(targetDate)
         if existing.isEmpty {
             let managedObject = NSManagedObject(entity: entity, insertInto: context)
             managedObject.setValue(challenge.id, forKey: "id")
-            managedObject.setValue(challenge.date.getLocalizedDate()
-                                   , forKey: "date")
+            managedObject.setValue(targetDate, forKey: "date")
             managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
             managedObject.setValue(challenge.content, forKey: "content")
             do {
@@ -93,9 +93,10 @@ class CoreDataManager {
     }
     
     func updateChallenge(_ challenge: Challenge) {
+        let targetDate = challenge.date.getLocalizedDate()
         let fetchResults = fetchChallenges()
         for result in fetchResults {
-            if isSameDay(date1: result.date, date2: challenge.date) {
+            if isSameDay(date1: result.date, date2: targetDate) {
                 result.emoji = challenge.emoji.rawValue
                 result.content = challenge.content
             }
@@ -109,10 +110,11 @@ class CoreDataManager {
     
     
     func getChallengeOf(_ date: Date) -> [Challenge] {
+        let targetDate = date.getLocalizedDate()
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
-            let resultsByDate = fetchResults.filter({ isSameDay(date1: date.getLocalizedDate(), date2: $0.date)})
+            let resultsByDate = fetchResults.filter({ isSameDay(date1: targetDate, date2: $0.date)})
             for result in resultsByDate {
                 let challenge = Challenge(id: result.id,
                                           date: result.date,
@@ -128,9 +130,10 @@ class CoreDataManager {
     }
     
     func deleteChallenge(_ date: Date) {
+        let targetDate = date.getLocalizedDate()
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
-            let challenge = fetchResults.filter({ isSameDay(date1: date, date2: $0.date) })[0]
+            let challenge = fetchResults.filter({ isSameDay(date1: targetDate, date2: $0.date) })[0]
             context.delete(challenge)
             do {
                 try context.save()
