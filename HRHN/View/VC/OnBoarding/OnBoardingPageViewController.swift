@@ -135,6 +135,7 @@ extension OnBoardingPageViewController {
     
     private func nextButtonDidTap() {
         if currentIdx == pages.count - 1 {
+            viewModel.requestNotificationAuthorization()
             goToInitialViewController()
         } else {
             currentIdx += 1

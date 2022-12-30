@@ -73,7 +73,6 @@ class OBThirdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        viewModel.requestNotificationAuthorization()
         createTimePicker()
     }
 }
