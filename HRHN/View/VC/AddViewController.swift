@@ -25,10 +25,12 @@ final class AddViewController: UIViewController {
         .baselineOffset: 2
     ]
     
+    private let maxTextLength = 50
+    
     private var currentTextLength: Int = 0 {
         didSet {
             textLengthIndicatorLabel.attributedText = NSAttributedString(
-                string: "\(currentTextLength)/30",
+                string: "\(currentTextLength)/\(maxTextLength)",
                 attributes: lengthTextAttributes
             )
         }
@@ -94,7 +96,7 @@ final class AddViewController: UIViewController {
     
     private lazy var textLengthIndicatorLabel: UILabel = {
         $0.attributedText = NSAttributedString(
-            string: "\(currentTextLength)/30",
+            string: "\(currentTextLength)/\(maxTextLength)",
             attributes: lengthTextAttributes
         )
         $0.layer.opacity = 0.7
@@ -218,7 +220,7 @@ extension AddViewController: UITextViewDelegate {
             doneButton.isEnabled = true
         }
         
-        if textView.text.count > 30 {
+        if textView.text.count > maxTextLength {
             textView.text.removeLast()
         }
         
