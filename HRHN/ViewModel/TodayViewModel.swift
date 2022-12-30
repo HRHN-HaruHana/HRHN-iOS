@@ -42,5 +42,12 @@ final class TodayViewModel {
             }
         }
     }
-
+    
+    func isTodayChallengeExist() -> Bool {
+        if todayChallenge.value == nil {
+            return false
+        } else {
+            return true
+        }
+    }
 }

@@ -119,7 +119,7 @@ extension TodayViewController {
     }
     
     @objc private func cardDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
-        if viewModel.isPreviousChallengeExist() {
+        if viewModel.isTodayChallengeExist() {
             let modifyVC = ModifyViewController(viewModel: ModifyViewModel())
             modifyVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(modifyVC, animated: true)
