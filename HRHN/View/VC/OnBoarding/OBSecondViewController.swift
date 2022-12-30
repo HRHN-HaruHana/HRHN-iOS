@@ -29,12 +29,12 @@ class OBSecondViewController: UIViewController {
     private let imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFill
+        $0.image = UIImage(named: "mock")
         return $0
     }(UIImageView())
     
-    init(imageName: String) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        imageView.image = UIImage(named: imageName)
     }
     
     required init?(coder: NSCoder) {
@@ -50,7 +50,7 @@ class OBSecondViewController: UIViewController {
 extension OBSecondViewController {
     
     private func setUI() {
-        view.addSubviews(titleLabel, subTitleLabel)
+        view.addSubviews(titleLabel, subTitleLabel, imageView)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.adjusted)
             $0.height.equalTo(80)
@@ -62,5 +62,11 @@ extension OBSecondViewController {
             $0.centerX.equalToSuperview()
         }
         
+        imageView.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(70)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(270.adjusted)
+            $0.height.equalTo(390.adjusted)
+        }
     }
 }
