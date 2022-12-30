@@ -93,6 +93,7 @@ final class ModifyViewController: UIViewController {
         $0.centerVertically()
         $0.tintColor = .clear
         $0.returnKeyType = .done
+        $0.enablesReturnKeyAutomatically = true
         $0.delegate = self
         return $0
     }(UITextView())
@@ -215,7 +216,9 @@ extension ModifyViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            doneButtonDidTap()
+            if textView.text.count > 0 {
+                doneButtonDidTap()
+            }
             return false
         }
         return true

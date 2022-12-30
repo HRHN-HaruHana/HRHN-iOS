@@ -91,6 +91,7 @@ final class AddViewController: UIViewController {
         $0.centerVertically()
         $0.tintColor = .clear
         $0.returnKeyType = .done
+        $0.enablesReturnKeyAutomatically = true
         return $0
     }(UITextView())
     
@@ -229,7 +230,9 @@ extension AddViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            doneButtonDidTap()
+            if textView.text.count > 0 {
+                doneButtonDidTap()
+            }
             return false
         }
         return true
