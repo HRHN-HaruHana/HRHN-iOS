@@ -94,10 +94,9 @@ class CoreDataManager {
     }
     
     func updateChallenge(_ challenge: Challenge) {
-        let currentTimeZoneDate = challenge.date.currentTimeZoneDate()
         let fetchResults = fetchChallenges()
         for result in fetchResults {
-            if isSameDay(date1: result.date, date2: currentTimeZoneDate) {
+            if isSameDay(date1: result.date, date2: challenge.date) {
                 result.emoji = challenge.emoji.rawValue
                 result.content = challenge.content
             }
