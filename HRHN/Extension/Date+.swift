@@ -21,4 +21,8 @@ extension Date {
         formatter.timeZone = TimeZone(identifier: TimeZone.current.identifier)!
         return formatter.string(from: self)
     }
+    
+    func currentTimeZoneDate() -> Date {
+        return Calendar.current.date(from: DateComponents.convertTime(Date())) ?? Date()
+    }
 }
