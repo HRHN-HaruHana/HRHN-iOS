@@ -92,6 +92,7 @@ final class TodayViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dateLabel.text = Date().formatted("YYYY.MM.dd")
         bind()
     }
     

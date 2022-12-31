@@ -13,6 +13,9 @@
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
 		507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */; };
+		5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
+		5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
+		5080B2EF29601A41005115AA /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
 		50A50001295D784B00710B5D /* LockscreenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
 		50A50010295D903D00710B5D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
@@ -123,6 +126,7 @@
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		507089B1295ADE1A00DD8D85 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		5080B2EC29601A2A005115AA /* DateComponents+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+.swift"; sourceTree = "<group>"; };
 		50A5000B295D8B8300710B5D /* HRHN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRHN.entitlements; sourceTree = "<group>"; };
 		50A5000C295D8BAD00710B5D /* LockscreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockscreenWidgetExtension.entitlements; sourceTree = "<group>"; };
 		50A50016295D951600710B5D /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 				A791214C295228200044E652 /* CGFloat+.swift */,
 				A791214E295228530044E652 /* Double+.swift */,
 				A79121682954FB600044E652 /* Date+.swift */,
+				5080B2EC29601A2A005115AA /* DateComponents+.swift */,
 				505B953729599976005F00C8 /* UIViewController+.swift */,
 				507089B1295ADE1A00DD8D85 /* View+.swift */,
 				A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */,
@@ -628,9 +633,11 @@
 				50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */,
 				50A50011295D908500710B5D /* ChallengeMO+CoreDataClass.swift in Sources */,
 				50A50012295D908800710B5D /* ChallengeMO+CoreDataProperties.swift in Sources */,
+				5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */,
 				50A50018295D953200710B5D /* URL+.swift in Sources */,
 				50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */,
 				50A5FFFD295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */,
+				5080B2EF29601A41005115AA /* Date+.swift in Sources */,
 				50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */,
 				50A50010295D903D00710B5D /* Challenge.swift in Sources */,
 			);
@@ -643,6 +650,7 @@
 				A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */,
 				A791214D295228200044E652 /* CGFloat+.swift in Sources */,
 				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
+				5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */,
 				50F0C07A295EDDD6009D49B5 /* ModifiyViewModel.swift in Sources */,
 				50A5FFFE295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */,
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,

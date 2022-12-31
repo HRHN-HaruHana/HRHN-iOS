@@ -34,8 +34,8 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
-        let currentDate = Date()
-        let midnight = Calendar.current.startOfDay(for: currentDate)
+        let currentTimeZoneDate = Date().currentTimeZoneDate()
+        let midnight = Calendar.current.startOfDay(for: currentTimeZoneDate)
         let nextMidnight = Calendar.current.date(
             byAdding: .day,
             value: 1,
@@ -43,7 +43,7 @@ struct Provider: IntentTimelineProvider {
         )!
         
         let entry = SimpleEntry(
-            date: currentDate,
+            date: currentTimeZoneDate,
             configuration: configuration,
             challenge: getTodayChallenge()
         )

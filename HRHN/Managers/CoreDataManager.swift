@@ -44,13 +44,14 @@ class CoreDataManager {
     }
     
     func insertChallenge(_ challenge: Challenge) {
+        let currentTimeZoneDate = challenge.date.currentTimeZoneDate()
         guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
         
-        let existing = getChallengeOf(challenge.date)
+        let existing = getChallengeOf(currentTimeZoneDate)
         if existing.isEmpty {
             let managedObject = NSManagedObject(entity: entity, insertInto: context)
             managedObject.setValue(challenge.id, forKey: "id")
-            managedObject.setValue(challenge.date, forKey: "date")
+            managedObject.setValue(currentTimeZoneDate, forKey: "date")
             managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
             managedObject.setValue(challenge.content, forKey: "content")
             do {
@@ -109,10 +110,11 @@ class CoreDataManager {
     
     
     func getChallengeOf(_ date: Date) -> [Challenge] {
+        let currentTimeZoneDate = date.currentTimeZoneDate()
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
-            let resultsByDate = fetchResults.filter({ isSameDay(date1: date, date2: $0.date)})
+            let resultsByDate = fetchResults.filter({ isSameDay(date1: currentTimeZoneDate, date2: $0.date)})
             for result in resultsByDate {
                 let challenge = Challenge(id: result.id,
                                           date: result.date,
@@ -128,9 +130,10 @@ class CoreDataManager {
     }
     
     func deleteChallenge(_ date: Date) {
+        let currentTimeZoneDate = date.currentTimeZoneDate()
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
-            let challenge = fetchResults.filter({ isSameDay(date1: date, date2: $0.date) })[0]
+            let challenge = fetchResults.filter({ isSameDay(date1: currentTimeZoneDate, date2: $0.date) })[0]
             context.delete(challenge)
             do {
                 try context.save()
