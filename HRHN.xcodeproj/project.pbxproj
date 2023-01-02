@@ -29,8 +29,6 @@
 		50A5FFF5295D784A00710B5D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF4295D784A00710B5D /* SwiftUI.framework */; };
 		50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */; };
 		50A5FFFB295D784B00710B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A5FFFA295D784B00710B5D /* Assets.xcassets */; };
-		50A5FFFD295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF9295D784A00710B5D /* LockscreenWidget.intentdefinition */; };
-		50A5FFFE295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF9295D784A00710B5D /* LockscreenWidget.intentdefinition */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE39295C7539009A57BA /* UITextView+.swift */; };
@@ -135,7 +133,6 @@
 		50A5FFF2295D784A00710B5D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		50A5FFF4295D784A00710B5D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockscreenWidget.swift; sourceTree = "<group>"; };
-		50A5FFF9295D784A00710B5D /* LockscreenWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = LockscreenWidget.intentdefinition; sourceTree = "<group>"; };
 		50A5FFFA295D784B00710B5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A5FFFC295D784B00710B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
@@ -247,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */,
-				50A5FFF9295D784A00710B5D /* LockscreenWidget.intentdefinition */,
 				50A5FFFA295D784B00710B5D /* Assets.xcassets */,
 				50A5FFFC295D784B00710B5D /* Info.plist */,
 			);
@@ -636,7 +632,6 @@
 				5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */,
 				50A50018295D953200710B5D /* URL+.swift in Sources */,
 				50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */,
-				50A5FFFD295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */,
 				5080B2EF29601A41005115AA /* Date+.swift in Sources */,
 				50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */,
 				50A50010295D903D00710B5D /* Challenge.swift in Sources */,
@@ -652,7 +647,6 @@
 				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
 				5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */,
 				50F0C07A295EDDD6009D49B5 /* ModifiyViewModel.swift in Sources */,
-				50A5FFFE295D784B00710B5D /* LockscreenWidget.intentdefinition in Sources */,
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,
 				A79121792955FBCE0044E652 /* CustomColor.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,

@@ -7,9 +7,8 @@
 
 import WidgetKit
 import SwiftUI
-import Intents
 
-struct Provider: IntentTimelineProvider {
+struct Provider: TimelineProvider {
     
     private let coreDataManager = CoreDataManager.shared
     
@@ -23,15 +22,15 @@ struct Provider: IntentTimelineProvider {
     }
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), challenge: getTodayChallenge())
+        SimpleEntry(date: Date(), challenge: getTodayChallenge())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration, challenge: getTodayChallenge())
+    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+        let entry = SimpleEntry(date: Date(), challenge: getTodayChallenge())
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
         let currentTimeZoneDate = Date().currentTimeZoneDate()
@@ -44,7 +43,6 @@ struct Provider: IntentTimelineProvider {
         
         let entry = SimpleEntry(
             date: currentTimeZoneDate,
-            configuration: configuration,
             challenge: getTodayChallenge()
         )
         entries.append(entry)
@@ -56,7 +54,6 @@ struct Provider: IntentTimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationIntent
     let challenge: String
 }
 
@@ -79,7 +76,7 @@ struct LockscreenWidget: Widget {
     let kind: String = "LockscreenWidget"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             LockscreenWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("오늘의 챌린지")
@@ -94,7 +91,6 @@ struct LockscreenWidget_Previews: PreviewProvider {
     static var previews: some View {
         LockscreenWidgetEntryView(entry: SimpleEntry(
             date: Date(),
-            configuration: ConfigurationIntent(),
             challenge: "오늘의 챌린지를 등록하세요")
         )
         .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
