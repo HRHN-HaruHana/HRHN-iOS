@@ -16,7 +16,7 @@ final class RecordViewController: UIViewController {
     private let viewModel: RecordViewModel
     
     private lazy var tableView: UITableView = { [weak self] in
-        $0.backgroundColor = .background
+        $0.backgroundColor = .clear
         $0.separatorStyle = .none
         $0.allowsSelection = false
         $0.showsVerticalScrollIndicator = false

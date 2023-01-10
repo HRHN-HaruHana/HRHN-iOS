@@ -20,5 +20,6 @@ final class ChallengeCell: UITableViewCell {
             ChallengeCellView(challenge: challenge)
         }
         .margins(.vertical, 10)
+        backgroundColor = .clear
     }
 }
