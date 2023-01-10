@@ -15,6 +15,7 @@ class SettingCell: UITableViewCell {
     override func updateConfiguration(using state: UICellConfigurationState) {
         super.updateConfiguration(using: state)
         tintColor = .tintColor
+        backgroundColor = .clear
     }
     
     func configureCell(with item: SettingItem){

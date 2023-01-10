@@ -33,7 +33,7 @@ class OBThirdViewController: UIViewController {
         $0.text = "오전 09:00"
         $0.font = .systemFont(ofSize: 22, weight: .bold)
         $0.textColor = .point
-        $0.backgroundColor = .challengeCardFill
+        $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 10
         $0.textAlignment = .center
         $0.tintColor = .clear

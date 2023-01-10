@@ -24,6 +24,7 @@ final class SettingViewController: UIViewController {
     }(UILabel())
     
     private lazy var tableView: UITableView = { [weak self] in
+        $0.backgroundColor = .clear
         $0.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         $0.delegate = self
         $0.dataSource = self

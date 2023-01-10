@@ -30,7 +30,7 @@ final class TodayViewController: UIViewController {
     }(UILabel())
     
     private lazy var cardView: UIView = {
-        $0.backgroundColor = .challengeCardFill
+        $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
         $0.isUserInteractionEnabled = true
@@ -48,7 +48,7 @@ final class TodayViewController: UIViewController {
     }(UIStackView())
     
     private lazy var challengeLabel: UILabel = {
-        $0.textColor = .challengeCardLabel
+        $0.textColor = .cellLabel
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
         $0.textAlignment = .center

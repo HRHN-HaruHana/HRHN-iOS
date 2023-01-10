@@ -61,7 +61,7 @@ private extension UIFullWidthButton {
     
     func setUI() {
         configuration?.baseBackgroundColor = .point
-        configuration?.baseForegroundColor = .reverseLabel
+        configuration?.baseForegroundColor = .whiteLabel
         configuration?.cornerStyle = .capsule
     }
     
