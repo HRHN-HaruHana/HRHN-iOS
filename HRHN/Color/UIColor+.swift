@@ -30,19 +30,18 @@ extension UIColor {
 
 extension UIColor {
     
-    static let background = resolvedColor(.white)
+    static let background = appearanceColor(light: .white, dark: .gray14)
     
-    static let reverseLabel = appearanceColor(light: .white, dark: .black)
+    static let whiteLabel = resolvedColor(.white)
     
-    static let disabled = resolvedColor(.grayD4)
-    static let dim = resolvedColor(.gray54)
+    static let disabled = appearanceColor(light: .grayEF, dark: .gray1D)
+    static let disabledLabel = appearanceColor(light: .grayB9, dark: .gray59)
+    static let dim = appearanceColor(light: .gray54, dark: .grayD0)
     
     static let point = resolvedColor(.red02)
     
-    static let challengeCardFill = resolvedColor(.grayFB)
-    static let challengeCardLabel = resolvedColor(.gray4A)
-    static let challengeListFill = resolvedColor(.grayF6)
-    static let challengeListLabel = resolvedColor(.gray81)
+    static let cellFill = appearanceColor(light: .grayFB, dark: .gray22)
+    static let cellLabel = appearanceColor(light: .gray4A, dark: .grayD4)
     static let settingIconFill = resolvedColor(.grayC5)
     
     static let emojiRed = resolvedColor(.red01)

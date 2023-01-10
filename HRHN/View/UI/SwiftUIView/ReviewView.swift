@@ -21,13 +21,13 @@ struct ReviewView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer(minLength: 20)
             Text(viewModel.previousChallenge?.content ?? "")
-                .foregroundColor(.challengeCardLabel)
+                .foregroundColor(.cellLabel)
                 .padding(20.adjusted)
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 100.adjusted)
                 .background {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(.challengeCardFill)
+                        .foregroundColor(.cellFill)
                 }
                 .padding(.horizontal, 15)
             Spacer(minLength: 20)

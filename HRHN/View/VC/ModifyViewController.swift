@@ -15,13 +15,13 @@ final class ModifyViewController: UIViewController {
     
     private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
-        .foregroundColor: UIColor.challengeCardLabel,
+        .foregroundColor: UIColor.cellLabel,
         .baselineOffset: 2
     ]
     
     private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 15, weight: .bold),
-        .foregroundColor: UIColor.challengeCardLabel,
+        .foregroundColor: UIColor.cellLabel,
         .baselineOffset: 2
     ]
     
@@ -48,7 +48,7 @@ final class ModifyViewController: UIViewController {
     }(UIView())
     
     private let modifyChallengeCard: UIView = {
-        $0.backgroundColor = .challengeCardFill
+        $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
         return $0
