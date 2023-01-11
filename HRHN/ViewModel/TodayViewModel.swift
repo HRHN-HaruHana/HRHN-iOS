@@ -50,4 +50,21 @@ final class TodayViewModel {
             return true
         }
     }
+    
+    func pushToAdd(with navigationController: UINavigationController?) {
+        let challenges = coreDataManager.getChallenges()
+        if challenges.count > 0 && challenges[0].emoji == .none {
+            let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
+                from: .addTab,
+                challenge: challenges[0],
+                navigationController: navigationController
+            ))
+            reviewVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(reviewVC, animated: true)
+        } else {
+            let addVC = AddViewController(viewModel: AddViewModel())
+            addVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(addVC, animated: true)
+        }
+    }
 }
