@@ -42,7 +42,7 @@ final class TodayViewModel {
         }
     }
     
-    func pushToAdd(with navigationController: UINavigationController?) {
+    func addButtonDidTap(navigationController: UINavigationController?) {
         let challenges = coreDataManager.getChallenges()
         if challenges.count > 0 && challenges[0].emoji == .none {
             let reviewVC = ReviewViewController(viewModel: ReviewViewModel(

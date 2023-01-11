@@ -108,7 +108,7 @@ extension TodayViewController {
     }
     
     @objc func addButtonDidTap(_ sender: UIButton) {
-        viewModel.pushToAdd(with: self.navigationController)
+        viewModel.addButtonDidTap(navigationController: navigationController)
     }
     
     @objc private func cardDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
