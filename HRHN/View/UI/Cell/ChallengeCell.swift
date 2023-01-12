@@ -21,5 +21,6 @@ final class ChallengeCell: UITableViewCell {
         }
         .margins(.vertical, 10)
         backgroundColor = .clear
+        selectionStyle = .none
     }
 }

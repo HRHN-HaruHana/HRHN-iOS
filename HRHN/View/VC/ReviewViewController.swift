@@ -19,16 +19,6 @@ final class ReviewViewController: UIViewController {
     
     private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: viewModel))
     
-    private lazy var nextButton: UIFullWidthButton = {
-        $0.title = "다음"
-        $0.action = UIAction { _ in
-            self.viewModel.updateChallenge()
-            self.navigationController?.pushViewController(AddViewController(viewModel: AddViewModel()), animated: true)
-        }
-        $0.isEnabled = false
-        return $0
-    }(UIFullWidthButton())
-    
     // MARK: LifeCycle
     
     init(viewModel: ReviewViewModel) {
@@ -53,16 +43,7 @@ final class ReviewViewController: UIViewController {
 private extension ReviewViewController {
     
     func bind() {
-        viewModel.$selectedEmoji
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                if $0 == .none {
-                    self?.nextButton.isEnabled = false
-                } else {
-                    self?.nextButton.isEnabled = true
-                }
-            }
-            .store(in: &cancelBag)
+
     }
 }
 
@@ -73,17 +54,12 @@ private extension ReviewViewController {
     func setUI() {
         view.backgroundColor = .background
         
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints {
-            $0.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-        
         addChild(reviewViewHC)
         view.addSubview(reviewViewHC.view)
         reviewViewHC.didMove(toParent: self)
         reviewViewHC.view.snp.makeConstraints {
             $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
-            $0.bottom.equalTo(nextButton.snp.top)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(120)
         }
     }
     
@@ -109,7 +85,19 @@ final class ReviewViewNavigationPreview: UIViewController {
     
     func setButton() {
         button.action = UIAction { _ in
-            self.navigationController?.pushViewController(ReviewViewController(viewModel: ReviewViewModel()), animated: true)
+            self.navigationController?.pushViewController(
+                ReviewViewController(viewModel: ReviewViewModel(
+                    from: .addTab,
+                    challenge: Challenge(
+                        id: UUID(),
+                        date: Date(),
+                        content: "Preview",
+                        emoji: .none
+                    ),
+                    navigationController: self.navigationController
+                )),
+                animated: true
+            )
         }
     }
     

@@ -108,15 +108,7 @@ extension TodayViewController {
     }
     
     @objc func addButtonDidTap(_ sender: UIButton) {
-        if viewModel.isPreviousChallengeExist() {
-            let reviewVC = ReviewViewController(viewModel: ReviewViewModel())
-            reviewVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(reviewVC, animated: true)
-        } else {
-            let addVC = AddViewController(viewModel: AddViewModel())
-            addVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(addVC, animated: true)
-        }
+        viewModel.addButtonDidTap(navigationController: navigationController)
     }
     
     @objc private func cardDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
