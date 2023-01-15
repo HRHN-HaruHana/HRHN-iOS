@@ -122,7 +122,7 @@ final class AddViewController: UIViewController {
         setLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         addChallengeTextView.becomeFirstResponder()
     }
 }
