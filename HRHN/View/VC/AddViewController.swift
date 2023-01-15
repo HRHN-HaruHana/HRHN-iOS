@@ -75,7 +75,7 @@ final class AddViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private lazy var addChallengeTextView: UITextView = { [weak self] in
+    private lazy var addChallengeTextView: UITextView = {
         $0.attributedText = NSAttributedString(
             string: " ",
             attributes: mainTextAttributes

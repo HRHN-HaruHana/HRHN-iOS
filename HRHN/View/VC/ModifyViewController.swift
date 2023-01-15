@@ -76,7 +76,7 @@ final class ModifyViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private lazy var modifyChallengeTextView: UITextView = { [weak self] in
+    private lazy var modifyChallengeTextView: UITextView = {
         $0.attributedText = NSAttributedString(
             string: viewModel.currentChallenge?.content ?? "",
             attributes: mainTextAttributes
