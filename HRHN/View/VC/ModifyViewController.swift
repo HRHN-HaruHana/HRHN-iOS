@@ -54,12 +54,12 @@ final class ModifyViewController: UIViewController {
         return $0
     }(UIView())
     
-    private lazy var doneButton: UIFullWidthButton = {
+    private lazy var doneButton: UIFullWidthButton = { [weak self] in
         $0.title = "완료"
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
-            self.doneButtonDidTap()
+            self?.doneButtonDidTap()
         }
         return $0
     }(UIFullWidthButton())
@@ -76,7 +76,7 @@ final class ModifyViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private lazy var modifyChallengeTextView: UITextView = {
+    private lazy var modifyChallengeTextView: UITextView = { [weak self] in
         $0.attributedText = NSAttributedString(
             string: viewModel.currentChallenge?.content ?? "",
             attributes: mainTextAttributes
