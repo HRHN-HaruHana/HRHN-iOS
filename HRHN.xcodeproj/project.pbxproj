@@ -41,7 +41,6 @@
 		A74C751A2975325B0046B1B1 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C75192975325B0046B1B1 /* String+.swift */; };
 		A74C751C297534EE0046B1B1 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C751B297534EE0046B1B1 /* I18N.swift */; };
 		A74C751D29753EBB0046B1B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A74C751729751DBE0046B1B1 /* Localizable.strings */; };
-		A74C751E29753EC30046B1B1 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C751B297534EE0046B1B1 /* I18N.swift */; };
 		A74C751F29753FB80046B1B1 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C75192975325B0046B1B1 /* String+.swift */; };
 		A74C75222975448C0046B1B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A74C75242975448C0046B1B1 /* InfoPlist.strings */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
@@ -286,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				A74C751729751DBE0046B1B1 /* Localizable.strings */,
-				A74C751B297534EE0046B1B1 /* I18N.swift */,
 				A74C75242975448C0046B1B1 /* InfoPlist.strings */,
 			);
 			path = Localization;
@@ -465,6 +463,7 @@
 		A7912187295775D50044E652 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				A74C751B297534EE0046B1B1 /* I18N.swift */,
 				A7912188295775E00044E652 /* Obervable.swift */,
 			);
 			path = Helper;
@@ -665,7 +664,6 @@
 				A74C751F29753FB80046B1B1 /* String+.swift in Sources */,
 				50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */,
 				50A50010295D903D00710B5D /* Challenge.swift in Sources */,
-				A74C751E29753EC30046B1B1 /* I18N.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
