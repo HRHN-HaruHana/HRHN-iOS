@@ -7,8 +7,8 @@
 */
 
 /* App */
-"app-name" = "HRHN"
-"noti-msg" = "Add challenge of the day!"
+"app-name" = "HRHN";
+"noti-msg" = "Add challenge of the day!";
 
 /* 탭 */
 "tab-today" = "Today";
@@ -18,7 +18,7 @@
 "btn-start" = "Start";
 "btn-next" = "Next";
 "btn-done" = "Done";
-"btn-add" = "Add Challenge";
+"btn-add" = "Add";
 
 /* 온보딩 */
 "ob-widget-title" = "The widgets reminds\n you to do challenges";
