@@ -16,7 +16,7 @@ final class RecordHeaderView: UITableViewHeaderFooterView {
     private lazy var headerView = UIView()
 
     private lazy var titleLabel: UILabel = {
-        $0.text = "지난 챌린지"
+        $0.text = I18N.recordTitle
         $0.textColor = .label
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0

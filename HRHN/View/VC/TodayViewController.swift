@@ -14,7 +14,7 @@ final class TodayViewController: UIViewController {
     private let viewModel: TodayViewModel
     
     private lazy var titleLabel: UILabel = {
-        $0.text = "오늘의 챌린지"
+        $0.text = I18N.todayTitle
         $0.textColor = UIColor.point
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
@@ -56,7 +56,7 @@ final class TodayViewController: UIViewController {
     }(UILabel())
     
     private lazy var emptyLabel: UILabel = {
-        $0.text = "오늘의 챌린지가 아직 없어요"
+        $0.text = I18N.todayEmpty
         $0.textColor = .dim
         $0.font = .systemFont(ofSize: 16, weight: .light)
         $0.numberOfLines = 0
@@ -64,7 +64,7 @@ final class TodayViewController: UIViewController {
     }(UILabel())
     
     private lazy var addButton: UIButton = {
-        $0.setTitle("챌린지 추가", for: .normal)
+        $0.setTitle(I18N.btnAdd, for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.backgroundColor = .point
         $0.layer.cornerRadius = 20

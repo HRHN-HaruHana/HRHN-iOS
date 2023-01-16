@@ -16,7 +16,7 @@ final class SettingViewController: UIViewController {
     
     private lazy var titleView = UIView()
     private lazy var titleLabel: UILabel = {
-        $0.text = "설정"
+        $0.text = I18N.settingTitle
         $0.textColor = .label
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
