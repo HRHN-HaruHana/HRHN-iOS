@@ -22,7 +22,8 @@ final class TodayViewController: UIViewController {
     }(UILabel())
     
     private lazy var dateLabel: UILabel = {
-        $0.text = Date().formatted("YYYY.MM.dd")
+        $0.text = Date().localizedFullDate(NSLocale.current.language.languageCode?.identifier
+                                           ?? "en")
         $0.textColor = .secondaryLabel
         $0.font = .systemFont(ofSize: 12, weight: .medium)
         $0.numberOfLines = 0
@@ -92,7 +93,8 @@ final class TodayViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dateLabel.text = Date().formatted("YYYY.MM.dd")
+        dateLabel.text = Date().localizedFullDate(NSLocale.current.language.languageCode?.identifier
+                                                  ?? "en")
         bind()
     }
     
