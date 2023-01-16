@@ -8,6 +8,10 @@
 import Foundation
 
 struct I18N {
+    /* App */
+    static let appName = "app-name".localized()
+    static let notiMsg = "noti-msg".localized()
+    
     /* 탭 */
     static let tabToday = "tab-today".localized()
     static let tabRecord = "tab-record".localized()
