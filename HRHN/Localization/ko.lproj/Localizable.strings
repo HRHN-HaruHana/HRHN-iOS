@@ -7,47 +7,47 @@
  */
 
 /* 탭 */
-"tab-today": "오늘의 챌린지";
-"tab-record": "지난 챌린지";
+"tab-today" = "오늘의 챌린지";
+"tab-record" = "지난 챌린지";
 
 /* 버튼 */
-"btn-start": "시작하기";
-"btn-next": "다음";
-"btn-done": "완료";
-"btn-add": "챌린지 추가";
+"btn-start" = "시작하기";
+"btn-next" = "다음";
+"btn-done" = "완료";
+"btn-add" = "챌린지 추가";
 
 /* 온보딩 */
-"ob-widget-title": "위젯으로 챌린지를\n리마인드하세요";
-"ob-widget-title2": "*락스크린 지원 (지원예정: 홈/사이드 위젯)";
-"ob-noti-title": "하루한번;\n알림을 드릴게요";
-"ob-noti-title2": "오늘의 챌린지를 설정하고 지난 챌린지를 점검하세요";
-"ob-noti-deny": "혹은 알림받지않기";
-"ob-noti-desc": "* 알림설정은 얼마든지 변경할 수 있어요\n* 설정에서 알림을 켜주세요";
+"ob-widget-title" = "위젯으로 챌린지를\n리마인드하세요";
+"ob-widget-title2" = "*락스크린 지원 (지원예정 = 홈/사이드 위젯)";
+"ob-noti-title" = "하루한번;\n알림을 드릴게요";
+"ob-noti-title2" = "오늘의 챌린지를 설정하고 지난 챌린지를 점검하세요";
+"ob-noti-deny" = "혹은 알림받지않기";
+"ob-noti-desc" = "* 알림설정은 얼마든지 변경할 수 있어요\n* 설정에서 알림을 켜주세요";
 
 /* 오늘의 챌린지 */
-"today-title": "오늘의 챌린지";
-"today-empty": "오늘의 챌린지가 아직 없어요";
+"today-title" = "오늘의 챌린지";
+"today-empty" = "오늘의 챌린지가 아직 없어요";
 
 /* 챌린지 평가 */
-"emoji-title-add": "저번 챌린지는 어땠나요?";
-"emoji-title-record": "이 챌린지는 어땠나요?";
+"emoji-title-add" = "저번 챌린지는 어땠나요?";
+"emoji-title-record" = "이 챌린지는 어땠나요?";
 
 /* 챌린지 추가 */
-"add-title": "오늘의 챌린지를\n작성해주세요";
-"add-placeholder": "오늘의 다짐, 목표, 습관,\n영어문장, 할일 혹은\n무엇이든 좋아요";
+"add-title" = "오늘의 챌린지를\n작성해주세요";
+"add-placeholder" = "오늘의 다짐, 목표, 습관,\n영어문장, 할일 혹은\n무엇이든 좋아요";
 
 /* 챌린지 수정 */
-"update-title": "오늘의 챌린지를\n수정하세요";
+"update-title" = "오늘의 챌린지를\n수정하세요";
 
 /* 지난챌린지 */
-"record-title": "지난 챌린지";
+"record-title" = "지난 챌린지";
 
 /* 설정 */
-"setting-title": "설정";
-"setting-noti-1": "알림";
-"setting-noti-2": "하루 한 번; 알림을 드릴게요";
-"setting-noti-time": "알림 시간";
+"setting-title" = "설정";
+"setting-noti-1" = "알림";
+"setting-noti-2" = "하루 한 번; 알림을 드릴게요";
+"setting-noti-time" = "알림 시간";
 
-"support-help": "문의 및 지원";
-"support-page": "홈페이지";
-"support-licences": "오픈소스 라이선스"
+"support-help" = "문의 및 지원";
+"support-page" = "홈페이지";
+"support-licences" = "오픈소스 라이선스";

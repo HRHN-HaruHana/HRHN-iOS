@@ -7,47 +7,47 @@
 */
 
 /* 탭 */
-"tab-today": "Today";
-"tab-record": "Achievements";
+"tab-today" = "Today";
+"tab-record" = "Achievements";
 
 /* 버튼 */
-"btn-start": "Start";
-"btn-next": "Next";
-"btn-done": "Done";
-"btn-add": "Add Challenge";
+"btn-start" = "Start";
+"btn-next" = "Next";
+"btn-done" = "Done";
+"btn-add" = "Add Challenge";
 
 /* 온보딩 */
-"ob-widget-title": "The widgets reminds\n you to do challenges";
-"ob-widget-title2": "*Lockscreen widget is now available";
-"ob-noti-title": "Enable\nNotifications";
-"ob-noti-title2": "Enable notification so you don’t miss\n to add today’s challenge";
-"ob-noti-deny": "or turn off";
-"ob-noti-desc": "* You can change the settings again whenever you want\n* Allow HRHN access to send you push notifications";
+"ob-widget-title" = "The widgets reminds\n you to do challenges";
+"ob-widget-title2" = "*Lockscreen widget is now available";
+"ob-noti-title" = "Enable\nNotifications";
+"ob-noti-title2" = "Enable notification so you don’t miss\n to add today’s challenge";
+"ob-noti-deny" = "or turn off";
+"ob-noti-desc" = "* You can change the settings again whenever you want\n* Allow HRHN access to send you push notifications";
 
 /* 오늘의 챌린지 */
-"today-title": "Challenge of the Day";
-"today-empty": "There’s no today’s challenge yet";
+"today-title" = "Challenge of the Day";
+"today-empty" = "There’s no today’s challenge yet";
 
 /* 챌린지 평가 */
-"emoji-title-add": "How was the challenge?";
-"emoji-title-record": "How was the challenge?";
+"emoji-title-add" = "How was the challenge?";
+"emoji-title-record" = "How was the challenge?";
 
 /* 챌린지 추가 */
-"add-title": "Let us know\nyour today's challenge";
-"add-placeholder": "Today's habits, things to\n do, quotes; language\nstudy..Anything is fine.";
+"add-title" = "Let us know\nyour today's challenge";
+"add-placeholder" = "Today's habits, things to\n do, quotes; language\nstudy..Anything is fine.";
 
 /* 챌린지 수정 */
-"update-title": "Update your\ntoday’s challenge";
+"update-title" = "Update your\ntoday’s challenge";
 
 /* 지난챌린지 */
-"record-title": "Achivements";
+"record-title" = "Achivements";
 
 /* 설정 */
-"setting-title": "Settings";
-"setting-noti-1": "Notification";
-"setting-noti-2": "Give you a reminder once a day";
-"setting-noti-time": "Time to get notified";
+"setting-title" = "Settings";
+"setting-noti-1" = "Notification";
+"setting-noti-2" = "Give you a reminder once a day";
+"setting-noti-time" = "Time to get notified";
 
-"support-help": "Support";
-"support-page": "Websites";
-"support-licences": "Open Source Licenses";
+"support-help" = "Support";
+"support-page" = "Websites";
+"support-licences" = "Open Source Licenses";
