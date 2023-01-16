@@ -12,6 +12,11 @@ struct I18N {
     static let appName = "app-name".localized()
     static let notiMsg = "noti-msg".localized()
     
+    /* Lock Screen*/
+    static let lockTitle = "lock-title".localized()
+    static let lockDesc = "lock-desc".localized()
+    static let lockPlaceholder = "lock-placeholder".localized()
+
     /* 탭 */
     static let tabToday = "tab-today".localized()
     static let tabRecord = "tab-record".localized()

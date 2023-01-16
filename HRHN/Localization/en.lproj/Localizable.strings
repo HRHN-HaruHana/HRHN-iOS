@@ -10,6 +10,11 @@
 "app-name" = "HRHN";
 "noti-msg" = "Add challenge of the day!";
 
+/* LockScreen */
+"lock-title" = "Challenge of The day";
+"lock-desc" = "Add challenge of the day";
+"lock-placeholder" = "Check challenge of the day";
+
 /* 탭 */
 "tab-today" = "Today";
 "tab-record" = "Achievements";
@@ -24,7 +29,7 @@
 "ob-widget-title" = "The widgets reminds\n you to do challenges";
 "ob-widget-title2" = "*Lockscreen widget is now available";
 "ob-noti-title" = "Enable\nNotifications";
-"ob-noti-title2" = "Enable notification so you don’t miss\n to add today’s challenge";
+"ob-noti-title2" = "Enable notification so you\ndon’t miss to add today’s challenge";
 "ob-noti-deny" = "or turn off";
 "ob-noti-desc" = "* You can change the settings again whenever you want\n* Allow HRHN access to send you push notifications";
 
@@ -50,7 +55,7 @@
 "setting-title" = "Settings";
 "setting-noti-1" = "Notification";
 "setting-noti-2" = "Give you a reminder once a day";
-"setting-noti-time" = "Time to get notified";
+"setting-noti-time" = "Notified at";
 
 "support-help" = "Support";
 "support-page" = "Websites";

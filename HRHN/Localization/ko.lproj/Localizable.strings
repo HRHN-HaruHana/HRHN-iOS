@@ -10,6 +10,11 @@
 "app-name" = "하루하나";
 "noti-msg" = "오늘의 챌린지를 등록하세요!";
 
+/* LockScreen */
+"lock-title" = "오늘의 챌린지";
+"lock-desc" = "오늘의 챌린지를 등록하세요!";
+"lock-placeholder" = "오늘의 챌린지를 확인합니다.";
+
 /* 탭 */
 "tab-today" = "오늘의 챌린지";
 "tab-record" = "지난 챌린지";
