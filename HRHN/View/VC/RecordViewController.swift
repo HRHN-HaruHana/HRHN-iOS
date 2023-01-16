@@ -39,8 +39,6 @@ final class RecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         setUI()
         setNavigationBar()
     }

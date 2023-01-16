@@ -46,8 +46,6 @@ final class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         setUI()
         setNavigationBar()
     }
@@ -110,11 +108,11 @@ extension SettingViewController: UITableViewDataSource {
             for: indexPath
         ) as? SettingCell else { return UITableViewCell() }
         cell.configureCell(with: target)
-        cell.setAlertHandler = {
-            self.viewModel.setNotAllowed(with: $0)
+        cell.setAlertHandler = { [weak self] in
+            self?.viewModel.setNotAllowed(with: $0)
         }
-        cell.setTimeHandler = {
-            self.viewModel.setNotiTime(with: $0)
+        cell.setTimeHandler = { [weak self] in
+            self?.viewModel.setNotiTime(with: $0)
         }
         return cell
     }

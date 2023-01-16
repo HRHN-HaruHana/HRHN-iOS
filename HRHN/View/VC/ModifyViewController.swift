@@ -54,12 +54,12 @@ final class ModifyViewController: UIViewController {
         return $0
     }(UIView())
     
-    private lazy var doneButton: UIFullWidthButton = {
+    private lazy var doneButton: UIFullWidthButton = { [weak self] in
         $0.title = "완료"
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
-            self.doneButtonDidTap()
+            self?.doneButtonDidTap()
         }
         return $0
     }(UIFullWidthButton())
@@ -123,7 +123,7 @@ final class ModifyViewController: UIViewController {
         setLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         modifyChallengeTextView.becomeFirstResponder()
     }
 }

@@ -24,10 +24,10 @@ class OnBoardingPageViewController: UIPageViewController {
         return $0
     }(UIButton())
     
-    private lazy var nextButton: UIFullWidthButton = {
+    private lazy var nextButton: UIFullWidthButton = { [weak self] in
         $0.title = "시작하기"
         $0.action = UIAction { _ in
-            self.nextButtonDidTap()
+            self?.nextButtonDidTap()
         }
         return $0
     }(UIFullWidthButton())
