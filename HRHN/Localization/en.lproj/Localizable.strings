@@ -7,7 +7,7 @@
 */
 
 /* App */
-"app-name" = "HRHN";
+"app-name" = "1D1C";
 "noti-msg" = "Add challenge of the day!";
 
 /* LockScreen */
@@ -31,7 +31,7 @@
 "ob-noti-title" = "Enable\nNotifications";
 "ob-noti-title2" = "Enable notification so you\ndon’t miss to add today’s challenge";
 "ob-noti-deny" = "or turn off";
-"ob-noti-desc" = "* You can change the settings again whenever you want\n* Allow HRHN access to send you push notifications";
+"ob-noti-desc" = "* You can change the settings again whenever you want\n* Allow 1D1C access to send you push notifications";
 
 /* 오늘의 챌린지 */
 "today-title" = "Challenge of the Day";
