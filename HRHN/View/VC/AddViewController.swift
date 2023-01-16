@@ -37,7 +37,7 @@ final class AddViewController: UIViewController {
     }
     
     private let titleLabel: UILabel = {
-        $0.text = "오늘의 챌린지를\n작성해주세요"
+        $0.text = I18N.addTitle
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
         return $0
@@ -55,7 +55,7 @@ final class AddViewController: UIViewController {
     }(UIView())
     
     private lazy var doneButton: UIFullWidthButton = { [weak self] in
-        $0.title = "완료"
+        $0.title = I18N.btnDone
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
@@ -66,7 +66,7 @@ final class AddViewController: UIViewController {
     
     private lazy var placeholderLabel: UILabel = {
         $0.attributedText = NSAttributedString(
-            string: "오늘의 다짐, 목표, 습관,\n영어문장, 할일 혹은\n무엇이든 좋아요",
+            string: I18N.addPlaceholder,
             attributes: mainTextAttributes
         )
         $0.numberOfLines = 0

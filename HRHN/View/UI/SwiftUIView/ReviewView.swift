@@ -13,9 +13,9 @@ struct ReviewView: View {
     private var titleLabel: String {
         switch viewModel.previousTab {
         case .addTab:
-            return "저번 챌린지는 어땠나요?"
+            return I18N.emojiTitleAdd
         case .recordTab:
-            return "이 챌린지는 어땠나요?"
+            return I18N.emojiTitleRecord
         }
     }
     

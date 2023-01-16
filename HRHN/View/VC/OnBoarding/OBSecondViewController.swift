@@ -11,7 +11,7 @@ import SnapKit
 class OBSecondViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
-        $0.text = "위젯으로 챌린지를\n리마인드하세요"
+        $0.text = I18N.obWidgetTitle
         $0.font = .systemFont(ofSize: 28, weight: .bold)
         $0.numberOfLines = 0
         $0.textAlignment = .center
@@ -19,7 +19,7 @@ class OBSecondViewController: UIViewController {
     }(UILabel())
     
     private lazy var subTitleLabel: UILabel = {
-        $0.text = "*잠금화면 지원 (지원예정: 홈/오늘보기)"
+        $0.text = I18N.obWidgetTitle2
         $0.textColor = .dim
         $0.font = .systemFont(ofSize: 12, weight: .medium)
         $0.numberOfLines = 0
@@ -29,7 +29,7 @@ class OBSecondViewController: UIViewController {
     private let imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleAspectFill
-        $0.image = UIImage(named: "mock")
+        $0.image = UIImage(named: "mock") // TODO: Localization
         return $0
     }(UIImageView())
     

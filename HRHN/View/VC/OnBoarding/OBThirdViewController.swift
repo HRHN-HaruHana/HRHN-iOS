@@ -14,7 +14,7 @@ class OBThirdViewController: UIViewController {
     private let picker = UIDatePicker()
     
     private lazy var titleLabel: UILabel = {
-        $0.text = "하루한번\n알림을 드릴게요"
+        $0.text = I18N.obNotiTitle
         $0.font = .systemFont(ofSize: 28, weight: .bold)
         $0.numberOfLines = 0
         $0.textAlignment = .center
@@ -22,15 +22,16 @@ class OBThirdViewController: UIViewController {
     }(UILabel())
     
     private lazy var subTitleLabel: UILabel = {
-        $0.text = "오늘의 챌린지를 설정하고 지난 챌린지를 점검하세요"
+        $0.text = I18N.obNotiTitle2
         $0.textColor = .dim
         $0.font = .systemFont(ofSize: 12, weight: .medium)
+        $0.textAlignment = .center
         $0.numberOfLines = 0
         return $0
     }(UILabel())
     
     private lazy var timeField: UITextField = {
-        $0.text = "오전 09:00"
+        $0.text = "09:00 AM"
         $0.font = .systemFont(ofSize: 22, weight: .bold)
         $0.textColor = .point
         $0.backgroundColor = .cellFill
@@ -41,7 +42,7 @@ class OBThirdViewController: UIViewController {
     }(UITextField())
     
     private lazy var disableLabel: UILabel = {
-        $0.text = "혹은 알림받지않기"
+        $0.text = I18N.obNotiDeny
         $0.textColor = .dim
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 12, weight: .medium)
@@ -53,7 +54,7 @@ class OBThirdViewController: UIViewController {
     }(UILabel())
     
     private lazy var descLabel: UILabel = {
-        $0.text = "* 알림설정은 얼마든지 변경할 수 있어요\n* 설정에서 알림을 켜주세요"
+        $0.text = I18N.obNotiDesc
         $0.textColor = .dim
         $0.textAlignment = .center
         $0.font = .systemFont(ofSize: 12, weight: .medium)
@@ -137,7 +138,7 @@ extension OBThirdViewController {
     
     @objc private func doneDidTap() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "aa hh:mm"
+        formatter.dateFormat = "hh:mm aa "
         self.timeField.text = formatter.string(from: picker.date)
         self.view.endEditing(true)
         formatter.dateFormat = "HH:mm"

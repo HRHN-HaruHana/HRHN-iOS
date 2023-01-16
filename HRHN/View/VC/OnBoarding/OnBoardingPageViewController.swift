@@ -25,7 +25,7 @@ class OnBoardingPageViewController: UIPageViewController {
     }(UIButton())
     
     private lazy var nextButton: UIFullWidthButton = { [weak self] in
-        $0.title = "시작하기"
+        $0.title = I18N.btnStart
         $0.action = UIAction { _ in
             self?.nextButtonDidTap()
         }
@@ -50,6 +50,7 @@ extension OnBoardingPageViewController {
         
         view.backgroundColor = .background
         
+        // TODO: 사진 Localization
         let page1 = OBFirstViewController(imageName: "onboarding-1")
         let page2 = OBSecondViewController()
         let page3 = OBThirdViewController(with: viewModel)
@@ -155,13 +156,13 @@ extension OnBoardingPageViewController {
     private func updateButtonIfNeeded() {
         switch currentIdx {
         case 0:
-            nextButton.title = "시작하기"
+            nextButton.title = I18N.btnStart
             backButton.layer.isHidden = true
         case 1:
-            nextButton.title = "다음"
+            nextButton.title = I18N.btnNext
             backButton.layer.isHidden = false
         case 2:
-            nextButton.title = "완료"
+            nextButton.title = I18N.btnDone
             backButton.layer.isHidden = false
         default:
             return
