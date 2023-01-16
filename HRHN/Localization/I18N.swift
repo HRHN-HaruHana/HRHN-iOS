@@ -21,10 +21,10 @@ struct I18N {
     /* 온보딩 */
     static let obWidgetTitle = "ob-widget-title".localized()
     static let obWidgetTitle2 = "ob-widget-title2".localized()
-    static let obnotiTitle = "ob-noti-title".localized()
-    static let obnotiTitle2 = "ob-noti-title2".localized()
-    static let obnotiDeny = "ob-noti-deny".localized()
-    static let obnotiDesc = "ob-noti-desc".localized()
+    static let obNotiTitle = "ob-noti-title".localized()
+    static let obNotiTitle2 = "ob-noti-title2".localized()
+    static let obNotiDeny = "ob-noti-deny".localized()
+    static let obNotiDesc = "ob-noti-desc".localized()
     
     /* 오늘의 챌린지 */
     static let todayTitle = "today-title".localized()
