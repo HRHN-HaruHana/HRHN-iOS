@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "light.svg",
+      "filename" : "en_light.png",
       "idiom" : "universal"
     },
     {
@@ -11,12 +11,31 @@
           "value" : "dark"
         }
       ],
-      "filename" : "dark.svg",
+      "filename" : "en_dark.png",
       "idiom" : "universal"
+    },
+    {
+      "filename" : "light.svg",
+      "idiom" : "universal",
+      "locale" : "ko"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "dark.svg",
+      "idiom" : "universal",
+      "locale" : "ko"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
   }
 }
