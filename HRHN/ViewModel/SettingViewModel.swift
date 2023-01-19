@@ -80,7 +80,7 @@ final class SettingViewModel: ObservableObject {
     
     init() {}
 
-    func setNotAllowed(with: Bool) {
+    func setNotiAllowed(with: Bool) {
         UserDefaults.isNotiAllowed = with
         if UserDefaults.isNotiAllowed == false {
             removeNotification()
@@ -118,7 +118,7 @@ final class SettingViewModel: ObservableObject {
     }
     
     private func removeNotification() {
-        center.removeDeliveredNotifications(withIdentifiers: ["dailyAlert"])
+        center.removeAllPendingNotificationRequests()
     }
 
 }
