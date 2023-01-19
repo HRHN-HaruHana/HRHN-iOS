@@ -87,6 +87,7 @@ final class TodayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.requestNotificationAuthorization()
+        viewModel.removeOutdatedNotifications()
         setNavigationBar()
         setUI()
     }
