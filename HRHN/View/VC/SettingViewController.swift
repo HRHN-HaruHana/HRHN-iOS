@@ -109,7 +109,7 @@ extension SettingViewController: UITableViewDataSource {
         ) as? SettingCell else { return UITableViewCell() }
         cell.configureCell(with: target)
         cell.setAlertHandler = { [weak self] in
-            self?.viewModel.setNotAllowed(with: $0)
+            self?.viewModel.setNotiAllowed(with: $0)
         }
         cell.setTimeHandler = { [weak self] in
             self?.viewModel.setNotiTime(with: $0)

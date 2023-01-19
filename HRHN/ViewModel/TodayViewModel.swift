@@ -34,6 +34,10 @@ final class TodayViewModel {
         }
     }
     
+    func removeOutdatedNotifications() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
+    
     func isTodayChallengeExist() -> Bool {
         if todayChallenge.value == nil {
             return false
