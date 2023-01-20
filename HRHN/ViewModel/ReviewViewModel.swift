@@ -6,33 +6,46 @@
 //
 
 import Foundation
+import UIKit
 
 final class ReviewViewModel: ObservableObject {
     
-    @Published var previousChallenge: Challenge?
-    @Published var selectedEmoji: Emoji = .none
-    
-    private let coreDataManager = CoreDataManager.shared
-    
-    init() {
-        fetchPreviousChallenge()
+    enum Tab {
+        case addTab
+        case recordTab
     }
     
-    func fetchPreviousChallenge() {
-        let challenges = coreDataManager.getChallenges()
-        if challenges.count > 0 {
-            self.previousChallenge = challenges[0]
-        }
+    @Published var selectedEmoji: Emoji
+    
+    private let coreDataManager = CoreDataManager.shared
+    private let navigationController: UINavigationController?
+    
+    let challenge: Challenge
+    let previousTab: Tab
+    
+    init(from previousTab: Tab, challenge: Challenge, navigationController: UINavigationController?) {
+        self.previousTab = previousTab
+        self.challenge = challenge
+        self.navigationController = navigationController
+        self.selectedEmoji = challenge.emoji
     }
     
     func updateChallenge() {
-        guard let previousChallenge else { return }
         let updatedChallenge = Challenge(
-            id: previousChallenge.id,
-            date: previousChallenge.date,
-            content: previousChallenge.content,
+            id: challenge.id,
+            date: challenge.date,
+            content: challenge.content,
             emoji: selectedEmoji
         )
         coreDataManager.updateChallenge(updatedChallenge)
+    }
+    
+    func navigate() {
+        switch previousTab {
+        case .addTab:
+            navigationController?.pushViewController(AddViewController(viewModel: AddViewModel()), animated: true)
+        case .recordTab:
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
 }

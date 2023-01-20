@@ -16,7 +16,7 @@ final class SettingViewController: UIViewController {
     
     private lazy var titleView = UIView()
     private lazy var titleLabel: UILabel = {
-        $0.text = "설정"
+        $0.text = I18N.settingTitle
         $0.textColor = .label
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
@@ -24,6 +24,7 @@ final class SettingViewController: UIViewController {
     }(UILabel())
     
     private lazy var tableView: UITableView = { [weak self] in
+        $0.backgroundColor = .clear
         $0.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         $0.delegate = self
         $0.dataSource = self
@@ -45,8 +46,6 @@ final class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         setUI()
         setNavigationBar()
     }
@@ -109,11 +108,11 @@ extension SettingViewController: UITableViewDataSource {
             for: indexPath
         ) as? SettingCell else { return UITableViewCell() }
         cell.configureCell(with: target)
-        cell.setAlertHandler = {
-            self.viewModel.setNotAllowed(with: $0)
+        cell.setAlertHandler = { [weak self] in
+            self?.viewModel.setNotiAllowed(with: $0)
         }
-        cell.setTimeHandler = {
-            self.viewModel.setNotiTime(with: $0)
+        cell.setTimeHandler = { [weak self] in
+            self?.viewModel.setNotiTime(with: $0)
         }
         return cell
     }

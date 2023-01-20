@@ -10,24 +10,33 @@ import SwiftUI
 struct ReviewView: View {
     @ObservedObject private var viewModel: ReviewViewModel
     
+    private var titleLabel: String {
+        switch viewModel.previousTab {
+        case .addTab:
+            return I18N.emojiTitleAdd
+        case .recordTab:
+            return I18N.emojiTitleRecord
+        }
+    }
+    
     init(viewModel: ReviewViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            Text("오늘을 시작하기 전,\n저번 챌린지를 평가하세요")
+            Text(titleLabel)
                 .font(.system(size: 25, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer(minLength: 20)
-            Text(viewModel.previousChallenge?.content ?? "")
-                .foregroundColor(.challengeCardLabel)
+            Text(viewModel.challenge.content)
+                .foregroundColor(.cellLabel)
                 .padding(20.adjusted)
                 .frame(maxWidth: .infinity)
                 .frame(minHeight: 100.adjusted)
                 .background {
                     RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(.challengeCardFill)
+                        .foregroundColor(.cellFill)
                 }
                 .padding(.horizontal, 15)
             Spacer(minLength: 20)
@@ -44,7 +53,6 @@ struct ReviewView: View {
                 }
             }
             .padding(.horizontal, 15)
-            Spacer(minLength: 20)
         }
         .padding([.horizontal, .top], 20)
         .setBackgroundColor(.background)
@@ -66,6 +74,8 @@ private extension ReviewView {
     func emojiButton(_ emoji: Emoji) -> some View {
         Button {
             viewModel.selectedEmoji = emoji
+            viewModel.updateChallenge()
+            viewModel.navigate()
         } label: {
             if viewModel.selectedEmoji == emoji {
                 emojiImage(emoji)
@@ -93,7 +103,16 @@ private extension ReviewView {
 #if DEBUG
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView(viewModel: ReviewViewModel())
+        ReviewView(viewModel: ReviewViewModel(
+            from: .addTab,
+            challenge: Challenge(
+                id: UUID(),
+                date: Date(),
+                content: "Preview",
+                emoji: .none
+            ),
+            navigationController: nil
+        ))
     }
 }
 #endif

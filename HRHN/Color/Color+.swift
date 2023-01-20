@@ -10,17 +10,15 @@ import SwiftUI
 extension Color {
     static let background = Color(UIColor.background)
     
-    static let reverseLabel = Color(UIColor.reverseLabel)
+    static let whiteLabel = Color(UIColor.whiteLabel)
     
     static let disabled = Color(UIColor.disabled)
     static let dim = Color(UIColor.dim)
     
     static let point = Color(UIColor.point)
     
-    static let challengeCardFill = Color(UIColor.challengeCardFill)
-    static let challengeCardLabel = Color(UIColor.challengeCardLabel)
-    static let challengeListFill = Color(UIColor.challengeListFill)
-    static let challengeListLabel = Color(UIColor.challengeListLabel)
+    static let cellFill = Color(UIColor.cellFill)
+    static let cellLabel = Color(UIColor.cellLabel)
     static let settingIconFill = Color(UIColor.settingIconFill)
     
     static let emojiRed = Color(UIColor.emojiRed)

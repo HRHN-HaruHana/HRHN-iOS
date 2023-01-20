@@ -16,9 +16,8 @@ final class RecordViewController: UIViewController {
     private let viewModel: RecordViewModel
     
     private lazy var tableView: UITableView = { [weak self] in
-        $0.backgroundColor = .background
+        $0.backgroundColor = .clear
         $0.separatorStyle = .none
-        $0.allowsSelection = false
         $0.showsVerticalScrollIndicator = false
         $0.register(ChallengeCell.self, forCellReuseIdentifier: "ChallengeCell")
         $0.register(RecordHeaderView.self, forHeaderFooterViewReuseIdentifier: "RecordHeaderView")
@@ -40,8 +39,6 @@ final class RecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         setUI()
         setNavigationBar()
     }
@@ -117,6 +114,16 @@ extension RecordViewController: UITableViewDelegate {
             return UIView()
         }
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
+            from: .recordTab,
+            challenge: viewModel.challenges.value[indexPath.row],
+            navigationController: self.navigationController
+        ))
+        reviewVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(reviewVC, animated: true)
     }
 
 }

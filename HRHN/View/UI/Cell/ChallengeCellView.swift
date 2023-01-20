@@ -24,11 +24,11 @@ struct ChallengeCellView: View {
                 .font(.system(size: 16, weight: .regular))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
-                .foregroundColor(Color(UIColor.challengeListLabel))
+                .foregroundColor(.cellLabel)
                 
         }
         .padding(20)
-        .background(Color(UIColor.challengeListFill))
+        .background(Color.cellFill)
         .cornerRadius(16)
     }
 }

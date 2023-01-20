@@ -17,7 +17,7 @@ struct Provider: TimelineProvider {
         if todayChallenge.count > 0 {
             return todayChallenge[0].content
         } else {
-            return "오늘의 챌린지를 등록하세요"
+            return I18N.lockPlaceholder
         }
     }
     
@@ -79,8 +79,8 @@ struct LockscreenWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             LockscreenWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("오늘의 챌린지")
-        .description("오늘의 챌린지를 확인합니다.")
+        .configurationDisplayName(I18N.lockTitle)
+        .description(I18N.lockDesc)
         .supportedFamilies([
             .accessoryRectangular
         ])
@@ -91,7 +91,7 @@ struct LockscreenWidget_Previews: PreviewProvider {
     static var previews: some View {
         LockscreenWidgetEntryView(entry: SimpleEntry(
             date: Date(),
-            challenge: "오늘의 챌린지를 등록하세요")
+            challenge: I18N.lockPlaceholder)
         )
         .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
         .previewDisplayName("Rectangular")

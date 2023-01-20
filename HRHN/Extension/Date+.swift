@@ -26,3 +26,20 @@ extension Date {
         return Calendar.current.date(from: DateComponents.convertTime(Date())) ?? Date()
     }
 }
+
+/* Localization */
+extension Date {
+    
+    public func localizedFullDate(_ locale: String) -> String {
+        let formatter = DateFormatter()
+        if locale == "ko" {
+            formatter.locale = Locale(identifier: "ko_KR")
+            formatter.setLocalizedDateFormatFromTemplate("YYYY.MM.dd")
+        } else {
+            formatter.locale = Locale(identifier: "en_US")
+            formatter.setLocalizedDateFormatFromTemplate("MM.dd.YYYY")
+        }
+        return formatter.string(from: Date())
+    }
+    
+}

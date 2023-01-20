@@ -13,12 +13,17 @@ enum CustomColor: String {
     case black
     
     case grayFB
-    case grayF6
+    case grayEF
     case grayD4
+    case grayD0
     case grayC5
-    case gray81
+    case grayB9
+    case gray59
     case gray54
     case gray4A
+    case gray22
+    case gray1D
+    case gray14
     
     case red01
     case red02

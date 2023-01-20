@@ -24,15 +24,6 @@ final class TodayViewModel {
             self.todayChallenge = Observable(nil)
         }
     }
-
-    func isPreviousChallengeExist() -> Bool {
-        let challenges = coreDataManager.getChallenges()
-        if challenges.count > 0 && challenges[0].emoji == .none {
-            return true
-        } else {
-            return false
-        }
-    }
     
     func requestNotificationAuthorization() {
         let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
@@ -43,11 +34,32 @@ final class TodayViewModel {
         }
     }
     
+    func removeOutdatedNotifications() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+    }
+    
     func isTodayChallengeExist() -> Bool {
         if todayChallenge.value == nil {
             return false
         } else {
             return true
+        }
+    }
+    
+    func addButtonDidTap(navigationController: UINavigationController?) {
+        let challenges = coreDataManager.getChallenges()
+        if challenges.count > 0 && challenges[0].emoji == .none {
+            let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
+                from: .addTab,
+                challenge: challenges[0],
+                navigationController: navigationController
+            ))
+            reviewVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(reviewVC, animated: true)
+        } else {
+            let addVC = AddViewController(viewModel: AddViewModel())
+            addVC.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(addVC, animated: true)
         }
     }
 }

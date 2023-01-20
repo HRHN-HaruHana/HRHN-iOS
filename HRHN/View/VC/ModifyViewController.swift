@@ -15,13 +15,13 @@ final class ModifyViewController: UIViewController {
     
     private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
-        .foregroundColor: UIColor.challengeCardLabel,
+        .foregroundColor: UIColor.cellLabel,
         .baselineOffset: 2
     ]
     
     private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 15, weight: .bold),
-        .foregroundColor: UIColor.challengeCardLabel,
+        .foregroundColor: UIColor.cellLabel,
         .baselineOffset: 2
     ]
     
@@ -37,7 +37,7 @@ final class ModifyViewController: UIViewController {
     }
     
     private let titleLabel: UILabel = {
-        $0.text = "오늘의 챌린지를\n수정하세요"
+        $0.text = I18N.updateTitle
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
         return $0
@@ -48,25 +48,25 @@ final class ModifyViewController: UIViewController {
     }(UIView())
     
     private let modifyChallengeCard: UIView = {
-        $0.backgroundColor = .challengeCardFill
+        $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
         return $0
     }(UIView())
     
-    private lazy var doneButton: UIFullWidthButton = {
-        $0.title = "완료"
+    private lazy var doneButton: UIFullWidthButton = { [weak self] in
+        $0.title = I18N.btnDone
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
-            self.doneButtonDidTap()
+            self?.doneButtonDidTap()
         }
         return $0
     }(UIFullWidthButton())
     
     private lazy var placeholderLabel: UILabel = {
         $0.attributedText = NSAttributedString(
-            string: "오늘의 다짐, 목표, 습관,\n영어문장, 할일 혹은\n무엇이든 좋아요",
+            string: I18N.addPlaceholder,
             attributes: mainTextAttributes
         )
         $0.numberOfLines = 0
@@ -123,7 +123,7 @@ final class ModifyViewController: UIViewController {
         setLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         modifyChallengeTextView.becomeFirstResponder()
     }
 }

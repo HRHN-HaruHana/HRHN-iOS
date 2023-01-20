@@ -22,11 +22,11 @@ class TabBarController: UITabBarController {
     private func setUpTabBar() {
         let todayVC = TodayViewController(viewModel: TodayViewModel())
         let firstTab = UINavigationController(rootViewController: todayVC)
-        firstTab.tabBarItem = UITabBarItem(title: "오늘의 챌린지", image: UIImage(systemName: "sparkles"), selectedImage: UIImage(systemName: "sparkles"))
+        firstTab.tabBarItem = UITabBarItem(title: I18N.tabToday, image: UIImage(systemName: "sparkles"), selectedImage: UIImage(systemName: "sparkles"))
         
         let recordVC = RecordViewController(with: RecordViewModel())
         let secondTab = UINavigationController(rootViewController: recordVC)
-        secondTab.tabBarItem = UITabBarItem(title: "지난 챌린지", image: UIImage(systemName: "list.bullet.circle"), selectedImage: UIImage(systemName: "list.bullet.circle.fill"))
+        secondTab.tabBarItem = UITabBarItem(title: I18N.tabRecord, image: UIImage(systemName: "list.bullet.circle"), selectedImage: UIImage(systemName: "list.bullet.circle.fill"))
         
         viewControllers = [firstTab, secondTab]
         
