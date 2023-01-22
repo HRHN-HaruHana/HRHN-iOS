@@ -17,7 +17,7 @@ struct Provider: TimelineProvider {
         if todayChallenge.count > 0 {
             return todayChallenge[0].content
         } else {
-            return I18N.lockPlaceholder
+            return I18N.lockDesc
         }
     }
     
@@ -80,7 +80,7 @@ struct LockscreenWidget: Widget {
             LockscreenWidgetEntryView(entry: entry)
         }
         .configurationDisplayName(I18N.lockTitle)
-        .description(I18N.lockDesc)
+        .description(I18N.lockPlaceholder)
         .supportedFamilies([
             .accessoryRectangular
         ])
