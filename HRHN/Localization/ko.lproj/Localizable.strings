@@ -12,8 +12,8 @@
 
 /* LockScreen */
 "lock-title" = "오늘의 챌린지";
-"lock-desc" = "오늘의 챌린지를 등록하세요!";
-"lock-placeholder" = "오늘의 챌린지를 확인합니다.";
+"lock-desc" = "오늘의 챌린지를 확인합니다.";
+"lock-placeholder" = "오늘의 챌린지를 등록하세요!";
 
 /* 탭 */
 "tab-today" = "오늘의 챌린지";
