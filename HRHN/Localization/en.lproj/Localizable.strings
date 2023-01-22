@@ -12,8 +12,8 @@
 
 /* LockScreen */
 "lock-title" = "Challenge of The day";
-"lock-desc" = "Add challenge of the day";
-"lock-placeholder" = "Check challenge of the day";
+"lock-desc" = "Check challenge of the day";
+"lock-placeholder" = "Add challenge of the day";
 
 /* 탭 */
 "tab-today" = "Today";
