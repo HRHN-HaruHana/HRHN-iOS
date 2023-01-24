@@ -47,3 +47,4 @@
 
 ### ✧ More
 - [📚 WIKI - 프로젝트 소개 및 개발컨벤션](https://github.com/chaneeii/HRHN/wiki)
+- [🔖 Version 이력 ](https://github.com/HRHN-HaruHana/HRHN-iOS/wiki/%ED%95%98%EB%A3%A8%ED%95%98%EB%82%98)
