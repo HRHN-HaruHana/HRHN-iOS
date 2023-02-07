@@ -172,6 +172,26 @@ final class EditChallengeViewController: UIViewController {
         preferredStyle: .alert
     ))
     
+    private lazy var clearTextButton: UIButton = { [weak self] in
+        let imageConfig = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 12, weight: .bold))
+        $0.setImage(UIImage(systemName: "xmark.circle", withConfiguration: imageConfig), for: .normal)
+        
+        $0.tintColor = .cellLabel
+        $0.layer.opacity = 0.7
+        
+        $0.configuration?.contentInsets = .zero
+        
+        let action = UIAction { _ in
+            self?.challengeTextView.text.removeAll()
+        }
+        $0.addAction(action, for: .touchUpInside)
+        
+        if viewModel.currentChallenge == nil {
+            $0.isHidden = true
+        }
+        return $0
+    }(UIButton(configuration: .plain()))
+    
     // MARK: LifeCycle
     
     init(viewModel: EditChallengeViewModel) {
@@ -278,6 +298,13 @@ private extension EditChallengeViewController {
                 $0.height.equalTo(50)
                 $0.right.equalTo(challengeCard)
             }
+        clearTextButton.snp.makeConstraints {
+            $0.trailing.equalTo(textLengthIndicatorLabel.snp.leading).offset(-3)
+            $0.centerY.equalTo(textLengthIndicatorLabel)
+        }
+        
+        storageButton.snp.makeConstraints {
+            $0.height.equalTo(50)
         }
         
         doneButton.snp.makeConstraints {
@@ -317,10 +344,12 @@ extension EditChallengeViewController: UITextViewDelegate {
             placeholderLabel.isHidden = false
             textView.tintColor = .clear
             doneButton.isEnabled = false
+            clearTextButton.isHidden = true
         } else {
             placeholderLabel.isHidden = true
             textView.tintColor = .tintColor
             doneButton.isEnabled = true
+            clearTextButton.isHidden = false
         }
         
         if textView.text.count > maxTextLength {
