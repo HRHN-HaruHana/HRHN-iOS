@@ -13,6 +13,12 @@ final class EditChallengeViewController: UIViewController {
     
     private let viewModel: EditChallengeViewModel
     
+    private enum DynamicPoints {
+        static let verticalSpacing: CGFloat = DeviceManager.shared.isHomeButtonDevice() ? 10 : 20
+        static let padding: CGFloat = DeviceManager.shared.isHomeButtonDevice() ? 10 : 20
+        static let cardHeight: CGFloat = DeviceManager.shared.isHomeButtonDevice() ? 140 : 180
+    }
+    
     private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
         .foregroundColor: UIColor.cellLabel,
@@ -36,6 +42,8 @@ final class EditChallengeViewController: UIViewController {
         }
     }
     
+    // MARK: UI
+    
     private lazy var titleLabel: UILabel = {
         switch viewModel.mode {
         case .add:
@@ -50,12 +58,42 @@ final class EditChallengeViewController: UIViewController {
     
     private let challengeCardLayoutView = UIView()
     
+    private lazy var cardAndButtonStackView: UIStackView = {
+        $0.axis = .vertical
+        $0.alignment = .trailing
+        $0.spacing = DynamicPoints.verticalSpacing
+        return $0
+    }(UIStackView())
+    
     private let challengeCard: UIView = {
         $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
         return $0
     }(UIView())
+    
+    private lazy var storageButton: UIButton = { [weak self] in
+        var titleAttribute = AttributedString("바구니")
+        titleAttribute.font = .systemFont(ofSize: 16)
+        $0.configuration?.attributedTitle = titleAttribute
+        
+        let imageConfig = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 13))
+        $0.setImage(UIImage(systemName: "archivebox", withConfiguration: imageConfig), for: .normal)
+        $0.configuration?.imagePadding = 4
+        
+        $0.configuration?.baseBackgroundColor = .cellFill
+        $0.configuration?.baseForegroundColor = .cellLabel
+        $0.configuration?.cornerStyle = .fixed
+        $0.configuration?.background.cornerRadius = 16
+        $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        let action = UIAction { _ in
+            self?.bucketButtonDidTap()
+        }
+        $0.addAction(action, for: .touchUpInside)
+        
+        return $0
+    }(UIButton(configuration: .filled()))
     
     private lazy var doneButton: UIFullWidthButton = { [weak self] in
         $0.title = I18N.btnDone
@@ -170,7 +208,8 @@ private extension EditChallengeViewController {
         )
         
         titleLabel.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(DynamicPoints.verticalSpacing)
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
         
         doneButton.snp.makeConstraints {
@@ -179,15 +218,32 @@ private extension EditChallengeViewController {
         }
         
         challengeCardLayoutView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
-            $0.bottom.equalTo(doneButton.snp.top)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(DynamicPoints.verticalSpacing)
+            $0.bottom.equalTo(doneButton.snp.top).offset(-DynamicPoints.verticalSpacing)
             $0.horizontalEdges.equalToSuperview()
         }
         
-        challengeCard.snp.makeConstraints {
-            $0.center.equalTo(challengeCardLayoutView)
+        challengeCardLayoutView.addSubview(cardAndButtonStackView)
+        
+        cardAndButtonStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
             $0.horizontalEdges.equalToSuperview().inset(35)
-            $0.height.equalTo(200.adjusted)
+        }
+        
+        switch viewModel.mode {
+        case .add:
+            cardAndButtonStackView.addArrangedSubviews(
+                challengeCard,
+                storageButton
+            )
+        case .modify:
+            cardAndButtonStackView.addArrangedSubviews(challengeCard)
+        }
+        
+        challengeCard.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(DynamicPoints.cardHeight)
         }
         
         placeholderLabel.snp.makeConstraints {
@@ -197,11 +253,15 @@ private extension EditChallengeViewController {
         
         challengeTextView.snp.makeConstraints {
             $0.center.equalTo(challengeCard)
-            $0.horizontalEdges.equalTo(challengeCard).inset(20.adjusted)
+            $0.horizontalEdges.equalTo(challengeCard).inset(DynamicPoints.padding)
         }
         
         textLengthIndicatorLabel.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(challengeCard).inset(20.adjusted)
+            $0.trailing.bottom.equalTo(challengeCard).inset(DynamicPoints.padding)
+        }
+        
+        storageButton.snp.makeConstraints {
+            $0.height.equalTo(50)
         }
     }
     
@@ -216,6 +276,10 @@ private extension EditChallengeViewController {
             self.viewModel.updateWidget()
             self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func bucketButtonDidTap() {
+        
     }
 }
 
