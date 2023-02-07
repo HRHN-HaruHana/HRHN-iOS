@@ -92,7 +92,7 @@ final class EditChallengeViewController: UIViewController {
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
-            self?.stopChallengeEditing()
+            self?.stopEditingAndSaveChallenge()
         }
         return $0
     }(UIFullWidthButton())
@@ -323,8 +323,16 @@ extension EditChallengeViewController: UITextViewDelegate {
         checkTextLength(textView: textView)
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        returnButtonDidTap(text: text, textView: textView)
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText input: String) -> Bool {
+        let returnButton = "\n"
+        let isTextExist = !textView.text.isEmpty
+        
+        if input == returnButton && isTextExist {
+            stopEditingAndSaveChallenge()
+            return false
+        } else {
+            return true
+        }
     }
 }
 
@@ -365,17 +373,7 @@ private extension EditChallengeViewController {
         }
     }
     
-    func returnButtonDidTap(text: String, textView: UITextView) -> Bool {
-        if text == "\n" {
-            if textView.text.count > 0 {
-                stopChallengeEditing()
-            }
-            return false
-        }
-        return true
-    }
-    
-    func stopChallengeEditing() {
+    func stopEditingAndSaveChallenge() {
         switch viewModel.mode {
         case .add:
             self.viewModel.createChallenge(self.challengeTextView.text as String)
