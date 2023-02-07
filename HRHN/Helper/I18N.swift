@@ -50,6 +50,13 @@ struct I18N {
     /* 챌린지 수정 */
     static let updateTitle = "update-title".localized()
     
+    /* 챌린지 삭제 */
+    static let deleteButtonTitle = "delete-button-title".localized()
+    static let deleteAlertTitle = "delete-alert-title".localized()
+    static let deleteAlertMessage = "delete-alert-message".localized()
+    static let deleteAlertConfirm = "delete-alert-confirm".localized()
+    static let deleteAlertCancel = "delete-alert-cancel".localized()
+    
     /* 지난챌린지 */
     static let recordTitle = "record-title".localized()
     

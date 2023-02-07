@@ -151,24 +151,24 @@ final class EditChallengeViewController: UIViewController {
         $0.tintColor = .systemRed
         return $0
     }(UIBarButtonItem(
-        title: "삭제",
+        title: I18N.deleteButtonTitle,
         style: .plain,
         target: self,
         action: #selector(deleteChallengeBarButtonDidTap)
     ))
     
     private lazy var deleteChallengeAlert: UIAlertController = { [weak self] in
-        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+        let deleteAction = UIAlertAction(title: I18N.deleteAlertConfirm, style: .destructive) { _ in
             self?.viewModel.deleteChallenge()
             self?.navigationController?.popToRootViewController(animated: true)
         }
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        let cancelAction = UIAlertAction(title: I18N.deleteAlertCancel, style: .cancel)
         $0.addAction(deleteAction)
         $0.addAction(cancelAction)
         return $0
     }(UIAlertController(
-        title: "챌린지를 삭제할까요?",
-        message: "오늘의 챌린지가 삭제됩니다.",
+        title: I18N.deleteAlertTitle,
+        message: I18N.deleteAlertMessage,
         preferredStyle: .alert
     ))
     
