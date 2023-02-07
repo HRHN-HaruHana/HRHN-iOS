@@ -36,8 +36,13 @@ final class ModifyViewController: UIViewController {
         }
     }
     
-    private let titleLabel: UILabel = {
-        $0.text = I18N.updateTitle
+    private lazy var titleLabel: UILabel = {
+        switch viewModel.mode {
+        case .add:
+            $0.text = I18N.addTitle
+        case .modify:
+            $0.text = I18N.updateTitle
+        }
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
         return $0
@@ -77,10 +82,18 @@ final class ModifyViewController: UIViewController {
     }(UILabel())
     
     private lazy var modifyChallengeTextView: UITextView = {
-        $0.attributedText = NSAttributedString(
-            string: viewModel.currentChallenge?.content ?? "",
-            attributes: mainTextAttributes
-        )
+        switch viewModel.mode {
+        case .add:
+            $0.attributedText = NSAttributedString(
+                string: " ",
+                attributes: mainTextAttributes
+            )
+        case .modify:
+            $0.attributedText = NSAttributedString(
+                string: viewModel.currentChallenge?.content ?? "",
+                attributes: mainTextAttributes
+            )
+        }
         $0.backgroundColor = .clear
         $0.textAlignment = .center
         $0.autocapitalizationType = .sentences
@@ -134,8 +147,17 @@ private extension ModifyViewController {
     
     func setUI() {
         view.backgroundColor = .background
-        textViewDidChange(modifyChallengeTextView)
         navigationController?.navigationBar.topItem?.title = ""
+        
+        if viewModel.mode == .add {
+            modifyChallengeTextView.attributedText = NSAttributedString(
+                string: "",
+                attributes: mainTextAttributes
+            )
+            modifyChallengeTextView.delegate = self
+        }
+        
+        textViewDidChange(modifyChallengeTextView)
     }
     
     func setLayout() {
@@ -186,9 +208,16 @@ private extension ModifyViewController {
     }
     
     func doneButtonDidTap() {
-        self.viewModel.updateChallenge(modifyChallengeTextView.text)
-        self.viewModel.updateWidget()
-        self.navigationController?.popToRootViewController(animated: true)
+        switch viewModel.mode {
+        case .add:
+            self.viewModel.createChallenge(self.modifyChallengeTextView.text as String)
+            self.viewModel.updateWidget()
+            self.navigationController?.popToRootViewController(animated: true)
+        case .modify:
+            self.viewModel.updateChallenge(modifyChallengeTextView.text)
+            self.viewModel.updateWidget()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 
