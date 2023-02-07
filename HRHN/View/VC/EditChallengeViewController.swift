@@ -73,7 +73,7 @@ final class EditChallengeViewController: UIViewController {
     }(UIView())
     
     private lazy var storageButton: UIButton = { [weak self] in
-        var titleAttribute = AttributedString("바구니")
+        var titleAttribute = AttributedString(I18N.storageTitle)
         titleAttribute.font = .systemFont(ofSize: 16)
         $0.configuration?.attributedTitle = titleAttribute
         

@@ -51,6 +51,9 @@
 /* 지난챌린지 */
 "record-title" = "지난 챌린지";
 
+/* 챌린지 바구니 */
+"storage-title" = "바구니";
+
 /* 설정 */
 "setting-title" = "설정";
 "setting-noti-1" = "알림";
