@@ -92,7 +92,7 @@ final class EditChallengeViewController: UIViewController {
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
-            self?.doneButtonDidTap()
+            self?.stopChallengeEditing()
         }
         return $0
     }(UIFullWidthButton())
@@ -183,6 +183,7 @@ final class EditChallengeViewController: UIViewController {
         
         let action = UIAction { _ in
             self?.challengeTextView.text.removeAll()
+            self?.checkTextLength(textView: self?.challengeTextView)
         }
         $0.addAction(action, for: .touchUpInside)
         
@@ -312,19 +313,24 @@ private extension EditChallengeViewController {
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
     }
-    
-    func doneButtonDidTap() {
-        switch viewModel.mode {
-        case .add:
-            self.viewModel.createChallenge(self.challengeTextView.text as String)
-            self.viewModel.updateWidget()
-            self.navigationController?.popToRootViewController(animated: true)
-        case .modify:
-            self.viewModel.updateChallenge(challengeTextView.text)
-            self.viewModel.updateWidget()
-            self.navigationController?.popToRootViewController(animated: true)
-        }
+}
+
+// MARK: UITextViewDelegate
+
+extension EditChallengeViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        deleteOverFlowedTexts(textView: textView)
+        checkTextLength(textView: textView)
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        returnButtonDidTap(text: text, textView: textView)
+    }
+}
+
+// MARK: Methods
+ 
+private extension EditChallengeViewController {
     
     func storageButtonDidTap() {
         
@@ -334,12 +340,9 @@ private extension EditChallengeViewController {
     func deleteChallengeBarButtonDidTap() {
         present(deleteChallengeAlert, animated: true)
     }
-}
-
-// MARK: UITextViewDelegate
-
-extension EditChallengeViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
+    
+    func checkTextLength(textView: UITextView?) {
+        guard let textView else { return }
         if textView.text.isEmpty {
             placeholderLabel.isHidden = false
             textView.tintColor = .clear
@@ -352,20 +355,36 @@ extension EditChallengeViewController: UITextViewDelegate {
             clearTextButton.isHidden = false
         }
         
-        if textView.text.count > maxTextLength {
-            textView.text.removeLast()
-        }
-        
         currentTextLength = textView.text.count
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    func deleteOverFlowedTexts(textView: UITextView) {
+        if textView.text.count > maxTextLength {
+            let overflowRange = textView.text.index(textView.text.startIndex, offsetBy: 50)...
+            textView.text.removeSubrange(overflowRange)
+        }
+    }
+    
+    func returnButtonDidTap(text: String, textView: UITextView) -> Bool {
         if text == "\n" {
             if textView.text.count > 0 {
-                doneButtonDidTap()
+                stopChallengeEditing()
             }
             return false
         }
         return true
+    }
+    
+    func stopChallengeEditing() {
+        switch viewModel.mode {
+        case .add:
+            self.viewModel.createChallenge(self.challengeTextView.text as String)
+            self.viewModel.updateWidget()
+            self.navigationController?.popToRootViewController(animated: true)
+        case .modify:
+            self.viewModel.updateChallenge(challengeTextView.text)
+            self.viewModel.updateWidget()
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
