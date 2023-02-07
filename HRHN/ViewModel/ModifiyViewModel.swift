@@ -28,6 +28,15 @@ final class ModifyViewModel: ObservableObject {
         }
     }
     
+    func createChallenge(_ content: String) {
+        coreDataManager.insertChallenge(Challenge(
+            id: UUID(),
+            date: Date(),
+            content: content,
+            emoji: .none)
+        )
+    }
+    
     func fetchCurrentChallenge() {
         let challenges = coreDataManager.getChallengeOf(Date())
         if challenges.count > 0 {
@@ -44,6 +53,10 @@ final class ModifyViewModel: ObservableObject {
             emoji: currentChallenge.emoji
         )
         coreDataManager.updateChallenge(updatedChallenge)
+    }
+    
+    func deleteChallenge() {
+        coreDataManager.deleteChallenge(Date())
     }
     
     func updateWidget() {
