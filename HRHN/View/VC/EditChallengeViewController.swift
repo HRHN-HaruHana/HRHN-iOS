@@ -147,6 +147,31 @@ final class EditChallengeViewController: UIViewController {
         return $0
     }(UILabel())
     
+    private lazy var deleteChallengeBarButton: UIBarButtonItem = {
+        $0.tintColor = .systemRed
+        return $0
+    }(UIBarButtonItem(
+        title: "삭제",
+        style: .plain,
+        target: self,
+        action: #selector(deleteChallengeBarButtonDidTap)
+    ))
+    
+    private lazy var deleteChallengeAlert: UIAlertController = { [weak self] in
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { _ in
+            self?.viewModel.deleteChallenge()
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        $0.addAction(deleteAction)
+        $0.addAction(cancelAction)
+        return $0
+    }(UIAlertController(
+        title: "챌린지를 삭제할까요?",
+        message: "오늘의 챌린지가 삭제됩니다.",
+        preferredStyle: .alert
+    ))
+    
     // MARK: LifeCycle
     
     init(viewModel: EditChallengeViewModel) {
@@ -177,12 +202,15 @@ private extension EditChallengeViewController {
         view.backgroundColor = .background
         navigationController?.navigationBar.topItem?.title = ""
         
-        if viewModel.mode == .add {
+        switch viewModel.mode {
+        case .add:
             challengeTextView.attributedText = NSAttributedString(
                 string: "",
                 attributes: mainTextAttributes
             )
             challengeTextView.delegate = self
+        case .modify:
+            navigationItem.rightBarButtonItem = deleteChallengeBarButton
         }
         
         textViewDidChange(challengeTextView)
@@ -273,6 +301,11 @@ private extension EditChallengeViewController {
     
     func storageButtonDidTap() {
         
+    }
+    
+    @objc
+    func deleteChallengeBarButtonDidTap() {
+        present(deleteChallengeAlert, animated: true)
     }
 }
 
