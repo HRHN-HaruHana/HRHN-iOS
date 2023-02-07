@@ -10,13 +10,22 @@ import WidgetKit
 
 final class ModifyViewModel: ObservableObject {
     
+    enum Mode {
+        case add, modify
+    }
+    
     @Published var currentChallenge: Challenge?
     
     private let coreDataManager = CoreDataManager.shared
     private let widgetCenter = WidgetCenter.shared
     
-    init() {
-        fetchCurrentChallenge()
+    let mode: Mode
+    
+    init(mode: Mode) {
+        self.mode = mode
+        if mode == .modify {
+            fetchCurrentChallenge()
+        }
     }
     
     func fetchCurrentChallenge() {
