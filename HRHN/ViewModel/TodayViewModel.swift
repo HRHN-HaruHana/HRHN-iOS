@@ -57,7 +57,7 @@ final class TodayViewModel {
             reviewVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(reviewVC, animated: true)
         } else {
-            let addVC = AddViewController(viewModel: AddViewModel())
+            let addVC = ModifyViewController(viewModel: ModifyViewModel(mode: .add))
             addVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(addVC, animated: true)
         }

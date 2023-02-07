@@ -24,7 +24,6 @@
 		50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
 		50A50017295D951600710B5D /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A50016295D951600710B5D /* URL+.swift */; };
 		50A50018295D953200710B5D /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A50016295D951600710B5D /* URL+.swift */; };
-		50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFEA295D765700710B5D /* AddViewController.swift */; };
 		50A5FFF3295D784A00710B5D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF2295D784A00710B5D /* WidgetKit.framework */; };
 		50A5FFF5295D784A00710B5D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF4295D784A00710B5D /* SwiftUI.framework */; };
 		50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */; };
@@ -32,7 +31,6 @@
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE39295C7539009A57BA /* UITextView+.swift */; };
-		50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE3B295C87B1009A57BA /* AddViewModel.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
 		50F0C078295EDBFD009D49B5 /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C077295EDBFD009D49B5 /* ModifyViewController.swift */; };
@@ -135,7 +133,6 @@
 		50A5000B295D8B8300710B5D /* HRHN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRHN.entitlements; sourceTree = "<group>"; };
 		50A5000C295D8BAD00710B5D /* LockscreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockscreenWidgetExtension.entitlements; sourceTree = "<group>"; };
 		50A50016295D951600710B5D /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
-		50A5FFEA295D765700710B5D /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockscreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A5FFF2295D784A00710B5D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		50A5FFF4295D784A00710B5D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -145,7 +142,6 @@
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50C1BE39295C7539009A57BA /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
-		50C1BE3B295C87B1009A57BA /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		50F0C077295EDBFD009D49B5 /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
@@ -411,7 +407,6 @@
 				A79121282950D2000044E652 /* RecordViewController.swift */,
 				505B95342959926A005F00C8 /* ReviewViewController.swift */,
 				A7ED3EF5295C284200342CC8 /* SettingViewController.swift */,
-				50A5FFEA295D765700710B5D /* AddViewController.swift */,
 				50F0C077295EDBFD009D49B5 /* ModifyViewController.swift */,
 			);
 			path = VC;
@@ -454,7 +449,6 @@
 				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
 				A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */,
-				50C1BE3B295C87B1009A57BA /* AddViewModel.swift */,
 				A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */,
 				50F0C079295EDDD6009D49B5 /* ModifiyViewModel.swift */,
 			);
@@ -683,10 +677,8 @@
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
-				50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */,
 				A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */,
 				A74C751A2975325B0046B1B1 /* String+.swift in Sources */,
-				50C1BE3C295C87B1009A57BA /* AddViewModel.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */,
