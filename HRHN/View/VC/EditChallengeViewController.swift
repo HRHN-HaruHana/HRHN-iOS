@@ -88,7 +88,7 @@ final class EditChallengeViewController: UIViewController {
         $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         
         let action = UIAction { _ in
-            self?.bucketButtonDidTap()
+            self?.storageButtonDidTap()
         }
         $0.addAction(action, for: .touchUpInside)
         
@@ -278,7 +278,7 @@ private extension EditChallengeViewController {
         }
     }
     
-    func bucketButtonDidTap() {
+    func storageButtonDidTap() {
         
     }
 }
