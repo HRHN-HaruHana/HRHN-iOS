@@ -1,5 +1,5 @@
 //
-//  ModifyViewController.swift
+//  EditChallengeViewController.swift
 //  HRHN
 //
 //  Created by 민채호 on 2022/12/30.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class ModifyViewController: UIViewController {
+final class EditChallengeViewController: UIViewController {
     
     // MARK: Properties
     
-    private let viewModel: ModifyViewModel
+    private let viewModel: EditChallengeViewModel
     
     private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
@@ -48,11 +48,9 @@ final class ModifyViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private let modifyChallengeCardLayoutView: UIView = {
-        return $0
-    }(UIView())
+    private let challengeCardLayoutView = UIView()
     
-    private let modifyChallengeCard: UIView = {
+    private let challengeCard: UIView = {
         $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
@@ -81,7 +79,7 @@ final class ModifyViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private lazy var modifyChallengeTextView: UITextView = {
+    private lazy var challengeTextView: UITextView = {
         switch viewModel.mode {
         case .add:
             $0.attributedText = NSAttributedString(
@@ -121,7 +119,7 @@ final class ModifyViewController: UIViewController {
     
     // MARK: LifeCycle
     
-    init(viewModel: ModifyViewModel) {
+    init(viewModel: EditChallengeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -137,36 +135,36 @@ final class ModifyViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        modifyChallengeTextView.becomeFirstResponder()
+        challengeTextView.becomeFirstResponder()
     }
 }
 
 // MARK: UI Functions
 
-private extension ModifyViewController {
+private extension EditChallengeViewController {
     
     func setUI() {
         view.backgroundColor = .background
         navigationController?.navigationBar.topItem?.title = ""
         
         if viewModel.mode == .add {
-            modifyChallengeTextView.attributedText = NSAttributedString(
+            challengeTextView.attributedText = NSAttributedString(
                 string: "",
                 attributes: mainTextAttributes
             )
-            modifyChallengeTextView.delegate = self
+            challengeTextView.delegate = self
         }
         
-        textViewDidChange(modifyChallengeTextView)
+        textViewDidChange(challengeTextView)
     }
     
     func setLayout() {
         view.addSubviews(
             titleLabel,
-            modifyChallengeCardLayoutView,
-            modifyChallengeCard,
+            challengeCardLayoutView,
+            challengeCard,
             placeholderLabel,
-            modifyChallengeTextView,
+            challengeTextView,
             doneButton,
             textLengthIndicatorLabel
         )
@@ -180,41 +178,41 @@ private extension ModifyViewController {
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
         
-        modifyChallengeCardLayoutView.snp.makeConstraints {
+        challengeCardLayoutView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom)
             $0.bottom.equalTo(doneButton.snp.top)
             $0.horizontalEdges.equalToSuperview()
         }
         
-        modifyChallengeCard.snp.makeConstraints {
-            $0.center.equalTo(modifyChallengeCardLayoutView)
+        challengeCard.snp.makeConstraints {
+            $0.center.equalTo(challengeCardLayoutView)
             $0.horizontalEdges.equalToSuperview().inset(35)
             $0.height.equalTo(200.adjusted)
         }
         
         placeholderLabel.snp.makeConstraints {
-            $0.center.equalTo(modifyChallengeCard)
-            $0.edges.equalTo(modifyChallengeCard).inset(20.adjusted)
+            $0.center.equalTo(challengeCard)
+            $0.edges.equalTo(challengeCard).inset(20.adjusted)
         }
         
-        modifyChallengeTextView.snp.makeConstraints {
-            $0.center.equalTo(modifyChallengeCard)
-            $0.horizontalEdges.equalTo(modifyChallengeCard).inset(20.adjusted)
+        challengeTextView.snp.makeConstraints {
+            $0.center.equalTo(challengeCard)
+            $0.horizontalEdges.equalTo(challengeCard).inset(20.adjusted)
         }
         
         textLengthIndicatorLabel.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(modifyChallengeCard).inset(20.adjusted)
+            $0.trailing.bottom.equalTo(challengeCard).inset(20.adjusted)
         }
     }
     
     func doneButtonDidTap() {
         switch viewModel.mode {
         case .add:
-            self.viewModel.createChallenge(self.modifyChallengeTextView.text as String)
+            self.viewModel.createChallenge(self.challengeTextView.text as String)
             self.viewModel.updateWidget()
             self.navigationController?.popToRootViewController(animated: true)
         case .modify:
-            self.viewModel.updateChallenge(modifyChallengeTextView.text)
+            self.viewModel.updateChallenge(challengeTextView.text)
             self.viewModel.updateWidget()
             self.navigationController?.popToRootViewController(animated: true)
         }
@@ -223,7 +221,7 @@ private extension ModifyViewController {
 
 // MARK: UITextViewDelegate
 
-extension ModifyViewController: UITextViewDelegate {
+extension EditChallengeViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.isEmpty {
             placeholderLabel.isHidden = false

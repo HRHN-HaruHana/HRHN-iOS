@@ -43,7 +43,7 @@ final class ReviewViewModel: ObservableObject {
     func navigate() {
         switch previousTab {
         case .addTab:
-            navigationController?.pushViewController(ModifyViewController(viewModel: ModifyViewModel(mode: .add)), animated: true)
+            navigationController?.pushViewController(EditChallengeViewController(viewModel: EditChallengeViewModel(mode: .add)), animated: true)
         case .recordTab:
             navigationController?.popToRootViewController(animated: true)
         }

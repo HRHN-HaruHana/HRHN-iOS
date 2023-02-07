@@ -1,5 +1,5 @@
 //
-//  ModifiyViewModel.swift
+//  EditChallengeViewModel.swift
 //  HRHN
 //
 //  Created by 민채호 on 2022/12/30.
@@ -8,7 +8,7 @@
 import Foundation
 import WidgetKit
 
-final class ModifyViewModel: ObservableObject {
+final class EditChallengeViewModel: ObservableObject {
     
     enum Mode {
         case add, modify
