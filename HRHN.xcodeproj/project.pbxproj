@@ -236,12 +236,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		505B9539295999EA005F00C8 /* SwiftUIView */ = {
+		505B9539295999EA005F00C8 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
 				505B953A29599A24005F00C8 /* ReviewView.swift */,
 			);
-			path = SwiftUIView;
+			path = SupportingViews;
 			sourceTree = "<group>";
 		};
 		50A5FFF1295D784A00710B5D /* Frameworks */ = {
@@ -398,15 +398,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		A7912183295611860044E652 /* Cell */ = {
+		A7912183295611860044E652 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
 				A791218129560B580044E652 /* RecordHeaderView.swift */,
 				A79121742955F1180044E652 /* ChallengeCellView.swift */,
 				A791217C2956037B0044E652 /* ChallengeCell.swift */,
 			);
-			name = Cell;
-			path = ../../CommonUI/Components/Cell;
+			name = SupportingViews;
+			path = ../../CommonUI/Components/SupportingViews;
 			sourceTree = "<group>";
 		};
 		A7912187295775D50044E652 /* Helper */ = {
@@ -479,7 +479,9 @@
 		A792635E2993DFCA00E3B621 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				A7ED3F05295E021F00342CC8 /* Views */,
+				A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */,
+				A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */,
+				A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */,
 				A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */,
 				A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */,
 			);
@@ -515,7 +517,7 @@
 		A79263622993E03100E3B621 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				A79263652993E08100E3B621 /* Cell */,
+				A79263652993E08100E3B621 /* SupportingViews */,
 				A7ED3EF5295C284200342CC8 /* SettingViewController.swift */,
 				A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */,
 			);
@@ -525,7 +527,7 @@
 		A79263632993E03900E3B621 /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				A7912183295611860044E652 /* Cell */,
+				A7912183295611860044E652 /* SupportingViews */,
 				A791217F2956066E0044E652 /* RecordViewModel.swift */,
 				A79121282950D2000044E652 /* RecordViewController.swift */,
 			);
@@ -535,29 +537,19 @@
 		A79263642993E04300E3B621 /* Review */ = {
 			isa = PBXGroup;
 			children = (
-				505B9539295999EA005F00C8 /* SwiftUIView */,
+				505B9539295999EA005F00C8 /* SupportingViews */,
 				505B95342959926A005F00C8 /* ReviewViewController.swift */,
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
 		};
-		A79263652993E08100E3B621 /* Cell */ = {
+		A79263652993E08100E3B621 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
 				A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */,
 			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		A7ED3F05295E021F00342CC8 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */,
-				A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */,
-				A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */,
-			);
-			path = Views;
+			path = SupportingViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
