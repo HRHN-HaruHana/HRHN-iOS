@@ -31,7 +31,7 @@
 		50A5FFEB295D765700710B5D /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFEA295D765700710B5D /* AddViewController.swift */; };
 		50A5FFF3295D784A00710B5D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF2295D784A00710B5D /* WidgetKit.framework */; };
 		50A5FFF5295D784A00710B5D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF4295D784A00710B5D /* SwiftUI.framework */; };
-		50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */; };
+		50A5FFF8295D784A00710B5D /* ChallengeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF7295D784A00710B5D /* ChallengeWidget.swift */; };
 		50A5FFFB295D784B00710B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A5FFFA295D784B00710B5D /* Assets.xcassets */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
@@ -143,7 +143,7 @@
 		50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockscreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A5FFF2295D784A00710B5D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		50A5FFF4295D784A00710B5D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockscreenWidget.swift; sourceTree = "<group>"; };
+		50A5FFF7295D784A00710B5D /* ChallengeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWidget.swift; sourceTree = "<group>"; };
 		50A5FFFA295D784B00710B5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A5FFFC295D784B00710B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 		50A5FFF6295D784A00710B5D /* LockscreenWidget */ = {
 			isa = PBXGroup;
 			children = (
-				50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */,
+				50A5FFF7295D784A00710B5D /* ChallengeWidget.swift */,
 				50A5FFFA295D784B00710B5D /* Assets.xcassets */,
 				50A5FFFC295D784B00710B5D /* Info.plist */,
 			);
@@ -660,7 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */,
+				50A5FFF8295D784A00710B5D /* ChallengeWidget.swift in Sources */,
 				508BDDCD2993874000CB8B46 /* Color+.swift in Sources */,
 				50A50011295D908500710B5D /* ChallengeMO+CoreDataClass.swift in Sources */,
 				50A50012295D908800710B5D /* ChallengeMO+CoreDataProperties.swift in Sources */,

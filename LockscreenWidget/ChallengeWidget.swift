@@ -17,7 +17,7 @@ struct Provider: TimelineProvider {
         if todayChallenge.count > 0 {
             return todayChallenge[0].content
         } else {
-            return I18N.lockPlaceholder
+            return I18N.challengeWidgetPlaceholder
         }
     }
     
@@ -57,7 +57,7 @@ struct SimpleEntry: TimelineEntry {
     let challenge: String
 }
 
-struct LockscreenWidgetEntryView : View {
+struct ChallengeWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
     
@@ -85,15 +85,15 @@ struct LockscreenWidgetEntryView : View {
 }
 
 @main
-struct LockscreenWidget: Widget {
-    let kind: String = "LockscreenWidget"
+struct ChallengeWidget: Widget {
+    let kind: String = "ChallengeWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            LockscreenWidgetEntryView(entry: entry)
+            ChallengeWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName(I18N.lockTitle)
-        .description(I18N.lockDesc)
+        .configurationDisplayName(I18N.challengeWidgetDisplayName)
+        .description(I18N.challengeWidgetDesc)
         .supportedFamilies([
             .accessoryRectangular,
             .systemSmall,
@@ -104,23 +104,23 @@ struct LockscreenWidget: Widget {
 
 struct LockscreenWidget_Previews: PreviewProvider {
     static var previews: some View {
-        LockscreenWidgetEntryView(entry: SimpleEntry(
+        ChallengeWidgetEntryView(entry: SimpleEntry(
             date: Date(),
-            challenge: I18N.lockPlaceholder)
+            challenge: I18N.challengeWidgetPlaceholder)
         )
         .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
         .previewDisplayName("Rectangular")
         
-        LockscreenWidgetEntryView(entry: SimpleEntry(
+        ChallengeWidgetEntryView(entry: SimpleEntry(
             date: Date(),
-            challenge: I18N.lockPlaceholder)
+            challenge: I18N.challengeWidgetPlaceholder)
         )
         .previewContext(WidgetPreviewContext(family: .systemSmall))
         .previewDisplayName("Small")
         
-        LockscreenWidgetEntryView(entry: SimpleEntry(
+        ChallengeWidgetEntryView(entry: SimpleEntry(
             date: Date(),
-            challenge: I18N.lockPlaceholder)
+            challenge: I18N.challengeWidgetPlaceholder)
         )
         .previewContext(WidgetPreviewContext(family: .systemMedium))
         .previewDisplayName("Medium")
