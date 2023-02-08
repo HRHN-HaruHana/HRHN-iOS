@@ -277,7 +277,8 @@ private extension EditChallengeViewController {
         challengeCard.addSubviews(
             challengeTextView,
             placeholderLabel,
-            textLengthIndicatorLabel
+            textLengthIndicatorLabel,
+            clearTextButton
         )
         
         challengeTextView.snp.makeConstraints {
@@ -294,18 +295,16 @@ private extension EditChallengeViewController {
             $0.trailing.bottom.equalToSuperview().inset(20.verticallyAdjusted)
         }
         
-        if viewModel.mode == .add {
-            storageButton.snp.makeConstraints {
-                $0.height.equalTo(50)
-                $0.right.equalTo(challengeCard)
-            }
         clearTextButton.snp.makeConstraints {
             $0.trailing.equalTo(textLengthIndicatorLabel.snp.leading).offset(-3)
             $0.centerY.equalTo(textLengthIndicatorLabel)
         }
         
-        storageButton.snp.makeConstraints {
-            $0.height.equalTo(50)
+        if viewModel.mode == .add {
+            storageButton.snp.makeConstraints {
+                $0.height.equalTo(50)
+                $0.right.equalTo(challengeCard)
+            }
         }
         
         doneButton.snp.makeConstraints {
