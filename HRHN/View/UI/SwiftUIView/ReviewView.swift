@@ -61,17 +61,17 @@ struct ReviewView: View {
 
 // MARK: ViewBuilder
 
-private extension ReviewView {
+extension ReviewView {
     
     @ViewBuilder
-    func emojiImage(_ emoji: Emoji) -> some View {
+    private func emojiImage(_ emoji: Emoji) -> some View {
         Image(emoji.rawValue)
             .resizable()
             .frame(width: 100.horizontallyAdjusted, height: 100.horizontallyAdjusted)
     }
     
     @ViewBuilder
-    func emojiButton(_ emoji: Emoji) -> some View {
+    private func emojiButton(_ emoji: Emoji) -> some View {
         Button {
             viewModel.selectedEmoji = emoji
             viewModel.updateChallenge()

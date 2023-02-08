@@ -42,15 +42,15 @@ final class UIFullWidthButton: UIButton {
 
 // MARK: Methods
 
-private extension UIFullWidthButton {
+extension UIFullWidthButton {
     
-    func setLabel() {
+    private func setLabel() {
         var titleAttribute = AttributedString(title)
         titleAttribute.font = .systemFont(ofSize: 14)
         configuration?.attributedTitle = titleAttribute
     }
     
-    func setCornerRadius() {
+    private func setCornerRadius() {
         if isOnKeyboard {
             configuration?.cornerStyle = .fixed
             configuration?.background.cornerRadius = 0
@@ -59,13 +59,13 @@ private extension UIFullWidthButton {
         }
     }
     
-    func setUI() {
+    private func setUI() {
         configuration?.baseBackgroundColor = .point
         configuration?.baseForegroundColor = .whiteLabel
         configuration?.cornerStyle = .capsule
     }
     
-    func setLayout() {
+    private func setLayout() {
         snp.makeConstraints {
             $0.height.equalTo(50)
         }

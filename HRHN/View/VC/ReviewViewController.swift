@@ -40,18 +40,18 @@ final class ReviewViewController: UIViewController {
 
 // MARK: Bindings
 
-private extension ReviewViewController {
+extension ReviewViewController {
     
-    func bind() {
+    private func bind() {
 
     }
 }
 
 // MARK: UI Functions
 
-private extension ReviewViewController {
+extension ReviewViewController {
     
-    func setUI() {
+    private func setUI() {
         view.backgroundColor = .background
         
         addChild(reviewViewHC)
@@ -63,7 +63,7 @@ private extension ReviewViewController {
         }
     }
     
-    func setNavigationBar() {
+    private func setNavigationBar() {
         navigationController?.navigationBar.topItem?.title = ""
     }
 }

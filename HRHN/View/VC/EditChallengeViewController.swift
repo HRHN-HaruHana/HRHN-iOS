@@ -217,9 +217,9 @@ final class EditChallengeViewController: UIViewController {
 
 // MARK: UI Functions
 
-private extension EditChallengeViewController {
+extension EditChallengeViewController {
     
-    func setUI() {
+    private func setUI() {
         view.backgroundColor = .background
         navigationController?.navigationBar.topItem?.title = ""
         
@@ -237,7 +237,7 @@ private extension EditChallengeViewController {
         textViewDidChange(challengeTextView)
     }
     
-    func setLayout() {
+    private func setLayout() {
         
         view.addSubviews(
             stackView
@@ -337,18 +337,18 @@ extension EditChallengeViewController: UITextViewDelegate {
 
 // MARK: Methods
  
-private extension EditChallengeViewController {
+extension EditChallengeViewController {
     
-    func storageButtonDidTap() {
+    private func storageButtonDidTap() {
         
     }
     
     @objc
-    func deleteChallengeBarButtonDidTap() {
+    private func deleteChallengeBarButtonDidTap() {
         self.present(deleteChallengeAlert, animated: true)
     }
     
-    func checkTextLength(textView: UITextView?) {
+    private func checkTextLength(textView: UITextView?) {
         guard let textView else { return }
         if textView.text.isEmpty {
             placeholderLabel.isHidden = false
@@ -365,14 +365,14 @@ private extension EditChallengeViewController {
         currentTextLength = textView.text.count
     }
     
-    func deleteOverFlowedTexts(textView: UITextView) {
+    private func deleteOverFlowedTexts(textView: UITextView) {
         if textView.text.count > maxTextLength {
             let overflowRange = textView.text.index(textView.text.startIndex, offsetBy: 50)...
             textView.text.removeSubrange(overflowRange)
         }
     }
     
-    func stopEditingAndSaveChallenge() {
+    private func stopEditingAndSaveChallenge() {
         switch viewModel.mode {
         case .add:
             self.viewModel.createChallenge(self.challengeTextView.text as String)
