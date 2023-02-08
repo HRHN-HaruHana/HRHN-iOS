@@ -92,7 +92,7 @@ final class EditChallengeViewController: UIViewController {
         $0.isOnKeyboard = true
         $0.isEnabled = false
         $0.action = UIAction { _ in
-            self?.doneButtonDidTap()
+            self?.stopEditingAndSaveChallenge()
         }
         return $0
     }(UIFullWidthButton())
@@ -147,6 +147,52 @@ final class EditChallengeViewController: UIViewController {
         return $0
     }(UILabel())
     
+    private lazy var deleteChallengeBarButton: UIBarButtonItem = {
+        $0.tintColor = .systemRed
+        return $0
+    }(UIBarButtonItem(
+        title: I18N.deleteButtonTitle,
+        style: .plain,
+        target: self,
+        action: #selector(deleteChallengeBarButtonDidTap)
+    ))
+    
+    private lazy var deleteChallengeAlert: UIAlertController = { [weak self] in
+        let deleteAction = UIAlertAction(title: I18N.deleteAlertConfirm, style: .destructive) { _ in
+            self?.viewModel.deleteChallenge()
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: I18N.deleteAlertCancel, style: .cancel)
+        $0.addAction(deleteAction)
+        $0.addAction(cancelAction)
+        return $0
+    }(UIAlertController(
+        title: I18N.deleteAlertTitle,
+        message: I18N.deleteAlertMessage,
+        preferredStyle: .alert
+    ))
+    
+    private lazy var clearTextButton: UIButton = { [weak self] in
+        let imageConfig = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 12, weight: .bold))
+        $0.setImage(UIImage(systemName: "xmark.circle", withConfiguration: imageConfig), for: .normal)
+        
+        $0.tintColor = .cellLabel
+        $0.layer.opacity = 0.7
+        
+        $0.configuration?.contentInsets = .zero
+        
+        let action = UIAction { _ in
+            self?.challengeTextView.text.removeAll()
+            self?.checkTextLength(textView: self?.challengeTextView)
+        }
+        $0.addAction(action, for: .touchUpInside)
+        
+        if viewModel.currentChallenge == nil {
+            $0.isHidden = true
+        }
+        return $0
+    }(UIButton(configuration: .plain()))
+    
     // MARK: LifeCycle
     
     init(viewModel: EditChallengeViewModel) {
@@ -171,24 +217,27 @@ final class EditChallengeViewController: UIViewController {
 
 // MARK: UI Functions
 
-private extension EditChallengeViewController {
+extension EditChallengeViewController {
     
-    func setUI() {
+    private func setUI() {
         view.backgroundColor = .background
         navigationController?.navigationBar.topItem?.title = ""
         
-        if viewModel.mode == .add {
+        switch viewModel.mode {
+        case .add:
             challengeTextView.attributedText = NSAttributedString(
                 string: "",
                 attributes: mainTextAttributes
             )
             challengeTextView.delegate = self
+        case .modify:
+            navigationItem.rightBarButtonItem = deleteChallengeBarButton
         }
         
         textViewDidChange(challengeTextView)
     }
     
-    func setLayout() {
+    private func setLayout() {
         
         view.addSubviews(
             stackView
@@ -228,7 +277,8 @@ private extension EditChallengeViewController {
         challengeCard.addSubviews(
             challengeTextView,
             placeholderLabel,
-            textLengthIndicatorLabel
+            textLengthIndicatorLabel,
+            clearTextButton
         )
         
         challengeTextView.snp.makeConstraints {
@@ -245,6 +295,11 @@ private extension EditChallengeViewController {
             $0.trailing.bottom.equalToSuperview().inset(20.verticallyAdjusted)
         }
         
+        clearTextButton.snp.makeConstraints {
+            $0.trailing.equalTo(textLengthIndicatorLabel.snp.leading).offset(-3)
+            $0.centerY.equalTo(textLengthIndicatorLabel)
+        }
+        
         if viewModel.mode == .add {
             storageButton.snp.makeConstraints {
                 $0.height.equalTo(50)
@@ -257,8 +312,67 @@ private extension EditChallengeViewController {
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
         }
     }
+}
+
+// MARK: UITextViewDelegate
+
+extension EditChallengeViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        deleteOverFlowedTexts(textView: textView)
+        checkTextLength(textView: textView)
+    }
     
-    func doneButtonDidTap() {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText input: String) -> Bool {
+        let returnButton = "\n"
+        let isTextExist = !textView.text.isEmpty
+        
+        if input == returnButton && isTextExist {
+            stopEditingAndSaveChallenge()
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
+// MARK: Methods
+ 
+extension EditChallengeViewController {
+    
+    private func storageButtonDidTap() {
+        
+    }
+    
+    @objc
+    private func deleteChallengeBarButtonDidTap() {
+        self.present(deleteChallengeAlert, animated: true)
+    }
+    
+    private func checkTextLength(textView: UITextView?) {
+        guard let textView else { return }
+        if textView.text.isEmpty {
+            placeholderLabel.isHidden = false
+            textView.tintColor = .clear
+            doneButton.isEnabled = false
+            clearTextButton.isHidden = true
+        } else {
+            placeholderLabel.isHidden = true
+            textView.tintColor = .tintColor
+            doneButton.isEnabled = true
+            clearTextButton.isHidden = false
+        }
+        
+        currentTextLength = textView.text.count
+    }
+    
+    private func deleteOverFlowedTexts(textView: UITextView) {
+        if textView.text.count > maxTextLength {
+            let overflowRange = textView.text.index(textView.text.startIndex, offsetBy: 50)...
+            textView.text.removeSubrange(overflowRange)
+        }
+    }
+    
+    private func stopEditingAndSaveChallenge() {
         switch viewModel.mode {
         case .add:
             self.viewModel.createChallenge(self.challengeTextView.text as String)
@@ -269,41 +383,5 @@ private extension EditChallengeViewController {
             self.viewModel.updateWidget()
             self.navigationController?.popToRootViewController(animated: true)
         }
-    }
-    
-    func storageButtonDidTap() {
-        
-    }
-}
-
-// MARK: UITextViewDelegate
-
-extension EditChallengeViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            placeholderLabel.isHidden = false
-            textView.tintColor = .clear
-            doneButton.isEnabled = false
-        } else {
-            placeholderLabel.isHidden = true
-            textView.tintColor = .tintColor
-            doneButton.isEnabled = true
-        }
-        
-        if textView.text.count > maxTextLength {
-            textView.text.removeLast()
-        }
-        
-        currentTextLength = textView.text.count
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            if textView.text.count > 0 {
-                doneButtonDidTap()
-            }
-            return false
-        }
-        return true
     }
 }

@@ -48,6 +48,13 @@
 /* 챌린지 수정 */
 "update-title" = "Update your\ntoday’s challenge";
 
+/* 챌린지 삭제 */
+"delete-button-title" = "Delete";
+"delete-alert-title" = "Would you like to delete challenge?";
+"delete-alert-message" = "Today's challenge will be deleted.";
+"delete-alert-confirm" = "Delete";
+"delete-alert-cancel" = "Cancel";
+
 /* 지난챌린지 */
 "record-title" = "Achivements";
 
