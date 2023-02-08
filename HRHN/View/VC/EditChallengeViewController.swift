@@ -13,22 +13,14 @@ final class EditChallengeViewController: UIViewController {
     
     private let viewModel: EditChallengeViewModel
     
-    private enum DynamicPoints {
-        static let verticalSpacing: CGFloat = DeviceManager.shared.isHomeButtonDevice() ? 10 : 20
-        static let padding: CGFloat = DeviceManager.shared.isHomeButtonDevice() ? 10 : 20
-        static let cardHeight: CGFloat = DeviceManager.shared.isHomeButtonDevice() ? 140 : 180
-    }
-    
     private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
         .foregroundColor: UIColor.cellLabel,
-        .baselineOffset: 2
     ]
     
     private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 15, weight: .bold),
         .foregroundColor: UIColor.cellLabel,
-        .baselineOffset: 2
     ]
     
     private let maxTextLength = 50
@@ -58,10 +50,10 @@ final class EditChallengeViewController: UIViewController {
     
     private let challengeCardLayoutView = UIView()
     
-    private lazy var cardAndButtonStackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         $0.axis = .vertical
         $0.alignment = .trailing
-        $0.spacing = DynamicPoints.verticalSpacing
+        $0.distribution = .equalSpacing
         return $0
     }(UIStackView())
     
@@ -197,71 +189,72 @@ private extension EditChallengeViewController {
     }
     
     func setLayout() {
+        
         view.addSubviews(
-            titleLabel,
-            challengeCardLayoutView,
-            challengeCard,
-            placeholderLabel,
+            stackView
+        )
+        
+        stackView.snp.makeConstraints {
+            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
+        }
+        
+        switch viewModel.mode {
+        case .add:
+            stackView.addArrangedSubviews(
+                titleLabel,
+                challengeCard,
+                storageButton,
+                doneButton
+            )
+        case .modify:
+            stackView.addArrangedSubviews(
+                titleLabel,
+                challengeCard,
+                doneButton
+            )
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
+        challengeCard.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(35)
+            $0.height.equalTo(180.verticallyAdjusted)
+        }
+        
+        challengeCard.addSubviews(
             challengeTextView,
-            doneButton,
+            placeholderLabel,
             textLengthIndicatorLabel
         )
         
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(DynamicPoints.verticalSpacing)
-            $0.horizontalEdges.equalToSuperview().inset(20)
+        challengeTextView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20.verticallyAdjusted)
+        }
+        
+        placeholderLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20.verticallyAdjusted)
+        }
+        
+        textLengthIndicatorLabel.snp.makeConstraints {
+            $0.trailing.bottom.equalToSuperview().inset(20.verticallyAdjusted)
+        }
+        
+        if viewModel.mode == .add {
+            storageButton.snp.makeConstraints {
+                $0.height.equalTo(50)
+                $0.right.equalTo(challengeCard)
+            }
         }
         
         doneButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
-        }
-        
-        challengeCardLayoutView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(DynamicPoints.verticalSpacing)
-            $0.bottom.equalTo(doneButton.snp.top).offset(-DynamicPoints.verticalSpacing)
-            $0.horizontalEdges.equalToSuperview()
-        }
-        
-        challengeCardLayoutView.addSubview(cardAndButtonStackView)
-        
-        cardAndButtonStackView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview().inset(35)
-        }
-        
-        switch viewModel.mode {
-        case .add:
-            cardAndButtonStackView.addArrangedSubviews(
-                challengeCard,
-                storageButton
-            )
-        case .modify:
-            cardAndButtonStackView.addArrangedSubviews(challengeCard)
-        }
-        
-        challengeCard.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.height.equalTo(DynamicPoints.cardHeight)
-        }
-        
-        placeholderLabel.snp.makeConstraints {
-            $0.center.equalTo(challengeCard)
-            $0.edges.equalTo(challengeCard).inset(20.adjusted)
-        }
-        
-        challengeTextView.snp.makeConstraints {
-            $0.center.equalTo(challengeCard)
-            $0.horizontalEdges.equalTo(challengeCard).inset(DynamicPoints.padding)
-        }
-        
-        textLengthIndicatorLabel.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(challengeCard).inset(DynamicPoints.padding)
-        }
-        
-        storageButton.snp.makeConstraints {
-            $0.height.equalTo(50)
         }
     }
     
