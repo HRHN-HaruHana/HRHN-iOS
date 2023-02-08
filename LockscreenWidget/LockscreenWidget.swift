@@ -65,6 +65,19 @@ struct LockscreenWidgetEntryView : View {
         switch widgetFamily {
         case .accessoryRectangular:
             Text(entry.challenge)
+                .multilineTextAlignment(.center)
+        case .systemSmall:
+            Text(entry.challenge)
+                .fontWeight(.bold)
+                .foregroundColor(.cellLabel)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 20)
+        case .systemMedium:
+            Text(entry.challenge)
+                .fontWeight(.bold)
+                .foregroundColor(.cellLabel)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 20)
         default:
             Text("Not Implemented")
         }
@@ -82,7 +95,9 @@ struct LockscreenWidget: Widget {
         .configurationDisplayName(I18N.lockTitle)
         .description(I18N.lockDesc)
         .supportedFamilies([
-            .accessoryRectangular
+            .accessoryRectangular,
+            .systemSmall,
+            .systemMedium
         ])
     }
 }
@@ -95,5 +110,19 @@ struct LockscreenWidget_Previews: PreviewProvider {
         )
         .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
         .previewDisplayName("Rectangular")
+        
+        LockscreenWidgetEntryView(entry: SimpleEntry(
+            date: Date(),
+            challenge: I18N.lockPlaceholder)
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewDisplayName("Small")
+        
+        LockscreenWidgetEntryView(entry: SimpleEntry(
+            date: Date(),
+            challenge: I18N.lockPlaceholder)
+        )
+        .previewContext(WidgetPreviewContext(family: .systemMedium))
+        .previewDisplayName("Medium")
     }
 }
