@@ -52,7 +52,7 @@ extension OBSecondViewController {
     private func setUI() {
         view.addSubviews(titleLabel, subTitleLabel, imageView)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.adjusted)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.horizontallyAdjusted)
             $0.height.equalTo(80)
             $0.centerX.equalToSuperview()
         }
@@ -65,8 +65,8 @@ extension OBSecondViewController {
         imageView.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(70)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(270.adjusted)
-            $0.height.equalTo(390.adjusted)
+            $0.width.equalTo(270.horizontallyAdjusted)
+            $0.height.equalTo(390.horizontallyAdjusted)
         }
     }
 }

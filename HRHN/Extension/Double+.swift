@@ -8,9 +8,14 @@
 import UIKit
 
 extension Double {
-    var adjusted: CGFloat {
+    var horizontallyAdjusted: CGFloat {
         let ratio: CGFloat = UIScreen.main.bounds.width / 390
         return CGFloat(self) * ratio
+    }
+    
+    var verticallyAdjusted: CGFloat {
+        let ratio: CGFloat = UIScreen.main.bounds.height / 844
+        return self * ratio
     }
 }
 

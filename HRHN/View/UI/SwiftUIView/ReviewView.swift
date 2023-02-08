@@ -31,16 +31,16 @@ struct ReviewView: View {
             Spacer(minLength: 20)
             Text(viewModel.challenge.content)
                 .foregroundColor(.cellLabel)
-                .padding(20.adjusted)
+                .padding(20.horizontallyAdjusted)
                 .frame(maxWidth: .infinity)
-                .frame(minHeight: 100.adjusted)
+                .frame(minHeight: 100.horizontallyAdjusted)
                 .background {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.cellFill)
                 }
                 .padding(.horizontal, 15)
             Spacer(minLength: 20)
-            Grid(horizontalSpacing: 10.adjusted, verticalSpacing: 10.adjusted) {
+            Grid(horizontalSpacing: 10.horizontallyAdjusted, verticalSpacing: 10.horizontallyAdjusted) {
                 GridRow {
                     emojiButton(.red)
                     emojiButton(.yellow)
@@ -67,7 +67,7 @@ private extension ReviewView {
     func emojiImage(_ emoji: Emoji) -> some View {
         Image(emoji.rawValue)
             .resizable()
-            .frame(width: 100.adjusted, height: 100.adjusted)
+            .frame(width: 100.horizontallyAdjusted, height: 100.horizontallyAdjusted)
     }
     
     @ViewBuilder

@@ -52,6 +52,9 @@ struct I18N {
     
     /* 지난챌린지 */
     static let recordTitle = "record-title".localized()
+    
+    /* 챌린지 바구니 */
+    static let storageTitle = "storage-title".localized()
         
     /* 설정 */
     static let settingTitle = "setting-title".localized()

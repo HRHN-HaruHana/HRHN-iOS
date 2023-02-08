@@ -16,13 +16,11 @@ final class EditChallengeViewController: UIViewController {
     private let mainTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 20, weight: .bold),
         .foregroundColor: UIColor.cellLabel,
-        .baselineOffset: 2
     ]
     
     private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 15, weight: .bold),
         .foregroundColor: UIColor.cellLabel,
-        .baselineOffset: 2
     ]
     
     private let maxTextLength = 50
@@ -35,6 +33,8 @@ final class EditChallengeViewController: UIViewController {
             )
         }
     }
+    
+    // MARK: UI
     
     private lazy var titleLabel: UILabel = {
         switch viewModel.mode {
@@ -50,12 +50,42 @@ final class EditChallengeViewController: UIViewController {
     
     private let challengeCardLayoutView = UIView()
     
+    private lazy var stackView: UIStackView = {
+        $0.axis = .vertical
+        $0.alignment = .trailing
+        $0.distribution = .equalSpacing
+        return $0
+    }(UIStackView())
+    
     private let challengeCard: UIView = {
         $0.backgroundColor = .cellFill
         $0.layer.cornerRadius = 16
         $0.layer.masksToBounds = true
         return $0
     }(UIView())
+    
+    private lazy var storageButton: UIButton = { [weak self] in
+        var titleAttribute = AttributedString(I18N.storageTitle)
+        titleAttribute.font = .systemFont(ofSize: 16)
+        $0.configuration?.attributedTitle = titleAttribute
+        
+        let imageConfig = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 13))
+        $0.setImage(UIImage(systemName: "archivebox", withConfiguration: imageConfig), for: .normal)
+        $0.configuration?.imagePadding = 4
+        
+        $0.configuration?.baseBackgroundColor = .cellFill
+        $0.configuration?.baseForegroundColor = .cellLabel
+        $0.configuration?.cornerStyle = .fixed
+        $0.configuration?.background.cornerRadius = 16
+        $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        let action = UIAction { _ in
+            self?.storageButtonDidTap()
+        }
+        $0.addAction(action, for: .touchUpInside)
+        
+        return $0
+    }(UIButton(configuration: .filled()))
     
     private lazy var doneButton: UIFullWidthButton = { [weak self] in
         $0.title = I18N.btnDone
@@ -159,49 +189,72 @@ private extension EditChallengeViewController {
     }
     
     func setLayout() {
+        
         view.addSubviews(
-            titleLabel,
-            challengeCardLayoutView,
-            challengeCard,
-            placeholderLabel,
+            stackView
+        )
+        
+        stackView.snp.makeConstraints {
+            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
+        }
+        
+        switch viewModel.mode {
+        case .add:
+            stackView.addArrangedSubviews(
+                titleLabel,
+                challengeCard,
+                storageButton,
+                doneButton
+            )
+        case .modify:
+            stackView.addArrangedSubviews(
+                titleLabel,
+                challengeCard,
+                doneButton
+            )
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
+        challengeCard.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(35)
+            $0.height.equalTo(180.verticallyAdjusted)
+        }
+        
+        challengeCard.addSubviews(
             challengeTextView,
-            doneButton,
+            placeholderLabel,
             textLengthIndicatorLabel
         )
         
-        titleLabel.snp.makeConstraints {
-            $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+        challengeTextView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20.verticallyAdjusted)
+        }
+        
+        placeholderLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20.verticallyAdjusted)
+        }
+        
+        textLengthIndicatorLabel.snp.makeConstraints {
+            $0.trailing.bottom.equalToSuperview().inset(20.verticallyAdjusted)
+        }
+        
+        if viewModel.mode == .add {
+            storageButton.snp.makeConstraints {
+                $0.height.equalTo(50)
+                $0.right.equalTo(challengeCard)
+            }
         }
         
         doneButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top)
-        }
-        
-        challengeCardLayoutView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
-            $0.bottom.equalTo(doneButton.snp.top)
-            $0.horizontalEdges.equalToSuperview()
-        }
-        
-        challengeCard.snp.makeConstraints {
-            $0.center.equalTo(challengeCardLayoutView)
-            $0.horizontalEdges.equalToSuperview().inset(35)
-            $0.height.equalTo(200.adjusted)
-        }
-        
-        placeholderLabel.snp.makeConstraints {
-            $0.center.equalTo(challengeCard)
-            $0.edges.equalTo(challengeCard).inset(20.adjusted)
-        }
-        
-        challengeTextView.snp.makeConstraints {
-            $0.center.equalTo(challengeCard)
-            $0.horizontalEdges.equalTo(challengeCard).inset(20.adjusted)
-        }
-        
-        textLengthIndicatorLabel.snp.makeConstraints {
-            $0.trailing.bottom.equalTo(challengeCard).inset(20.adjusted)
         }
     }
     
@@ -216,6 +269,10 @@ private extension EditChallengeViewController {
             self.viewModel.updateWidget()
             self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    func storageButtonDidTap() {
+        
     }
 }
 
