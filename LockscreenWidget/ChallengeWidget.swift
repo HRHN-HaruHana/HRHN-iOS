@@ -68,14 +68,22 @@ struct ChallengeWidgetEntryView : View {
                 .multilineTextAlignment(.center)
         case .systemSmall:
             Text(entry.challenge)
+                .font(.system(size: 16))
                 .fontWeight(.bold)
                 .foregroundColor(.cellLabel)
+                .opacity(entry.challenge == I18N.challengeWidgetPlaceholder
+                         ? 0.7
+                         : 1)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
         case .systemMedium:
             Text(entry.challenge)
+                .font(.system(size: 16))
                 .fontWeight(.bold)
                 .foregroundColor(.cellLabel)
+                .opacity(entry.challenge == I18N.challengeWidgetPlaceholder
+                         ? 0.7
+                         : 1)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
         default:
