@@ -345,7 +345,7 @@ private extension EditChallengeViewController {
     
     @objc
     func deleteChallengeBarButtonDidTap() {
-        present(deleteChallengeAlert, animated: true)
+        self.present(deleteChallengeAlert, animated: true)
     }
     
     func checkTextLength(textView: UITextView?) {
