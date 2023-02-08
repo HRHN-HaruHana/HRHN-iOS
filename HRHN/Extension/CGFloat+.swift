@@ -13,4 +13,9 @@ extension CGFloat {
         let ratio: CGFloat = UIScreen.main.bounds.width / 390
         return self * ratio
     }
+    
+    var verticallyAdjusted: CGFloat {
+        let ratio: CGFloat = UIScreen.main.bounds.height / 844
+        return self * ratio
+    }
 }
