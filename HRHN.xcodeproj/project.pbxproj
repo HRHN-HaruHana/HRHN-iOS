@@ -16,6 +16,10 @@
 		5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EF29601A41005115AA /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
+		508BDDCD2993874000CB8B46 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
+		508BDDCE2993875900CB8B46 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
+		508BDDCF2993875F00CB8B46 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121782955FBCE0044E652 /* CustomColor.swift */; };
+		508BDDD02993877A00CB8B46 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50A50001295D784B00710B5D /* LockscreenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
 		50A50010295D903D00710B5D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
@@ -26,7 +30,7 @@
 		50A50018295D953200710B5D /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A50016295D951600710B5D /* URL+.swift */; };
 		50A5FFF3295D784A00710B5D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF2295D784A00710B5D /* WidgetKit.framework */; };
 		50A5FFF5295D784A00710B5D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A5FFF4295D784A00710B5D /* SwiftUI.framework */; };
-		50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */; };
+		50A5FFF8295D784A00710B5D /* ChallengeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FFF7295D784A00710B5D /* ChallengeWidget.swift */; };
 		50A5FFFB295D784B00710B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A5FFFA295D784B00710B5D /* Assets.xcassets */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
@@ -136,7 +140,7 @@
 		50A5FFF0295D784A00710B5D /* LockscreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LockscreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A5FFF2295D784A00710B5D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		50A5FFF4295D784A00710B5D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockscreenWidget.swift; sourceTree = "<group>"; };
+		50A5FFF7295D784A00710B5D /* ChallengeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeWidget.swift; sourceTree = "<group>"; };
 		50A5FFFA295D784B00710B5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A5FFFC295D784B00710B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
@@ -252,7 +256,7 @@
 		50A5FFF6295D784A00710B5D /* LockscreenWidget */ = {
 			isa = PBXGroup;
 			children = (
-				50A5FFF7295D784A00710B5D /* LockscreenWidget.swift */,
+				50A5FFF7295D784A00710B5D /* ChallengeWidget.swift */,
 				50A5FFFA295D784B00710B5D /* Assets.xcassets */,
 				50A5FFFC295D784B00710B5D /* Info.plist */,
 			);
@@ -611,6 +615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508BDDD02993877A00CB8B46 /* Colors.xcassets in Resources */,
 				50A5FFFB295D784B00710B5D /* Assets.xcassets in Resources */,
 				A74C751D29753EBB0046B1B1 /* Localizable.strings in Resources */,
 			);
@@ -649,15 +654,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50A5FFF8295D784A00710B5D /* LockscreenWidget.swift in Sources */,
+				50A5FFF8295D784A00710B5D /* ChallengeWidget.swift in Sources */,
+				508BDDCD2993874000CB8B46 /* Color+.swift in Sources */,
 				50A50011295D908500710B5D /* ChallengeMO+CoreDataClass.swift in Sources */,
 				50A50012295D908800710B5D /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */,
 				50A50018295D953200710B5D /* URL+.swift in Sources */,
 				A74C752B297599370046B1B1 /* I18N.swift in Sources */,
 				50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */,
+				508BDDCF2993875F00CB8B46 /* CustomColor.swift in Sources */,
 				5080B2EF29601A41005115AA /* Date+.swift in Sources */,
 				A74C751F29753FB80046B1B1 /* String+.swift in Sources */,
+				508BDDCE2993875900CB8B46 /* UIColor+.swift in Sources */,
 				50A50013295D91AC00710B5D /* CoreDataManager.swift in Sources */,
 				50A50010295D903D00710B5D /* Challenge.swift in Sources */,
 			);

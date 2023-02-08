@@ -10,10 +10,10 @@
 "app-name" = "1D1C";
 "noti-msg" = "Add challenge of the day!";
 
-/* LockScreen */
-"lock-title" = "Challenge of The day";
-"lock-desc" = "Check challenge of the day";
-"lock-placeholder" = "Add challenge of the day";
+/* Challenge Widget */
+"widget-challenge-title" = "Challenge of The day";
+"widget-challenge-desc" = "Check challenge of the day";
+"widget-challenge-placeholder" = "Add challenge of the day";
 
 /* 탭 */
 "tab-today" = "Today";

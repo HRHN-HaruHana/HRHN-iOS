@@ -17,7 +17,7 @@ struct Provider: TimelineProvider {
         if todayChallenge.count > 0 {
             return todayChallenge[0].content
         } else {
-            return I18N.lockPlaceholder
+            return I18N.challengeWidgetPlaceholder
         }
     }
     
@@ -57,7 +57,7 @@ struct SimpleEntry: TimelineEntry {
     let challenge: String
 }
 
-struct LockscreenWidgetEntryView : View {
+struct ChallengeWidgetEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
     
@@ -65,6 +65,27 @@ struct LockscreenWidgetEntryView : View {
         switch widgetFamily {
         case .accessoryRectangular:
             Text(entry.challenge)
+                .multilineTextAlignment(.center)
+        case .systemSmall:
+            Text(entry.challenge)
+                .font(.system(size: 16))
+                .fontWeight(.bold)
+                .foregroundColor(.cellLabel)
+                .opacity(entry.challenge == I18N.challengeWidgetPlaceholder
+                         ? 0.7
+                         : 1)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 20)
+        case .systemMedium:
+            Text(entry.challenge)
+                .font(.system(size: 16))
+                .fontWeight(.bold)
+                .foregroundColor(.cellLabel)
+                .opacity(entry.challenge == I18N.challengeWidgetPlaceholder
+                         ? 0.7
+                         : 1)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 20)
         default:
             Text("Not Implemented")
         }
@@ -72,28 +93,44 @@ struct LockscreenWidgetEntryView : View {
 }
 
 @main
-struct LockscreenWidget: Widget {
-    let kind: String = "LockscreenWidget"
+struct ChallengeWidget: Widget {
+    let kind: String = "ChallengeWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            LockscreenWidgetEntryView(entry: entry)
+            ChallengeWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName(I18N.lockTitle)
-        .description(I18N.lockDesc)
+        .configurationDisplayName(I18N.challengeWidgetDisplayName)
+        .description(I18N.challengeWidgetDesc)
         .supportedFamilies([
-            .accessoryRectangular
+            .accessoryRectangular,
+            .systemSmall,
+            .systemMedium
         ])
     }
 }
 
 struct LockscreenWidget_Previews: PreviewProvider {
     static var previews: some View {
-        LockscreenWidgetEntryView(entry: SimpleEntry(
+        ChallengeWidgetEntryView(entry: SimpleEntry(
             date: Date(),
-            challenge: I18N.lockPlaceholder)
+            challenge: I18N.challengeWidgetPlaceholder)
         )
         .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
         .previewDisplayName("Rectangular")
+        
+        ChallengeWidgetEntryView(entry: SimpleEntry(
+            date: Date(),
+            challenge: I18N.challengeWidgetPlaceholder)
+        )
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewDisplayName("Small")
+        
+        ChallengeWidgetEntryView(entry: SimpleEntry(
+            date: Date(),
+            challenge: I18N.challengeWidgetPlaceholder)
+        )
+        .previewContext(WidgetPreviewContext(family: .systemMedium))
+        .previewDisplayName("Medium")
     }
 }
