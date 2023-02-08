@@ -159,9 +159,9 @@ extension TodayViewController {
         
         view.addSubviews(cardView)
         cardView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(40.constraintMultiplierTargetValue.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(40.constraintMultiplierTargetValue.horizontallyAdjusted)
             $0.centerY.equalToSuperview()
-            $0.height.equalTo(400.constraintMultiplierTargetValue.adjusted)
+            $0.height.equalTo(400.constraintMultiplierTargetValue.horizontallyAdjusted)
         }
         
     }
@@ -170,7 +170,7 @@ extension TodayViewController {
         emptyStackView.removeFromSuperview()
         cardView.addSubviews(challengeLabel)
         challengeLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.horizontallyAdjusted)
             $0.centerY.equalToSuperview()
         }
     }

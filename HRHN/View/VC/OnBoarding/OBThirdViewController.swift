@@ -83,7 +83,7 @@ extension OBThirdViewController {
     private func setUI() {
         view.addSubviews(titleLabel, subTitleLabel, timeField, disableLabel, descLabel)
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.adjusted)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(80.constraintMultiplierTargetValue.horizontallyAdjusted)
             $0.height.equalTo(80)
             $0.centerX.equalToSuperview()
         }
@@ -94,7 +94,7 @@ extension OBThirdViewController {
         }
         
         timeField.snp.makeConstraints {
-            $0.top.equalTo(subTitleLabel.snp.bottom).offset(120.constraintMultiplierTargetValue.adjusted)
+            $0.top.equalTo(subTitleLabel.snp.bottom).offset(120.constraintMultiplierTargetValue.horizontallyAdjusted)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(260)
             $0.height.equalTo(65)

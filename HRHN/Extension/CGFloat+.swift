@@ -9,7 +9,7 @@
 import UIKit
 
 extension CGFloat {
-    var adjusted: CGFloat {
+    var horizontallyAdjusted: CGFloat {
         let ratio: CGFloat = UIScreen.main.bounds.width / 390
         return self * ratio
     }
