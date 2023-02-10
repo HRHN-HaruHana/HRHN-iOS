@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA075299740260012779B /* CustomHeightTabBar.swift */; };
+		500CA071299697320012779B /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA070299697320012779B /* CustomNavBar.swift */; };
 		505B95352959926A005F00C8 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B95342959926A005F00C8 /* ReviewViewController.swift */; };
 		505B953829599976005F00C8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953729599976005F00C8 /* UIViewController+.swift */; };
 		505B953B29599A24005F00C8 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953A29599A24005F00C8 /* ReviewView.swift */; };
@@ -131,6 +132,7 @@
 
 /* Begin PBXFileReference section */
 		500CA075299740260012779B /* CustomHeightTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightTabBar.swift; sourceTree = "<group>"; };
+		500CA070299697320012779B /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		505B95342959926A005F00C8 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		505B953729599976005F00C8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		505B953A29599A24005F00C8 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
@@ -248,6 +250,14 @@
 				500CA075299740260012779B /* CustomHeightTabBar.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		500CA06F299697110012779B /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				500CA070299697320012779B /* CustomNavBar.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		505B9539295999EA005F00C8 /* SupportingViews */ = {
@@ -491,6 +501,7 @@
 				A7912187295775D50044E652 /* Helper */,
 				507305EF29965A8100A20CA1 /* Design */,
 				A791210F294B1A3A0044E652 /* Extension */,
+				500CA06F299697110012779B /* Protocol */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -795,6 +806,7 @@
 				A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */,
 				A74C751A2975325B0046B1B1 /* String+.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
+				500CA071299697320012779B /* CustomNavBar.swift in Sources */,
 				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
 				A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
