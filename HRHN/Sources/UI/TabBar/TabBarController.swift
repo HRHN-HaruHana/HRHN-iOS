@@ -14,21 +14,52 @@ class TabBarController: UITabBarController {
         setUI()
         setUpTabBar()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let tabBarHeight: CGFloat = 99
+        tabBar.frame.size.height = tabBarHeight
+        tabBar.frame.origin.y = view.frame.height - tabBarHeight
+    }
 
     private func setUI() {
-        tabBar.tintColor = UIColor.point
+        tabBar.tintColor = UIColor.cellLabel
+        tabBar.unselectedItemTintColor = UIColor.tertiaryLabel
+        tabBar.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 0.3)
     }
     
     private func setUpTabBar() {
         let todayVC = TodayViewController(viewModel: TodayViewModel())
         let firstTab = UINavigationController(rootViewController: todayVC)
-        firstTab.tabBarItem = UITabBarItem(title: I18N.tabToday, image: UIImage(systemName: "sparkles"), selectedImage: UIImage(systemName: "sparkles"))
+        firstTab.tabBarItem = UITabBarItem(
+            title: I18N.tabToday,
+            image: UIImage(named: TabbarIcons.todayUnselected.rawValue),
+            selectedImage: UIImage(named: TabbarIcons.todaySelected.rawValue)
+        )
+        firstTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
+        firstTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
         
         let recordVC = RecordViewController(with: RecordViewModel())
         let secondTab = UINavigationController(rootViewController: recordVC)
-        secondTab.tabBarItem = UITabBarItem(title: I18N.tabRecord, image: UIImage(systemName: "list.bullet.circle"), selectedImage: UIImage(systemName: "list.bullet.circle.fill"))
+        secondTab.tabBarItem = UITabBarItem(
+            title: I18N.tabRecord,
+            image: UIImage(named: TabbarIcons.recordUnselected.rawValue),
+            selectedImage: UIImage(named: TabbarIcons.recordSelected.rawValue)
+        )
+        secondTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
+        secondTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
         
-        viewControllers = [firstTab, secondTab]
+        let storageVC = RecordViewController(with: RecordViewModel()) // TODO: Change to StorageViewController
+        let thirdTab = UINavigationController(rootViewController: storageVC)
+        thirdTab.tabBarItem = UITabBarItem(
+            title: I18N.tabStorage,
+            image: UIImage(named: TabbarIcons.storageUnselected.rawValue),
+            selectedImage: UIImage(named: TabbarIcons.storageSelected.rawValue)
+        )
+        thirdTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
+        thirdTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
+        
+        viewControllers = [firstTab, secondTab, thirdTab]
         
     }
 
