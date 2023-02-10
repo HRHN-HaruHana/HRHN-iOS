@@ -5,23 +5,36 @@
 //  Created by Chanhee Jeong on 2022/12/20.
 //
 
+// https://stackoverflow.com/questions/48192749/hidesbottombarwhenpushed-makes-uitabbar-jump
+// https://gist.github.com/calt/7ea29a65b440c2aa8a1a
+
 import UIKit
 
-class TabBarController: UITabBarController {
+class CustomHeightTabBar : UITabBar {
+    override open func sizeThatFits(_ size: CGSize) -> CGSize {
+        var sizeThatFits = super.sizeThatFits(size)
+        sizeThatFits.height = 99
+        return sizeThatFits
+    }
+}
 
+class TabBarController: UITabBarController {
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        object_setClass(self.tabBar, CustomHeightTabBar.self)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setUpTabBar()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let tabBarHeight: CGFloat = 99
-        tabBar.frame.size.height = tabBarHeight
-        tabBar.frame.origin.y = view.frame.height - tabBarHeight
-    }
-
     private func setUI() {
         tabBar.tintColor = UIColor.cellLabel
         tabBar.unselectedItemTintColor = UIColor.tertiaryLabel
