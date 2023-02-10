@@ -36,6 +36,7 @@ class TabBarController: UITabBarController {
     }
     
     private func setUI() {
+        view.backgroundColor = .background
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 0.3)
