@@ -13,6 +13,7 @@
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
 		507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */; };
+		507305F229965AAB00A20CA1 /* TabIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507305F129965AAB00A20CA1 /* TabIcons.swift */; };
 		5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EF29601A41005115AA /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
@@ -133,6 +134,7 @@
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		507089B1295ADE1A00DD8D85 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		507305F129965AAB00A20CA1 /* TabIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIcons.swift; sourceTree = "<group>"; };
 		5080B2EC29601A2A005115AA /* DateComponents+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+.swift"; sourceTree = "<group>"; };
 		50A5000B295D8B8300710B5D /* HRHN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRHN.entitlements; sourceTree = "<group>"; };
 		50A5000C295D8BAD00710B5D /* LockscreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockscreenWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -242,6 +244,23 @@
 				505B953A29599A24005F00C8 /* ReviewView.swift */,
 			);
 			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		507305EF29965A8100A20CA1 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				507305F029965A9900A20CA1 /* TabIcons */,
+				50DBEA0B2952EB3B00ED00FD /* Color */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		507305F029965A9900A20CA1 /* TabIcons */ = {
+			isa = PBXGroup;
+			children = (
+				507305F129965AAB00A20CA1 /* TabIcons.swift */,
+			);
+			path = TabIcons;
 			sourceTree = "<group>";
 		};
 		50A5FFF1295D784A00710B5D /* Frameworks */ = {
@@ -456,7 +475,7 @@
 			children = (
 				A7912149295227140044E652 /* Managers */,
 				A7912187295775D50044E652 /* Helper */,
-				50DBEA0B2952EB3B00ED00FD /* Color */,
+				507305EF29965A8100A20CA1 /* Design */,
 				A791210F294B1A3A0044E652 /* Extension */,
 			);
 			path = Utils;
@@ -756,6 +775,7 @@
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,
 				A79121792955FBCE0044E652 /* CustomColor.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
+				507305F229965AAB00A20CA1 /* TabIcons.swift in Sources */,
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
 				A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */,
