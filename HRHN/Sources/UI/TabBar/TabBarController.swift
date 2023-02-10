@@ -36,9 +36,16 @@ class TabBarController: UITabBarController {
     }
     
     private func setUI() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 0.3)
+        appearance.shadowColor = .clear
+        appearance.shadowImage = UIImage()
+        appearance.backgroundEffect = UIBlurEffect(style: .light)
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
         tabBar.tintColor = UIColor.cellLabel
         tabBar.unselectedItemTintColor = UIColor.tertiaryLabel
-        tabBar.backgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 0.3)
     }
     
     private func setUpTabBar() {
