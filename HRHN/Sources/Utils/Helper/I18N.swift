@@ -20,6 +20,7 @@ struct I18N {
     /* 탭 */
     static let tabToday = "tab-today".localized()
     static let tabRecord = "tab-record".localized()
+    static let tabStorage = "tab-storage".localized()
     
     /* 버튼 */
     static let btnStart = "btn-start".localized()

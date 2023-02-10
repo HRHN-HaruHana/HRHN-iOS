@@ -16,14 +16,15 @@
 "widget-challenge-placeholder" = "오늘의 챌린지를 등록하세요!";
 
 /* 탭 */
-"tab-today" = "오늘의 챌린지";
-"tab-record" = "지난 챌린지";
+"tab-today" = "오늘";
+"tab-record" = "기록";
+"tab-storage" = "바구니";
 
 /* 버튼 */
 "btn-start" = "시작하기";
 "btn-next" = "다음";
 "btn-done" = "완료";
-"btn-add" = "챌린지 추가";
+"btn-add" = "추가하기";
 
 /* 온보딩 */
 "ob-widget-title" = "위젯으로 챌린지를\n리마인드하세요";
@@ -35,7 +36,7 @@
 
 /* 오늘의 챌린지 */
 "today-title" = "오늘의 챌린지";
-"today-empty" = "오늘의 챌린지가 아직 없어요";
+"today-empty" = "챌린지가 아직 없어요";
 
 /* 챌린지 평가 */
 "emoji-title-add" = "저번 챌린지는 어땠나요?";
