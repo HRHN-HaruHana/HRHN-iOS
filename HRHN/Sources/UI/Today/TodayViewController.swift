@@ -13,20 +13,10 @@ final class TodayViewController: UIViewController {
     // MARK: - Properties
     private let viewModel: TodayViewModel
     
-    private lazy var titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         $0.text = I18N.todayTitle
-        $0.textColor = UIColor.point
-        $0.font = .systemFont(ofSize: 25, weight: .bold)
-        $0.numberOfLines = 0
-        return $0
-    }(UILabel())
-    
-    private lazy var dateLabel: UILabel = {
-        $0.text = Date().localizedFullDate(NSLocale.current.language.languageCode?.identifier
-                                           ?? "en")
         $0.textColor = .secondaryLabel
-        $0.font = .systemFont(ofSize: 12, weight: .medium)
-        $0.numberOfLines = 0
+        $0.font = .systemFont(ofSize: 15)
         return $0
     }(UILabel())
     
@@ -40,17 +30,9 @@ final class TodayViewController: UIViewController {
         return $0
     }(UIView())
     
-    private lazy var emptyStackView: UIStackView = {
-        $0.spacing = 20
-        $0.alignment = .center
-        $0.distribution = .fill
-        $0.axis = .vertical
-        return $0
-    }(UIStackView())
-    
     private lazy var challengeLabel: UILabel = {
         $0.textColor = .cellLabel
-        $0.font = .systemFont(ofSize: 25, weight: .bold)
+        $0.font = .systemFont(ofSize: 26, weight: .bold)
         $0.numberOfLines = 0
         $0.textAlignment = .center
         return $0
@@ -58,20 +40,35 @@ final class TodayViewController: UIViewController {
     
     private lazy var emptyLabel: UILabel = {
         $0.text = I18N.todayEmpty
-        $0.textColor = .dim
-        $0.font = .systemFont(ofSize: 16, weight: .light)
+        $0.textColor = .cellLabel.withAlphaComponent(0.3)
+        $0.font = .systemFont(ofSize: 26, weight: .bold)
         $0.numberOfLines = 0
+        $0.textAlignment = .center
         return $0
     }(UILabel())
     
-    private lazy var addButton: UIButton = {
-        $0.setTitle(I18N.btnAdd, for: .normal)
-        $0.setTitleColor(.white, for: .normal)
-        $0.backgroundColor = .point
-        $0.layer.cornerRadius = 20
-        $0.addTarget(self, action: #selector(addButtonDidTap(_:)), for: .primaryActionTriggered)
+    private lazy var addButton: UIButton = { [weak self] in
+        var titleAttribute = AttributedString(I18N.btnAdd)
+        titleAttribute.font = .systemFont(ofSize: 15)
+        $0.configuration?.attributedTitle = titleAttribute
+        
+        let imageConfig = UIImage.SymbolConfiguration(font: UIFont.systemFont(ofSize: 13))
+        $0.setImage(UIImage(systemName: "plus", withConfiguration: imageConfig), for: .normal)
+        $0.configuration?.imagePadding = 4
+        
+        $0.configuration?.baseBackgroundColor = .cellFill
+        $0.configuration?.baseForegroundColor = .point
+        $0.configuration?.cornerStyle = .fixed
+        $0.configuration?.background.cornerRadius = 16
+        $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        let action = UIAction { _ in
+            self?.viewModel.addButtonDidTap(navigationController: self?.navigationController)
+        }
+        $0.addAction(action, for: .touchUpInside)
+        
         return $0
-    }(UIButton(type: .system))
+    }(UIButton(configuration: .filled()))
     
     // MARK: - LifeCycle
     
@@ -94,8 +91,6 @@ final class TodayViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dateLabel.text = Date().localizedFullDate(NSLocale.current.language.languageCode?.identifier
-                                                  ?? "en")
         bind()
     }
     
@@ -110,15 +105,13 @@ extension TodayViewController {
         self.navigationController?.pushViewController(settingVC, animated: true)
     }
     
-    @objc func addButtonDidTap(_ sender: UIButton) {
-        viewModel.addButtonDidTap(navigationController: navigationController)
-    }
-    
     @objc private func cardDidTap(tapGestureRecognizer: UITapGestureRecognizer) {
         if viewModel.isTodayChallengeExist() {
             let modifyVC = EditChallengeViewController(viewModel: EditChallengeViewModel(mode: .modify))
             modifyVC.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(modifyVC, animated: true)
+        } else {
+            viewModel.addButtonDidTap(navigationController: navigationController)
         }
     }
 }
@@ -129,12 +122,18 @@ extension TodayViewController {
     private func bind() {
         viewModel.fetchTodayChallenge()
         viewModel.todayChallenge.subscribe { value in
-            DispatchQueue.main.async {
-                self.challengeLabel.text = value
-                if value == nil {
-                    self.makeEmptyState()
+            DispatchQueue.main.async { [weak self] in
+                if let value {
+                    let challengeText = value + "."
+                    let mutableAttrString = NSMutableAttributedString(string: challengeText)
+                    mutableAttrString.addAttributes([
+                        .font: UIFont.systemFont(ofSize: 60),
+                        .foregroundColor: UIColor.point
+                    ], range: (challengeText as NSString).range(of: "."))
+                    self?.challengeLabel.attributedText = mutableAttrString
+                    self?.makeChallengeState()
                 } else {
-                    self.makeChallengeState()
+                    self?.makeEmptyState()
                 }
             }
         }
@@ -145,46 +144,65 @@ extension TodayViewController {
 extension TodayViewController {
     private func setUI(){
         view.backgroundColor = .background
-        view.addSubviews(titleLabel, dateLabel)
+    }
+    
+    private func makeChallengeState() {
+        emptyLabel.removeFromSuperview()
+        addButton.removeFromSuperview()
+        
+        view.addSubviews(
+            titleLabel,
+            cardView,
+            challengeLabel
+        )
         
         titleLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.bottom.equalTo(cardView.snp.top).offset(-10)
+            $0.left.equalTo(cardView)
         }
         
-        dateLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(titleLabel.snp.bottom).offset(5)
-        }
-        
-        view.addSubviews(cardView)
-        cardView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(40.constraintMultiplierTargetValue.horizontallyAdjusted)
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(400.constraintMultiplierTargetValue.horizontallyAdjusted)
-        }
-        
-    }
-    
-    private func makeChallengeState(){
-        emptyStackView.removeFromSuperview()
-        cardView.addSubviews(challengeLabel)
         challengeLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20.constraintMultiplierTargetValue.horizontallyAdjusted)
-            $0.centerY.equalToSuperview()
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(80)
+        }
+        
+        cardView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(40)
+            $0.top.equalTo(challengeLabel).offset(-20)
+            $0.bottom.equalTo(challengeLabel).offset(20)
         }
     }
     
-    private func makeEmptyState(){
+    private func makeEmptyState() {
         challengeLabel.removeFromSuperview()
-        cardView.addSubviews(emptyStackView)
-        emptyStackView.addArrangedSubviews(emptyLabel, addButton)
-        emptyStackView.snp.makeConstraints {
-            $0.center.equalTo(self.cardView.snp.center)
+        
+        view.addSubviews(
+            titleLabel,
+            cardView,
+            emptyLabel,
+            addButton
+        )
+        
+        titleLabel.snp.makeConstraints {
+            $0.bottom.equalTo(cardView.snp.top).offset(-10)
+            $0.left.equalTo(cardView)
         }
+        
+        emptyLabel.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(80)
+        }
+        
+        cardView.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(40)
+            $0.top.equalTo(emptyLabel).offset(-20)
+            $0.bottom.equalTo(emptyLabel).offset(20)
+        }
+        
         addButton.snp.makeConstraints {
-            $0.width.equalTo(109)
-            $0.height.equalTo(40)
+            $0.top.equalTo(cardView.snp.bottom).offset(10)
+            $0.right.equalTo(cardView)
+            $0.height.equalTo(50)
         }
     }
 }
