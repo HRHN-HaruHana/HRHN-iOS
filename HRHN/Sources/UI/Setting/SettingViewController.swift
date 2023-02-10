@@ -82,12 +82,13 @@ extension SettingViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    
-    private func setNavigationBar() {
-        navigationController?.navigationBar.topItem?.title = ""
-    }
 }
 
+extension SettingViewController: CustomNavBar {
+    private func setNavigationBar() {
+        setNavigationBarBackButton()
+    }
+}
 
 // MARK: - UITableViewDataSource
 

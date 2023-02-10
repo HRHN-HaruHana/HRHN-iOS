@@ -71,10 +71,13 @@ extension RecordViewController {
             $0.edges.equalToSuperview()
         }
     }
-    
+}
+
+extension RecordViewController: CustomNavBar {
     private func setNavigationBar() {
-        let rightBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsDidTap))
-        navigationItem.rightBarButtonItem = rightBarButton
+        setNavigationBarAppLogo()
+        setNavigationBarBackButton()
+        setNavigationBarRightIconButton(systemName: "gearshape.fill", action: #selector(settingsDidTap))
     }
 }
 
