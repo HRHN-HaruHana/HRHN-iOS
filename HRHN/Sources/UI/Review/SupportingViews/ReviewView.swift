@@ -40,21 +40,14 @@ struct ReviewView: View {
                 }
                 .padding(.horizontal, 15)
             Spacer(minLength: 20)
-            Grid(horizontalSpacing: 10.horizontallyAdjusted, verticalSpacing: 10.horizontallyAdjusted) {
-                GridRow {
-                    emojiButton(.red)
-                    emojiButton(.yellow)
-                    emojiButton(.green)
-                }
-                GridRow {
-                    emojiButton(.skyblue)
-                    emojiButton(.blue)
-                    emojiButton(.purple)
-                }
+            HStack(spacing: 5) {
+                emojiButton(.success)
+                emojiButton(.tried)
+                emojiButton(.fail)
             }
-            .padding(.horizontal, 15)
+            Spacer(minLength: 20)
         }
-        .padding([.horizontal, .top], 20)
+        .padding(20)
         .setBackgroundColor(.background)
     }
 }
@@ -64,10 +57,45 @@ struct ReviewView: View {
 extension ReviewView {
     
     @ViewBuilder
-    private func emojiImage(_ emoji: Emoji) -> some View {
-        Image(emoji.rawValue)
-            .resizable()
-            .frame(width: 100.horizontallyAdjusted, height: 100.horizontallyAdjusted)
+    private func emojiStack(_ emoji: Emoji) -> some View {
+        VStack(spacing: 10) {
+            Image(emoji.rawValue)
+                .resizable()
+                .frame(width: 80.verticallyAdjusted, height: 80.verticallyAdjusted)
+            HStack(alignment: .lastTextBaseline, spacing: 2) {
+                switch emoji {
+                case .success:
+                    Text(emoji.rawValue)
+                        .font(.system(size: 16))
+                        .fontWeight(.medium)
+                        .foregroundColor(viewModel.selectedEmoji == .success ? .whiteLabel : .cellLabel)
+                case .tried:
+                    Text(emoji.rawValue)
+                        .font(.system(size: 16))
+                        .fontWeight(.medium)
+                        .foregroundColor(viewModel.selectedEmoji == .tried ? .whiteLabel : .cellLabel)
+                case .fail:
+                    Text(emoji.rawValue)
+                        .font(.system(size: 16))
+                        .fontWeight(.medium)
+                        .foregroundColor(viewModel.selectedEmoji == .fail ? .whiteLabel : .cellLabel)
+                default:
+                    Text("none")
+                        .font(.system(size: 16))
+                        .fontWeight(.medium)
+                }
+                Image(Assets.dot)
+                    .resizable()
+                    .frame(width: 4, height: 4)
+            }
+        }
+        .padding(10)
+        .background {
+            if viewModel.selectedEmoji == emoji {
+                RoundedRectangle(cornerRadius: 16)
+                    .foregroundColor(.dim)
+            }
+        }
     }
     
     @ViewBuilder
@@ -77,23 +105,7 @@ extension ReviewView {
             viewModel.updateChallenge()
             viewModel.navigate()
         } label: {
-            if viewModel.selectedEmoji == emoji {
-                emojiImage(emoji)
-                    .overlay {
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(.black)
-                                .opacity(0.3)
-                                .mask(emojiImage(emoji))
-                            Image(systemName: "checkmark")
-                                .font(.system(size: 30, weight: .medium))
-                                .foregroundColor(.white)
-                        }
-                    }
-                    
-            } else {
-                emojiImage(emoji)
-            }
+            emojiStack(emoji)
         }
     }
 }
