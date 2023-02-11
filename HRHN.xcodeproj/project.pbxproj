@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA075299740260012779B /* CustomHeightTabBar.swift */; };
 		505B95352959926A005F00C8 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B95342959926A005F00C8 /* ReviewViewController.swift */; };
 		505B953829599976005F00C8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953729599976005F00C8 /* UIViewController+.swift */; };
 		505B953B29599A24005F00C8 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953A29599A24005F00C8 /* ReviewView.swift */; };
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
 		507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */; };
+		507305F229965AAB00A20CA1 /* TabIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507305F129965AAB00A20CA1 /* TabIcons.swift */; };
 		5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EF29601A41005115AA /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121682954FB600044E652 /* Date+.swift */; };
@@ -127,12 +129,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		500CA075299740260012779B /* CustomHeightTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightTabBar.swift; sourceTree = "<group>"; };
 		505B95342959926A005F00C8 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		505B953729599976005F00C8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		505B953A29599A24005F00C8 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		507089B1295ADE1A00DD8D85 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
+		507305F129965AAB00A20CA1 /* TabIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIcons.swift; sourceTree = "<group>"; };
 		5080B2EC29601A2A005115AA /* DateComponents+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+.swift"; sourceTree = "<group>"; };
 		50A5000B295D8B8300710B5D /* HRHN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRHN.entitlements; sourceTree = "<group>"; };
 		50A5000C295D8BAD00710B5D /* LockscreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockscreenWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -236,12 +240,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		500CA074299740100012779B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				500CA075299740260012779B /* CustomHeightTabBar.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		505B9539295999EA005F00C8 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
 				505B953A29599A24005F00C8 /* ReviewView.swift */,
 			);
 			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		507305EF29965A8100A20CA1 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				507305F029965A9900A20CA1 /* TabIcons */,
+				50DBEA0B2952EB3B00ED00FD /* Color */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		507305F029965A9900A20CA1 /* TabIcons */ = {
+			isa = PBXGroup;
+			children = (
+				507305F129965AAB00A20CA1 /* TabIcons.swift */,
+			);
+			path = TabIcons;
 			sourceTree = "<group>";
 		};
 		50A5FFF1295D784A00710B5D /* Frameworks */ = {
@@ -345,6 +374,7 @@
 		A791210D294B1A230044E652 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				500CA074299740100012779B /* TabBar */,
 				50BD589C29580C35009F9556 /* Button */,
 			);
 			path = CommonUI;
@@ -456,7 +486,7 @@
 			children = (
 				A7912149295227140044E652 /* Managers */,
 				A7912187295775D50044E652 /* Helper */,
-				50DBEA0B2952EB3B00ED00FD /* Color */,
+				507305EF29965A8100A20CA1 /* Design */,
 				A791210F294B1A3A0044E652 /* Extension */,
 			);
 			path = Utils;
@@ -756,6 +786,7 @@
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,
 				A79121792955FBCE0044E652 /* CustomColor.swift in Sources */,
 				A791210C294B190E0044E652 /* TodayViewController.swift in Sources */,
+				507305F229965AAB00A20CA1 /* TabIcons.swift in Sources */,
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
 				A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */,
@@ -777,6 +808,7 @@
 				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
 				507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */,
 				50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */,
+				500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */,
 				A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */,
 				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,

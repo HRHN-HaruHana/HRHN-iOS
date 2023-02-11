@@ -17,7 +17,8 @@
 
 /* 탭 */
 "tab-today" = "Today";
-"tab-record" = "Achievements";
+"tab-record" = "Record";
+"tab-storage" = "Storage";
 
 /* 버튼 */
 "btn-start" = "Start";
