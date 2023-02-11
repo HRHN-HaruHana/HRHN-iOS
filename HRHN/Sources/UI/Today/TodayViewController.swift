@@ -187,9 +187,12 @@ extension TodayViewController {
             $0.height.equalTo(40)
         }
     }
-    
+}
+
+extension TodayViewController: CustomNavBar {
     private func setNavigationBar() {
-        let rightBarButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"), style: .plain, target: self, action: #selector(settingsDidTap))
-        navigationItem.rightBarButtonItem = rightBarButton
+        setNavigationBarAppLogo()
+        setNavigationBarBackButton()
+        setNavigationBarRightIconButton(systemName: "gearshape.fill", action: #selector(settingsDidTap))
     }
 }

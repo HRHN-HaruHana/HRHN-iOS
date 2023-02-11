@@ -62,9 +62,11 @@ extension ReviewViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(120)
         }
     }
-    
+}
+
+extension ReviewViewController: CustomNavBar {
     private func setNavigationBar() {
-        navigationController?.navigationBar.topItem?.title = ""
+        setNavigationBarBackButton()
     }
 }
 

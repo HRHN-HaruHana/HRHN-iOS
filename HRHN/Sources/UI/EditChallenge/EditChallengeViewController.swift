@@ -147,16 +147,6 @@ final class EditChallengeViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private lazy var deleteChallengeBarButton: UIBarButtonItem = {
-        $0.tintColor = .systemRed
-        return $0
-    }(UIBarButtonItem(
-        title: I18N.deleteButtonTitle,
-        style: .plain,
-        target: self,
-        action: #selector(deleteChallengeBarButtonDidTap)
-    ))
-    
     private lazy var deleteChallengeAlert: UIAlertController = { [weak self] in
         let deleteAction = UIAlertAction(title: I18N.deleteAlertConfirm, style: .destructive) { _ in
             self?.viewModel.deleteChallenge()
@@ -217,11 +207,11 @@ final class EditChallengeViewController: UIViewController {
 
 // MARK: UI Functions
 
-extension EditChallengeViewController {
+extension EditChallengeViewController: CustomNavBar {
     
     private func setUI() {
         view.backgroundColor = .background
-        navigationController?.navigationBar.topItem?.title = ""
+        setNavigationBarBackButton()
         
         switch viewModel.mode {
         case .add:
@@ -231,7 +221,11 @@ extension EditChallengeViewController {
             )
             challengeTextView.delegate = self
         case .modify:
-            navigationItem.rightBarButtonItem = deleteChallengeBarButton
+            setNavigationBarRightLabelButton(
+                title: "삭제",
+                color: .systemRed,
+                action: #selector(rightBarButtonDidTap)
+            )
         }
         
         textViewDidChange(challengeTextView)
@@ -344,7 +338,7 @@ extension EditChallengeViewController {
     }
     
     @objc
-    private func deleteChallengeBarButtonDidTap() {
+    private func rightBarButtonDidTap() {
         self.present(deleteChallengeAlert, animated: true)
     }
     
