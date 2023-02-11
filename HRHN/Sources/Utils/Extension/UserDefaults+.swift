@@ -13,6 +13,7 @@ extension UserDefaults {
         static let isNotiAllowed = "isNotiAllowed"
         static let notiTime = "notiTime"
         static let hasOnBoarded = "hasOnBoarded"
+        static let isChallengesUpdated = "isChallengesUpdated"
     }
 
     class var isNotiAllowed: Bool {
@@ -39,6 +40,15 @@ extension UserDefaults {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: Keys.hasOnBoarded)
+        }
+    }
+    
+    class var isChallengesUpdated: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: Keys.isChallengesUpdated)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: Keys.isChallengesUpdated)
         }
     }
 }

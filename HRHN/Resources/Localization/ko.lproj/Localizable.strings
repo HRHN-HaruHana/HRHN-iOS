@@ -26,6 +26,11 @@
 "btn-done" = "완료";
 "btn-add" = "추가하기";
 
+/* 챌린지 */
+"challenge-success" = "성공";
+"challenge-tried" = "시도함";
+"challenge-fail" = "실패";
+
 /* 온보딩 */
 "ob-widget-title" = "위젯으로 챌린지를\n리마인드하세요";
 "ob-widget-title2" = "*락스크린 지원 (지원예정 = 홈/사이드 위젯)";

@@ -26,6 +26,11 @@
 "btn-done" = "Done";
 "btn-add" = "Add";
 
+/* 챌린지 */
+"challenge-success" = "Success";
+"challenge-tried" = "Tried";
+"challenge-fail" = "Fail";
+
 /* 온보딩 */
 "ob-widget-title" = "The widgets reminds\n you to do challenges";
 "ob-widget-title2" = "*Lockscreen widget is now available";

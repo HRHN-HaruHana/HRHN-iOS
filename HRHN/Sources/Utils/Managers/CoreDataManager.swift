@@ -83,11 +83,12 @@ class CoreDataManager {
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         for result in fetchResults {
-            let challenge = Challenge(id: result.id,
-                                      date: result.date,
-                                      content: result.content,
-                                      emoji: Emoji(rawValue:
-                                                    result.emoji)!)
+            let challenge = Challenge(
+                id: result.id,
+                date: result.date,
+                content: result.content,
+                emoji: Emoji(rawValue: result.emoji)!
+            )
             challenges.append(challenge)
         }
         return challenges
@@ -116,11 +117,12 @@ class CoreDataManager {
         if fetchResults.count > 0 {
             let resultsByDate = fetchResults.filter({ isSameDay(date1: currentTimeZoneDate, date2: $0.date)})
             for result in resultsByDate {
-                let challenge = Challenge(id: result.id,
-                                          date: result.date,
-                                          content: result.content,
-                                          emoji: Emoji(rawValue:
-                                                        result.emoji)!)
+                let challenge = Challenge(
+                    id: result.id,
+                    date: result.date,
+                    content: result.content,
+                    emoji: Emoji(rawValue: result.emoji)!
+                )
                 challenges.append(challenge)
             }
             return challenges
@@ -163,6 +165,39 @@ class CoreDataManager {
         }
     }
     
+    func updateLegacyChallenges() {
+        let fetchResults = fetchChallenges()
+        for result in fetchResults {
+            switch result.emoji {
+            case "red":
+                let challenge = Challenge(
+                    id: result.id,
+                    date: result.date,
+                    content: result.content,
+                    emoji: .success
+                )
+                updateChallenge(challenge)
+            case "yellow", "green", "skyblue", "blue":
+                let challenge = Challenge(
+                    id: result.id,
+                    date: result.date,
+                    content: result.content,
+                    emoji: .tried
+                )
+                updateChallenge(challenge)
+            case "purple":
+                let challenge = Challenge(
+                    id: result.id,
+                    date: result.date,
+                    content: result.content,
+                    emoji: .fail
+                )
+                updateChallenge(challenge)
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension CoreDataManager {

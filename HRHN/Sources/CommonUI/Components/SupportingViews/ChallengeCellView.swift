@@ -12,7 +12,7 @@ struct ChallengeCellView: View {
     var challenge: Challenge
     
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 20) {
             VStack(alignment: .center) {
                 Image(challenge.emoji.rawValue)
                     .resizable()

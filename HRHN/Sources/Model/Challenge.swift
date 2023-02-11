@@ -8,25 +8,19 @@
 import Foundation
 
 enum Emoji: String, Codable {
-    case red = "red"
-    case yellow = "yellow"
-    case green = "green"
-    case skyblue = "skyblue"
-    case blue = "blue"
-    case purple = "purple"
-    case none = "none"
+    case success
+    case tried
+    case fail
+    case none
 }
 
 extension Emoji: Hashable, Equatable {
     public var hashValue: Int {
         switch self {
-        case .red: return 0
-        case .yellow: return 1
-        case .green: return 2
-        case .skyblue: return 3
-        case .blue: return 4
-        case .purple: return 5
-        case .none: return 6
+        case .success: return 0
+        case .tried: return 1
+        case .fail: return 2
+        case .none: return 3
         }
     }
     

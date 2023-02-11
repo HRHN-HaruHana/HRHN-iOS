@@ -58,8 +58,7 @@ extension ReviewViewController {
         view.addSubview(reviewViewHC.view)
         reviewViewHC.didMove(toParent: self)
         reviewViewHC.view.snp.makeConstraints {
-            $0.horizontalEdges.top.equalTo(view.safeAreaLayoutGuide)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(120)
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }

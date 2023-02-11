@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         debugPrint("Documents Directory:", FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last ?? "Not Found!")
         
+        if !UserDefaults.isChallengesUpdated {
+            CoreDataManager.shared.updateLegacyChallenges()
+            UserDefaults.isChallengesUpdated = true
+        }
         UINavigationBar.setCustomNavBar()
 
         return true
