@@ -65,17 +65,17 @@ extension ReviewView {
             HStack(alignment: .lastTextBaseline, spacing: 2) {
                 switch emoji {
                 case .success:
-                    Text(emoji.rawValue)
+                    Text(I18N.challengeSuccess)
                         .font(.system(size: 16))
                         .fontWeight(.medium)
                         .foregroundColor(viewModel.selectedEmoji == .success ? .whiteLabel : .cellLabel)
                 case .tried:
-                    Text(emoji.rawValue)
+                    Text(I18N.challengeTried)
                         .font(.system(size: 16))
                         .fontWeight(.medium)
                         .foregroundColor(viewModel.selectedEmoji == .tried ? .whiteLabel : .cellLabel)
                 case .fail:
-                    Text(emoji.rawValue)
+                    Text(I18N.challengeFail)
                         .font(.system(size: 16))
                         .fontWeight(.medium)
                         .foregroundColor(viewModel.selectedEmoji == .fail ? .whiteLabel : .cellLabel)

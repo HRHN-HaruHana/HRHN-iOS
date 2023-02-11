@@ -28,6 +28,11 @@ struct I18N {
     static let btnDone = "btn-done".localized()
     static let btnAdd = "btn-add".localized()
     
+    /* 챌린지 */
+    static let challengeSuccess = "challenge-success".localized()
+    static let challengeTried = "challenge-tried".localized()
+    static let challengeFail = "challenge-fail".localized()
+    
     /* 온보딩 */
     static let obWidgetTitle = "ob-widget-title".localized()
     static let obWidgetTitle2 = "ob-widget-title2".localized()
