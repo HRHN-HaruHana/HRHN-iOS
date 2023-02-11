@@ -59,7 +59,7 @@ class TabBarController: UITabBarController {
         secondTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
         secondTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
         
-        let storageVC = RecordViewController(with: RecordViewModel()) // TODO: Change to StorageViewController
+        let storageVC = UIViewController() // TODO: Change to StorageViewController
         let thirdTab = UINavigationController(rootViewController: storageVC)
         thirdTab.tabBarItem = UITabBarItem(
             title: I18N.tabStorage,
