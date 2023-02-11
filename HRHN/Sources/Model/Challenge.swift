@@ -12,29 +12,14 @@ enum Emoji: String, Codable {
     case tried
     case fail
     case none
-    case red
-    case yellow
-    case green
-    case skyblue
-    case blue
-    case purple
-    
-    var name: String {
-        switch self {
-        case .success, .red: return "success"
-        case .tried, .yellow, .green, .skyblue, .blue: return "tried"
-        case .fail, .purple: return "fail"
-        case .none: return "none"
-        }
-    }
 }
 
 extension Emoji: Hashable, Equatable {
     public var hashValue: Int {
         switch self {
-        case .success, .red: return 0
-        case .tried, .yellow, .green, .skyblue, .blue: return 1
-        case .fail, .purple: return 2
+        case .success: return 0
+        case .tried: return 1
+        case .fail: return 2
         case .none: return 3
         }
     }

@@ -59,7 +59,7 @@ extension ReviewView {
     @ViewBuilder
     private func emojiStack(_ emoji: Emoji) -> some View {
         VStack(spacing: 10) {
-            Image(emoji.name)
+            Image(emoji.rawValue)
                 .resizable()
                 .frame(width: 80.verticallyAdjusted, height: 80.verticallyAdjusted)
             HStack(alignment: .lastTextBaseline, spacing: 2) {
