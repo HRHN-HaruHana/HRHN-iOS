@@ -43,8 +43,8 @@ class TabBarController: UITabBarController {
         let firstTab = UINavigationController(rootViewController: todayVC)
         firstTab.tabBarItem = UITabBarItem(
             title: I18N.tabToday,
-            image: UIImage(named: TabbarIcons.todayUnselected.rawValue),
-            selectedImage: UIImage(named: TabbarIcons.todaySelected.rawValue)
+            image: UIImage(named: Assets.TabbarIcons.todayUnselected.rawValue),
+            selectedImage: UIImage(named: Assets.TabbarIcons.todaySelected.rawValue)
         )
         firstTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
         firstTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
@@ -53,8 +53,8 @@ class TabBarController: UITabBarController {
         let secondTab = UINavigationController(rootViewController: recordVC)
         secondTab.tabBarItem = UITabBarItem(
             title: I18N.tabRecord,
-            image: UIImage(named: TabbarIcons.recordUnselected.rawValue),
-            selectedImage: UIImage(named: TabbarIcons.recordSelected.rawValue)
+            image: UIImage(named: Assets.TabbarIcons.recordUnselected.rawValue),
+            selectedImage: UIImage(named: Assets.TabbarIcons.recordSelected.rawValue)
         )
         secondTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
         secondTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
@@ -63,8 +63,8 @@ class TabBarController: UITabBarController {
         let thirdTab = UINavigationController(rootViewController: storageVC)
         thirdTab.tabBarItem = UITabBarItem(
             title: I18N.tabStorage,
-            image: UIImage(named: TabbarIcons.storageUnselected.rawValue),
-            selectedImage: UIImage(named: TabbarIcons.storageSelected.rawValue)
+            image: UIImage(named: Assets.TabbarIcons.storageUnselected.rawValue),
+            selectedImage: UIImage(named: Assets.TabbarIcons.storageSelected.rawValue)
         )
         thirdTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
         thirdTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
