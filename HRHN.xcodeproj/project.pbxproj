@@ -16,7 +16,6 @@
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
 		507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */; };
-		507305F229965AAB00A20CA1 /* TabIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507305F129965AAB00A20CA1 /* TabIcons.swift */; };
 		507305F42996652500A20CA1 /* UINavigationBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507305F32996652500A20CA1 /* UINavigationBar+.swift */; };
 		5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
 		5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5080B2EC29601A2A005115AA /* DateComponents+.swift */; };
@@ -141,7 +140,6 @@
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		507089B1295ADE1A00DD8D85 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
-		507305F129965AAB00A20CA1 /* TabIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabIcons.swift; sourceTree = "<group>"; };
 		507305F32996652500A20CA1 /* UINavigationBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+.swift"; sourceTree = "<group>"; };
 		5080B2EC29601A2A005115AA /* DateComponents+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+.swift"; sourceTree = "<group>"; };
 		50A5000B295D8B8300710B5D /* HRHN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HRHN.entitlements; sourceTree = "<group>"; };
