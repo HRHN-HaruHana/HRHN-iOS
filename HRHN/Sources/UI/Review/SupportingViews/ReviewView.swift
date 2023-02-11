@@ -40,7 +40,7 @@ struct ReviewView: View {
                 }
                 .padding(.horizontal, 15)
             Spacer(minLength: 20)
-            HStack(spacing: 5) {
+            HStack(spacing: 10) {
                 emojiButton(.success)
                 emojiButton(.tried)
                 emojiButton(.fail)
@@ -59,7 +59,7 @@ extension ReviewView {
     @ViewBuilder
     private func emojiStack(_ emoji: Emoji) -> some View {
         VStack(spacing: 10) {
-            Image(emoji.rawValue)
+            Image(emoji.name)
                 .resizable()
                 .frame(width: 80.verticallyAdjusted, height: 80.verticallyAdjusted)
             HStack(alignment: .lastTextBaseline, spacing: 2) {

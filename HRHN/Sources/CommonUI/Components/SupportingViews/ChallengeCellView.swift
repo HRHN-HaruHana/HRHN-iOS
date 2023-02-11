@@ -12,9 +12,9 @@ struct ChallengeCellView: View {
     var challenge: Challenge
     
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 20) {
             VStack(alignment: .center) {
-                Image(challenge.emoji.rawValue)
+                Image(challenge.emoji.name)
                     .resizable()
                     .frame(width: 50, height: 50)
                 Text(challenge.date.formatted("MM/dd"))
