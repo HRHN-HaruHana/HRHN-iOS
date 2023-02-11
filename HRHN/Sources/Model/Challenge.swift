@@ -8,22 +8,22 @@
 import Foundation
 
 enum Emoji: String, Codable {
-    case success = "Success"
-    case tried = "Tried"
-    case fail = "Fail"
-    case none = "none"
-    case red = "red"
-    case yellow = "yellow"
-    case green = "green"
-    case skyblue = "skyblue"
-    case blue = "blue"
-    case purple = "purple"
+    case success
+    case tried
+    case fail
+    case none
+    case red
+    case yellow
+    case green
+    case skyblue
+    case blue
+    case purple
     
     var name: String {
         switch self {
-        case .success, .red: return "Success"
-        case .tried, .yellow, .green, .skyblue, .blue: return "Tried"
-        case .fail, .purple: return "Fail"
+        case .success, .red: return "success"
+        case .tried, .yellow, .green, .skyblue, .blue: return "tried"
+        case .fail, .purple: return "fail"
         case .none: return "none"
         }
     }
