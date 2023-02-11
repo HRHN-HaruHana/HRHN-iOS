@@ -18,5 +18,11 @@ struct Assets {
         case storageUnselected = "Storage_unselected"
     }
     
+    enum ReviewEmoji: String {
+        case success = "Success"
+        case tried = "Tried"
+        case fail = "Fail"
+    }
+    
     static let dot = "Dot"
 }
