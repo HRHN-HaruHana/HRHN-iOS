@@ -124,12 +124,19 @@ extension TodayViewController {
         viewModel.todayChallenge.subscribe { value in
             DispatchQueue.main.async { [weak self] in
                 if let value {
-                    let challengeText = value + "."
+                    let challengeText = value
                     let mutableAttrString = NSMutableAttributedString(string: challengeText)
-                    mutableAttrString.addAttributes([
-                        .font: UIFont.systemFont(ofSize: 60),
-                        .foregroundColor: UIColor.point
-                    ], range: (challengeText as NSString).range(of: "."))
+                    
+                    let whiteSpaceAttachment = NSTextAttachment()
+                    whiteSpaceAttachment.image = UIImage()
+                    whiteSpaceAttachment.bounds = CGRect(x: 0, y: 0, width: 2, height: 0)
+                    mutableAttrString.append(NSAttributedString(attachment: whiteSpaceAttachment))
+                    
+                    let dotAttachment = NSTextAttachment()
+                    dotAttachment.image = UIImage(named: Assets.dot)
+                    dotAttachment.bounds = CGRect(x: 0, y: 0, width: 8, height: 8)
+                    mutableAttrString.append(NSAttributedString(attachment: dotAttachment))
+                    
                     self?.challengeLabel.attributedText = mutableAttrString
                     self?.makeChallengeState()
                 } else {
