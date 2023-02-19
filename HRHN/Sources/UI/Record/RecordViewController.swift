@@ -84,7 +84,14 @@ extension RecordViewController {
 extension RecordViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.challenges.value.count
+        
+        if viewModel.challenges.value.count == 0 {
+            tableView.setEmptyView(message: "아직 지난 챌린지가\n없어요", type: .storage)
+        } else {
+            tableView.restore()
+        }
+        return viewModel.challenges.value.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
