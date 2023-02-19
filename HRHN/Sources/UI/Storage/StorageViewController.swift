@@ -103,7 +103,7 @@ extension StorageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if viewModel.storedItem.value.count == 0 {
-            tableView.setEmptyView(message: "아직 담아둔\n챌린지가 없어요", type: .storage)
+            tableView.setEmptyView(message: I18N.emptyItem, type: .storage)
         } else {
             tableView.restore()
         }

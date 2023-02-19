@@ -74,5 +74,8 @@ struct I18N {
     static let supportHelp = "support-help".localized()
     static let supportPage = "support-page".localized()
     static let supportLicences = "support-licences".localized()
-        
+    
+    /* EmptyView */
+    static let emptyRecord = "empty-record".localized()
+    static let emptyItem = "empty-item".localized()
 }

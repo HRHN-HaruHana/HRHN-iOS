@@ -72,3 +72,7 @@
 "support-help" = "Support";
 "support-page" = "Websites";
 "support-licences" = "Open Source Licenses";
+
+/* EmptyView */
+"empty-record" = "No Challenges";
+"empty-item" = "No Saved Items";
