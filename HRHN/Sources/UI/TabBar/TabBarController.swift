@@ -28,7 +28,11 @@ class TabBarController: UITabBarController {
         let secondTab = UINavigationController(rootViewController: recordVC)
         secondTab.tabBarItem = UITabBarItem(title: I18N.tabRecord, image: UIImage(systemName: "list.bullet.circle"), selectedImage: UIImage(systemName: "list.bullet.circle.fill"))
         
-        viewControllers = [firstTab, secondTab]
+        let storageVC = StorageViewController(viewModel: StorageViewModel())
+        let thirdTab = UINavigationController(rootViewController: storageVC)
+        thirdTab.tabBarItem = UITabBarItem(title: I18N.tabRecord, image: UIImage(systemName: "archivebox"), selectedImage: UIImage(systemName: "archivebox.fill"))
+        
+        viewControllers = [firstTab, secondTab, thirdTab]
         
     }
 
