@@ -48,6 +48,7 @@
 		A74C752B297599370046B1B1 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C751B297534EE0046B1B1 /* I18N.swift */; };
 		A78A1C8229A2995800E480D3 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8129A2995800E480D3 /* StorageViewController.swift */; };
 		A78A1C8429A2995E00E480D3 /* StorageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8329A2995E00E480D3 /* StorageViewModel.swift */; };
+		A78A1C8729A29EA200E480D3 /* StorageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8629A29EA200E480D3 /* StorageHeaderView.swift */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
 		A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D3294A0A5F0044E652 /* SceneDelegate.swift */; };
 		A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
@@ -160,6 +161,7 @@
 		A74C75252975448E0046B1B1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A78A1C8129A2995800E480D3 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		A78A1C8329A2995E00E480D3 /* StorageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewModel.swift; sourceTree = "<group>"; };
+		A78A1C8629A29EA200E480D3 /* StorageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHeaderView.swift; sourceTree = "<group>"; };
 		A79120CE294A0A5F0044E652 /* HRHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79120D1294A0A5F0044E652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A79120D3294A0A5F0044E652 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -299,10 +301,19 @@
 		A78A1C8029A2994B00E480D3 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				A78A1C8529A29E7900E480D3 /* SupportingViews */,
 				A78A1C8129A2995800E480D3 /* StorageViewController.swift */,
 				A78A1C8329A2995E00E480D3 /* StorageViewModel.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		A78A1C8529A29E7900E480D3 /* SupportingViews */ = {
+			isa = PBXGroup;
+			children = (
+				A78A1C8629A29EA200E480D3 /* StorageHeaderView.swift */,
+			);
+			path = SupportingViews;
 			sourceTree = "<group>";
 		};
 		A79120C5294A0A5F0044E652 = {
@@ -805,6 +816,7 @@
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */,
+				A78A1C8729A29EA200E480D3 /* StorageHeaderView.swift in Sources */,
 				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
