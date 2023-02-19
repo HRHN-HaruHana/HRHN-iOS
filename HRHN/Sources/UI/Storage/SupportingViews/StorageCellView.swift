@@ -9,11 +9,11 @@ import SwiftUI
 
 struct StorageCellView: View {
     
-    var challenge: Challenge
+    var item: StoredItem
     
     var body: some View {
         HStack(spacing: 20) {
-            Text(challenge.content)
+            Text(item.content)
                 .font(.system(size: 16, weight: .regular))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
@@ -31,13 +31,3 @@ struct StorageCellView: View {
         .cornerRadius(16)
     }
 }
-
-#if DEBUG
-struct StorageCellView_Previews: PreviewProvider {
-    static var previews: some View {
-//        List {
-        StorageCellView(challenge: Challenge.mock[1])
-//        }
-    }
-}
-#endif

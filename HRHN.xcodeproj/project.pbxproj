@@ -54,6 +54,9 @@
 		A78A1C8E29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8C29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift */; };
 		A78A1C8F29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8D29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift */; };
 		A78A1C9129A2AA8E00E480D3 /* StoredItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C9029A2AA8E00E480D3 /* StoredItem.swift */; };
+		A78A1C9229A2AD4100E480D3 /* StoredItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C9029A2AA8E00E480D3 /* StoredItem.swift */; };
+		A78A1C9329A2AD6100E480D3 /* StoredItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8D29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift */; };
+		A78A1C9429A2AD6400E480D3 /* StoredItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8C29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
 		A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D3294A0A5F0044E652 /* SceneDelegate.swift */; };
 		A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
@@ -767,12 +770,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A78A1C9229A2AD4100E480D3 /* StoredItem.swift in Sources */,
+				A78A1C9329A2AD6100E480D3 /* StoredItem+CoreDataProperties.swift in Sources */,
 				50A5FFF8295D784A00710B5D /* ChallengeWidget.swift in Sources */,
 				508BDDCD2993874000CB8B46 /* Color+.swift in Sources */,
 				50A50011295D908500710B5D /* ChallengeMO+CoreDataClass.swift in Sources */,
 				50A50012295D908800710B5D /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				5080B2EE29601A3D005115AA /* DateComponents+.swift in Sources */,
 				50A50018295D953200710B5D /* URL+.swift in Sources */,
+				A78A1C9429A2AD6400E480D3 /* StoredItem+CoreDataClass.swift in Sources */,
 				A74C752B297599370046B1B1 /* I18N.swift in Sources */,
 				50A5000F295D8FD100710B5D /* HRHN.xcdatamodeld in Sources */,
 				508BDDCF2993875F00CB8B46 /* CustomColor.swift in Sources */,

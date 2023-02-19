@@ -8,18 +8,26 @@
 import UIKit
 
 final class StorageViewModel {
-    var challenges: Observable<[Challenge]> = Observable([])
+    var storedItem: Observable<[StoredItem]> = Observable([])
     
     private var coreDataManager = CoreDataManager.shared
     
     init(){}
     
-    func fetchPreviousChallenges() {
-        let challenges = self.coreDataManager.getChallenges().filter { (challenge: Challenge) -> Bool in
-            let current = Calendar.current
-            return !current.isDateInToday(challenge.date)
-        }
-        self.challenges = Observable(challenges)
+    func fetchStoredItems() {
+        let items = self.coreDataManager.getStoredItems()
+        self.storedItem = Observable(items)
+    }
+    
+    func deleteStorageItem(item: StoredItem) {
+        self.coreDataManager.deleteStoredItem(item)
+        self.fetchStoredItems()
+    }
+    
+    // TODO: 테스트용 - 설정버튼
+    func addStorageItem() {
+        self.coreDataManager.insertStoredItem(StoredItem(id: UUID(), content: "1234"))
+        self.fetchStoredItems()
     }
 }
 

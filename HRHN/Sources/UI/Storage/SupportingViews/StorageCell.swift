@@ -15,9 +15,9 @@ final class StorageCell: UITableViewCell {
         contentConfiguration = nil
     }
 
-    func configure(with challenge: Challenge) {
+    func configure(with item: StoredItem) {
         self.contentConfiguration = UIHostingConfiguration {
-            StorageCellView(challenge: challenge)
+            StorageCellView(item: item)
         }
         .margins(.vertical, 10)
         backgroundColor = .clear

@@ -43,7 +43,7 @@ final class StorageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchPreviousChallenges()
+        viewModel.fetchStoredItems()
         tableView.reloadData()
     }
     
@@ -52,9 +52,13 @@ final class StorageViewController: UIViewController {
 // MARK: - Functions
 extension StorageViewController {
     @objc func settingsDidTap(_ sender: UIButton) {
-        let settingVC = SettingViewController(viewModel: SettingViewModel())
-        settingVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(settingVC, animated: true)
+//        let settingVC = SettingViewController(viewModel: SettingViewModel())
+//        settingVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(settingVC, animated: true)
+        
+        // TODO: 테스트용
+        self.viewModel.addStorageItem()
+        tableView.reloadData()
     }
 }
 
@@ -80,14 +84,14 @@ extension StorageViewController {
 extension StorageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.challenges.value.count
+        viewModel.storedItem.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "StorageCell", for: indexPath)
                 as? StorageCell else { return UITableViewCell() }
-        cell.configure(with: viewModel.challenges.value[indexPath.row])
+        cell.configure(with: viewModel.storedItem.value[indexPath.row])
         return cell
         
     }
@@ -113,13 +117,8 @@ extension StorageViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
-            from: .recordTab,
-            challenge: viewModel.challenges.value[indexPath.row],
-            navigationController: self.navigationController
-        ))
-        reviewVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(reviewVC, animated: true)
+        self.viewModel.deleteStorageItem(item: viewModel.storedItem.value[indexPath.row])
+        tableView.reloadData()
     }
 
 }
