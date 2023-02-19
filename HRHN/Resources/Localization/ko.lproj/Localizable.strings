@@ -18,6 +18,7 @@
 /* 탭 */
 "tab-today" = "오늘의 챌린지";
 "tab-record" = "지난 챌린지";
+"tab-storage" = "챌린지 바구니";
 
 /* 버튼 */
 "btn-start" = "시작하기";

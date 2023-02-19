@@ -30,7 +30,7 @@ class TabBarController: UITabBarController {
         
         let storageVC = StorageViewController(viewModel: StorageViewModel())
         let thirdTab = UINavigationController(rootViewController: storageVC)
-        thirdTab.tabBarItem = UITabBarItem(title: I18N.tabRecord, image: UIImage(systemName: "archivebox"), selectedImage: UIImage(systemName: "archivebox.fill"))
+        thirdTab.tabBarItem = UITabBarItem(title: I18N.tabStorage, image: UIImage(systemName: "archivebox"), selectedImage: UIImage(systemName: "archivebox.fill"))
         
         viewControllers = [firstTab, secondTab, thirdTab]
         
