@@ -61,6 +61,7 @@
 
 /* 챌린지 바구니 */
 "storage-title" = "Storage";
+"storage-desc" = "Save challenges and import to today’s challenge easily";
 
 /* 설정 */
 "setting-title" = "Settings";

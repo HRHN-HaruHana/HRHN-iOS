@@ -15,7 +15,7 @@ final class StorageHeaderView: UITableViewHeaderFooterView {
     private lazy var headerView = UIView()
 
     private lazy var titleLabel: UILabel = {
-        $0.text = "챌린지 바구니"
+        $0.text = I18N.storageTitle
         $0.textColor = .label
         $0.font = .systemFont(ofSize: 25, weight: .bold)
         $0.numberOfLines = 0
@@ -23,7 +23,7 @@ final class StorageHeaderView: UITableViewHeaderFooterView {
     }(UILabel())
     
     private lazy var subTitleLabel: UILabel = {
-        $0.text = "챌린지를 담아두고 매일 편하게 오늘의 챌린지로 등록하세요"
+        $0.text = I18N.storageDesc
         $0.textColor = .secondaryLabel
         $0.font = .systemFont(ofSize: 13, weight: .regular)
         $0.numberOfLines = 1

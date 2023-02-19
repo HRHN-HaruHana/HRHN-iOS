@@ -63,6 +63,7 @@ struct I18N {
     
     /* 챌린지 바구니 */
     static let storageTitle = "storage-title".localized()
+    static let storageDesc = "storage-desc".localized()
         
     /* 설정 */
     static let settingTitle = "setting-title".localized()
