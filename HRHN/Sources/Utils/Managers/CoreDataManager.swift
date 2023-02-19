@@ -165,6 +165,58 @@ class CoreDataManager {
     
 }
 
+
+// MARK: - StoredItem
+extension CoreDataManager {
+    
+    func insertStoredItem(_ storedItem: StoredItem) {
+        guard let entity = NSEntityDescription.entity(forEntityName: "StoredItem", in: context) else { return }
+        let managedObject = NSManagedObject(entity: entity, insertInto: context)
+        managedObject.setValue(storedItem.id, forKey: "id")
+        managedObject.setValue(storedItem.content, forKey: "content")
+    }
+    
+    
+    private func fetchStoredItems() -> [StoredItemMO] {
+        let fetchRequest = NSFetchRequest<StoredItemMO>(entityName: "StoredItem")
+        do {
+            let results = try context.fetch(fetchRequest)
+            return results
+        } catch {
+            print(error.localizedDescription)
+        }
+        return []
+    }
+    
+    func getStoredItems() -> [StoredItem] {
+        var items: [StoredItem] = []
+        let fetchResults = fetchStoredItems()
+        for result in fetchResults {
+            let item = StoredItem(id: result.id!, content: result.content!)
+            items.append(item)
+        }
+        return items
+    }
+
+    func deleteStoredItem(_ item: StoredItem) {
+        let fetchResults = fetchStoredItems()
+        if fetchResults.count > 0 {
+            let item = fetchResults.filter({ $0.id == item.id })[0]
+            context.delete(item)
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            // TODO: - 에러처리
+            debugPrint("삭제할 데이터가 없습니다.")
+        }
+    }
+    
+}
+
+
 extension CoreDataManager {
     private func isSameDay(date1: Date, date2: Date) -> Bool {
         let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
