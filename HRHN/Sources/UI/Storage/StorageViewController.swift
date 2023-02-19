@@ -24,6 +24,17 @@ final class StorageViewController: UIViewController {
         return $0
     }(UITableView(frame: .zero, style: .grouped))
     
+    private lazy var floatingButton: UIButton = {
+        let button = UIButton()
+        var config = UIButton.Configuration.filled()
+        config.baseBackgroundColor = .point
+        config.cornerStyle = .capsule
+        config.image = UIImage(systemName: "plus")?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .medium))
+        button.configuration = config
+        button.addTarget(self, action: #selector(floatingButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - LifeCycle
     
     init(viewModel: StorageViewModel) {
@@ -52,11 +63,12 @@ final class StorageViewController: UIViewController {
 // MARK: - Functions
 extension StorageViewController {
     @objc func settingsDidTap(_ sender: UIButton) {
-//        let settingVC = SettingViewController(viewModel: SettingViewModel())
-//        settingVC.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(settingVC, animated: true)
-        
-        // TODO: 테스트용
+        let settingVC = SettingViewController(viewModel: SettingViewModel())
+        settingVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(settingVC, animated: true)
+    }
+    
+    @objc func floatingButtonDidTap(_ sender: UIButton) {
         self.viewModel.addStorageItem()
         tableView.reloadData()
     }
@@ -67,9 +79,14 @@ extension StorageViewController {
 extension StorageViewController {
     private func setUI(){
         view.backgroundColor = .background
-        view.addSubviews(tableView)
+        view.addSubviews(tableView, floatingButton)
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        floatingButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            $0.width.height.equalTo(55)
         }
     }
     

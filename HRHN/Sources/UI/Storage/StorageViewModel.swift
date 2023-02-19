@@ -24,7 +24,7 @@ final class StorageViewModel {
         self.fetchStoredItems()
     }
     
-    // TODO: 테스트용 - 설정버튼
+    // TODO: 테스트용
     func addStorageItem() {
         self.coreDataManager.insertStoredItem(StoredItem(id: UUID(), content: "1234"))
         self.fetchStoredItems()
