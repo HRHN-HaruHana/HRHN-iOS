@@ -17,7 +17,7 @@ final class StorageViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
-        $0.register(ChallengeCell.self, forCellReuseIdentifier: "ChallengeCell")
+        $0.register(StorageCell.self, forCellReuseIdentifier: "StorageCell")
         $0.register(StorageHeaderView.self, forHeaderFooterViewReuseIdentifier: "StorageHeaderView")
         $0.delegate = self
         $0.dataSource = self
@@ -85,8 +85,8 @@ extension StorageViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChallengeCell", for: indexPath)
-                as? ChallengeCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StorageCell", for: indexPath)
+                as? StorageCell else { return UITableViewCell() }
         cell.configure(with: viewModel.challenges.value[indexPath.row])
         return cell
         
