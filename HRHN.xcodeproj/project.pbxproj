@@ -51,6 +51,9 @@
 		A78A1C8729A29EA200E480D3 /* StorageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8629A29EA200E480D3 /* StorageHeaderView.swift */; };
 		A78A1C8929A2A0B600E480D3 /* StorageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8829A2A0B600E480D3 /* StorageCell.swift */; };
 		A78A1C8B29A2A39300E480D3 /* StorageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8A29A2A39300E480D3 /* StorageCellView.swift */; };
+		A78A1C8E29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8C29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift */; };
+		A78A1C8F29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C8D29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift */; };
+		A78A1C9129A2AA8E00E480D3 /* StoredItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A1C9029A2AA8E00E480D3 /* StoredItem.swift */; };
 		A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D1294A0A5F0044E652 /* AppDelegate.swift */; };
 		A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79120D3294A0A5F0044E652 /* SceneDelegate.swift */; };
 		A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */; };
@@ -166,6 +169,9 @@
 		A78A1C8629A29EA200E480D3 /* StorageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageHeaderView.swift; sourceTree = "<group>"; };
 		A78A1C8829A2A0B600E480D3 /* StorageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCell.swift; sourceTree = "<group>"; };
 		A78A1C8A29A2A39300E480D3 /* StorageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCellView.swift; sourceTree = "<group>"; };
+		A78A1C8C29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A78A1C8D29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A78A1C9029A2AA8E00E480D3 /* StoredItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredItem.swift; sourceTree = "<group>"; };
 		A79120CE294A0A5F0044E652 /* HRHN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRHN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A79120D1294A0A5F0044E652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A79120D3294A0A5F0044E652 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -405,6 +411,7 @@
 				A7912112294B1A670044E652 /* CoreData */,
 				A7912114294B1AAB0044E652 /* Challenge.swift */,
 				A79121702955E2310044E652 /* MockData.swift */,
+				A78A1C9029A2AA8E00E480D3 /* StoredItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,6 +420,8 @@
 			isa = PBXGroup;
 			children = (
 				A79120DA294A0A5F0044E652 /* HRHN.xcdatamodeld */,
+				A78A1C8C29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift */,
+				A78A1C8D29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift */,
 				A79121602954C2D60044E652 /* ChallengeMO+CoreDataClass.swift */,
 				A79121612954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift */,
 			);
@@ -803,6 +812,7 @@
 				A79121712955E2310044E652 /* MockData.swift in Sources */,
 				507089B2295ADE1A00DD8D85 /* View+.swift in Sources */,
 				507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */,
+				A78A1C9129A2AA8E00E480D3 /* StoredItem.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
@@ -822,11 +832,13 @@
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A7912189295775E00044E652 /* Observable.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
+				A78A1C8E29A2AA6A00E480D3 /* StoredItem+CoreDataClass.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */,
 				A78A1C8729A29EA200E480D3 /* StorageHeaderView.swift in Sources */,
 				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
+				A78A1C8F29A2AA6A00E480D3 /* StoredItem+CoreDataProperties.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
 				50A50017295D951600710B5D /* URL+.swift in Sources */,
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
