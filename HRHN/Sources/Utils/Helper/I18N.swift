@@ -20,6 +20,7 @@ struct I18N {
     /* 탭 */
     static let tabToday = "tab-today".localized()
     static let tabRecord = "tab-record".localized()
+    static let tabStorage = "tab-storage".localized()
     
     /* 버튼 */
     static let btnStart = "btn-start".localized()
@@ -62,6 +63,7 @@ struct I18N {
     
     /* 챌린지 바구니 */
     static let storageTitle = "storage-title".localized()
+    static let storageDesc = "storage-desc".localized()
         
     /* 설정 */
     static let settingTitle = "setting-title".localized()
@@ -72,5 +74,8 @@ struct I18N {
     static let supportHelp = "support-help".localized()
     static let supportPage = "support-page".localized()
     static let supportLicences = "support-licences".localized()
-        
+    
+    /* EmptyView */
+    static let emptyRecord = "empty-record".localized()
+    static let emptyItem = "empty-item".localized()
 }

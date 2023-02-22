@@ -18,6 +18,7 @@
 /* 탭 */
 "tab-today" = "오늘의 챌린지";
 "tab-record" = "지난 챌린지";
+"tab-storage" = "챌린지 바구니";
 
 /* 버튼 */
 "btn-start" = "시작하기";
@@ -59,7 +60,8 @@
 "record-title" = "지난 챌린지";
 
 /* 챌린지 바구니 */
-"storage-title" = "바구니";
+"storage-title" = "챌린지 바구니";
+"storage-desc" = "챌린지를 담아두고 매일 편하게 오늘의 챌린지로 등록하세요";
 
 /* 설정 */
 "setting-title" = "설정";
@@ -70,3 +72,7 @@
 "support-help" = "문의 및 지원";
 "support-page" = "홈페이지";
 "support-licences" = "오픈소스 라이선스";
+
+/* EmptyView */
+"empty-record" = "아직 지난 챌린지가\n없어요";
+"empty-item" = "아직 담아둔\n챌린지가 없어요";

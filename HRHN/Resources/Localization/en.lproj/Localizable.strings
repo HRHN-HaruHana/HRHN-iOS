@@ -18,6 +18,7 @@
 /* 탭 */
 "tab-today" = "Today";
 "tab-record" = "Achievements";
+"tab-storage" = "Storage";
 
 /* 버튼 */
 "btn-start" = "Start";
@@ -60,6 +61,7 @@
 
 /* 챌린지 바구니 */
 "storage-title" = "Storage";
+"storage-desc" = "Save challenges and import to today’s challenge easily";
 
 /* 설정 */
 "setting-title" = "Settings";
@@ -70,3 +72,7 @@
 "support-help" = "Support";
 "support-page" = "Websites";
 "support-licences" = "Open Source Licenses";
+
+/* EmptyView */
+"empty-record" = "No Challenges";
+"empty-item" = "No Saved Items";
