@@ -62,13 +62,21 @@ final class TodayViewController: UIViewController {
         $0.configuration?.background.cornerRadius = 16
         $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         
-        let action = UIAction { _ in
-            self?.viewModel.addButtonDidTap(navigationController: self?.navigationController)
-        }
-        $0.addAction(action, for: .touchUpInside)
+        $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         
         return $0
     }(UIButton(configuration: .filled()))
+    
+    private lazy var blackBackground: UIView = {
+        $0.backgroundColor = .black
+        $0.layer.opacity = 0
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(blackBackgroundTapped)
+        )
+        $0.addGestureRecognizer(tapGesture)
+        return $0
+    }(UIView())
     
     // MARK: - LifeCycle
     
@@ -86,7 +94,6 @@ final class TodayViewController: UIViewController {
         viewModel.requestNotificationAuthorization()
         viewModel.removeOutdatedNotifications()
         setNavigationBar()
-        setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +119,23 @@ extension TodayViewController {
             navigationController?.pushViewController(modifyVC, animated: true)
         } else {
             viewModel.addButtonDidTap(navigationController: navigationController)
+        }
+    }
+    
+    @objc func addButtonTapped() {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            // https://stackoverflow.com/a/33213111
+            self?.navigationController?.navigationBar.layer.zPosition = -1
+            self?.tabBarController?.tabBar.layer.zPosition = -1
+            self?.blackBackground.layer.opacity = 0.3
+        }
+    }
+    
+    @objc func blackBackgroundTapped() {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.blackBackground.layer.opacity = 0
+            self?.navigationController?.navigationBar.layer.zPosition = 0
+            self?.tabBarController?.tabBar.layer.zPosition = 0
         }
     }
 }
@@ -149,9 +173,6 @@ extension TodayViewController {
 
 // MARK: - UI Functions
 extension TodayViewController {
-    private func setUI(){
-        view.backgroundColor = .background
-    }
     
     private func makeChallengeState() {
         emptyLabel.removeFromSuperview()
@@ -187,7 +208,8 @@ extension TodayViewController {
             titleLabel,
             cardView,
             emptyLabel,
-            addButton
+            addButton,
+            blackBackground
         )
         
         titleLabel.snp.makeConstraints {
@@ -210,6 +232,10 @@ extension TodayViewController {
             $0.top.equalTo(cardView.snp.bottom).offset(10)
             $0.right.equalTo(cardView)
             $0.height.equalTo(50)
+        }
+        
+        blackBackground.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
