@@ -161,7 +161,7 @@ extension TodayViewController {
                     
                     let dotAttachment = NSTextAttachment()
                     dotAttachment.image = UIImage(named: Assets.dot)
-                    dotAttachment.bounds = CGRect(x: 0, y: 0, width: 8, height: 8)
+                    dotAttachment.bounds = CGRect(x: 0, y: 0, width: 7.5, height: 7.5)
                     mutableAttrString.append(NSAttributedString(attachment: dotAttachment))
                     
                     self?.challengeLabel.attributedText = mutableAttrString
