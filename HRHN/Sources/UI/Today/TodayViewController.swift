@@ -67,9 +67,10 @@ final class TodayViewController: UIViewController {
         return $0
     }(UIButton(configuration: .filled()))
     
-    private lazy var blackBackground: UIView = {
+    private lazy var dimmedView: UIView = {
         $0.backgroundColor = .black
         $0.layer.opacity = 0
+        $0.isUserInteractionEnabled = false
         let tapGesture = UITapGestureRecognizer(
             target: self,
             action: #selector(blackBackgroundTapped)
@@ -127,13 +128,15 @@ extension TodayViewController {
             // https://stackoverflow.com/a/33213111
             self?.navigationController?.navigationBar.layer.zPosition = -1
             self?.tabBarController?.tabBar.layer.zPosition = -1
-            self?.blackBackground.layer.opacity = 0.3
+            self?.dimmedView.layer.opacity = 0.3
+            self?.dimmedView.isUserInteractionEnabled = true
         }
     }
     
     @objc func blackBackgroundTapped() {
         UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.blackBackground.layer.opacity = 0
+            self?.dimmedView.isUserInteractionEnabled = false
+            self?.dimmedView.layer.opacity = 0
             self?.navigationController?.navigationBar.layer.zPosition = 0
             self?.tabBarController?.tabBar.layer.zPosition = 0
         }
@@ -209,7 +212,7 @@ extension TodayViewController {
             cardView,
             emptyLabel,
             addButton,
-            blackBackground
+            dimmedView
         )
         
         titleLabel.snp.makeConstraints {
@@ -234,7 +237,7 @@ extension TodayViewController {
             $0.height.equalTo(50)
         }
         
-        blackBackground.snp.makeConstraints {
+        dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
