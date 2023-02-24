@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SwiftUI
 
 final class TodayViewController: UIViewController {
     
@@ -67,6 +68,20 @@ final class TodayViewController: UIViewController {
         return $0
     }(UIButton(configuration: .filled()))
     
+    private lazy var cell: UIView = {
+        $0.backgroundColor = .background
+        $0.layer.cornerRadius = 24
+        $0.clipsToBounds = true
+        return $0
+    }(UIView())
+    
+    private lazy var grabber: UIView = {
+        $0.backgroundColor = UIColor(red: 185/255, green: 185/255, blue: 185/255, alpha: 1)
+        $0.layer.cornerRadius = 3
+        $0.clipsToBounds = true
+        return $0
+    }(UIView())
+    
     private lazy var dimmedView: UIView = {
         $0.backgroundColor = .black
         $0.layer.opacity = 0
@@ -78,6 +93,10 @@ final class TodayViewController: UIViewController {
         $0.addGestureRecognizer(tapGesture)
         return $0
     }(UIView())
+    
+    private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: ReviewViewModel(from: .addTab, challenge: Challenge(id: UUID(), date: Date(), content: "String", emoji: .none), navigationController: navigationController)))
+    
+    private let cellHeight: CGFloat = 336
     
     // MARK: - LifeCycle
     
@@ -101,7 +120,6 @@ final class TodayViewController: UIViewController {
         super.viewWillAppear(animated)
         bind()
     }
-    
 }
 
 // MARK: - Functions
@@ -124,21 +142,41 @@ extension TodayViewController {
     }
     
     @objc func addButtonTapped() {
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            // https://stackoverflow.com/a/33213111
-            self?.navigationController?.navigationBar.layer.zPosition = -1
-            self?.tabBarController?.tabBar.layer.zPosition = -1
-            self?.dimmedView.layer.opacity = 0.3
-            self?.dimmedView.isUserInteractionEnabled = true
+        self.cell.snp.remakeConstraints {
+            $0.height.equalTo(cellHeight)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
         }
+        UIView.animate(withDuration: 0.3) {
+            // https://stackoverflow.com/a/33213111
+            self.navigationController?.navigationBar.layer.zPosition = -1
+            self.tabBarController?.tabBar.layer.zPosition = -1
+            self.dimmedView.layer.opacity = 0.3
+            self.dimmedView.isUserInteractionEnabled = true
+            self.view.layoutIfNeeded()
+        }
+        
+//        let bottomSheetVC = ReviewViewController(viewModel: ReviewViewModel(
+//            from: .addTab,
+//            challenge: Challenge(id: UUID(), date: Date(), content: "", emoji: .none),
+//            navigationController: self.navigationController))
+//        bottomSheetVC.modalPresentationStyle = .overFullScreen
+//        bottomSheetVC.modalTransitionStyle = .coverVertical
+//        present(bottomSheetVC, animated: true, completion: nil)
     }
     
     @objc func blackBackgroundTapped() {
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            self?.dimmedView.isUserInteractionEnabled = false
-            self?.dimmedView.layer.opacity = 0
-            self?.navigationController?.navigationBar.layer.zPosition = 0
-            self?.tabBarController?.tabBar.layer.zPosition = 0
+        self.cell.snp.remakeConstraints {
+            $0.height.equalTo(cellHeight)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.equalTo(view.snp.bottom)
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.dimmedView.isUserInteractionEnabled = false
+            self.dimmedView.layer.opacity = 0
+            self.navigationController?.navigationBar.layer.zPosition = 0
+            self.tabBarController?.tabBar.layer.zPosition = 0
+            self.view.layoutIfNeeded()
         }
     }
 }
@@ -212,7 +250,8 @@ extension TodayViewController {
             cardView,
             emptyLabel,
             addButton,
-            dimmedView
+            dimmedView,
+            cell
         )
         
         titleLabel.snp.makeConstraints {
@@ -235,6 +274,32 @@ extension TodayViewController {
             $0.top.equalTo(cardView.snp.bottom).offset(10)
             $0.right.equalTo(cardView)
             $0.height.equalTo(50)
+        }
+        
+        cell.snp.makeConstraints {
+            $0.height.equalTo(cellHeight)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.equalTo(view.snp.bottom)
+        }
+        
+        
+        cell.addSubviews(
+            grabber,
+            reviewViewHC.view
+        )
+        
+        grabber.snp.makeConstraints {
+            $0.width.equalTo(60)
+            $0.height.equalTo(6)
+            $0.top.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+        }
+        
+        addChild(reviewViewHC)
+        reviewViewHC.didMove(toParent: self)
+        reviewViewHC.view.snp.makeConstraints {
+            $0.top.equalTo(grabber.snp.bottom).offset(15)
+            $0.horizontalEdges.equalTo(cell).inset(20)
         }
         
         dimmedView.snp.makeConstraints {

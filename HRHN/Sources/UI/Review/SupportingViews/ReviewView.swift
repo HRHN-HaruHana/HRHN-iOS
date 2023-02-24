@@ -26,29 +26,21 @@ struct ReviewView: View {
     var body: some View {
         VStack(spacing: 0) {
             Text(titleLabel)
-                .font(.system(size: 25, weight: .bold))
+                .font(.system(size: 18, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Spacer(minLength: 20)
             Text(viewModel.challenge.content)
+                .font(.system(size: 20))
+                .fontWeight(.bold)
                 .foregroundColor(.cellLabel)
-                .padding(20.horizontallyAdjusted)
                 .frame(maxWidth: .infinity)
-                .frame(minHeight: 100.horizontallyAdjusted)
-                .background {
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(.cellFill)
-                }
-                .padding(.horizontal, 15)
-            Spacer(minLength: 20)
+                .frame(height: 136.verticallyAdjusted)
             HStack(spacing: 10) {
                 emojiButton(.success)
                 emojiButton(.tried)
                 emojiButton(.fail)
             }
-            Spacer(minLength: 20)
         }
-        .padding(20)
-        .setBackgroundColor(.background)
+        .ignoresSafeArea()
     }
 }
 
