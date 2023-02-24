@@ -148,9 +148,10 @@ extension TodayViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
         }
         UIView.animate(withDuration: 0.3) {
-            // https://stackoverflow.com/a/33213111
             self.navigationController?.navigationBar.layer.zPosition = -1
             self.tabBarController?.tabBar.layer.zPosition = -1
+            self.navigationController?.navigationBar.isUserInteractionEnabled = false
+            self.tabBarController?.tabBar.isUserInteractionEnabled = false
             self.dimmedView.layer.opacity = 0.3
             self.dimmedView.isUserInteractionEnabled = true
             self.view.layoutIfNeeded()
@@ -172,10 +173,12 @@ extension TodayViewController {
             $0.top.equalTo(view.snp.bottom)
         }
         UIView.animate(withDuration: 0.3) {
-            self.dimmedView.isUserInteractionEnabled = false
-            self.dimmedView.layer.opacity = 0
             self.navigationController?.navigationBar.layer.zPosition = 0
             self.tabBarController?.tabBar.layer.zPosition = 0
+            self.navigationController?.navigationBar.isUserInteractionEnabled = true
+            self.tabBarController?.tabBar.isUserInteractionEnabled = true
+            self.dimmedView.isUserInteractionEnabled = false
+            self.dimmedView.layer.opacity = 0
             self.view.layoutIfNeeded()
         }
     }
