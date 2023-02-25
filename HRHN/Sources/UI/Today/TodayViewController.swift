@@ -63,7 +63,7 @@ final class TodayViewController: UIViewController {
         $0.configuration?.background.cornerRadius = 16
         $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         
-        $0.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(presentBottomSheet), for: .touchUpInside)
         
         return $0
     }(UIButton(configuration: .filled()))
@@ -72,6 +72,11 @@ final class TodayViewController: UIViewController {
         $0.backgroundColor = .background
         $0.layer.cornerRadius = 24
         $0.clipsToBounds = true
+        let panGesture = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(cellDidPanned)
+        )
+        $0.addGestureRecognizer(panGesture)
         return $0
     }(UIView())
     
@@ -88,7 +93,7 @@ final class TodayViewController: UIViewController {
         $0.isUserInteractionEnabled = false
         let tapGesture = UITapGestureRecognizer(
             target: self,
-            action: #selector(blackBackgroundTapped)
+            action: #selector(dismissBottomSheet)
         )
         $0.addGestureRecognizer(tapGesture)
         return $0
@@ -141,7 +146,8 @@ extension TodayViewController {
         }
     }
     
-    @objc func addButtonTapped() {
+    @objc func presentBottomSheet() {
+        cell.layer.opacity = 1
         self.cell.snp.remakeConstraints {
             $0.height.equalTo(cellHeight)
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -156,17 +162,9 @@ extension TodayViewController {
             self.dimmedView.isUserInteractionEnabled = true
             self.view.layoutIfNeeded()
         }
-        
-//        let bottomSheetVC = ReviewViewController(viewModel: ReviewViewModel(
-//            from: .addTab,
-//            challenge: Challenge(id: UUID(), date: Date(), content: "", emoji: .none),
-//            navigationController: self.navigationController))
-//        bottomSheetVC.modalPresentationStyle = .overFullScreen
-//        bottomSheetVC.modalTransitionStyle = .coverVertical
-//        present(bottomSheetVC, animated: true, completion: nil)
     }
     
-    @objc func blackBackgroundTapped() {
+    @objc func dismissBottomSheet() {
         self.cell.snp.remakeConstraints {
             $0.height.equalTo(cellHeight)
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -180,6 +178,57 @@ extension TodayViewController {
             self.dimmedView.isUserInteractionEnabled = false
             self.dimmedView.layer.opacity = 0
             self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func cellDidPanned(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        let translationLimit: CGFloat = 30
+        let translationXFactor: CGFloat = 1.005
+        let translationYFactor: CGFloat = 1.005
+        
+        guard let pannedView = sender.view else { return }
+        
+        var translationX: CGFloat {
+            if translation.x > 0 {
+                return translationLimit * (1-1/pow(translationXFactor, translation.x))
+            } else {
+                return -translationLimit * (1-1/pow(translationXFactor, translation.x.magnitude))
+            }
+        }
+        
+        var translationY: CGFloat {
+            if translation.y > 0 {
+                return translation.y
+            } else {
+                return -translationLimit * (1-1/pow(translationYFactor, translation.y.magnitude))
+            }
+        }
+        
+        pannedView.transform = CGAffineTransform(
+            translationX: translationX,
+            y: translationY
+        )
+        
+        switch sender.state {
+        case .changed:
+            if translation.y > 0 {
+                cell.layer.opacity = 1 - Float(1-1/pow(translationYFactor, translation.y))
+            }
+        case .ended:
+            if translation.y > 100 {
+                UIView.animate(withDuration: 0.3) {
+                    self.dismissBottomSheet()
+                    pannedView.transform = .identity
+                }
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    pannedView.transform = .identity
+                    self.cell.layer.opacity = 1
+                }
+            }
+        default:
+            break
         }
     }
 }
