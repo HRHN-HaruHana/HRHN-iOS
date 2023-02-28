@@ -12,10 +12,12 @@ struct ReviewView: View {
     
     private var titleLabel: String {
         switch viewModel.previousTab {
-        case .addTab:
+        case .today:
             return I18N.emojiTitleAdd
-        case .recordTab:
+        case .record:
             return I18N.emojiTitleRecord
+        default:
+            return "Unknown Error"
         }
     }
     
@@ -95,7 +97,8 @@ extension ReviewView {
         Button {
             viewModel.selectedEmoji = emoji
             viewModel.updateChallenge()
-            viewModel.navigate()
+//            viewModel.navigate()
+            viewModel.didEmojiClicked()
         } label: {
             emojiStack(emoji)
         }
@@ -104,19 +107,19 @@ extension ReviewView {
 
 // MARK: - Preview
 
-#if DEBUG
-struct ReviewView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReviewView(viewModel: ReviewViewModel(
-            from: .addTab,
-            challenge: Challenge(
-                id: UUID(),
-                date: Date(),
-                content: "Preview",
-                emoji: .none
-            ),
-            navigationController: nil
-        ))
-    }
-}
-#endif
+//#if DEBUG
+//struct ReviewView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReviewView(viewModel: ReviewViewModel(
+//            from: .addTab,
+//            challenge: Challenge(
+//                id: UUID(),
+//                date: Date(),
+//                content: "Preview",
+//                emoji: .none
+//            ),
+//            navigationController: nil
+//        ))
+//    }
+//}
+//#endif

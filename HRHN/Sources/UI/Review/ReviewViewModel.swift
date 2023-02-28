@@ -11,22 +11,34 @@ import UIKit
 final class ReviewViewModel: ObservableObject {
     
     enum Tab {
-        case addTab
-        case recordTab
+        case today
+        case record
+        case storage
+        case unknown
     }
     
     @Published var selectedEmoji: Emoji
     
     private let coreDataManager = CoreDataManager.shared
-    private let navigationController: UINavigationController?
+    
+    private var todayViewController: TodayViewController?
+    private var recordViewController: RecordViewController?
     
     let challenge: Challenge
     let previousTab: Tab
     
-    init(from previousTab: Tab, challenge: Challenge, navigationController: UINavigationController?) {
-        self.previousTab = previousTab
+    init(from rootViewController: UIViewController, challenge: Challenge) {
+        if let presentingViewController = rootViewController as? TodayViewController {
+            self.todayViewController = presentingViewController
+            self.previousTab = .today
+        } else if let presentingViewController = rootViewController as? RecordViewController {
+            self.recordViewController = presentingViewController
+            self.previousTab = .record
+        } else {
+            self.previousTab = .unknown
+        }
+        
         self.challenge = challenge
-        self.navigationController = navigationController
         self.selectedEmoji = challenge.emoji
     }
     
@@ -40,12 +52,8 @@ final class ReviewViewModel: ObservableObject {
         coreDataManager.updateChallenge(updatedChallenge)
     }
     
-    func navigate() {
-        switch previousTab {
-        case .addTab:
-            navigationController?.pushViewController(EditChallengeViewController(viewModel: EditChallengeViewModel(mode: .add)), animated: true)
-        case .recordTab:
-            navigationController?.popToRootViewController(animated: true)
-        }
+    func didEmojiClicked() {
+        todayViewController?.dismissBottomSheet()
+        todayViewController?.addState()
     }
 }

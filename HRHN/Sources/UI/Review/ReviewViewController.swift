@@ -19,6 +19,24 @@ final class ReviewViewController: UIViewController {
     
     private lazy var reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: viewModel))
     
+    private let cell: UIView = {
+        $0.layer.cornerRadius = 24
+        $0.clipsToBounds = true
+        $0.backgroundColor = .background
+        return $0
+    }(UIView())
+    
+    private lazy var backgroundView: UIView = {
+//        $0.backgroundColor = .red
+        $0.layer.zPosition = -1
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(backgroundViewTapped)
+        )
+        $0.addGestureRecognizer(tapGesture)
+        return $0
+    }(UIView())
+    
     // MARK: LifeCycle
     
     init(viewModel: ReviewViewModel) {
@@ -52,14 +70,45 @@ extension ReviewViewController {
 extension ReviewViewController {
     
     private func setUI() {
-        view.backgroundColor = .background
+//        view.backgroundColor = .background
+//        view.layer.cornerRadius = 24
+//        view.clipsToBounds = true
+//        view.snp.makeConstraints {
+//            $0.height.equalTo(346)
+//            $0.width.equalTo(UIScreen.main.bounds.width - 40)
+//        }
+        view.addSubviews(
+            cell,
+            backgroundView
+        )
+        
+        backgroundView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        cell.snp.makeConstraints {
+            $0.height.equalTo(346)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+        }
         
         addChild(reviewViewHC)
-        view.addSubview(reviewViewHC.view)
+//        view.addSubview(reviewViewHC.view)
+        cell.addSubview(reviewViewHC.view)
         reviewViewHC.didMove(toParent: self)
         reviewViewHC.view.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalTo(cell).inset(20)
         }
+        
+    }
+}
+
+// MARK: Methods
+
+extension ReviewViewController {
+    @objc private func backgroundViewTapped() {
+        dismiss(animated: true)
     }
 }
 
@@ -85,21 +134,21 @@ final class ReviewViewNavigationPreview: UIViewController {
     }
     
     func setButton() {
-        button.action = UIAction { _ in
-            self.navigationController?.pushViewController(
-                ReviewViewController(viewModel: ReviewViewModel(
-                    from: .addTab,
-                    challenge: Challenge(
-                        id: UUID(),
-                        date: Date(),
-                        content: "Preview",
-                        emoji: .none
-                    ),
-                    navigationController: self.navigationController
-                )),
-                animated: true
-            )
-        }
+//        button.action = UIAction { _ in
+//            self.navigationController?.pushViewController(
+//                ReviewViewController(viewModel: ReviewViewModel(
+//                    from: .addTab,
+//                    challenge: Challenge(
+//                        id: UUID(),
+//                        date: Date(),
+//                        content: "Preview",
+//                        emoji: .none
+//                    ),
+//                    navigationController: self.navigationController
+//                )),
+//                animated: true
+//            )
+//        }
     }
     
     func setLayout() {

@@ -259,7 +259,7 @@ extension EditChallengeViewController: CustomNavBar {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.top.horizontalEdges.equalToSuperview().inset(20)
         }
         
         challengeCard.snp.makeConstraints {

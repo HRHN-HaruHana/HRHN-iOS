@@ -55,6 +55,7 @@ final class RecordViewController: UIViewController {
 extension RecordViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
+        CoreDataManager.shared.insertChallenge(Challenge(id: UUID(), date: Date(), content: "asd", emoji: .none))
         let settingVC = SettingViewController(viewModel: SettingViewModel())
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
@@ -120,13 +121,13 @@ extension RecordViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
-            from: .recordTab,
-            challenge: viewModel.challenges.value[indexPath.row],
-            navigationController: self.navigationController
-        ))
-        reviewVC.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(reviewVC, animated: true)
+//        let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
+//            from: .recordTab,
+//            challenge: viewModel.challenges.value[indexPath.row],
+//            navigationController: self.navigationController
+//        ))
+//        reviewVC.hidesBottomBarWhenPushed = true
+//        self.navigationController?.pushViewController(reviewVC, animated: true)
     }
 
 }

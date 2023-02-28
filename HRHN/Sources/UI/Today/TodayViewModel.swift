@@ -6,28 +6,64 @@
 //
 
 import UIKit
+import WidgetKit
 
-final class TodayViewModel {
+final class TodayViewModel: ObservableObject {
     
-    var todayChallenge: Observable<String?> = Observable(nil)
+    @Published var todayChallenge: Challenge? = nil
+    var previousChallenge: Challenge? = nil
     
-    private var coreDataManager = CoreDataManager.shared
-    private let center = UNUserNotificationCenter.current()
+    private let coreDataManager = CoreDataManager.shared
+    private let widgetCenter = WidgetCenter.shared
+    private let notificationCenter = UNUserNotificationCenter.current()
     
-    init(){}
+    init() {}
+    
+    // MARK: - Challenge
     
     func fetchTodayChallenge() {
-        let challenges = self.coreDataManager.getChallengeOf(Date())
+        let challenges = coreDataManager.getChallengeOf(Date())
         if challenges.count > 0 {
-            self.todayChallenge = Observable(challenges[0].content)
+            todayChallenge = challenges[0]
         } else {
-            self.todayChallenge = Observable(nil)
+            todayChallenge = nil
         }
     }
     
+    func fetchPreviousChallenge() {
+        let challenges = coreDataManager.getChallenges()
+        if challenges.count > 0 && challenges[0].emoji == .none {
+            previousChallenge = challenges[0]
+        } else {
+            previousChallenge = nil
+        }
+    }
+    
+    func createChallenge(_ content: String) {
+        coreDataManager.insertChallenge(Challenge(
+            id: UUID(),
+            date: Date(),
+            content: content,
+            emoji: .none)
+        )
+    }
+    
+    func updateChallenge(_ content: String) {
+        guard let todayChallenge else { return }
+        let updatedChallenge = Challenge(
+            id: todayChallenge.id,
+            date: todayChallenge.date,
+            content: content,
+            emoji: todayChallenge.emoji
+        )
+        coreDataManager.updateChallenge(updatedChallenge)
+    }
+    
+    // MARK: - Notification
+    
     func requestNotificationAuthorization() {
         let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
-        center.requestAuthorization(options: authOptions) { success, error in
+        notificationCenter.requestAuthorization(options: authOptions) { success, error in
             if let error = error {
                 print("Auth Error: ", error)
             }
@@ -38,28 +74,9 @@ final class TodayViewModel {
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
     }
     
-    func isTodayChallengeExist() -> Bool {
-        if todayChallenge.value == nil {
-            return false
-        } else {
-            return true
-        }
-    }
+    // MARK: - Widget
     
-    func addButtonDidTap(navigationController: UINavigationController?) {
-        let challenges = coreDataManager.getChallenges()
-        if challenges.count > 0 && challenges[0].emoji == .none {
-            let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
-                from: .addTab,
-                challenge: challenges[0],
-                navigationController: navigationController
-            ))
-            reviewVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(reviewVC, animated: true)
-        } else {
-            let addVC = EditChallengeViewController(viewModel: EditChallengeViewModel(mode: .add))
-            addVC.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(addVC, animated: true)
-        }
+    func updateWidget() {
+        widgetCenter.reloadAllTimelines()
     }
 }
