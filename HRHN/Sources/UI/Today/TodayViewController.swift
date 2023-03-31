@@ -13,9 +13,43 @@ import SnapKit
 
 final class TodayViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - Combine
+    
     private let viewModel: TodayViewModel
     private var cancelBag = Set<AnyCancellable>()
+    
+    // MARK: - TextAttributes
+    
+    private let mainTextAttributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 26, weight: .bold),
+        .foregroundColor: UIColor.cellLabel,
+    ]
+    
+    private let placeholderTextAttributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 26, weight: .bold),
+        .foregroundColor: UIColor.cellLabel.withAlphaComponent(0.3),
+    ]
+    
+    private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 15, weight: .bold),
+        .foregroundColor: UIColor.cellLabel,
+    ]
+    
+    // MARK: - TextLength Properties
+    
+    private let maxTextLength = 50
+    
+    // TODO: viewModel binding
+    private lazy var currentTextLength: Int = viewModel.todayChallenge?.content.count ?? 0 {
+        didSet {
+            textLengthIndicatorLabel.attributedText = NSAttributedString(
+                string: "\(currentTextLength)/\(maxTextLength)",
+                attributes: lengthTextAttributes
+            )
+        }
+    }
+    
+    // MARK: - Base UI Properties
     
     private let titleLabel: UILabel = {
         $0.text = I18N.todayTitle
@@ -24,9 +58,7 @@ final class TodayViewController: UIViewController {
         return $0
     }(UILabel())
     
-    private let challengeLayoutView: UIView = {
-        return $0
-    }(UIView())
+    private let challengeLayoutView = UIView()
     
     private lazy var challengeCellView: UIView = {
         $0.backgroundColor = .cellFill
@@ -58,65 +90,6 @@ final class TodayViewController: UIViewController {
         return $0
     }(UIButton(configuration: .filled()))
     
-    private lazy var bottomSheetView: UIView = {
-        $0.backgroundColor = .background
-        $0.layer.cornerRadius = 24
-        $0.clipsToBounds = true
-        let panGesture = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(cellDidPanned)
-        )
-        $0.addGestureRecognizer(panGesture)
-        return $0
-    }(UIView())
-    
-    private lazy var grabber: UIView = {
-        $0.backgroundColor = UIColor(red: 185/255, green: 185/255, blue: 185/255, alpha: 1)
-        $0.layer.cornerRadius = 3
-        $0.clipsToBounds = true
-        return $0
-    }(UIView())
-    
-    private lazy var dimmedView: UIView = {
-        $0.backgroundColor = .black
-        $0.layer.opacity = 0
-        $0.isUserInteractionEnabled = false
-        let tapGesture = UITapGestureRecognizer(
-            target: self,
-            action: #selector(dismissBottomSheet)
-        )
-        $0.addGestureRecognizer(tapGesture)
-        return $0
-    }(UIView())
-    
-    private let bottomSheetHeight: CGFloat = 336
-    
-    private let mainTextAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 26, weight: .bold),
-        .foregroundColor: UIColor.cellLabel,
-    ]
-    
-    private let placeholderTextAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 26, weight: .bold),
-        .foregroundColor: UIColor.cellLabel.withAlphaComponent(0.3),
-    ]
-    
-    private let lengthTextAttributes: [NSAttributedString.Key: Any] = [
-        .font: UIFont.systemFont(ofSize: 15, weight: .bold),
-        .foregroundColor: UIColor.cellLabel,
-    ]
-    
-    private let maxTextLength = 50
-    
-//    private lazy var currentTextLength: Int = editChallengeViewModel.currentChallenge?.content.count ?? 0 {
-//        didSet {
-//            textLengthIndicatorLabel.attributedText = NSAttributedString(
-//                string: "\(currentTextLength)/\(maxTextLength)",
-//                attributes: lengthTextAttributes
-//            )
-//        }
-//    }
-    
     private lazy var placeholderLabel: UILabel = {
         $0.attributedText = NSAttributedString(
             string: "",
@@ -126,6 +99,8 @@ final class TodayViewController: UIViewController {
         $0.textAlignment = .center
         return $0
     }(UILabel())
+    
+    // MARK: - EditChallenge UI Properties
     
     private lazy var challengeTextView: UITextView = {
         $0.attributedText = NSAttributedString(
@@ -148,16 +123,159 @@ final class TodayViewController: UIViewController {
         return $0
     }(UITextView())
     
-//    private lazy var textLengthIndicatorLabel: UILabel = {
-//        $0.attributedText = NSAttributedString(
-//            string: "\(currentTextLength)/\(maxTextLength)",
-//            attributes: lengthTextAttributes
-//        )
-//        $0.layer.opacity = 0.7
-//        return $0
-//    }(UILabel())
+    private lazy var textLengthIndicatorLabel: UILabel = {
+        $0.attributedText = NSAttributedString(
+            string: "\(currentTextLength)/\(maxTextLength)",
+            attributes: lengthTextAttributes
+        )
+        $0.layer.opacity = 0.7
+        return $0
+    }(UILabel())
     
-    // MARK: - LifeCycle
+    private lazy var cancelEditingChallengeButton: UIButton = {
+        var title: String
+        var image: String
+        
+        if viewModel.previousChallenge == nil {
+            title = "취소"
+            image = "xmark"
+        } else {
+            title = "이전"
+            image = "chevron.backward"
+        }
+        
+        var titleAttribute = AttributedString(title)
+        titleAttribute.font = .systemFont(ofSize: 16, weight: .medium)
+        $0.configuration?.attributedTitle = titleAttribute
+        
+        let imageConfig = UIImage.SymbolConfiguration(
+            font: UIFont.systemFont(ofSize: 13, weight: .medium)
+        )
+        $0.setImage(UIImage(systemName: image, withConfiguration: imageConfig), for: .normal)
+        $0.configuration?.imagePadding = 4
+        
+        $0.configuration?.baseBackgroundColor = .cellFill
+        $0.configuration?.baseForegroundColor = .label
+        $0.configuration?.cornerStyle = .fixed
+        $0.configuration?.background.cornerRadius = 16
+        $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        $0.addTarget(self, action: #selector(cancelEditingChallenge), for: .touchUpInside)
+        return $0
+    }(UIButton(configuration: .filled()))
+    
+    private lazy var endEditingChallengeButton: UIButton = {
+        var title: String = "저장"
+        var image: String = "checkmark"
+        
+        var titleAttribute = AttributedString(title)
+        titleAttribute.font = .systemFont(ofSize: 16, weight: .medium)
+        $0.configuration?.attributedTitle = titleAttribute
+        
+        let imageConfig = UIImage.SymbolConfiguration(
+            font: UIFont.systemFont(ofSize: 13, weight: .medium)
+        )
+        $0.setImage(UIImage(systemName: image, withConfiguration: imageConfig), for: .normal)
+        $0.configuration?.imagePadding = 4
+        
+        $0.configuration?.baseBackgroundColor = .cellFill
+        $0.configuration?.baseForegroundColor = .label
+        $0.configuration?.cornerStyle = .fixed
+        $0.configuration?.background.cornerRadius = 16
+        $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        
+        $0.addTarget(self, action: #selector(stopEditingAndSaveChallenge), for: .touchUpInside)
+        return $0
+    }(UIButton(configuration: .filled()))
+    
+    private lazy var contextMenuButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(
+            font: UIFont.systemFont(ofSize: 13, weight: .medium)
+        )
+        $0.setImage(UIImage(systemName: "ellipsis", withConfiguration: imageConfig), for: .normal)
+        
+        $0.configuration?.baseBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+        $0.configuration?.baseForegroundColor = .cellLabel
+        $0.configuration?.cornerStyle = .capsule
+        
+        let storageAction = UIAction(
+            title: "바구니",
+            image: UIImage(systemName: "archivebox")
+        ) { _ in
+            // TODO: connect storage view
+        }
+        let deleteAction = UIAction(
+            title: "삭제",
+            image: UIImage(systemName: "trash"),
+            attributes: .destructive
+        ) { _ in
+            self.challengeTextView.resignFirstResponder()
+            self.alert.presentAlert()
+        }
+        let menu = UIMenu(children: [storageAction, deleteAction])
+        $0.menu = menu
+        $0.showsMenuAsPrimaryAction = true
+        
+        $0.isHidden = true
+        return $0
+    }(UIButton(configuration: .filled()))
+    
+    // MARK: - Alert UI Properties
+    
+    private lazy var alert: UIAlert = {
+        $0.titleString = "챌린지를 삭제할까요?"
+        $0.descriptionString = "오늘의 챌린지가 삭제됩니다."
+
+        $0.cancelTitle = "취소"
+        $0.cancelForegroundColor = .label
+        $0.cancelBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+        $0.cancelAction = UIAction { _ in
+            self.alert.dismissAlertWithAction(nextActionView: self.challengeTextView)
+        }
+
+        $0.confirmTitle = "삭제"
+        $0.confirmForegroundColor = .whiteLabel
+        $0.confirmBackgroundColor = .red
+        $0.confirmAction = UIAction { _ in
+            self.alert.dismissAlert()
+            self.viewModel.deleteTodayChallenge()
+            self.viewModel.todayChallenge = self.viewModel.getTodayChallenge()
+            self.cancelEditingChallenge()
+            self.emptyState()
+        }
+
+        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(alertDimmedViewDidTapped)
+        )
+
+        $0.alertViewPanGestureRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(alertDidPanned)
+        )
+
+        return $0
+    }(UIAlert())
+    
+    
+    // MARK: - Bottom Sheet UI Properties
+    
+    private lazy var bottomSheet: UIBottomSheet = {
+        $0.bottomSheetHeight = 336
+        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(bottomSheetDimmedViewDidTapped)
+        )
+        $0.bottomSheetPanGestureRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(bottomSheetDidPanned)
+        )
+        return $0
+    }(UIBottomSheet())
+
+    private lazy var bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: self))
+    
+    // MARK: - Life Cycle
     
     init(viewModel: TodayViewModel) {
         self.viewModel = viewModel
@@ -175,58 +293,39 @@ final class TodayViewController: UIViewController {
         setNavigationBar()
         setLayout()
         if viewModel.todayChallenge == nil {
+            bottomSheet.setLayout()
+            bottomSheet.content = bottomSheetContentView
             emptyState()
         } else {
             existState()
         }
+        alert.setLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchTodayChallenge()
-        viewModel.fetchPreviousChallenge()
+        viewModel.todayChallenge = viewModel.getTodayChallenge()
+        viewModel.previousChallenge = viewModel.getPreviousChallenge()
         bind()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if challengeTextView.isFirstResponder {
-            self.view.endEditing(true)
-            if let todayChallenge = viewModel.todayChallenge {
-                let challengeAttrString = NSAttributedString(string: todayChallenge.content, attributes: self.mainTextAttributes)
-                let mutableAttrString = NSMutableAttributedString(attributedString: challengeAttrString)
-
-                let whiteSpaceAttachment = NSTextAttachment()
-                whiteSpaceAttachment.image = UIImage()
-                whiteSpaceAttachment.bounds = CGRect(x: 0, y: 0, width: 2, height: 0)
-                mutableAttrString.append(NSAttributedString(attachment: whiteSpaceAttachment))
-
-                let dotAttachment = NSTextAttachment()
-                dotAttachment.image = UIImage(named: Assets.dot)
-                dotAttachment.bounds = CGRect(x: 0, y: 0, width: 7.5, height: 7.5)
-                mutableAttrString.append(NSAttributedString(attachment: dotAttachment))
-
-                self.placeholderLabel.attributedText = mutableAttrString
-                existState()
-            } else {
-                emptyState()
-            }
-//            if viewModel.todayChallenge == nil {
-//                emptyState()
-//            } else {
-//                existState()
-//            }
-            challengeTextView.text = .none
+            cancelEditingChallenge()
         }
     }
 }
 
 // MARK: - UI Functions
+
 extension TodayViewController {
     
     private func setLayout() {
         view.addSubviews(
             challengeLayoutView,
-            dimmedView
+            cancelEditingChallengeButton,
+            endEditingChallengeButton,
+            textLengthIndicatorLabel
         )
 
         challengeLayoutView.snp.makeConstraints {
@@ -240,7 +339,8 @@ extension TodayViewController {
             challengeCellView,
             placeholderLabel,
             addButton,
-            challengeTextView
+            challengeTextView,
+            contextMenuButton
         )
         
         placeholderLabel.snp.makeConstraints {
@@ -263,19 +363,42 @@ extension TodayViewController {
             $0.leading.equalToSuperview()
             $0.bottom.equalTo(challengeCellView.snp.top).offset(-10)
         }
+        
+        contextMenuButton.snp.makeConstraints {
+            $0.width.height.equalTo(26)
+            $0.trailing.equalToSuperview()
+            $0.centerY.equalTo(titleLabel)
+        }
 
         addButton.snp.makeConstraints {
             $0.top.equalTo(challengeCellView.snp.bottom).offset(10)
             $0.right.equalTo(challengeCellView)
             $0.height.equalTo(50)
         }
+        
+        cancelEditingChallengeButton.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.leading.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(150)
+        }
+        
+        endEditingChallengeButton.snp.makeConstraints {
+            $0.height.equalTo(50)
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalTo(cancelEditingChallengeButton)
+        }
+        
+        textLengthIndicatorLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalTo(cancelEditingChallengeButton)
+        }
     }
     
     private func clearUIState() {
-        bottomSheetView.removeFromSuperview()
         addButton.isHidden = true
         placeholderLabel.isHidden = true
         challengeTextView.isHidden = true
+        contextMenuButton.isHidden = true
         
         challengeCellView.snp.remakeConstraints {
             $0.horizontalEdges.equalToSuperview()
@@ -288,47 +411,15 @@ extension TodayViewController {
         clearUIState()
         
         addButton.isHidden = false
-        placeholderLabel.isHidden = false
         placeholderLabel.attributedText = NSAttributedString(
             string: "챌린지가 아직 없어요",
             attributes: placeholderTextAttributes
         )
+        placeholderLabel.isHidden = false
         
         if let previousChallenge = viewModel.previousChallenge {
-            let reviewViewHC = UIHostingController(rootView: ReviewView(viewModel: ReviewViewModel(from: self, challenge: previousChallenge)))
-            
-            view.addSubviews(
-                bottomSheetView
-            )
-            
-            bottomSheetView.snp.makeConstraints {
-                $0.height.equalTo(bottomSheetHeight)
-                $0.horizontalEdges.equalToSuperview().inset(20)
-                $0.top.equalTo(view.snp.bottom)
-            }
-            
-            bottomSheetView.addSubviews(
-                grabber,
-                reviewViewHC.view
-            )
-            
-            addChild(reviewViewHC)
-            reviewViewHC.didMove(toParent: self)
-            reviewViewHC.view.snp.makeConstraints {
-                $0.top.equalTo(grabber.snp.bottom).offset(15)
-                $0.horizontalEdges.equalTo(bottomSheetView).inset(20)
-            }
-            
-            grabber.snp.makeConstraints {
-                $0.width.equalTo(60)
-                $0.height.equalTo(6)
-                $0.top.equalToSuperview().inset(10)
-                $0.centerX.equalToSuperview()
-            }
-            
-            dimmedView.snp.makeConstraints {
-                $0.edges.equalToSuperview()
-            }
+            bottomSheetContentView.viewModel.challenge = previousChallenge
+            bottomSheetContentView.viewModel.selectedEmoji = previousChallenge.emoji
         }
     }
     
@@ -340,20 +431,22 @@ extension TodayViewController {
     
     func addState() {
         clearUIState()
+        showEditingButtons()
+        endEditingChallengeButton.isEnabled = false
         challengeTextView.isHidden = false
         challengeTextView.becomeFirstResponder()
-        
-        placeholderLabel.isHidden = false
+
         placeholderLabel.attributedText = NSAttributedString(
             string: "챌린지를 작성하세요",
             attributes: placeholderTextAttributes
         )
-        
+        placeholderLabel.isHidden = false
+
         challengeTextView.attributedText = NSAttributedString(
             string: "",
             attributes: mainTextAttributes
         )
-        
+
         challengeCellView.snp.remakeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(challengeTextView).offset(-20)
@@ -365,60 +458,52 @@ extension TodayViewController {
         guard let todayChallenge = viewModel.todayChallenge else { return }
         
         clearUIState()
+        showEditingButtons()
+        contextMenuButton.isHidden = false
+        endEditingChallengeButton.isEnabled = true
         challengeTextView.isHidden = false
         challengeTextView.becomeFirstResponder()
-        placeholderLabel.attributedText = NSAttributedString(
-            string: "챌린지를 작성하세요",
-            attributes: placeholderTextAttributes
-        )
-        
+        challengeTextView.tintColor = .tintColor
         challengeTextView.attributedText = NSAttributedString(
             string: todayChallenge.content,
             attributes: mainTextAttributes
         )
         challengeTextView.textAlignment = .center
         
+        currentTextLength = challengeTextView.text.count
+        
+        placeholderLabel.attributedText = NSAttributedString(
+            string: "챌린지를 작성하세요",
+            attributes: placeholderTextAttributes
+        )
+        
         challengeCellView.snp.remakeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(challengeTextView).offset(-20)
             $0.bottom.equalTo(challengeTextView).offset(20)
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.challengeTextView.selectAll(nil)
+        }
     }
     
-    private func presentBottomSheet() {
-        bottomSheetView.layer.opacity = 1
-        bottomSheetView.snp.remakeConstraints {
-            $0.height.equalTo(bottomSheetHeight)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(20)
-        }
+    func showEditingButtons() {
         UIView.animate(withDuration: 0.3) {
-            self.navigationController?.navigationBar.layer.zPosition = -1
-            self.tabBarController?.tabBar.layer.zPosition = -1
-            self.navigationController?.navigationBar.isUserInteractionEnabled = false
-            self.tabBarController?.tabBar.isUserInteractionEnabled = false
-            self.dimmedView.layer.opacity = 0.3
-            self.dimmedView.isUserInteractionEnabled = true
+            self.cancelEditingChallengeButton.snp.updateConstraints {
+                $0.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top).offset(-20)
+            }
             self.view.layoutIfNeeded()
         }
     }
     
-    @objc func dismissBottomSheet() {
-        bottomSheetView.snp.remakeConstraints {
-            $0.height.equalTo(bottomSheetHeight)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(view.snp.bottom)
-        }
+    func hideEditingButtons() {
         UIView.animate(withDuration: 0.3) {
-            self.navigationController?.navigationBar.layer.zPosition = 0
-            self.tabBarController?.tabBar.layer.zPosition = 0
-            self.navigationController?.navigationBar.isUserInteractionEnabled = true
-            self.tabBarController?.tabBar.isUserInteractionEnabled = true
-            self.dimmedView.isUserInteractionEnabled = false
-            self.dimmedView.layer.opacity = 0
+            self.cancelEditingChallengeButton.snp.updateConstraints {
+                $0.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top).offset(150)
+            }
             self.view.layoutIfNeeded()
         }
-        viewModel.fetchPreviousChallenge()
     }
 }
 
@@ -449,16 +534,16 @@ extension TodayViewController {
         if textView.text.isEmpty {
             placeholderLabel.isHidden = false
             textView.tintColor = .clear
-//            doneButton.isEnabled = false
+            endEditingChallengeButton.isEnabled = false
 //            clearTextButton.isHidden = true
         } else {
             placeholderLabel.isHidden = true
             textView.tintColor = .tintColor
-//            doneButton.isEnabled = true
+            endEditingChallengeButton.isEnabled = true
 //            clearTextButton.isHidden = false
         }
         
-//        currentTextLength = textView.text.count
+        currentTextLength = textView.text.count
     }
     
     private func deleteOverFlowedTexts(textView: UITextView) {
@@ -468,20 +553,46 @@ extension TodayViewController {
         }
     }
     
-    private func stopEditingAndSaveChallenge() {
-        if viewModel.todayChallenge == nil {
+    @objc private func stopEditingAndSaveChallenge() {
+        if let todayChallenge = viewModel.todayChallenge {
+            self.viewModel.updateChallengeContent(updatingChallenge: todayChallenge, content: challengeTextView.text)
+            self.viewModel.updateWidget()
+            self.challengeTextView.resignFirstResponder()
+            viewModel.todayChallenge = viewModel.getTodayChallenge()
+            existState()
+        } else {
             self.viewModel.createChallenge(self.challengeTextView.text as String)
             self.viewModel.updateWidget()
             self.challengeTextView.resignFirstResponder()
-            viewModel.fetchTodayChallenge()
-            existState()
-        } else {
-            self.viewModel.updateChallenge(challengeTextView.text)
-            self.viewModel.updateWidget()
-            self.challengeTextView.resignFirstResponder()
-            viewModel.fetchTodayChallenge()
+            viewModel.todayChallenge = viewModel.getTodayChallenge()
             existState()
         }
+        hideEditingButtons()
+    }
+    
+    @objc private func cancelEditingChallenge() {
+        view.endEditing(true)
+        if let todayChallenge = viewModel.todayChallenge {
+            let challengeAttrString = NSAttributedString(string: todayChallenge.content, attributes: self.mainTextAttributes)
+            let mutableAttrString = NSMutableAttributedString(attributedString: challengeAttrString)
+
+            let whiteSpaceAttachment = NSTextAttachment()
+            whiteSpaceAttachment.image = UIImage()
+            whiteSpaceAttachment.bounds = CGRect(x: 0, y: 0, width: 2, height: 0)
+            mutableAttrString.append(NSAttributedString(attachment: whiteSpaceAttachment))
+
+            let dotAttachment = NSTextAttachment()
+            dotAttachment.image = UIImage(named: Assets.dot)
+            dotAttachment.bounds = CGRect(x: 0, y: 0, width: 7.5, height: 7.5)
+            mutableAttrString.append(NSAttributedString(attachment: dotAttachment))
+
+            self.placeholderLabel.attributedText = mutableAttrString
+            existState()
+        } else {
+            emptyState()
+        }
+        challengeTextView.text = .none
+        hideEditingButtons()
     }
 }
 
@@ -504,61 +615,31 @@ extension TodayViewController {
     
     @objc private func addButtonDidTap() {
         if viewModel.previousChallenge?.emoji == Emoji.none {
-            presentBottomSheet()
+            bottomSheet.presentBottomSheet()
         } else {
             addState()
         }
     }
     
-    @objc func cellDidPanned(sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: view)
-        let translationLimit: CGFloat = 30
-        let translationXFactor: CGFloat = 1.005
-        let translationYFactor: CGFloat = 1.005
-        
-        guard let pannedView = sender.view else { return }
-        
-        var translationX: CGFloat {
-            if translation.x > 0 {
-                return translationLimit * (1-1/pow(translationXFactor, translation.x))
-            } else {
-                return -translationLimit * (1-1/pow(translationXFactor, translation.x.magnitude))
-            }
-        }
-        
-        var translationY: CGFloat {
-            if translation.y > 0 {
-                return translation.y
-            } else {
-                return -translationLimit * (1-1/pow(translationYFactor, translation.y.magnitude))
-            }
-        }
-        
-        pannedView.transform = CGAffineTransform(
-            translationX: translationX,
-            y: translationY
-        )
-        
-        switch sender.state {
-        case .changed:
-            if translation.y > 0 {
-                bottomSheetView.layer.opacity = 1 - Float(1-1/pow(translationYFactor, translation.y))
-            }
-        case .ended:
-            if translation.y > 100 {
-                UIView.animate(withDuration: 0.3) {
-                    self.dismissBottomSheet()
-                    pannedView.transform = .identity
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    pannedView.transform = .identity
-                    self.bottomSheetView.layer.opacity = 1
-                }
-            }
-        default:
-            break
-        }
+    @objc private func bottomSheetDidPanned(sender: UIPanGestureRecognizer) {
+        bottomSheet.panGestureHandler(sender: sender)
+    }
+    
+    @objc private func bottomSheetDimmedViewDidTapped() {
+        bottomSheet.dismissBottomSheet()
+    }
+    
+    @objc private func alertDidPanned(sender: UIPanGestureRecognizer) {
+        alert.alertDidPanned(sender: sender, nextActionView: challengeTextView)
+    }
+    
+    @objc private func alertDimmedViewDidTapped() {
+        alert.dismissAlertWithAction(nextActionView: challengeTextView)
+    }
+    
+    func bottomSheetEmojiDidSelected() {
+        bottomSheet.dismissBottomSheet()
+        viewModel.previousChallenge = viewModel.getPreviousChallenge()
     }
 }
 
@@ -584,8 +665,11 @@ extension TodayViewController {
                     mutableAttrString.append(NSAttributedString(attachment: dotAttachment))
 
                     self?.placeholderLabel.attributedText = mutableAttrString
+                    self?.currentTextLength = challengeText.count
                     self?.existState()
                 } else {
+                    self?.currentTextLength = 0
+                    self?.challengeTextView.tintColor = .clear
                     self?.emptyState()
                 }
             }

@@ -8,7 +8,7 @@
 import UIKit
 import WidgetKit
 
-final class TodayViewModel: ObservableObject {
+final class TodayViewModel: ObservableObject, EditChallenge {
     
     @Published var todayChallenge: Challenge? = nil
     var previousChallenge: Challenge? = nil
@@ -17,46 +17,8 @@ final class TodayViewModel: ObservableObject {
     private let widgetCenter = WidgetCenter.shared
     private let notificationCenter = UNUserNotificationCenter.current()
     
-    init() {}
-    
-    // MARK: - Challenge
-    
-    func fetchTodayChallenge() {
-        let challenges = coreDataManager.getChallengeOf(Date())
-        if challenges.count > 0 {
-            todayChallenge = challenges[0]
-        } else {
-            todayChallenge = nil
-        }
-    }
-    
-    func fetchPreviousChallenge() {
-        let challenges = coreDataManager.getChallenges()
-        if challenges.count > 0 && challenges[0].emoji == .none {
-            previousChallenge = challenges[0]
-        } else {
-            previousChallenge = nil
-        }
-    }
-    
-    func createChallenge(_ content: String) {
-        coreDataManager.insertChallenge(Challenge(
-            id: UUID(),
-            date: Date(),
-            content: content,
-            emoji: .none)
-        )
-    }
-    
-    func updateChallenge(_ content: String) {
-        guard let todayChallenge else { return }
-        let updatedChallenge = Challenge(
-            id: todayChallenge.id,
-            date: todayChallenge.date,
-            content: content,
-            emoji: todayChallenge.emoji
-        )
-        coreDataManager.updateChallenge(updatedChallenge)
+    init() {
+        self.previousChallenge = getPreviousChallenge()
     }
     
     // MARK: - Notification

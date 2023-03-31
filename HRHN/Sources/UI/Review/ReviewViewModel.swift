@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class ReviewViewModel: ObservableObject {
+class ReviewViewModel: ObservableObject {
     
     enum Tab {
         case today
@@ -17,17 +17,17 @@ final class ReviewViewModel: ObservableObject {
         case unknown
     }
     
-    @Published var selectedEmoji: Emoji
+    @Published var selectedEmoji: Emoji?
+    @Published var challenge: Challenge?
     
     private let coreDataManager = CoreDataManager.shared
     
     private var todayViewController: TodayViewController?
     private var recordViewController: RecordViewController?
     
-    let challenge: Challenge
     let previousTab: Tab
     
-    init(from rootViewController: UIViewController, challenge: Challenge) {
+    init(from rootViewController: UIViewController) {
         if let presentingViewController = rootViewController as? TodayViewController {
             self.todayViewController = presentingViewController
             self.previousTab = .today
@@ -37,12 +37,11 @@ final class ReviewViewModel: ObservableObject {
         } else {
             self.previousTab = .unknown
         }
-        
-        self.challenge = challenge
-        self.selectedEmoji = challenge.emoji
     }
     
     func updateChallenge() {
+        guard let challenge else { return }
+        guard let selectedEmoji else { return }
         let updatedChallenge = Challenge(
             id: challenge.id,
             date: challenge.date,
@@ -53,7 +52,9 @@ final class ReviewViewModel: ObservableObject {
     }
     
     func didEmojiClicked() {
-        todayViewController?.dismissBottomSheet()
+        updateChallenge()
+        todayViewController?.bottomSheetEmojiDidSelected()
         todayViewController?.addState()
+        recordViewController?.bottomSheetDimmedViewDidTapped()
     }
 }

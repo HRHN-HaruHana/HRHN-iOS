@@ -5,6 +5,7 @@
 //  Created by Chanhee Jeong on 2022/12/20.
 //
 
+import Combine
 import SwiftUI
 import UIKit
 import SnapKit
@@ -14,6 +15,7 @@ final class RecordViewController: UIViewController {
     // MARK: - Properties
     
     private let viewModel: RecordViewModel
+    private var cancelBag = Set<AnyCancellable>()
     
     private lazy var tableView: UITableView = { [weak self] in
         $0.backgroundColor = .clear
@@ -25,7 +27,22 @@ final class RecordViewController: UIViewController {
         $0.dataSource = self
         return $0
     }(UITableView(frame: .zero, style: .grouped))
-
+    
+    private lazy var bottomSheet: UIBottomSheet = {
+        $0.bottomSheetHeight = 336
+        $0.bottomSheetPanGestureRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(bottomSheetViewDidPanned)
+        )
+        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(bottomSheetDimmedViewDidTapped)
+        )
+        return $0
+    }(UIBottomSheet())
+    
+    private lazy var bottomSheetContent = ReviewView(viewModel: ReviewViewModel(from: self))
+    
     // MARK: - LifeCycle
     
     init(with viewModel: RecordViewModel) {
@@ -41,6 +58,8 @@ final class RecordViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setNavigationBar()
+        bottomSheet.setLayout()
+        bottomSheet.content = bottomSheetContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +67,6 @@ final class RecordViewController: UIViewController {
         viewModel.fetchPreviousChallenges()
         tableView.reloadData()
     }
-
 }
 
 // MARK: - Functions
@@ -60,19 +78,19 @@ extension RecordViewController {
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
     }
-    
 }
 
 // MARK: - UI Functions
 extension RecordViewController {
     private func setUI(){
-        view.backgroundColor = .background
         view.addSubviews(tableView)
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
 }
+
+// MARK: - CustomNavBar
 
 extension RecordViewController: CustomNavBar {
     private func setNavigationBar() {
@@ -88,21 +106,21 @@ extension RecordViewController: CustomNavBar {
 extension RecordViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.challenges.value.count
+        viewModel.challenges.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChallengeCell", for: indexPath)
-                as? ChallengeCell else { return UITableViewCell() }
-        cell.configure(with: viewModel.challenges.value[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "ChallengeCell",
+            for: indexPath
+        ) as? ChallengeCell else { return UITableViewCell() }
+        cell.configure(with: viewModel.challenges[indexPath.row])
         return cell
-        
     }
-
 }
 
 // MARK: - UITableViewDelegate
+
 extension RecordViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,13 +139,23 @@ extension RecordViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let reviewVC = ReviewViewController(viewModel: ReviewViewModel(
-//            from: .recordTab,
-//            challenge: viewModel.challenges.value[indexPath.row],
-//            navigationController: self.navigationController
-//        ))
-//        reviewVC.hidesBottomBarWhenPushed = true
-//        self.navigationController?.pushViewController(reviewVC, animated: true)
+        bottomSheetContent.viewModel?.challenge = viewModel.challenges[indexPath.row]
+        bottomSheetContent.viewModel?.selectedEmoji = viewModel.challenges[indexPath.row].emoji
+        bottomSheet.presentBottomSheet()
     }
 
+}
+
+// MARK: - Bottom Sheet Gesture Selectors
+
+extension RecordViewController {
+    @objc func bottomSheetDimmedViewDidTapped() {
+        bottomSheet.dismissBottomSheet()
+        viewModel.fetchPreviousChallenges()
+        tableView.reloadData()
+    }
+    
+    @objc func bottomSheetViewDidPanned(sender: UIPanGestureRecognizer) {
+        bottomSheet.panGestureHandler(sender: sender)
+    }
 }

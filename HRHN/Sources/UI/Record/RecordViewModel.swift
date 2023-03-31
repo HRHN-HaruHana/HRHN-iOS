@@ -9,17 +9,15 @@ import UIKit
 
 final class RecordViewModel {
     
-    var challenges: Observable<[Challenge]> = Observable([])
+    @Published var challenges: [Challenge] = []
     
-    private var coreDataManager = CoreDataManager.shared
-    
-    init(){}
+    private let coreDataManager = CoreDataManager.shared
     
     func fetchPreviousChallenges() {
         let challenges = self.coreDataManager.getChallenges().filter { (challenge: Challenge) -> Bool in
             let current = Calendar.current
             return !current.isDateInToday(challenge.date)
         }
-        self.challenges = Observable(challenges)
+        self.challenges = challenges
     }
 }
