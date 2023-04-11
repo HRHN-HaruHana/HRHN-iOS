@@ -73,7 +73,6 @@ final class RecordViewController: UIViewController {
 extension RecordViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
-        CoreDataManager.shared.insertChallenge(Challenge(id: UUID(), date: Date(), content: "asd", emoji: .none))
         let settingVC = SettingViewController(viewModel: SettingViewModel())
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)

@@ -15,6 +15,21 @@ final class UICalendarPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        setNavigationBar()
+    }
+}
+
+extension UICalendarPageViewController: CustomNavBar {
+    private func setNavigationBar() {
+        setNavigationBarAppLogo()
+        setNavigationBarBackButton()
+        setNavigationBarRightIconButton(systemName: "gearshape.fill", action: #selector(settingsDidTap))
+    }
+    
+    @objc func settingsDidTap(_ sender: UIButton) {
+        let settingVC = SettingViewController(viewModel: SettingViewModel())
+        settingVC.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(settingVC, animated: true)
     }
 }
 
