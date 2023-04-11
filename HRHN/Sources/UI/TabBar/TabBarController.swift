@@ -49,7 +49,7 @@ class TabBarController: UITabBarController {
         firstTab.tabBarItem.imageInsets = .init(top: 0, left: 0, bottom: -6, right: 0)
         firstTab.tabBarItem.titlePositionAdjustment = .init(horizontal: 0, vertical: -5)
         
-        let recordVC = RecordViewController(with: RecordViewModel())
+        let recordVC = UICalendarPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         let secondTab = UINavigationController(rootViewController: recordVC)
         secondTab.tabBarItem = UITabBarItem(
             title: I18N.tabRecord,
