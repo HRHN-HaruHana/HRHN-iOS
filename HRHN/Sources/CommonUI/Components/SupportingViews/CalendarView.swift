@@ -9,7 +9,19 @@ import SwiftUI
 
 struct CalendarView :View {
     @State var date: Date
-    @State private var selectedDay: Date?
+    @State private var selectedDay: Date? = Date()
+    
+    private var daysInMonth: [Date] {
+        let calendar = Calendar.current
+        let range = calendar.range(of: .day, in: .month, for: date) ?? 1..<29
+        return range.map { day in
+            var components = DateComponents()
+            components.year = calendar.component(.year, from: date)
+            components.month = calendar.component(.month, from: date)
+            components.day = day
+            return calendar.date(from: components) ?? Date()
+        }
+    }
     
     init(date: Date) {
         self._date = State(initialValue: date)
@@ -18,31 +30,24 @@ struct CalendarView :View {
     var body: some View {
         VStack(spacing: 20) {
             monthLabel(date.monthName)
-                .padding(.bottom, 20)
             weekLabels
-            Grid(horizontalSpacing: 0, verticalSpacing: 0) {
-                GridRow {
-                    dayButton(isEmpty: true)
-                    dayButton(isEmpty: true)
-                    dayButton(isEmpty: true)
-                    dayButton(num: 1, emoji: .tried)
-                    dayButton(num: 2, emoji: .success)
-                    dayButton(num: 3, emoji: .tried)
-                    dayButton(num: 4, emoji: .fail)
+            LazyVGrid(
+                columns: Array(repeating: GridItem(.flexible()), count: 7),
+                spacing: 0
+            ) {
+                let emptyDayCount = daysInMonth[0].weekdayNumber() - 1
+                if emptyDayCount != 0 {
+                    ForEach(1...emptyDayCount, id: \.self) { _ in
+                        emptyDay
+                    }
                 }
-                GridRow {
-                    dayButton(num: 5, emoji: .success)
-                    dayButton(num: 6, emoji: .tried)
-                    dayButton(num: 7, emoji: .fail)
-                    dayButton(num: 8, emoji: .tried)
-                    dayButton(num: 9, emoji: .success)
-                    dayButton(num: 10, emoji: .tried)
-                    dayButton(num: 11, emoji: .fail)
+                ForEach(daysInMonth, id: \.self) { date in
+                    dayButton(date: date)
                 }
             }
             Spacer()
         }
-        .padding(EdgeInsets(top: 30, leading: 20, bottom: 0, trailing: 20))
+        .padding(20)
     }
 }
 
@@ -82,88 +87,62 @@ extension CalendarView {
     }
     
     @ViewBuilder
-    private func dayButton(
-        isEmpty: Bool = false,
-        num: Int = 0,
-        emoji: Emoji = .none
-    ) -> some View {
-        VStack(spacing: 5) {
-            switch emoji {
-            case .none:
-                EmptyView()
-                    .frame(width: 30, height: 30)
-            default:
-                Image(emoji.rawValue)
-                    .resizable()
-                    .frame(width: 30, height: 30)
+    private func dayButton(date: Date, challenge: Challenge? = nil) -> some View {
+        Button {
+            selectedDay = date
+        } label: {
+            VStack(spacing: 5) {
+                if let challenge {
+                    Image(challenge.emoji.rawValue)
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                } else {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .frame(width: 30, height: 30)
+                }
+                Text("\(date.day)")
+                    .font(.system(size: 13))
+                    .foregroundColor(isSelectedDay(date) ? .whiteLabel : Color(uiColor: .label))
             }
-            Text("\(num)")
-                .font(.system(size: 13))
-                .foregroundColor(num == selectedDay?.day ? .whiteLabel : Color(uiColor: .label))
-        }
-        .opacity(isEmpty ? 0 : 1)
-        .padding(.vertical, 10)
-        .frame(maxWidth: .infinity)
-        .background {
-            RoundedRectangle(cornerRadius: 8)
-                .foregroundColor(num == selectedDay?.day ? .dim : .clear)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
+            .background {
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(isSelectedDay(date) ? .dim : .clear)
+            }
         }
     }
     
     @ViewBuilder
-    private func ndayButton(
-        isEmpty: Bool = false,
-        date: Date
-    ) -> some View {
+    private var emptyDay: some View {
         VStack(spacing: 5) {
-//            Image(emoji.rawValue)
-            Image("success")
-                .resizable()
+            Rectangle()
+                .foregroundColor(.clear)
                 .frame(width: 30, height: 30)
-            Text("\(date.day)")
+            Text("0")
                 .font(.system(size: 13))
         }
-        .opacity(isEmpty ? 0 : 1)
         .padding(.vertical, 10)
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 8)
-                .foregroundColor(.clear)
         }
+        .opacity(0)
     }
 }
 
-// MARK: - Calendar Methods
+// MARK: - Methods
 
 extension CalendarView {
-    private func setCalendarMonth(year: Int, month: Int) {
-        var dateComponent = DateComponents()
-        dateComponent.year = year
-        dateComponent.month = month
-        dateComponent.day = 1
-        Calendar.current.date(from: dateComponent)
-    }
-    
-    private func makeCalendar() {
-        
-    }
-    
-    private var daysInMonth: [Date] {
-        let calendar = Calendar.current
-        let range = calendar.range(of: .day, in: .month, for: date) ?? 1..<29
-        return range.map { day in
-            var components = DateComponents()
-            components.year = calendar.component(.year, from: date)
-            components.month = calendar.component(.month, from: date)
-            components.day = day
-            return calendar.date(from: components) ?? Date()
+    private func isSelectedDay(_ date: Date) -> Bool {
+        guard let selectedDay else { return false }
+        let diff = Calendar.current.dateComponents([.year, .month, .day], from: date, to: selectedDay)
+        if diff.year == 0 && diff.month == 0 && diff.day == 0 {
+            return true
+        } else {
+            return false
         }
-    }
-
-    private func monthName(for date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
-        return formatter.string(from: date)
     }
 }
 

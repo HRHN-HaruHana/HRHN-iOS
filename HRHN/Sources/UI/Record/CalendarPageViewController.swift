@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-final class UICalendarPageViewController: UIPageViewController {
+final class CalendarPageViewController: UIPageViewController {
     
     private let hc = UIHostingController(rootView: CalendarView(date: Date()))
     
@@ -19,7 +19,7 @@ final class UICalendarPageViewController: UIPageViewController {
     }
 }
 
-extension UICalendarPageViewController: CustomNavBar {
+extension CalendarPageViewController: CustomNavBar {
     private func setNavigationBar() {
         setNavigationBarAppLogo()
         setNavigationBarBackButton()
@@ -33,7 +33,7 @@ extension UICalendarPageViewController: CustomNavBar {
     }
 }
 
-extension UICalendarPageViewController {
+extension CalendarPageViewController {
     
     private func setUI() {
         setViewControllers([hc], direction: .forward, animated: false)
@@ -42,14 +42,14 @@ extension UICalendarPageViewController {
     }
 }
 
-extension UICalendarPageViewController: UIPageViewControllerDelegate {
+extension CalendarPageViewController: UIPageViewControllerDelegate {
     
     private func addMonths(_ months: Int, to date: Date) -> Date {
         return Calendar.current.date(byAdding: .month, value: months, to: date) ?? Date()
     }
 }
 
-extension UICalendarPageViewController: UIPageViewControllerDataSource {
+extension CalendarPageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }

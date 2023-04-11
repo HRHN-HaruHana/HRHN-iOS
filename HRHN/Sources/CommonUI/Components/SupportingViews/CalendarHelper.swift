@@ -27,6 +27,7 @@ extension Date {
     var monthName: String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = .autoupdatingCurrent
+        dateFormatter.locale = Locale(identifier: "US")
         dateFormatter.dateFormat = "MMM"
         return dateFormatter.string(from: self)
     }

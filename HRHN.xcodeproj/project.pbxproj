@@ -12,9 +12,8 @@
 		500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA075299740260012779B /* CustomHeightTabBar.swift */; };
 		5036129D29D69D660060A464 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036129C29D69D660060A464 /* CalendarView.swift */; };
 		503612A329D6B49A0060A464 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A229D6B49A0060A464 /* CalendarHelper.swift */; };
-		503612A729D6B6B90060A464 /* UICalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A629D6B6B90060A464 /* UICalendarPageViewController.swift */; };
+		503612A729D6B6B90060A464 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A629D6B6B90060A464 /* CalendarPageViewController.swift */; };
 		50370EED29B4AD02005C1D22 /* UIBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */; };
-		503E473529DE999D0096864F /* UICalendarPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503E473429DE999D0096864F /* UICalendarPageViewModel.swift */; };
 		503F1CF629AD9FF50056850F /* EditChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CF529AD9FF50056850F /* EditChallenge.swift */; };
 		5041F1D629B9B9B100D464D3 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041F1D529B9B9B100D464D3 /* ReviewView.swift */; };
 		5041F1D829B9BE2900D464D3 /* UIEmojiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041F1D729B9BE2900D464D3 /* UIEmojiButton.swift */; };
@@ -147,9 +146,8 @@
 		500CA075299740260012779B /* CustomHeightTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightTabBar.swift; sourceTree = "<group>"; };
 		5036129C29D69D660060A464 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		503612A229D6B49A0060A464 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
-		503612A629D6B6B90060A464 /* UICalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICalendarPageViewController.swift; sourceTree = "<group>"; };
+		503612A629D6B6B90060A464 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
 		50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBottomSheet.swift; sourceTree = "<group>"; };
-		503E473429DE999D0096864F /* UICalendarPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICalendarPageViewModel.swift; sourceTree = "<group>"; };
 		503F1CF529AD9FF50056850F /* EditChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallenge.swift; sourceTree = "<group>"; };
 		5041F1D529B9B9B100D464D3 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		5041F1D729B9BE2900D464D3 /* UIEmojiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmojiButton.swift; sourceTree = "<group>"; };
@@ -318,6 +316,18 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		5084027C29E524800076C27C /* LegacyRecord */ = {
+			isa = PBXGroup;
+			children = (
+				A791218129560B580044E652 /* RecordHeaderView.swift */,
+				A79121742955F1180044E652 /* ChallengeCellView.swift */,
+				A791217C2956037B0044E652 /* ChallengeCell.swift */,
+				A79121282950D2000044E652 /* RecordViewController.swift */,
+				A791217F2956066E0044E652 /* RecordViewModel.swift */,
+			);
+			path = LegacyRecord;
+			sourceTree = "<group>";
+		};
 		50A5FFF1295D784A00710B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,12 +491,8 @@
 		A7912183295611860044E652 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
-				A791218129560B580044E652 /* RecordHeaderView.swift */,
-				A79121742955F1180044E652 /* ChallengeCellView.swift */,
-				A791217C2956037B0044E652 /* ChallengeCell.swift */,
+				5084027C29E524800076C27C /* LegacyRecord */,
 				5036129C29D69D660060A464 /* CalendarView.swift */,
-				503612A629D6B6B90060A464 /* UICalendarPageViewController.swift */,
-				503E473429DE999D0096864F /* UICalendarPageViewModel.swift */,
 				503612A229D6B49A0060A464 /* CalendarHelper.swift */,
 			);
 			name = SupportingViews;
@@ -613,8 +619,7 @@
 			isa = PBXGroup;
 			children = (
 				A7912183295611860044E652 /* SupportingViews */,
-				A79121282950D2000044E652 /* RecordViewController.swift */,
-				A791217F2956066E0044E652 /* RecordViewModel.swift */,
+				503612A629D6B6B90060A464 /* CalendarPageViewController.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -861,7 +866,6 @@
 				50370EED29B4AD02005C1D22 /* UIBottomSheet.swift in Sources */,
 				507305F42996652500A20CA1 /* UINavigationBar+.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
-				503E473529DE999D0096864F /* UICalendarPageViewModel.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
 				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
 				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
@@ -879,7 +883,7 @@
 				A74C751C297534EE0046B1B1 /* I18N.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
-				503612A729D6B6B90060A464 /* UICalendarPageViewController.swift in Sources */,
+				503612A729D6B6B90060A464 /* CalendarPageViewController.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A7912189295775E00044E652 /* Observable.swift in Sources */,
 				5041F1D829B9BE2900D464D3 /* UIEmojiButton.swift in Sources */,
