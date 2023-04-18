@@ -38,16 +38,9 @@ extension UIColor {
     static let disabledLabel = appearanceColor(light: .grayB9, dark: .gray59)
     static let dim = appearanceColor(light: .gray54, dark: .grayD0)
     
-    static let point = resolvedColor(.red02)
+    static let point = resolvedColor(.red01)
     
     static let cellFill = appearanceColor(light: .grayFB, dark: .gray22)
     static let cellLabel = appearanceColor(light: .gray4A, dark: .grayD4)
     static let settingIconFill = resolvedColor(.grayC5)
-    
-    static let emojiRed = resolvedColor(.red01)
-    static let emojiYellow = resolvedColor(.yellow01)
-    static let emojiGreen = resolvedColor(.green01)
-    static let emojiSkyblue = resolvedColor(.skyblue01)
-    static let emojiBlue = resolvedColor(.blue01)
-    static let emojiPurple = resolvedColor(.purple01)
 }

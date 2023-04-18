@@ -26,15 +26,4 @@ enum CustomColor: String {
     case gray14
     
     case red01
-    case red02
-    
-    case yellow01
-    
-    case green01
-    
-    case skyblue01
-    
-    case blue01
-    
-    case purple01
 }

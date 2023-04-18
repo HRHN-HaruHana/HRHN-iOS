@@ -20,11 +20,4 @@ extension Color {
     static let cellFill = Color(UIColor.cellFill)
     static let cellLabel = Color(UIColor.cellLabel)
     static let settingIconFill = Color(UIColor.settingIconFill)
-    
-    static let emojiRed = Color(UIColor.emojiRed)
-    static let emojiYellow = Color(UIColor.emojiYellow)
-    static let emojiGreen = Color(UIColor.emojiGreen)
-    static let emojiSkyblue = Color(UIColor.emojiSkyblue)
-    static let emojiBlue = Color(UIColor.emojiBlue)
-    static let emojiPurple = Color(UIColor.emojiPurple)
 }
