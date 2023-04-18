@@ -23,7 +23,7 @@ class ReviewViewModel: ObservableObject {
     private let coreDataManager = CoreDataManager.shared
     
     private var todayViewController: TodayViewController?
-    private var recordViewController: RecordViewController?
+    private var recordViewController: ListViewController?
     
     let previousTab: Tab
     
@@ -31,7 +31,7 @@ class ReviewViewModel: ObservableObject {
         if let presentingViewController = rootViewController as? TodayViewController {
             self.todayViewController = presentingViewController
             self.previousTab = .today
-        } else if let presentingViewController = rootViewController as? RecordViewController {
+        } else if let presentingViewController = rootViewController as? ListViewController {
             self.recordViewController = presentingViewController
             self.previousTab = .record
         } else {

@@ -45,7 +45,7 @@ extension CustomNavBar where Self: UIViewController {
             target: self,
             action: action
         )
-        rightBarButton.tintColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.4)
+//        rightBarButton.tintColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.4)
         navigationItem.rightBarButtonItem = rightBarButton
     }
     

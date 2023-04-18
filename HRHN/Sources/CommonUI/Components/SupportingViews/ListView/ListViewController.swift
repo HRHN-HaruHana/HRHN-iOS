@@ -10,11 +10,11 @@ import SwiftUI
 import UIKit
 import SnapKit
 
-final class RecordViewController: UIViewController {
+final class ListViewController: UIViewController {
 
     // MARK: - Properties
     
-    private let viewModel: RecordViewModel
+    private let viewModel: ListViewModel
     private var cancelBag = Set<AnyCancellable>()
     
     private lazy var tableView: UITableView = { [weak self] in
@@ -22,7 +22,7 @@ final class RecordViewController: UIViewController {
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
         $0.register(ChallengeCell.self, forCellReuseIdentifier: "ChallengeCell")
-        $0.register(RecordHeaderView.self, forHeaderFooterViewReuseIdentifier: "RecordHeaderView")
+        $0.register(ListHeaderView.self, forHeaderFooterViewReuseIdentifier: "ListHeaderView")
         $0.delegate = self
         $0.dataSource = self
         return $0
@@ -45,7 +45,7 @@ final class RecordViewController: UIViewController {
     
     // MARK: - LifeCycle
     
-    init(with viewModel: RecordViewModel) {
+    init(with viewModel: ListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -70,7 +70,7 @@ final class RecordViewController: UIViewController {
 }
 
 // MARK: - Functions
-extension RecordViewController {
+extension ListViewController {
     
     @objc func settingsDidTap(_ sender: UIButton) {
         let settingVC = SettingViewController(viewModel: SettingViewModel())
@@ -80,7 +80,7 @@ extension RecordViewController {
 }
 
 // MARK: - UI Functions
-extension RecordViewController {
+extension ListViewController {
     private func setUI(){
         view.addSubviews(tableView)
         tableView.snp.makeConstraints {
@@ -91,7 +91,7 @@ extension RecordViewController {
 
 // MARK: - CustomNavBar
 
-extension RecordViewController: CustomNavBar {
+extension ListViewController: CustomNavBar {
     private func setNavigationBar() {
         setNavigationBarAppLogo()
         setNavigationBarBackButton()
@@ -102,7 +102,7 @@ extension RecordViewController: CustomNavBar {
 
 // MARK: - UITableViewDataSource
 
-extension RecordViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.challenges.count
@@ -120,7 +120,7 @@ extension RecordViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension RecordViewController: UITableViewDelegate {
+extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 109 + 20
@@ -131,7 +131,7 @@ extension RecordViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "RecordHeaderView") as? RecordHeaderView else {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ListHeaderView") as? ListHeaderView else {
             return UIView()
         }
         return headerView
@@ -147,7 +147,7 @@ extension RecordViewController: UITableViewDelegate {
 
 // MARK: - Bottom Sheet Gesture Selectors
 
-extension RecordViewController {
+extension ListViewController {
     @objc func bottomSheetDimmedViewDidTapped() {
         bottomSheet.dismissBottomSheet()
         viewModel.fetchPreviousChallenges()

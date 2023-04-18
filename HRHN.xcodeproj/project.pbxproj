@@ -10,8 +10,8 @@
 		500CA071299697320012779B /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA070299697320012779B /* CustomNavBar.swift */; };
 		500CA07329973A8F0012779B /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA07229973A8F0012779B /* Assets.swift */; };
 		500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA075299740260012779B /* CustomHeightTabBar.swift */; };
+		500FB4B529E932B9003567DA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FB4B429E932B9003567DA /* RecordViewController.swift */; };
 		5036129D29D69D660060A464 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036129C29D69D660060A464 /* CalendarView.swift */; };
-		503612A329D6B49A0060A464 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A229D6B49A0060A464 /* CalendarHelper.swift */; };
 		503612A729D6B6B90060A464 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A629D6B6B90060A464 /* CalendarPageViewController.swift */; };
 		50370EED29B4AD02005C1D22 /* UIBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */; };
 		503F1CF629AD9FF50056850F /* EditChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CF529AD9FF50056850F /* EditChallenge.swift */; };
@@ -73,7 +73,7 @@
 		A7912115294B1AAB0044E652 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912114294B1AAB0044E652 /* Challenge.swift */; };
 		A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912120294B1B440044E652 /* CoreDataManager.swift */; };
 		A79121272950D12A0044E652 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121262950D12A0044E652 /* TabBarController.swift */; };
-		A79121292950D2000044E652 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121282950D2000044E652 /* RecordViewController.swift */; };
+		A79121292950D2000044E652 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121282950D2000044E652 /* ListViewController.swift */; };
 		A791212B2950D5A20044E652 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212A2950D5A20044E652 /* UIView+.swift */; };
 		A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791212C2950D5B00044E652 /* UIStackView+.swift */; };
 		A79121482952259A0044E652 /* DeviceKit in Frameworks */ = {isa = PBXBuildFile; productRef = A79121472952259A0044E652 /* DeviceKit */; };
@@ -87,8 +87,8 @@
 		A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121742955F1180044E652 /* ChallengeCellView.swift */; };
 		A79121792955FBCE0044E652 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79121782955FBCE0044E652 /* CustomColor.swift */; };
 		A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217C2956037B0044E652 /* ChallengeCell.swift */; };
-		A79121802956066E0044E652 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217F2956066E0044E652 /* RecordViewModel.swift */; };
-		A791218229560B580044E652 /* RecordHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218129560B580044E652 /* RecordHeaderView.swift */; };
+		A79121802956066E0044E652 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791217F2956066E0044E652 /* ListViewModel.swift */; };
+		A791218229560B580044E652 /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A791218129560B580044E652 /* ListHeaderView.swift */; };
 		A7912186295775C00044E652 /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912185295775C00044E652 /* TodayViewModel.swift */; };
 		A7912189295775E00044E652 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7912188295775E00044E652 /* Observable.swift */; };
 		A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF5295C284200342CC8 /* SettingViewController.swift */; };
@@ -144,8 +144,8 @@
 		500CA070299697320012779B /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		500CA07229973A8F0012779B /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		500CA075299740260012779B /* CustomHeightTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightTabBar.swift; sourceTree = "<group>"; };
+		500FB4B429E932B9003567DA /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		5036129C29D69D660060A464 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		503612A229D6B49A0060A464 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		503612A629D6B6B90060A464 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
 		50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBottomSheet.swift; sourceTree = "<group>"; };
 		503F1CF529AD9FF50056850F /* EditChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallenge.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		A7912114294B1AAB0044E652 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		A7912120294B1B440044E652 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A79121262950D12A0044E652 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		A79121282950D2000044E652 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		A79121282950D2000044E652 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		A791212A2950D5A20044E652 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		A791212C2950D5B00044E652 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		A791214A295227230044E652 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
@@ -213,8 +213,8 @@
 		A79121742955F1180044E652 /* ChallengeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCellView.swift; sourceTree = "<group>"; };
 		A79121782955FBCE0044E652 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		A791217C2956037B0044E652 /* ChallengeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCell.swift; sourceTree = "<group>"; };
-		A791217F2956066E0044E652 /* RecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
-		A791218129560B580044E652 /* RecordHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordHeaderView.swift; sourceTree = "<group>"; };
+		A791217F2956066E0044E652 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		A791218129560B580044E652 /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		A7912185295775C00044E652 /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		A7912188295775E00044E652 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		A7ED3EF5295C284200342CC8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +282,27 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		500FB4B629E93DCD003567DA /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				A79121742955F1180044E652 /* ChallengeCellView.swift */,
+				A791217C2956037B0044E652 /* ChallengeCell.swift */,
+				A791218129560B580044E652 /* ListHeaderView.swift */,
+				A79121282950D2000044E652 /* ListViewController.swift */,
+				A791217F2956066E0044E652 /* ListViewModel.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		500FB4B729E93DD2003567DA /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				5036129C29D69D660060A464 /* CalendarView.swift */,
+				503612A629D6B6B90060A464 /* CalendarPageViewController.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
 		505B9539295999EA005F00C8 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,18 +335,6 @@
 				500CA07229973A8F0012779B /* Assets.swift */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		5084027C29E524800076C27C /* LegacyRecord */ = {
-			isa = PBXGroup;
-			children = (
-				A791218129560B580044E652 /* RecordHeaderView.swift */,
-				A79121742955F1180044E652 /* ChallengeCellView.swift */,
-				A791217C2956037B0044E652 /* ChallengeCell.swift */,
-				A79121282950D2000044E652 /* RecordViewController.swift */,
-				A791217F2956066E0044E652 /* RecordViewModel.swift */,
-			);
-			path = LegacyRecord;
 			sourceTree = "<group>";
 		};
 		50A5FFF1295D784A00710B5D /* Frameworks */ = {
@@ -491,9 +500,8 @@
 		A7912183295611860044E652 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
-				5084027C29E524800076C27C /* LegacyRecord */,
-				5036129C29D69D660060A464 /* CalendarView.swift */,
-				503612A229D6B49A0060A464 /* CalendarHelper.swift */,
+				500FB4B729E93DD2003567DA /* CalendarView */,
+				500FB4B629E93DCD003567DA /* ListView */,
 			);
 			name = SupportingViews;
 			path = ../../CommonUI/Components/SupportingViews;
@@ -619,7 +627,7 @@
 			isa = PBXGroup;
 			children = (
 				A7912183295611860044E652 /* SupportingViews */,
-				503612A629D6B6B90060A464 /* CalendarPageViewController.swift */,
+				500FB4B429E932B9003567DA /* RecordViewController.swift */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -841,6 +849,7 @@
 				A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */,
 				A791214D295228200044E652 /* CGFloat+.swift in Sources */,
 				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
+				500FB4B529E932B9003567DA /* RecordViewController.swift in Sources */,
 				5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */,
 				50F0C07A295EDDD6009D49B5 /* EditChallengeViewModel.swift in Sources */,
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,
@@ -852,7 +861,7 @@
 				A74C751A2975325B0046B1B1 /* String+.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				500CA071299697320012779B /* CustomNavBar.swift in Sources */,
-				A79121292950D2000044E652 /* RecordViewController.swift in Sources */,
+				A79121292950D2000044E652 /* ListViewController.swift in Sources */,
 				A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */,
 				500CA07329973A8F0012779B /* Assets.swift in Sources */,
 				505ECFFF29B6D37E00491C96 /* UIAlert.swift in Sources */,
@@ -868,7 +877,7 @@
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
 				50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */,
-				A791218229560B580044E652 /* RecordHeaderView.swift in Sources */,
+				A791218229560B580044E652 /* ListHeaderView.swift in Sources */,
 				507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */,
 				503F1CF629AD9FF50056850F /* EditChallenge.swift in Sources */,
 				50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */,
@@ -877,7 +886,7 @@
 				505ED00129B6F0D300491C96 /* UIAlertButton.swift in Sources */,
 				50A8D07629AF09160044545C /* UIDimmedView.swift in Sources */,
 				A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */,
-				A79121802956066E0044E652 /* RecordViewModel.swift in Sources */,
+				A79121802956066E0044E652 /* ListViewModel.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */,
 				A74C751C297534EE0046B1B1 /* I18N.swift in Sources */,
@@ -893,7 +902,6 @@
 				A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */,
 				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				5041F1D629B9B9B100D464D3 /* ReviewView.swift in Sources */,
-				503612A329D6B49A0060A464 /* CalendarHelper.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
 				50A50017295D951600710B5D /* URL+.swift in Sources */,

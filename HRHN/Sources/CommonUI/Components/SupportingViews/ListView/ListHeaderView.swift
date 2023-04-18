@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 
-final class RecordHeaderView: UITableViewHeaderFooterView {
+final class ListHeaderView: UITableViewHeaderFooterView {
     
     // MARK: - Properties
 
@@ -38,7 +38,7 @@ final class RecordHeaderView: UITableViewHeaderFooterView {
 
 // MARK: - UI Function
 
-extension RecordHeaderView {
+extension ListHeaderView {
 
     private func setUI() {
         contentView.backgroundColor = .background

@@ -111,7 +111,7 @@ class CoreDataManager {
     
     
     func getChallengeOf(_ date: Date) -> [Challenge] {
-        let currentTimeZoneDate = date.currentTimeZoneDate()
+        let currentTimeZoneDate = convertTimezone(date)
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
@@ -201,12 +201,16 @@ class CoreDataManager {
 }
 
 extension CoreDataManager {
+    
     private func isSameDay(date1: Date, date2: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
-        if diff.day == 0 {
+        if date1.year == date2.year && date1.month == date2.month && date1.day == date2.day {
             return true
         } else {
             return false
         }
+    }
+    
+    private func convertTimezone(_ date: Date) -> Date {
+        return Calendar.current.date(from: DateComponents.convertTime(date)) ?? Date()
     }
 }

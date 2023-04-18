@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RecordViewModel {
+final class ListViewModel {
     
     @Published var challenges: [Challenge] = []
     
