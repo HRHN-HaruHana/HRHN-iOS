@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		500CA071299697320012779B /* CustomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA070299697320012779B /* CustomNavBar.swift */; };
 		500CA07329973A8F0012779B /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA07229973A8F0012779B /* Assets.swift */; };
-		500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CA075299740260012779B /* CustomHeightTabBar.swift */; };
 		500FB4B529E932B9003567DA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FB4B429E932B9003567DA /* RecordViewController.swift */; };
 		5036129D29D69D660060A464 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036129C29D69D660060A464 /* CalendarView.swift */; };
 		503612A729D6B6B90060A464 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A629D6B6B90060A464 /* CalendarPageViewController.swift */; };
@@ -143,7 +142,6 @@
 /* Begin PBXFileReference section */
 		500CA070299697320012779B /* CustomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavBar.swift; sourceTree = "<group>"; };
 		500CA07229973A8F0012779B /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		500CA075299740260012779B /* CustomHeightTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeightTabBar.swift; sourceTree = "<group>"; };
 		500FB4B429E932B9003567DA /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		5036129C29D69D660060A464 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		503612A629D6B6B90060A464 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
@@ -272,14 +270,6 @@
 				506E58FC29B4E3740040FB41 /* Panable.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		500CA074299740100012779B /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				500CA075299740260012779B /* CustomHeightTabBar.swift */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		500FB4B629E93DCD003567DA /* ListView */ = {
@@ -438,7 +428,6 @@
 		A791210D294B1A230044E652 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				500CA074299740100012779B /* TabBar */,
 				50BD589C29580C35009F9556 /* Button */,
 				505ED00229B7259900491C96 /* Alert */,
 				50A8D07329AF09120044545C /* UIGrabber.swift */,
@@ -881,7 +870,6 @@
 				507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */,
 				503F1CF629AD9FF50056850F /* EditChallenge.swift in Sources */,
 				50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */,
-				500CA076299740260012779B /* CustomHeightTabBar.swift in Sources */,
 				506E58FD29B4E3740040FB41 /* Panable.swift in Sources */,
 				505ED00129B6F0D300491C96 /* UIAlertButton.swift in Sources */,
 				50A8D07629AF09160044545C /* UIDimmedView.swift in Sources */,
