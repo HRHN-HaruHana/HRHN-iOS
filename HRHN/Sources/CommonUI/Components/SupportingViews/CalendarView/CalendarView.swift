@@ -30,22 +30,22 @@ struct CalendarView :View {
     
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: 20) {
-                monthLabel(monthDate.monthName)
-                weekLabels
-                LazyVGrid(
-                    columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7),
-                    spacing: 0
-                ) {
-                    let emptyDayCount = daysInMonth[0].weekdayNumber() - 1
-                    if emptyDayCount != 0 {
-                        ForEach(1...emptyDayCount, id: \.self) { _ in
-                            emptyDay
-                        }
+            monthLabel(monthDate.monthName)
+            weekLabels
+                .padding(.top, 20.verticallyAdjusted)
+                .padding(.bottom, 10.verticallyAdjusted)
+            LazyVGrid(
+                columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7),
+                spacing: 0
+            ) {
+                let emptyDayCount = daysInMonth[0].weekdayNumber() - 1
+                if emptyDayCount != 0 {
+                    ForEach(1...emptyDayCount, id: \.self) { _ in
+                        emptyDay
                     }
-                    ForEach(daysInMonth, id: \.self) { date in
-                        dayButton(date: date)
-                    }
+                }
+                ForEach(daysInMonth, id: \.self) { date in
+                    dayButton(date: date)
                 }
             }
             Spacer()
@@ -54,7 +54,7 @@ struct CalendarView :View {
                     .font(.system(size: 20))
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
-                    .padding(20)
+                    .padding(20.verticallyAdjusted)
                     .background {
                         RoundedRectangle(cornerRadius: 16)
                             .foregroundColor(.cellFill)
@@ -62,7 +62,7 @@ struct CalendarView :View {
             }
             Spacer()
         }
-        .padding(20)
+        .padding(20.verticallyAdjusted)
         .onAppear {
             if isCurrentMonth() {
                 selectedDay = Date()
@@ -84,7 +84,7 @@ extension CalendarView {
     private func monthLabel(_ month: String) -> some View {
         HStack(alignment: .lastTextBaseline, spacing: 3) {
             Text(month)
-                .font(.system(size: 40))
+                .font(.system(size: 40.verticallyAdjusted))
                 .fontWeight(.bold)
             Image(Assets.dot)
         }
@@ -101,7 +101,7 @@ extension CalendarView {
     
     @ViewBuilder
     private var weekLabels: some View {
-        HStack {
+        HStack(spacing: 0) {
             weekdayLabel("SUN")
             weekdayLabel("MON")
             weekdayLabel("TUE")
@@ -124,21 +124,21 @@ extension CalendarView {
                 selectedChallenge = nil
             }
         } label: {
-            VStack(spacing: 5) {
+            VStack(spacing: 5.verticallyAdjusted) {
                 if challenge.count > 0 {
                     Image(challenge[0].emoji.rawValue)
                         .resizable()
-                        .frame(width: 30, height: 30)
+                        .frame(width: 30.verticallyAdjusted, height: 30.verticallyAdjusted)
                 } else {
                     Rectangle()
                         .foregroundColor(.clear)
-                        .frame(width: 30, height: 30)
+                        .frame(width: 30.verticallyAdjusted, height: 30.verticallyAdjusted)
                 }
                 Text("\(date.day)")
                     .font(.system(size: 13))
                     .foregroundColor(isSelectedDay(date) ? .whiteLabel : Color(uiColor: .label))
             }
-            .padding(.vertical, 10)
+            .padding(.vertical, 10.verticallyAdjusted)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 8)
@@ -152,11 +152,11 @@ extension CalendarView {
         VStack(spacing: 5) {
             Rectangle()
                 .foregroundColor(.clear)
-                .frame(width: 30, height: 30)
+                .frame(width: 30.verticallyAdjusted, height: 30.verticallyAdjusted)
             Text("0")
                 .font(.system(size: 13))
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 10.verticallyAdjusted)
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 8)
