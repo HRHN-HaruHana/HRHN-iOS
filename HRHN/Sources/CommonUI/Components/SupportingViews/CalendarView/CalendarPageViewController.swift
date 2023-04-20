@@ -44,14 +44,7 @@ extension CalendarPageViewController {
     }
 }
 
-extension CalendarPageViewController: UIPageViewControllerDelegate {
-    
-    private func addMonths(_ months: Int, to date: Date) -> Date {
-        return Calendar.current.date(byAdding: .month, value: months, to: date) ?? Date()
-    }
-}
-
-extension CalendarPageViewController: UIPageViewControllerDataSource {
+extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }
@@ -63,7 +56,18 @@ extension CalendarPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }
         let currentViewDate = hc.rootView.monthDate
-        let nextMonth = addMonths(1, to: currentViewDate)
+        if currentViewDate.isCurrentMonth() {
+            return nil
+        } else {
+            let nextMonth = addMonths(1, to: currentViewDate)
         return UIHostingController(rootView: CalendarView(monthDate: nextMonth))
+        }
+    }
+}
+
+extension CalendarPageViewController {
+    
+    private func addMonths(_ months: Int, to date: Date) -> Date {
+        return Calendar.current.date(byAdding: .month, value: months, to: date) ?? Date()
     }
 }

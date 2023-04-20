@@ -75,4 +75,17 @@ extension Date {
     func weekdayNumber() -> Int {
         return Calendar.current.component(.weekday, from: self)
     }
+    
+    /**
+     # isCurrentMonth
+     Date가 이번달인지 아닌지를 반환합니다.
+     */
+    func isCurrentMonth() -> Bool {
+        let today = Date()
+        if today.year == self.year && today.month == self.month {
+            return true
+        } else {
+            return false
+        }
+    }
 }
