@@ -10,7 +10,7 @@ import SwiftUI
 
 final class CalendarPageViewController: UIPageViewController {
     
-    private let hc = UIHostingController(rootView: CalendarView(calendarDate: Date()))
+    private let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: Date())))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,19 +31,19 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }
-        let currentViewDate = hc.rootView.calendarDate
+        let currentViewDate = hc.rootView.viewModel.calendarDate
         let lastMonth = addMonths(-1, to: currentViewDate)
-        return UIHostingController(rootView: CalendarView(calendarDate: lastMonth))
+        return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: lastMonth)))
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }
-        let currentViewDate = hc.rootView.calendarDate
+        let currentViewDate = hc.rootView.viewModel.calendarDate
         if currentViewDate.isCurrentMonth() {
             return nil
         } else {
             let nextMonth = addMonths(1, to: currentViewDate)
-            return UIHostingController(rootView: CalendarView(calendarDate: nextMonth))
+            return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: nextMonth)))
         }
     }
 }
