@@ -8,70 +8,52 @@
 import SwiftUI
 
 struct CalendarView :View {
-    @State var monthDate: Date
+    @State var calendarDate: Date
     @State private var selectedDay: Date?
     @State private var selectedChallenge: Challenge?
     
     private var daysInMonth: [Date] {
         let calendar = Calendar.current
-        let range = calendar.range(of: .day, in: .month, for: monthDate) ?? 1..<29
+        let range = calendar.range(of: .day, in: .month, for: calendarDate) ?? 1..<29
         return range.map { day in
             var components = DateComponents()
-            components.year = calendar.component(.year, from: monthDate)
-            components.month = calendar.component(.month, from: monthDate)
+            components.year = calendar.component(.year, from: calendarDate)
+            components.month = calendar.component(.month, from: calendarDate)
             components.day = day
             return calendar.date(from: components) ?? Date()
         }
     }
     
-    init(monthDate: Date) {
-        self._monthDate = State(initialValue: monthDate)
+    private enum Points {
+        static let margin: CGFloat =  20.verticallyAdjusted
+        static let mediumVerticalSpacing: CGFloat = 20.verticallyAdjusted
+        static let smallVerticalSpaicng: CGFloat = 10.verticallyAdjusted
+        static let calendarEmojiSize: CGFloat = 30.verticallyAdjusted
+        static let calendarButtonMargin: CGFloat = 10.verticallyAdjusted
+        static let dayButtonSpacing: CGFloat = 5.verticallyAdjusted
+    }
+    
+    init(calendarDate: Date) {
+        self._calendarDate = State(initialValue: calendarDate)
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            monthLabel(monthDate.monthName)
+            monthLabel(calendarDate.monthName)
+                .padding(.bottom, Points.mediumVerticalSpacing)
             weekLabels
-                .padding(.top, 20.verticallyAdjusted)
-                .padding(.bottom, 10.verticallyAdjusted)
-            LazyVGrid(
-                columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7),
-                spacing: 0
-            ) {
-                let emptyDayCount = daysInMonth[0].weekdayNumber() - 1
-                if emptyDayCount != 0 {
-                    ForEach(1...emptyDayCount, id: \.self) { _ in
-                        emptyDay
-                    }
-                }
-                ForEach(daysInMonth, id: \.self) { date in
-                    dayButton(date: date)
-                }
-            }
+                .padding(.bottom, Points.smallVerticalSpaicng)
+            calendar
             Spacer()
-            if let selectedChallenge {
-                Text("\(selectedChallenge.content) \(Image(Assets.dot))")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity)
-                    .padding(20.verticallyAdjusted)
-                    .background {
-                        RoundedRectangle(cornerRadius: 16)
-                            .foregroundColor(.cellFill)
-                    }
-            }
+            challengeCell
             Spacer()
         }
-        .padding(20.verticallyAdjusted)
+        .padding(Points.margin)
         .onAppear {
-            if isCurrentMonth() {
-                selectedDay = Date()
-            } else {
-                selectedDay = daysInMonth[0]
-                let firstDayChallenge = CoreDataManager.shared.getChallengeOf(daysInMonth[0])
-                guard firstDayChallenge.count > 0 else { return }
-                selectedChallenge = firstDayChallenge[0]
+            if selectedDay == nil {
+                setInitialSelectedDayAndChallenge()
             }
+            fetchChallengeCell()
         }
     }
 }
@@ -92,11 +74,21 @@ extension CalendarView {
     }
     
     @ViewBuilder
-    private func weekdayLabel(_ weekday: String) -> some View {
-        Text(weekday)
-            .font(.system(size: 15))
-            .fontWeight(.bold)
-            .frame(maxWidth: .infinity)
+    private var goToTodayButton: some View {
+        if !calendarDate.isCurrentMonth() {
+            Button {
+                let today = Date()
+                calendarDate = today
+                selectedDay = today
+                fetchChallengeCell()
+            } label: {
+                HStack(alignment: .top, spacing: 2) {
+                    Image(systemName: "arrow.uturn.right")
+                    Text("Today")
+                }
+                .foregroundColor(.cellLabel)
+            }
+        }
     }
     
     @ViewBuilder
@@ -113,32 +105,54 @@ extension CalendarView {
     }
     
     @ViewBuilder
+    private func weekdayLabel(_ weekday: String) -> some View {
+        Text(weekday)
+            .font(.system(size: 15))
+            .fontWeight(.bold)
+            .frame(maxWidth: .infinity)
+    }
+    
+    @ViewBuilder
+    private var calendar: some View {
+        LazyVGrid(
+            columns: Array(repeating: GridItem(.flexible(), spacing: 0), count: 7),
+            spacing: 0
+        ) {
+            let emptyDayCount = daysInMonth[0].weekdayNumber() - 1
+            if emptyDayCount != 0 {
+                ForEach(1...emptyDayCount, id: \.self) { _ in
+                    emptyDay
+                }
+            }
+            ForEach(daysInMonth, id: \.self) { date in
+                dayButton(date: date)
+            }
+        }
+    }
+    
+    @ViewBuilder
     private func dayButton(date: Date) -> some View {
-        let challenge = CoreDataManager.shared.getChallengeOf(date)
+        let challenge = CoreDataManager.shared.getChallengeOf(date).first
         
         Button {
             selectedDay = date
-            if challenge.count > 0 {
-                selectedChallenge = challenge[0]
-            } else {
-                selectedChallenge = nil
-            }
+            selectedChallenge = challenge
         } label: {
-            VStack(spacing: 5.verticallyAdjusted) {
-                if challenge.count > 0 {
-                    Image(challenge[0].emoji.rawValue)
+            VStack(spacing: Points.dayButtonSpacing) {
+                if let challenge {
+                    Image(challenge.emoji.rawValue)
                         .resizable()
-                        .frame(width: 30.verticallyAdjusted, height: 30.verticallyAdjusted)
+                        .frame(width: Points.calendarEmojiSize, height: Points.calendarEmojiSize)
                 } else {
                     Rectangle()
                         .foregroundColor(.clear)
-                        .frame(width: 30.verticallyAdjusted, height: 30.verticallyAdjusted)
+                        .frame(width: Points.calendarEmojiSize, height: Points.calendarEmojiSize)
                 }
                 Text("\(date.day)")
                     .font(.system(size: 13))
                     .foregroundColor(isSelectedDay(date) ? .whiteLabel : Color(uiColor: .label))
             }
-            .padding(.vertical, 10.verticallyAdjusted)
+            .padding(.vertical, Points.calendarButtonMargin)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 8)
@@ -149,19 +163,34 @@ extension CalendarView {
     
     @ViewBuilder
     private var emptyDay: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: Points.dayButtonSpacing) {
             Rectangle()
                 .foregroundColor(.clear)
-                .frame(width: 30.verticallyAdjusted, height: 30.verticallyAdjusted)
+                .frame(width: Points.calendarEmojiSize, height: Points.calendarEmojiSize)
             Text("0")
                 .font(.system(size: 13))
         }
-        .padding(.vertical, 10.verticallyAdjusted)
+        .padding(.vertical, Points.calendarButtonMargin)
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 8)
         }
         .opacity(0)
+    }
+    
+    @ViewBuilder
+    private var challengeCell: some View {
+        if let selectedChallenge {
+            Text("\(selectedChallenge.content) \(Image(Assets.dot))")
+                .font(.system(size: 20))
+                .fontWeight(.bold)
+                .frame(maxWidth: .infinity)
+                .padding(Points.margin)
+                .background {
+                    RoundedRectangle(cornerRadius: 16)
+                        .foregroundColor(.cellFill)
+                }
+        }
     }
 }
 
@@ -169,18 +198,28 @@ extension CalendarView {
 
 extension CalendarView {
     
-    private func isSelectedDay(_ date: Date) -> Bool {
-        guard let selectedDay else { return false }
-        if date.year == selectedDay.year && date.month == selectedDay.month && date.day == selectedDay.day {
-            return true
+    private func setInitialSelectedDayAndChallenge() {
+        if calendarDate.isCurrentMonth() {
+            let today = Date()
+            let todayChallenge = CoreDataManager.shared.getChallengeOf(today).first
+            selectedDay = today
+            selectedChallenge = todayChallenge
         } else {
-            return false
+            let firstDay = daysInMonth[0]
+            let firstDayChallenge = CoreDataManager.shared.getChallengeOf(firstDay).first
+            selectedDay = firstDay
+            selectedChallenge = firstDayChallenge
         }
     }
     
-    private func isCurrentMonth() -> Bool {
-        let today = Date()
-        if today.year == monthDate.year && today.month == monthDate.month {
+    private func fetchChallengeCell() {
+        guard let selectedDay else { return }
+        selectedChallenge = CoreDataManager.shared.getChallengeOf(selectedDay).first
+    }
+    
+    private func isSelectedDay(_ date: Date) -> Bool {
+        guard let selectedDay else { return false }
+        if date.year == selectedDay.year && date.month == selectedDay.month && date.day == selectedDay.day {
             return true
         } else {
             return false
@@ -194,6 +233,6 @@ struct CalendarView_Previews: PreviewProvider {
     static let date = Date()
     
     static var previews: some View {
-        CalendarView(monthDate: date)
+        CalendarView(calendarDate: date)
     }
 }
