@@ -9,7 +9,7 @@ import UIKit
 
 final class RecordViewController: UIViewController {
     
-    private let calendarViewController = CalendarPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    private let calendarViewController = CalendarPageViewController(viewModel: CalendarPageViewModel())
     
     private let listViewController = ListViewController(with: ListViewModel())
     

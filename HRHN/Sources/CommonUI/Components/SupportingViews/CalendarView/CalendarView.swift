@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     
-    let viewModel: CalendarViewModel
+    @ObservedObject var viewModel: CalendarViewModel
     
     private enum calendarViewCGFloat {
         static let margin: CGFloat =  20.verticallyAdjusted
@@ -26,8 +26,11 @@ struct CalendarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            monthLabel(viewModel.calendarDate.monthName)
-                .padding(.bottom, calendarViewCGFloat.mediumVerticalSpacing)
+            HStack(alignment: .lastTextBaseline) {
+                monthLabel(viewModel.calendarDate.monthName)
+                todayButton
+            }
+            .padding(.bottom, calendarViewCGFloat.mediumVerticalSpacing)
             weekLabels
                 .padding(.bottom, calendarViewCGFloat.smallVerticalSpaicng)
             calendar
@@ -41,6 +44,9 @@ struct CalendarView: View {
                 viewModel.setInitialSelectedDayAndChallenge()
             }
             viewModel.fetchChallengeCell()
+        }
+        .onChange(of: viewModel.selectedDay) { _ in
+            viewModel.fetchSelectedDayState()
         }
     }
 }
@@ -58,6 +64,41 @@ extension CalendarView {
             Image(Assets.dot)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
+    @ViewBuilder
+    private var todayButton: some View {
+        switch viewModel.selectedDayState {
+        case .currentMonth:
+            Button {
+                viewModel.goToToday()
+            } label: {
+                todayButtonLabel
+            }
+        case .otherMonth:
+            Button {
+                viewModel.goToCurrentMonth()
+            } label: {
+                todayButtonLabel
+            }
+        default:
+            EmptyView()
+        }
+    }
+    
+    @ViewBuilder
+    private var todayButtonLabel: some View {
+        HStack(spacing: 2) {
+            Image(systemName: "arrow.uturn.forward")
+            VStack(spacing: 0) {
+                Rectangle()
+                    .foregroundColor(.clear)
+                    .frame(width: 1, height: 2)
+                Text("Today")
+            }
+        }
+        .font(.system(size: 15))
+        .foregroundColor(.cellLabel)
     }
     
     @ViewBuilder
@@ -165,10 +206,10 @@ extension CalendarView {
 
 // MARK: - Previews
 
-struct CalendarView_Previews: PreviewProvider {
-    static let date = Date()
-    
-    static var previews: some View {
-        CalendarView(viewModel: CalendarViewModel(calendarDate: date))
-    }
-}
+//struct CalendarView_Previews: PreviewProvider {
+//    static let date = Date()
+//
+//    static var previews: some View {
+//        CalendarView(viewModel: CalendarViewModel(calendarDate: date))
+//    }
+//}

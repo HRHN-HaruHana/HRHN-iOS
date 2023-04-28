@@ -88,4 +88,17 @@ extension Date {
             return false
         }
     }
+    
+    /**
+     # isToday
+     Date가 오늘인지 아닌지를 반환합니다.
+     */
+    func isToday() -> Bool {
+        let today = Date()
+        if today.year == self.year && today.month == self.month && today.day == self.day {
+            return true
+        } else {
+            return false
+        }
+    }
 }

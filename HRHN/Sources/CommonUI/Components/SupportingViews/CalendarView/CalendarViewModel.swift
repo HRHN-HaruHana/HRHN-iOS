@@ -10,8 +10,11 @@ import Foundation
 final class CalendarViewModel: ObservableObject {
     
     let calendarDate: Date
+    let presentingVC: CalendarPageViewController
+    
     @Published var selectedDay: Date?
     @Published var selectedChallenge: Challenge?
+    @Published var selectedDayState: SelectedDayState = .undefined
     
     var daysInMonth: [Date] {
         let calendar = Calendar.current
@@ -25,8 +28,13 @@ final class CalendarViewModel: ObservableObject {
         }
     }
     
-    init(calendarDate: Date) {
+    enum SelectedDayState {
+        case today, currentMonth, otherMonth, undefined
+    }
+    
+    init(calendarDate: Date, presentingVC: CalendarPageViewController) {
         self.calendarDate = calendarDate
+        self.presentingVC = presentingVC
     }
 }
 
@@ -51,6 +59,17 @@ extension CalendarViewModel {
         selectedChallenge = CoreDataManager.shared.getChallengeOf(selectedDay).first
     }
     
+    func fetchSelectedDayState() {
+        guard let selectedDay else { return }
+        if selectedDay.isToday() {
+            selectedDayState = .today
+        } else if selectedDay.isCurrentMonth() {
+            selectedDayState = .currentMonth
+        } else {
+            selectedDayState = .otherMonth
+        }
+    }
+    
     func isSelectedDay(_ date: Date) -> Bool {
         guard let selectedDay else { return false }
         if date.year == selectedDay.year && date.month == selectedDay.month && date.day == selectedDay.day {
@@ -58,5 +77,13 @@ extension CalendarViewModel {
         } else {
             return false
         }
+    }
+    
+    func goToCurrentMonth() {
+        presentingVC.goToCurrentMonth()
+    }
+    
+    func goToToday() {
+        selectedDay = Date()
     }
 }

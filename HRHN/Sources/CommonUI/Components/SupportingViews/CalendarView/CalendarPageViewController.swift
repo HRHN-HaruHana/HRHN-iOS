@@ -10,7 +10,16 @@ import SwiftUI
 
 final class CalendarPageViewController: UIPageViewController {
     
-    private let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: Date())))
+    private let viewModel: CalendarPageViewModel
+    
+    init(viewModel: CalendarPageViewModel) {
+        self.viewModel = viewModel
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +30,10 @@ final class CalendarPageViewController: UIPageViewController {
 extension CalendarPageViewController {
     
     private func setUI() {
+        let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(
+            calendarDate: Date(),
+            presentingVC: self
+        )))
         setViewControllers([hc], direction: .forward, animated: false)
         dataSource = self
         delegate = self
@@ -32,8 +45,11 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }
         let currentViewDate = hc.rootView.viewModel.calendarDate
-        let lastMonth = addMonths(-1, to: currentViewDate)
-        return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: lastMonth)))
+        let lastMonth = viewModel.addMonths(-1, to: currentViewDate)
+        return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(
+            calendarDate: lastMonth,
+            presentingVC: self
+        )))
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
@@ -42,15 +58,22 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
         if currentViewDate.isCurrentMonth() {
             return nil
         } else {
-            let nextMonth = addMonths(1, to: currentViewDate)
-            return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: nextMonth)))
+            let nextMonth = viewModel.addMonths(1, to: currentViewDate)
+            return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(
+                calendarDate: nextMonth,
+                presentingVC: self
+            )))
         }
     }
 }
 
 extension CalendarPageViewController {
     
-    private func addMonths(_ months: Int, to date: Date) -> Date {
-        return Calendar.current.date(byAdding: .month, value: months, to: date) ?? Date()
+    func goToCurrentMonth() {
+        let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(
+            calendarDate: Date(),
+            presentingVC: self
+        )))
+        setViewControllers([hc], direction: .forward, animated: true)
     }
 }
