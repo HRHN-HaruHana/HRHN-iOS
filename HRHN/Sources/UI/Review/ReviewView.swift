@@ -22,7 +22,9 @@ final class ReviewView: UIView {
         switch viewModel.previousTab {
         case .today:
             $0.text = I18N.emojiTitleAdd
-        case .record:
+        case .list:
+            $0.text = I18N.emojiTitleRecord
+        case .calendar:
             $0.text = I18N.emojiTitleRecord
         default:
             break
@@ -34,6 +36,7 @@ final class ReviewView: UIView {
         $0.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         $0.textColor = .cellLabel
         $0.textAlignment = .center
+        $0.numberOfLines = 0
         return $0
     }(UILabel())
     

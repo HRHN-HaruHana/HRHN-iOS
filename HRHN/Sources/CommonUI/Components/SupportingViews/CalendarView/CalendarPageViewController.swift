@@ -12,6 +12,21 @@ final class CalendarPageViewController: UIPageViewController {
     
     private let viewModel: CalendarPageViewModel
     
+    lazy var bottomSheet: UIBottomSheet = {
+        $0.bottomSheetHeight = 336
+        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(bottomSheetDimmedViewDidTapped)
+        )
+        $0.bottomSheetPanGestureRecognizer = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(bottomSheetDidPanned)
+        )
+        return $0
+    }(UIBottomSheet())
+
+    lazy var bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: self))
+    
     init(viewModel: CalendarPageViewModel) {
         self.viewModel = viewModel
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -24,6 +39,8 @@ final class CalendarPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
+        bottomSheet.setLayout()
+        bottomSheet.content = bottomSheetContentView
     }
 }
 
@@ -68,6 +85,15 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
 }
 
 extension CalendarPageViewController {
+    
+    @objc private func bottomSheetDidPanned(sender: UIPanGestureRecognizer) {
+        bottomSheet.panGestureHandler(sender: sender)
+    }
+    
+    @objc func bottomSheetDimmedViewDidTapped() {
+        bottomSheet.dismissBottomSheet()
+        viewModel.fetchHostingController(self: self)
+    }
     
     func goToCurrentMonth() {
         let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(

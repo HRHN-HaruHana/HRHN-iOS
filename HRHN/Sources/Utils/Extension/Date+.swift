@@ -101,4 +101,13 @@ extension Date {
             return false
         }
     }
+    
+    func isTodayOrFuture() -> Bool {
+        let today = Date()
+        if self.isToday() || self > today {
+            return true
+        } else {
+            return false
+        }
+    }
 }

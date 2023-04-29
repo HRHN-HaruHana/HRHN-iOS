@@ -54,7 +54,7 @@ extension CalendarViewModel {
         }
     }
     
-    func fetchChallengeCell() {
+    func fetchSelectedChallenge() {
         guard let selectedDay else { return }
         selectedChallenge = CoreDataManager.shared.getChallengeOf(selectedDay).first
     }
@@ -85,5 +85,10 @@ extension CalendarViewModel {
     
     func goToToday() {
         selectedDay = Date()
+    }
+    
+    func presentBottomSheet() {
+        presentingVC.bottomSheetContentView.viewModel?.challenge = selectedChallenge
+        presentingVC.bottomSheet.presentBottomSheet()
     }
 }

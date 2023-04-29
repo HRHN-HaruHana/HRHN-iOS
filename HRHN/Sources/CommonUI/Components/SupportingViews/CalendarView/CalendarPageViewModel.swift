@@ -17,4 +17,9 @@ extension CalendarPageViewModel {
     func addMonths(_ months: Int, to date: Date) -> Date {
         return Calendar.current.date(byAdding: .month, value: months, to: date) ?? Date()
     }
+    
+    func fetchHostingController(self: UIPageViewController) {
+        guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
+        hc.rootView.viewModel.fetchSelectedChallenge()
+    }
 }

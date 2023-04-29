@@ -43,9 +43,10 @@ struct CalendarView: View {
             if viewModel.selectedDay == nil {
                 viewModel.setInitialSelectedDayAndChallenge()
             }
-            viewModel.fetchChallengeCell()
+            viewModel.fetchSelectedChallenge()
         }
         .onChange(of: viewModel.selectedDay) { _ in
+            viewModel.fetchSelectedChallenge()
             viewModel.fetchSelectedDayState()
         }
     }
@@ -199,6 +200,12 @@ extension CalendarView {
                 .background {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.cellFill)
+                }
+                .onTapGesture {
+                    guard let selectedDay = viewModel.selectedDay else { return }
+                    if !selectedDay.isTodayOrFuture() {
+                        viewModel.presentBottomSheet()
+                    }
                 }
         }
     }

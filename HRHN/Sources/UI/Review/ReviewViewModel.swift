@@ -12,7 +12,8 @@ class ReviewViewModel: ObservableObject {
     
     enum Tab {
         case today
-        case record
+        case list
+        case calendar
         case storage
         case unknown
     }
@@ -24,6 +25,7 @@ class ReviewViewModel: ObservableObject {
     
     private var todayViewController: TodayViewController?
     private var recordViewController: ListViewController?
+    private var calendarPageViewController: CalendarPageViewController?
     
     let previousTab: Tab
     
@@ -33,7 +35,10 @@ class ReviewViewModel: ObservableObject {
             self.previousTab = .today
         } else if let presentingViewController = rootViewController as? ListViewController {
             self.recordViewController = presentingViewController
-            self.previousTab = .record
+            self.previousTab = .list
+        } else if let presentingViewController = rootViewController as? CalendarPageViewController {
+            self.calendarPageViewController = presentingViewController
+            self.previousTab = .calendar
         } else {
             self.previousTab = .unknown
         }
@@ -56,5 +61,6 @@ class ReviewViewModel: ObservableObject {
         todayViewController?.bottomSheetEmojiDidSelected()
         todayViewController?.addState()
         recordViewController?.bottomSheetDimmedViewDidTapped()
+        calendarPageViewController?.bottomSheetDimmedViewDidTapped()
     }
 }
