@@ -144,6 +144,15 @@ extension CalendarView {
     @ViewBuilder
     private func dayButton(date: Date) -> some View {
         let challenge = CoreDataManager.shared.getChallengeOf(date).first
+        var dateLabelColor: Color {
+            if viewModel.isSelectedDay(date) {
+                return .reverseLabel
+            } else if date.isFuture() {
+                return Color(uiColor: .tertiaryLabel)
+            } else {
+                return Color(uiColor: .label)
+            }
+        }
         
         Button {
             viewModel.selectedDay = date
@@ -161,7 +170,7 @@ extension CalendarView {
                 }
                 Text("\(date.day)")
                     .font(.system(size: 13))
-                    .foregroundColor(viewModel.isSelectedDay(date) ? .whiteLabel : Color(uiColor: .label))
+                    .foregroundColor(dateLabelColor)
             }
             .padding(.vertical, calendarViewCGFloat.calendarButtonMargin)
             .frame(maxWidth: .infinity)
@@ -203,7 +212,7 @@ extension CalendarView {
                 }
                 .onTapGesture {
                     guard let selectedDay = viewModel.selectedDay else { return }
-                    if !selectedDay.isTodayOrFuture() {
+                    if !selectedDay.isToday() || !selectedDay.isFuture() {
                         viewModel.presentBottomSheet()
                     }
                 }
