@@ -33,6 +33,7 @@ extension UIColor {
     static let background = appearanceColor(light: .white, dark: .gray14)
     
     static let whiteLabel = resolvedColor(.white)
+    static let reverseLabel = appearanceColor(light: .white, dark: .black)
     
     static let disabled = appearanceColor(light: .grayEF, dark: .gray1D)
     static let disabledLabel = appearanceColor(light: .grayB9, dark: .gray59)

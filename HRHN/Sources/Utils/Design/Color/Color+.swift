@@ -11,6 +11,7 @@ extension Color {
     static let background = Color(UIColor.background)
     
     static let whiteLabel = Color(UIColor.whiteLabel)
+    static let reverseLabel = Color(UIColor.reverseLabel)
     
     static let disabled = Color(UIColor.disabled)
     static let dim = Color(UIColor.dim)
