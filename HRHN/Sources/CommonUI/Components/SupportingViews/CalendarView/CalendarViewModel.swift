@@ -89,6 +89,7 @@ extension CalendarViewModel {
     
     func presentBottomSheet() {
         presentingVC.bottomSheetContentView.viewModel?.challenge = selectedChallenge
+        presentingVC.bottomSheetContentView.viewModel?.selectedEmoji = selectedChallenge?.emoji
         presentingVC.bottomSheet.presentBottomSheet()
     }
 }
