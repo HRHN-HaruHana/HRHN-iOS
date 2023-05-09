@@ -78,6 +78,35 @@ final class ReviewView: UIView {
         return $0
     }(UIStackView())
     
+    private lazy var contextMenuButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(
+            font: UIFont.systemFont(ofSize: 13, weight: .medium)
+        )
+        $0.setImage(UIImage(systemName: "ellipsis", withConfiguration: imageConfig), for: .normal)
+        
+        $0.configuration?.baseBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+        $0.configuration?.baseForegroundColor = .cellLabel
+        $0.configuration?.cornerStyle = .capsule
+        
+        let storageAction = UIAction(
+            title: "내용 수정",
+            image: UIImage(systemName: "pencil")
+        ) { _ in
+            // TODO: connect storage view
+        }
+        let deleteAction = UIAction(
+            title: "삭제",
+            image: UIImage(systemName: "trash"),
+            attributes: .destructive
+        ) { _ in
+            // TODO: Delete Challenge
+        }
+        let menu = UIMenu(children: [storageAction, deleteAction])
+        $0.menu = menu
+        $0.showsMenuAsPrimaryAction = true
+        return $0
+    }(UIButton(configuration: .filled()))
+    
     // MARK: - Life Cycle
 
     init(viewModel: ReviewViewModel) {
@@ -163,5 +192,14 @@ final class ReviewView: UIView {
             triedButton,
             failButton
         )
+        
+        if viewModel.previousTab == .calendar {
+            addSubview(contextMenuButton)
+            contextMenuButton.snp.makeConstraints {
+                $0.width.height.equalTo(26)
+                $0.trailing.equalToSuperview()
+                $0.centerY.equalTo(titleLable)
+            }
+        }
     }
 }
