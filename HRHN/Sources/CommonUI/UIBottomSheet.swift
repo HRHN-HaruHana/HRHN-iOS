@@ -48,23 +48,21 @@ final class UIBottomSheet: UIView {
         $0.clipsToBounds = true
         return $0
     }(UIView())
+    
+    private let uiWindow: UIWindow = {
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        guard let window = windowScene?.windows.first else { return UIWindow() }
+        return window
+    }()
 }
 
 // MARK: UI Methods
 
 extension UIBottomSheet {
     
-    private func getUIWindow() -> UIWindow {
-        let scenes = UIApplication.shared.connectedScenes
-        let windowScene = scenes.first as? UIWindowScene
-        guard let window = windowScene?.windows.first else { return UIWindow() }
-        return window
-    }
-    
     func setLayout() {
-        let window = getUIWindow()
-        
-        window.addSubviews(
+        uiWindow.addSubviews(
             dimmedView,
             bottomSheetView
         )
@@ -76,7 +74,7 @@ extension UIBottomSheet {
         bottomSheetView.snp.makeConstraints {
             $0.height.equalTo(bottomSheetHeight)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(window.snp.bottom)
+            $0.top.equalTo(uiWindow.snp.bottom)
         }
         
         bottomSheetView.addSubviews(
@@ -103,39 +101,35 @@ extension UIBottomSheet {
     }
     
     func presentBottomSheet() {
-        let window = getUIWindow()
-        
-        window.rootViewController?.navigationController?.navigationBar.isUserInteractionEnabled = false
-        window.rootViewController?.tabBarController?.tabBar.isUserInteractionEnabled = false
+        uiWindow.rootViewController?.navigationController?.navigationBar.isUserInteractionEnabled = false
+        uiWindow.rootViewController?.tabBarController?.tabBar.isUserInteractionEnabled = false
         
         bottomSheetView.layer.opacity = 1
         bottomSheetView.snp.remakeConstraints {
             $0.height.equalTo(bottomSheetHeight)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(window.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.bottom.equalTo(uiWindow.safeAreaLayoutGuide.snp.bottom).inset(20)
         }
         
         UIView.animate(withDuration: 0.3) {
-            window.layoutIfNeeded()
+            self.uiWindow.layoutIfNeeded()
             self.dimmedView.layer.opacity = 0.3
             self.dimmedView.isUserInteractionEnabled = true
         }
     }
     
     func dismissBottomSheet() {
-        let window = getUIWindow()
-
-        window.rootViewController?.navigationController?.navigationBar.isUserInteractionEnabled = true
-        window.rootViewController?.tabBarController?.tabBar.isUserInteractionEnabled = true
+        uiWindow.rootViewController?.navigationController?.navigationBar.isUserInteractionEnabled = true
+        uiWindow.rootViewController?.tabBarController?.tabBar.isUserInteractionEnabled = true
         
         bottomSheetView.snp.remakeConstraints {
             $0.height.equalTo(bottomSheetHeight)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalTo(window.snp.bottom)
+            $0.top.equalTo(uiWindow.snp.bottom)
         }
 
         UIView.animate(withDuration: 0.3) {
-            window.layoutIfNeeded()
+            self.uiWindow.layoutIfNeeded()
             self.dimmedView.isUserInteractionEnabled = false
             self.dimmedView.layer.opacity = 0
         }
