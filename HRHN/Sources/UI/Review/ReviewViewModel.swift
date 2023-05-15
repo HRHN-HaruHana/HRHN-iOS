@@ -5,7 +5,7 @@
 //  Created by 민채호 on 2022/12/27.
 //
 
-import Foundation
+import Combine
 import UIKit
 
 class ReviewViewModel: ObservableObject {
@@ -22,26 +22,12 @@ class ReviewViewModel: ObservableObject {
     @Published var challenge: Challenge?
     
     private let coreDataManager = CoreDataManager.shared
-    
-    private var todayViewController: TodayViewController?
-    private var recordViewController: ListViewController?
-    private var calendarPageViewController: CalendarPageViewController?
+    let willDismissBottomSheet = PassthroughSubject<Void, Never>()
     
     let previousTab: Tab
     
-    init(from rootViewController: UIViewController) {
-        if let presentingViewController = rootViewController as? TodayViewController {
-            self.todayViewController = presentingViewController
-            self.previousTab = .today
-        } else if let presentingViewController = rootViewController as? ListViewController {
-            self.recordViewController = presentingViewController
-            self.previousTab = .list
-        } else if let presentingViewController = rootViewController as? CalendarPageViewController {
-            self.calendarPageViewController = presentingViewController
-            self.previousTab = .calendar
-        } else {
-            self.previousTab = .unknown
-        }
+    init(from tab: Tab) {
+        self.previousTab = tab
     }
     
     func updateChallenge() {
@@ -58,9 +44,10 @@ class ReviewViewModel: ObservableObject {
     
     func didEmojiClicked() {
         updateChallenge()
-        todayViewController?.bottomSheetEmojiDidSelected()
-        todayViewController?.addState()
-        recordViewController?.bottomSheetDimmedViewDidTapped()
-        calendarPageViewController?.bottomSheetDimmedViewDidTapped()
+        willDismissBottomSheet.send()
+//        todayViewController?.bottomSheetEmojiDidSelected()
+//        todayViewController?.addState()
+//        listViewController?.bottomSheetDimmedViewDidTapped()
+//        calendarPageViewController?.bottomSheetDimmedViewDidTapped()
     }
 }

@@ -5,11 +5,15 @@
 //  Created by 민채호 on 2023/03/31.
 //
 
+import Combine
 import SwiftUI
 
 struct CalendarView: View {
     
     @ObservedObject var viewModel: CalendarViewModel
+    let willPresentBottomSheet = PassthroughSubject<Void, Never>()
+    let fetchBottomSheetContent = PassthroughSubject<Challenge?, Never>()
+    let goToCurrentMonth = PassthroughSubject<Void, Never>()
     
     private enum calendarViewCGFloat {
         static let margin: CGFloat =  20.verticallyAdjusted
@@ -78,7 +82,7 @@ extension CalendarView {
             }
         case .otherMonth:
             Button {
-                viewModel.goToCurrentMonth()
+                goToCurrentMonth.send()
             } label: {
                 todayButtonLabel
             }
@@ -211,9 +215,10 @@ extension CalendarView {
                         .foregroundColor(.cellFill)
                 }
                 .onTapGesture {
+                    willPresentBottomSheet.send()
                     guard let selectedDay = viewModel.selectedDay else { return }
                     if !selectedDay.isToday() || !selectedDay.isFuture() {
-                        viewModel.presentBottomSheet()
+                        fetchBottomSheetContent.send(viewModel.selectedChallenge)
                     }
                 }
         }

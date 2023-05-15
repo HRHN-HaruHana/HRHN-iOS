@@ -9,10 +9,13 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
+    private let dimmedView = UIDimmedView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
-        setUpTabBar()
+        setLayout()
+        setTabBar()
     }
     
     private func setUI() {
@@ -29,7 +32,14 @@ class TabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = UIColor.tertiaryLabel
     }
     
-    private func setUpTabBar() {
+    private func setLayout() {
+        view.addSubview(dimmedView)
+        dimmedView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    private func setTabBar() {
         let todayVC = TodayViewController(viewModel: TodayViewModel())
         let firstTab = UINavigationController(rootViewController: todayVC)
         firstTab.tabBarItem = UITabBarItem(
@@ -46,16 +56,18 @@ class TabBarController: UITabBarController {
             selectedImage: UIImage(named: Assets.TabbarIcons.recordSelected.rawValue)
         )
         
-        let storageVC = UIViewController() // TODO: Change to StorageViewController
-        let thirdTab = UINavigationController(rootViewController: storageVC)
-        thirdTab.tabBarItem = UITabBarItem(
-            title: I18N.tabStorage,
-            image: UIImage(named: Assets.TabbarIcons.storageUnselected.rawValue),
-            selectedImage: UIImage(named: Assets.TabbarIcons.storageSelected.rawValue)
-        )
-        
-        viewControllers = [firstTab, secondTab, thirdTab]
-        
+        viewControllers = [firstTab, secondTab]
     }
 
+    func dim() {
+        UIView.animate(withDuration: 0.3) {
+            self.dimmedView.layer.opacity = 0.2
+        }
+    }
+    
+    func brighten() {
+        UIView.animate(withDuration: 0.3) {
+            self.dimmedView.layer.opacity = 0
+        }
+    }
 }

@@ -112,7 +112,6 @@ final class ReviewView: UIView {
     init(viewModel: ReviewViewModel) {
         super.init(frame: .zero)
         self.viewModel = viewModel
-        setUI()
         setLayout()
         bind()
     }
@@ -130,6 +129,7 @@ final class ReviewView: UIView {
                 self?.challengeLabel.text = $0?.content
             }
             .store(in: &cancelBag)
+        
         viewModel.$selectedEmoji
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -153,13 +153,27 @@ final class ReviewView: UIView {
                 }
             }
             .store(in: &cancelBag)
+        
+        viewModel.willDismissBottomSheet
+            .sink { [weak self] in
+                guard let bottomSheetVC = self?.superview?.superview?.superview?.next as? BottomSheetController else { return }
+                bottomSheetVC.dismissBottomSheet()
+//                if let vc = superViewController.presentingViewController as? TodayViewController {
+//                    print("✨✨✨ superVC == TodayVC ✨✨✨")
+//                    vc.bottomSheetEmojiDidSelected()
+//                    vc.addState()
+//                } else if let vc = superViewController.presentingViewController as? ListViewController {
+//                    print("✨✨✨ superVC == ListVC ✨✨✨")
+//                    vc.bottomSheetDimmedViewDidTapped()
+//                } else if let vc = superViewController.presentingViewController as? CalendarPageViewController {
+//                    print("✨✨✨ superVC == CalendarPageVC ✨✨✨")
+//                    vc.dismissBottomSheet()
+//                }
+            }
+            .store(in: &cancelBag)
     }
     
     // MARK: - Functions
-    
-    private func setUI() {
-        
-    }
     
     private func setLayout() {
         addSubviews(

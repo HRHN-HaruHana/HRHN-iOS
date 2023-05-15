@@ -10,7 +10,6 @@ import Foundation
 final class CalendarViewModel: ObservableObject {
     
     let calendarDate: Date
-    let presentingVC: CalendarPageViewController
     
     @Published var selectedDay: Date?
     @Published var selectedChallenge: Challenge?
@@ -32,9 +31,8 @@ final class CalendarViewModel: ObservableObject {
         case today, currentMonth, otherMonth, undefined
     }
     
-    init(calendarDate: Date, presentingVC: CalendarPageViewController) {
+    init(calendarDate: Date) {
         self.calendarDate = calendarDate
-        self.presentingVC = presentingVC
     }
 }
 
@@ -79,17 +77,7 @@ extension CalendarViewModel {
         }
     }
     
-    func goToCurrentMonth() {
-        presentingVC.goToCurrentMonth()
-    }
-    
     func goToToday() {
         selectedDay = Date()
-    }
-    
-    func presentBottomSheet() {
-        presentingVC.bottomSheetContentView.viewModel?.challenge = selectedChallenge
-        presentingVC.bottomSheetContentView.viewModel?.selectedEmoji = selectedChallenge?.emoji
-        presentingVC.bottomSheet.presentBottomSheet()
     }
 }

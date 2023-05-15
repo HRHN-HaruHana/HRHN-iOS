@@ -273,7 +273,7 @@ final class TodayViewController: UIViewController {
         return $0
     }(UIBottomSheet())
 
-    private lazy var bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: self))
+    private lazy var bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .today))
     
     // MARK: - Life Cycle
     

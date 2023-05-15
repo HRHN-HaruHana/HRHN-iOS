@@ -20,6 +20,12 @@ final class UIBottomSheet: UIView {
         }
     }
     
+    var content = UIView() {
+        didSet {
+            setContents()
+        }
+    }
+    
     var bottomSheetPanGestureRecognizer = UIPanGestureRecognizer(target: nil, action: nil) {
         didSet {
             bottomSheetView.addGestureRecognizer(bottomSheetPanGestureRecognizer)
@@ -29,12 +35,6 @@ final class UIBottomSheet: UIView {
     var dimmedViewTapGestureRecognizer = UITapGestureRecognizer(target: nil, action: nil) {
         didSet {
             dimmedView.addGestureRecognizer(dimmedViewTapGestureRecognizer)
-        }
-    }
-    
-    var content = UIView() {
-        didSet {
-            setContents()
         }
     }
     

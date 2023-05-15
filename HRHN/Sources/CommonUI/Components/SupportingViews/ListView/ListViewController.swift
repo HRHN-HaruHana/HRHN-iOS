@@ -41,7 +41,7 @@ final class ListViewController: UIViewController {
         return $0
     }(UIBottomSheet())
     
-    private lazy var bottomSheetContent = ReviewView(viewModel: ReviewViewModel(from: self))
+    private lazy var bottomSheetContent = ReviewView(viewModel: ReviewViewModel(from: .list))
     
     // MARK: - LifeCycle
     

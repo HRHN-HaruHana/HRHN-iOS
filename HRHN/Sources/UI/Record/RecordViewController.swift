@@ -10,7 +10,6 @@ import UIKit
 final class RecordViewController: UIViewController {
     
     private let calendarViewController = CalendarPageViewController(viewModel: CalendarPageViewModel())
-    
     private let listViewController = ListViewController(with: ListViewModel())
     
     private lazy var viewModeBarButtonItem = UIBarButtonItem(
@@ -61,11 +60,11 @@ extension RecordViewController: CustomNavBar {
     @objc private func viewModeBarButtonDidTap() {
         if let _ = self.children.first(where: { $0 is CalendarPageViewController }) as? CalendarPageViewController {
             showListView()
-            navigationItem.rightBarButtonItems?[1].image = UIImage(systemName: "list.bullet")?.withRenderingMode(.alwaysOriginal).withTintColor(.tintColor)
+            changeFirstNavigationBarButton(to: UIImage(systemName: "list.bullet"))
             
         } else if let _ = self.children.first(where: { $0 is ListViewController }) as? ListViewController {
             showCalendarView()
-            navigationItem.rightBarButtonItems?[1].image = UIImage(systemName: "calendar")?.withRenderingMode(.alwaysOriginal).withTintColor(.tintColor)
+            changeFirstNavigationBarButton(to: UIImage(systemName: "calendar"))
         }
     }
     
@@ -73,5 +72,9 @@ extension RecordViewController: CustomNavBar {
         let settingVC = SettingViewController(viewModel: SettingViewModel())
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
+    }
+    
+    private func changeFirstNavigationBarButton(to uiImage: UIImage?) {
+        navigationItem.rightBarButtonItems?[1].image = uiImage?.withRenderingMode(.alwaysOriginal).withTintColor(.tintColor)
     }
 }
