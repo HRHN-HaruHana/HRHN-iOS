@@ -215,9 +215,9 @@ extension CalendarView {
                         .foregroundColor(.cellFill)
                 }
                 .onTapGesture {
-                    willPresentBottomSheet.send()
                     guard let selectedDay = viewModel.selectedDay else { return }
-                    if !selectedDay.isToday() || !selectedDay.isFuture() {
+                    if !selectedDay.isToday() && !selectedDay.isFuture() {
+                        willPresentBottomSheet.send()
                         fetchBottomSheetContent.send(viewModel.selectedChallenge)
                     }
                 }
