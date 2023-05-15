@@ -22,7 +22,7 @@ class ReviewViewModel: ObservableObject {
     @Published var challenge: Challenge?
     
     private let coreDataManager = CoreDataManager.shared
-    let willDismissBottomSheet = PassthroughSubject<Void, Never>()
+    let emojiDidTap = PassthroughSubject<Void, Never>()
     
     let previousTab: Tab
     
@@ -44,10 +44,6 @@ class ReviewViewModel: ObservableObject {
     
     func didEmojiClicked() {
         updateChallenge()
-        willDismissBottomSheet.send()
-//        todayViewController?.bottomSheetEmojiDidSelected()
-//        todayViewController?.addState()
-//        listViewController?.bottomSheetDimmedViewDidTapped()
-//        calendarPageViewController?.bottomSheetDimmedViewDidTapped()
+        emojiDidTap.send()
     }
 }

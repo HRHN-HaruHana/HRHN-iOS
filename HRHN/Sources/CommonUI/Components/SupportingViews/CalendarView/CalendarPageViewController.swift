@@ -100,7 +100,7 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
 
 extension CalendarPageViewController {
     
-    func goToCurrentMonth() {
+    private func goToCurrentMonth() {
         let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: Date())))
         setViewControllers([hc], direction: .forward, animated: true)
         bind()
@@ -114,7 +114,7 @@ extension CalendarPageViewController {
         present(bottomSheet, animated: true)
     }
     
-    func dismissBottomSheet() {
+    private func dismissBottomSheet() {
         guard let tabBar = tabBarController as? TabBarController else { return }
         tabBar.brighten()
         dismiss(animated: true)

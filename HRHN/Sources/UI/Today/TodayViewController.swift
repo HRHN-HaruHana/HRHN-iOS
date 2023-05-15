@@ -260,20 +260,18 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Bottom Sheet UI Properties
     
-    private lazy var bottomSheet: UIBottomSheet = {
-        $0.bottomSheetHeight = 336
-        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(bottomSheetDimmedViewDidTapped)
-        )
-        $0.bottomSheetPanGestureRecognizer = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(bottomSheetDidPanned)
-        )
+    private lazy var bottomSheet: BottomSheetController = {
+        $0.sheetWillDismiss = { [weak self] in
+            self?.dismissBottomSheet()
+        }
+        $0.emojiDidTap = { [weak self] in
+            self?.viewModel.previousChallenge = self?.viewModel.getPreviousChallenge()
+            self?.addState()
+        }
         return $0
-    }(UIBottomSheet())
+    }(BottomSheetController(content: bottomSheetContentView))
 
-    private lazy var bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .today))
+    private let bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .today))
     
     // MARK: - Life Cycle
     
@@ -293,8 +291,6 @@ final class TodayViewController: UIViewController {
         setNavigationBar()
         setLayout()
         if viewModel.todayChallenge == nil {
-            bottomSheet.setLayout()
-            bottomSheet.content = bottomSheetContentView
             emptyState()
         } else {
             existState()
@@ -615,18 +611,10 @@ extension TodayViewController {
     
     @objc private func addButtonDidTap() {
         if viewModel.previousChallenge?.emoji == Emoji.none {
-            bottomSheet.presentBottomSheet()
+            presentBottomSheet()
         } else {
             addState()
         }
-    }
-    
-    @objc private func bottomSheetDidPanned(sender: UIPanGestureRecognizer) {
-        bottomSheet.panGestureHandler(sender: sender)
-    }
-    
-    @objc private func bottomSheetDimmedViewDidTapped() {
-        bottomSheet.dismissBottomSheet()
     }
     
     @objc private func alertDidPanned(sender: UIPanGestureRecognizer) {
@@ -637,8 +625,23 @@ extension TodayViewController {
         alert.dismissAlertWithAction(nextActionView: challengeTextView)
     }
     
-    func bottomSheetEmojiDidSelected() {
-        bottomSheet.dismissBottomSheet()
+//    func bottomSheetEmojiDidSelected() {
+//        bottomSheet.dismissBottomSheet()
+//        viewModel.previousChallenge = viewModel.getPreviousChallenge()
+//    }
+    
+    private func presentBottomSheet() {
+        guard let tabBar = tabBarController as? TabBarController else { return }
+        tabBar.dim()
+        bottomSheet.modalPresentationStyle = .overFullScreen
+        bottomSheet.modalTransitionStyle = .coverVertical
+        present(bottomSheet, animated: true)
+    }
+    
+    private func dismissBottomSheet() {
+        guard let tabBar = tabBarController as? TabBarController else { return }
+        tabBar.brighten()
+        dismiss(animated: true)
         viewModel.previousChallenge = viewModel.getPreviousChallenge()
     }
 }

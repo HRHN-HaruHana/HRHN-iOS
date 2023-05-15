@@ -13,6 +13,7 @@ final class BottomSheetController: UIViewController {
     
     private let content: UIView
     var sheetWillDismiss: (() -> Void)?
+    var emojiDidTap: (() -> Void)?
     
     // MARK: UI Properties
     
@@ -108,6 +109,10 @@ extension BottomSheetController {
     @objc func dismissBottomSheet() {
         bottomSheetCellView.layer.opacity = 1
         sheetWillDismiss?()
+    }
+    
+    func emojiTap() {
+        emojiDidTap?()
     }
 }
 
