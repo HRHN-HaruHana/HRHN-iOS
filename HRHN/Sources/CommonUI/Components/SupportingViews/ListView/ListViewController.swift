@@ -28,20 +28,14 @@ final class ListViewController: UIViewController {
         return $0
     }(UITableView(frame: .zero, style: .grouped))
     
-    private lazy var bottomSheet: UIBottomSheet = {
-        $0.bottomSheetHeight = 336
-        $0.bottomSheetPanGestureRecognizer = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(bottomSheetViewDidPanned)
-        )
-        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(bottomSheetDimmedViewDidTapped)
-        )
+    private lazy var bottomSheet: BottomSheetController = {
+        $0.sheetWillDismiss = { [weak self] in
+            self?.dismissBottomSheet()
+        }
         return $0
-    }(UIBottomSheet())
-    
-    private lazy var bottomSheetContent = ReviewView(viewModel: ReviewViewModel(from: .list))
+    }(BottomSheetController(content: bottomSheetContentView))
+
+    private let bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .list))
     
     // MARK: - LifeCycle
     
@@ -58,8 +52,6 @@ final class ListViewController: UIViewController {
         super.viewDidLoad()
         setUI()
         setNavigationBar()
-        bottomSheet.setLayout()
-        bottomSheet.content = bottomSheetContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +69,22 @@ extension ListViewController {
         settingVC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(settingVC, animated: true)
     }
+    
+    private func presentBottomSheet() {
+        guard let tabBar = tabBarController as? TabBarController else { return }
+        tabBar.dim()
+        bottomSheet.modalPresentationStyle = .overFullScreen
+        bottomSheet.modalTransitionStyle = .coverVertical
+        present(bottomSheet, animated: true)
+    }
+    
+    private func dismissBottomSheet() {
+        guard let tabBar = tabBarController as? TabBarController else { return }
+        tabBar.brighten()
+        dismiss(animated: true)
+        viewModel.fetchPreviousChallenges()
+        tableView.reloadData()
+    }
 }
 
 // MARK: - UI Functions
@@ -86,6 +94,10 @@ extension ListViewController {
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    private func bind() {
+        
     }
 }
 
@@ -138,23 +150,9 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        bottomSheetContent.viewModel?.challenge = viewModel.challenges[indexPath.row]
-        bottomSheetContent.viewModel?.selectedEmoji = viewModel.challenges[indexPath.row].emoji
-        bottomSheet.presentBottomSheet()
+        bottomSheetContentView.viewModel?.challenge = viewModel.challenges[indexPath.row]
+        bottomSheetContentView.viewModel?.selectedEmoji = viewModel.challenges[indexPath.row].emoji
+        presentBottomSheet()
     }
 
-}
-
-// MARK: - Bottom Sheet Gesture Selectors
-
-extension ListViewController {
-    @objc func bottomSheetDimmedViewDidTapped() {
-        bottomSheet.dismissBottomSheet()
-        viewModel.fetchPreviousChallenges()
-        tableView.reloadData()
-    }
-    
-    @objc func bottomSheetViewDidPanned(sender: UIPanGestureRecognizer) {
-        bottomSheet.panGestureHandler(sender: sender)
-    }
 }
