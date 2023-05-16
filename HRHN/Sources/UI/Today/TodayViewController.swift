@@ -210,7 +210,7 @@ final class TodayViewController: UIViewController {
             attributes: .destructive
         ) { _ in
             self.challengeTextView.resignFirstResponder()
-            self.alert.presentAlert()
+            self.presentAlert()
         }
         let menu = UIMenu(children: [storageAction, deleteAction])
         $0.menu = menu
@@ -222,7 +222,7 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Alert UI Properties
     
-    private lazy var alert: UIAlert = {
+    private lazy var testAlert: AlertController = {
         $0.titleString = "챌린지를 삭제할까요?"
         $0.descriptionString = "오늘의 챌린지가 삭제됩니다."
 
@@ -230,32 +230,27 @@ final class TodayViewController: UIViewController {
         $0.cancelForegroundColor = .label
         $0.cancelBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
         $0.cancelAction = UIAction { _ in
-            self.alert.dismissAlertWithAction(nextActionView: self.challengeTextView)
+            self.dismissAlert()
+            self.challengeTextView.becomeFirstResponder()
         }
 
         $0.confirmTitle = "삭제"
         $0.confirmForegroundColor = .whiteLabel
         $0.confirmBackgroundColor = .red
         $0.confirmAction = UIAction { _ in
-            self.alert.dismissAlert()
+            self.dismissAlert()
             self.viewModel.deleteTodayChallenge()
             self.viewModel.todayChallenge = self.viewModel.getTodayChallenge()
             self.cancelEditingChallenge()
             self.emptyState()
         }
-
-        $0.dimmedViewTapGestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(alertDimmedViewDidTapped)
-        )
-
-        $0.alertViewPanGestureRecognizer = UIPanGestureRecognizer(
-            target: self,
-            action: #selector(alertDidPanned)
-        )
-
+        
+        $0.alertWillDismiss = { [weak self] in
+            self?.dismissAlert()
+            self?.challengeTextView.becomeFirstResponder()
+        }
         return $0
-    }(UIAlert())
+    }(AlertController())
     
     
     // MARK: - Bottom Sheet UI Properties
@@ -295,7 +290,6 @@ final class TodayViewController: UIViewController {
         } else {
             existState()
         }
-        alert.setLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -617,19 +611,6 @@ extension TodayViewController {
         }
     }
     
-    @objc private func alertDidPanned(sender: UIPanGestureRecognizer) {
-        alert.alertDidPanned(sender: sender, nextActionView: challengeTextView)
-    }
-    
-    @objc private func alertDimmedViewDidTapped() {
-        alert.dismissAlertWithAction(nextActionView: challengeTextView)
-    }
-    
-//    func bottomSheetEmojiDidSelected() {
-//        bottomSheet.dismissBottomSheet()
-//        viewModel.previousChallenge = viewModel.getPreviousChallenge()
-//    }
-    
     private func presentBottomSheet() {
         guard let tabBar = tabBarController as? TabBarController else { return }
         tabBar.dim()
@@ -643,6 +624,20 @@ extension TodayViewController {
         tabBar.brighten()
         dismiss(animated: true)
         viewModel.previousChallenge = viewModel.getPreviousChallenge()
+    }
+    
+    private func presentAlert() {
+        guard let tabBar = tabBarController as? TabBarController else { return }
+        tabBar.dim()
+        testAlert.modalPresentationStyle = .overFullScreen
+        testAlert.modalTransitionStyle = .coverVertical
+        present(testAlert, animated: true)
+    }
+    
+    private func dismissAlert() {
+        guard let tabBar = tabBarController as? TabBarController else { return }
+        tabBar.brighten()
+        dismiss(animated: true)
     }
 }
 

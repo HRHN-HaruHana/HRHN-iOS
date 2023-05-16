@@ -52,6 +52,7 @@
 		50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE39295C7539009A57BA /* UITextView+.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
+		50EAB9082A12693200713A79 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB9072A12693200713A79 /* AlertController.swift */; };
 		50ED21192A0A4C0800080238 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED21182A0A4C0800080238 /* BottomSheetController.swift */; };
 		50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */; };
 		50F0C07A295EDDD6009D49B5 /* EditChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */; };
@@ -179,6 +180,7 @@
 		50C1BE39295C7539009A57BA /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		50EAB9072A12693200713A79 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		50ED21182A0A4C0800080238 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
 		50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewController.swift; sourceTree = "<group>"; };
 		50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewModel.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			children = (
 				505ECFFE29B6D37E00491C96 /* UIAlert.swift */,
 				505ED00029B6F0D300491C96 /* UIAlertButton.swift */,
+				50EAB9072A12693200713A79 /* AlertController.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A7912189295775E00044E652 /* Observable.swift in Sources */,
 				5041F1D829B9BE2900D464D3 /* UIEmojiButton.swift in Sources */,
+				50EAB9082A12693200713A79 /* AlertController.swift in Sources */,
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				50A8D07429AF09120044545C /* UIGrabber.swift in Sources */,

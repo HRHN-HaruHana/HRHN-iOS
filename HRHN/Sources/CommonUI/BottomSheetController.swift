@@ -118,7 +118,7 @@ extension BottomSheetController {
 
 extension BottomSheetController: Panable {
     
-    @objc func panGestureHandler(sender: UIPanGestureRecognizer) {
+    @objc private func panGestureHandler(sender: UIPanGestureRecognizer) {
         setPanGesture(
             sender: sender
         ) { [weak self] in
