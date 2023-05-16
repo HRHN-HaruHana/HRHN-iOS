@@ -12,12 +12,10 @@
 		500FB4B529E932B9003567DA /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500FB4B429E932B9003567DA /* RecordViewController.swift */; };
 		5036129D29D69D660060A464 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5036129C29D69D660060A464 /* CalendarView.swift */; };
 		503612A729D6B6B90060A464 /* CalendarPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503612A629D6B6B90060A464 /* CalendarPageViewController.swift */; };
-		50370EED29B4AD02005C1D22 /* UIBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */; };
 		503F1CF629AD9FF50056850F /* EditChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503F1CF529AD9FF50056850F /* EditChallenge.swift */; };
 		5041F1D629B9B9B100D464D3 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041F1D529B9B9B100D464D3 /* ReviewView.swift */; };
 		5041F1D829B9BE2900D464D3 /* UIEmojiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041F1D729B9BE2900D464D3 /* UIEmojiButton.swift */; };
 		505B953829599976005F00C8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953729599976005F00C8 /* UIViewController+.swift */; };
-		505ECFFF29B6D37E00491C96 /* UIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505ECFFE29B6D37E00491C96 /* UIAlert.swift */; };
 		505ED00129B6F0D300491C96 /* UIAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505ED00029B6F0D300491C96 /* UIAlertButton.swift */; };
 		506E58FD29B4E3740040FB41 /* Panable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E58FC29B4E3740040FB41 /* Panable.swift */; };
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
@@ -149,12 +147,10 @@
 		500FB4B429E932B9003567DA /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		5036129C29D69D660060A464 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		503612A629D6B6B90060A464 /* CalendarPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPageViewController.swift; sourceTree = "<group>"; };
-		50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBottomSheet.swift; sourceTree = "<group>"; };
 		503F1CF529AD9FF50056850F /* EditChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallenge.swift; sourceTree = "<group>"; };
 		5041F1D529B9B9B100D464D3 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		5041F1D729B9BE2900D464D3 /* UIEmojiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmojiButton.swift; sourceTree = "<group>"; };
 		505B953729599976005F00C8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		505ECFFE29B6D37E00491C96 /* UIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlert.swift; sourceTree = "<group>"; };
 		505ED00029B6F0D300491C96 /* UIAlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertButton.swift; sourceTree = "<group>"; };
 		506E58FC29B4E3740040FB41 /* Panable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panable.swift; sourceTree = "<group>"; };
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
@@ -314,7 +310,6 @@
 		505ED00229B7259900491C96 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
-				505ECFFE29B6D37E00491C96 /* UIAlert.swift */,
 				505ED00029B6F0D300491C96 /* UIAlertButton.swift */,
 				50EAB9072A12693200713A79 /* AlertController.swift */,
 			);
@@ -443,7 +438,6 @@
 				505ED00229B7259900491C96 /* Alert */,
 				50A8D07329AF09120044545C /* UIGrabber.swift */,
 				50A8D07529AF09160044545C /* UIDimmedView.swift */,
-				50370EEC29B4AD02005C1D22 /* UIBottomSheet.swift */,
 				50ED21182A0A4C0800080238 /* BottomSheetController.swift */,
 			);
 			path = CommonUI;
@@ -867,7 +861,6 @@
 				A79121292950D2000044E652 /* ListViewController.swift in Sources */,
 				A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */,
 				500CA07329973A8F0012779B /* Assets.swift in Sources */,
-				505ECFFF29B6D37E00491C96 /* UIAlert.swift in Sources */,
 				A7912115294B1AAB0044E652 /* Challenge.swift in Sources */,
 				A79120DC294A0A5F0044E652 /* HRHN.xcdatamodeld in Sources */,
 				A79121712955E2310044E652 /* MockData.swift in Sources */,
@@ -876,7 +869,6 @@
 				5090CBD729F13EFC000C9BE7 /* CalendarPageViewModel.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
 				A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */,
-				50370EED29B4AD02005C1D22 /* UIBottomSheet.swift in Sources */,
 				507305F42996652500A20CA1 /* UINavigationBar+.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
