@@ -132,7 +132,7 @@ class CoreDataManager {
     }
     
     func deleteChallenge(_ date: Date) {
-        let currentTimeZoneDate = date.currentTimeZoneDate()
+        let currentTimeZoneDate = date
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
             let challenge = fetchResults.filter({ isSameDay(date1: currentTimeZoneDate, date2: $0.date) })[0]

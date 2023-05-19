@@ -42,6 +42,11 @@ class ReviewViewModel: ObservableObject {
         coreDataManager.updateChallenge(updatedChallenge)
     }
     
+    func deleteChallenge() {
+        guard let challenge else { return }
+        coreDataManager.deleteChallenge(challenge.date)
+    }
+    
     func didEmojiClicked() {
         updateChallenge()
         emojiDidTap.send()

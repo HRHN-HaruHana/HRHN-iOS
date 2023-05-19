@@ -73,18 +73,6 @@ final class AlertController: UIViewController {
         }
     }
     
-    var alertViewPanGestureRecognizer = UIPanGestureRecognizer(target: nil, action: nil) {
-        didSet {
-            alertView.addGestureRecognizer(alertViewPanGestureRecognizer)
-        }
-    }
-
-    var dimmedViewTapGestureRecognizer = UITapGestureRecognizer(target: nil, action: nil) {
-        didSet {
-            backgroundView.addGestureRecognizer(dimmedViewTapGestureRecognizer)
-        }
-    }
-    
     // MARK: - UI Properties
     
     private lazy var backgroundView: UIView = {

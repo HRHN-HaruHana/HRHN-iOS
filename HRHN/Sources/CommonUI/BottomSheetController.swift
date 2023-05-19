@@ -14,6 +14,7 @@ final class BottomSheetController: UIViewController {
     private let content: UIView
     var sheetWillDismiss: (() -> Void)?
     var emojiDidTap: (() -> Void)?
+    var deleteButtonDidTap: (() -> Void)?
     
     // MARK: UI Properties
     
@@ -113,6 +114,10 @@ extension BottomSheetController {
     
     func emojiTap() {
         emojiDidTap?()
+    }
+    
+    func deleteButtonWillTap() {
+        deleteButtonDidTap?()
     }
 }
 

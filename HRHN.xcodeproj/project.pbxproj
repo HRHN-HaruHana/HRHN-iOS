@@ -51,6 +51,8 @@
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
 		50EAB9082A12693200713A79 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB9072A12693200713A79 /* AlertController.swift */; };
+		50EAB90A2A13891B00713A79 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB9092A13891B00713A79 /* ToastMessage.swift */; };
+		50EAB90C2A16217500713A79 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB90B2A16217500713A79 /* CALayer+.swift */; };
 		50ED21192A0A4C0800080238 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED21182A0A4C0800080238 /* BottomSheetController.swift */; };
 		50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */; };
 		50F0C07A295EDDD6009D49B5 /* EditChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */; };
@@ -177,6 +179,8 @@
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		50EAB9072A12693200713A79 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		50EAB9092A13891B00713A79 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
+		50EAB90B2A16217500713A79 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		50ED21182A0A4C0800080238 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
 		50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewController.swift; sourceTree = "<group>"; };
 		50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewModel.swift; sourceTree = "<group>"; };
@@ -439,6 +443,7 @@
 				50A8D07329AF09120044545C /* UIGrabber.swift */,
 				50A8D07529AF09160044545C /* UIDimmedView.swift */,
 				50ED21182A0A4C0800080238 /* BottomSheetController.swift */,
+				50EAB9092A13891B00713A79 /* ToastMessage.swift */,
 			);
 			path = CommonUI;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				50A50016295D951600710B5D /* URL+.swift */,
 				A74C75192975325B0046B1B1 /* String+.swift */,
 				507305F32996652500A20CA1 /* UINavigationBar+.swift */,
+				50EAB90B2A16217500713A79 /* CALayer+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -884,6 +890,7 @@
 				A79121802956066E0044E652 /* ListViewModel.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
 				A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */,
+				50EAB90C2A16217500713A79 /* CALayer+.swift in Sources */,
 				A74C751C297534EE0046B1B1 /* I18N.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
@@ -899,6 +906,7 @@
 				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				5041F1D629B9B9B100D464D3 /* ReviewView.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
+				50EAB90A2A13891B00713A79 /* ToastMessage.swift in Sources */,
 				50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */,
 				50A50017295D951600710B5D /* URL+.swift in Sources */,
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,

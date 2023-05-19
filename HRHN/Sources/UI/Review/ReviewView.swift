@@ -88,11 +88,12 @@ final class ReviewView: UIView {
         $0.configuration?.baseForegroundColor = .cellLabel
         $0.configuration?.cornerStyle = .capsule
         
-        let storageAction = UIAction(
+        let editAction = UIAction(
             title: "내용 수정",
             image: UIImage(systemName: "pencil")
         ) { _ in
-            // TODO: connect storage view
+            // TODO: transition to edit challenge view
+//            self.firstContextMenuButtonDidTap?()
         }
         let deleteAction = UIAction(
             title: "삭제",
@@ -100,8 +101,13 @@ final class ReviewView: UIView {
             attributes: .destructive
         ) { _ in
             // TODO: Delete Challenge
+            guard let bottomSheetVC = self.superview?.superview?.superview?.next as? BottomSheetController else { return }
+            self.viewModel.deleteChallenge()
+            bottomSheetVC.dismissBottomSheet()
+            // TODO: presentToastMessage()
+            bottomSheetVC.deleteButtonDidTap?()
         }
-        let menu = UIMenu(children: [storageAction, deleteAction])
+        let menu = UIMenu(children: [editAction, deleteAction])
         $0.menu = menu
         $0.showsMenuAsPrimaryAction = true
         return $0

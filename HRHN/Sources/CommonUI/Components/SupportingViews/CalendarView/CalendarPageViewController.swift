@@ -14,14 +14,22 @@ final class CalendarPageViewController: UIPageViewController {
     private let viewModel: CalendarPageViewModel
     private var cancelBag = Set<AnyCancellable>()
     
+    private var isToastMessagePresented = false
+    private var selectedChallenge: Challenge?
+    
     private lazy var bottomSheet: BottomSheetController = {
         $0.sheetWillDismiss = { [weak self] in
             self?.dismissBottomSheet()
+        }
+        $0.deleteButtonDidTap = { [weak self] in
+            self?.presentToastMessage()
         }
         return $0
     }(BottomSheetController(content: bottomSheetContentView))
 
     private let bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .calendar))
+    
+    private let toastMessage = ToastMessage(isButton: true, title: "챌린지가 삭제됐어요", subtitle: "되돌리기")
     
     init(viewModel: CalendarPageViewModel) {
         self.viewModel = viewModel
@@ -36,6 +44,7 @@ final class CalendarPageViewController: UIPageViewController {
         super.viewDidLoad()
         setUI()
         bind()
+        setToastMessageLayout()
     }
 }
 
@@ -62,6 +71,7 @@ extension CalendarPageViewController {
                 .sink { [weak self] challenge in
                     self?.bottomSheetContentView.viewModel.challenge = challenge
                     self?.bottomSheetContentView.viewModel.selectedEmoji = challenge?.emoji
+                    self?.selectedChallenge = challenge
                 }
                 .store(in: &cancelBag)
             hc.rootView.goToCurrentMonth
@@ -105,6 +115,11 @@ extension CalendarPageViewController {
         setViewControllers([hc], direction: .forward, animated: true)
         bind()
     }
+}
+
+// MARK: BottomSheet Methods
+
+extension CalendarPageViewController {
     
     private func presentBottomSheet() {
         guard let tabBar = tabBarController as? TabBarController else { return }
@@ -120,5 +135,65 @@ extension CalendarPageViewController {
         dismiss(animated: true)
         guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
         hc.rootView.viewModel.fetchSelectedChallenge()
+    }
+}
+
+// MARK: ToastMessage Methods
+
+extension CalendarPageViewController {
+    
+    private func setToastMessageLayout() {
+        let action = UIAction { _ in
+            guard let selectedChallenge = self.selectedChallenge else { return }
+            CoreDataManager.shared.insertChallenge(selectedChallenge)
+            guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
+            hc.rootView.viewModel.fetchSelectedChallenge()
+            self.dismissToastMessage()
+        }
+        toastMessage.addAction(action, for: .touchUpInside)
+        
+        guard let navigationControllerView = navigationController?.view else { return }
+        navigationControllerView.addSubview(toastMessage)
+        
+        toastMessage.snp.makeConstraints {
+            $0.height.equalTo(55)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(navigationControllerView.snp.top)
+        }
+    }
+    
+    private func presentToastMessage() {
+        guard let navigationControllerView = navigationController?.view else { return }
+        
+        if !isToastMessagePresented {
+            isToastMessagePresented = true
+            UIView.animate(withDuration: 0.3) {
+                self.toastMessage.snp.remakeConstraints {
+                    $0.height.equalTo(55)
+                    $0.centerX.equalToSuperview()
+                    $0.top.equalTo(navigationControllerView.safeAreaLayoutGuide.snp.top).offset(10)
+                }
+                navigationControllerView.layoutIfNeeded()
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.dismissToastMessage()
+            }
+        }
+    }
+    
+    private func dismissToastMessage() {
+        guard let navigationControllerView = navigationController?.view else { return }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.toastMessage.snp.remakeConstraints {
+                $0.height.equalTo(55)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalTo(navigationControllerView.snp.top)
+            }
+            navigationControllerView.layoutIfNeeded()
+        } completion: { _ in
+            self.isToastMessagePresented = false
+        }
     }
 }

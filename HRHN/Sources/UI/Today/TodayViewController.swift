@@ -222,7 +222,7 @@ final class TodayViewController: UIViewController {
     
     // MARK: - Alert UI Properties
     
-    private lazy var testAlert: AlertController = {
+    private lazy var alertVC: AlertController = {
         $0.titleString = "챌린지를 삭제할까요?"
         $0.descriptionString = "오늘의 챌린지가 삭제됩니다."
 
@@ -629,9 +629,9 @@ extension TodayViewController {
     private func presentAlert() {
         guard let tabBar = tabBarController as? TabBarController else { return }
         tabBar.dim()
-        testAlert.modalPresentationStyle = .overFullScreen
-        testAlert.modalTransitionStyle = .coverVertical
-        present(testAlert, animated: true)
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .coverVertical
+        present(alertVC, animated: true)
     }
     
     private func dismissAlert() {
