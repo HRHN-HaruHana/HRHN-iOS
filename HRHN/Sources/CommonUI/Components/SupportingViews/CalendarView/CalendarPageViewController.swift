@@ -29,7 +29,18 @@ final class CalendarPageViewController: UIPageViewController {
 
     private let bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .calendar))
     
-    private let toastMessage = ToastMessage(isButton: true, title: "챌린지가 삭제됐어요", subtitle: "되돌리기")
+    private lazy var toastMessage: ToastMessage = {
+        let action = UIAction { _ in
+            self.undoDeletionAndDismissToastMessage()
+        }
+        $0.addAction(action, for: .touchUpInside)
+        return $0
+    }(ToastMessage(
+        isButton: true,
+        title: "챌린지가 삭제됐어요",
+        subtitle: "되돌리기",
+        subtitleSymbol: UIImage(systemName: "arrow.uturn.backward")
+    ))
     
     init(viewModel: CalendarPageViewModel) {
         self.viewModel = viewModel
@@ -44,7 +55,6 @@ final class CalendarPageViewController: UIPageViewController {
         super.viewDidLoad()
         setUI()
         bind()
-        setToastMessageLayout()
     }
 }
 
@@ -57,6 +67,8 @@ extension CalendarPageViewController {
         setViewControllers([hc], direction: .forward, animated: false)
         dataSource = self
         delegate = self
+        
+        setToastMessageLayout()
     }
     
     private func bind() {
@@ -142,16 +154,15 @@ extension CalendarPageViewController {
 
 extension CalendarPageViewController {
     
+    private func undoDeletionAndDismissToastMessage() {
+        guard let selectedChallenge = self.selectedChallenge else { return }
+        CoreDataManager.shared.insertChallenge(selectedChallenge)
+        guard let hc = viewControllers?.first as? UIHostingController<CalendarView> else { return }
+        hc.rootView.viewModel.fetchSelectedChallenge()
+        dismissToastMessage()
+    }
+    
     private func setToastMessageLayout() {
-        let action = UIAction { _ in
-            guard let selectedChallenge = self.selectedChallenge else { return }
-            CoreDataManager.shared.insertChallenge(selectedChallenge)
-            guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
-            hc.rootView.viewModel.fetchSelectedChallenge()
-            self.dismissToastMessage()
-        }
-        toastMessage.addAction(action, for: .touchUpInside)
-        
         guard let navigationControllerView = navigationController?.view else { return }
         navigationControllerView.addSubview(toastMessage)
         
