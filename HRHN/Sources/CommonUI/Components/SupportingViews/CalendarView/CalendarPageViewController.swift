@@ -16,6 +16,7 @@ final class CalendarPageViewController: UIPageViewController {
     
     private var isToastMessagePresented = false
     private var selectedChallenge: Challenge?
+    private var toastMessageTimer: Timer?
     
     private lazy var bottomSheet: BottomSheetController = {
         $0.sheetWillDismiss = { [weak self] in
@@ -34,6 +35,16 @@ final class CalendarPageViewController: UIPageViewController {
             self.undoDeletionAndDismissToastMessage()
         }
         $0.addAction(action, for: .touchUpInside)
+        
+        $0.pauseTimer = { [weak self] in
+            self?.toastMessageTimer?.invalidate()
+        }
+        $0.startTimer = { [weak self] in
+            self?.dismissToastMessageAfter(seconds: 1)
+        }
+        $0.dismissImmediately = { [weak self] in
+            self?.dismissToastMessage()
+        }
         return $0
     }(ToastMessage(
         isButton: true,
@@ -178,6 +189,8 @@ extension CalendarPageViewController {
         
         if !isToastMessagePresented {
             isToastMessagePresented = true
+            toastMessageTimer?.invalidate()
+            
             UIView.animate(withDuration: 0.3) {
                 self.toastMessage.snp.remakeConstraints {
                     $0.height.equalTo(55)
@@ -187,9 +200,13 @@ extension CalendarPageViewController {
                 navigationControllerView.layoutIfNeeded()
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.dismissToastMessage()
-            }
+            dismissToastMessageAfter(seconds: 2)
+        }
+    }
+    
+    private func dismissToastMessageAfter(seconds: Double) {
+        toastMessageTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { _ in
+            self.dismissToastMessage()
         }
     }
     

@@ -9,6 +9,10 @@ import UIKit
 
 final class ToastMessage: UIButton {
     
+    var pauseTimer: (() -> Void)?
+    var startTimer: (() -> Void)?
+    var dismissImmediately: (() -> Void)?
+    
     private let isButton: Bool
     
     private let titleAttributes: [NSAttributedString.Key: Any] = [
@@ -57,6 +61,11 @@ extension ToastMessage {
             whiteSpaceAttachment.image = UIImage()
             whiteSpaceAttachment.bounds = CGRect(x: 0, y: 0, width: 2, height: 0)
             
+            let subtitleAttributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 12, weight: .medium),
+                .foregroundColor: UIColor.secondaryLabel,
+            ]
+            
             let mutableAttrString = NSMutableAttributedString()
             mutableAttrString.append(NSAttributedString(attachment: symbolAttachment))
             mutableAttrString.append(NSAttributedString(attachment: whiteSpaceAttachment))
@@ -82,11 +91,68 @@ extension ToastMessage {
         configuration?.baseBackgroundColor = .background
         configuration?.cornerStyle = .capsule
         configuration?.contentInsets = .init(top: 0, leading: 25, bottom: 0, trailing: 25)
+        
+        let pangestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGesture))
+        addGestureRecognizer(pangestureRecognizer)
     }
     
     private func setLayout() {
         snp.makeConstraints {
             $0.height.equalTo(55)
+        }
+    }
+}
+
+extension ToastMessage {
+    @objc private func panGesture(sender: UIPanGestureRecognizer) {
+        
+        let translation = sender.translation(in: superview)
+        let translationLimit: CGFloat = 20
+        let translationXFactor: CGFloat = 1.005
+        let translationYFactor: CGFloat = 1.005
+        
+        guard let pannedView = sender.view else { return }
+        
+        var translationX: CGFloat {
+            if translation.x > 0 {
+                return translationLimit * (1-1/pow(translationXFactor, translation.x))
+            } else {
+                return -translationLimit * (1-1/pow(translationXFactor, translation.x.magnitude))
+            }
+        }
+        
+        var translationY: CGFloat {
+            if translation.y < 0 {
+                return translation.y
+            } else {
+                return translationLimit * (1-1/pow(translationYFactor, translation.y))
+            }
+        }
+        
+        pannedView.transform = CGAffineTransform(
+            translationX: translationX,
+            y: translationY
+        )
+        
+        switch sender.state {
+        case .changed:
+            pauseTimer?()
+        case .ended:
+            if translationY < -10 {
+                dismissImmediately?()
+                rollback()
+            } else {
+                rollback()
+                startTimer?()
+            }
+        default:
+            break
+        }
+        
+        func rollback() {
+            UIView.animate(withDuration: 0.3) {
+                pannedView.transform = .identity
+            }
         }
     }
 }
