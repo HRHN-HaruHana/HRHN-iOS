@@ -39,8 +39,15 @@ struct CalendarView: View {
                 .padding(.bottom, calendarViewCGFloat.smallVerticalSpaicng)
             calendar
             Spacer()
-            challengeCell
-            Spacer()
+            if let selectedDay = viewModel.selectedDay {
+                if selectedDay.isFuture() {
+                    reserveChallengeButton
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                } else {
+                    challengeCell
+                    Spacer()
+                }
+            }
         }
         .padding(calendarViewCGFloat.margin)
         .onAppear {
@@ -221,6 +228,26 @@ extension CalendarView {
                         fetchBottomSheetContent.send(viewModel.selectedChallenge)
                     }
                 }
+        }
+    }
+    
+    @ViewBuilder
+    private var reserveChallengeButton: some View {
+        Button {
+            
+        } label: {
+            HStack(spacing: 4) {
+                Image(systemName: "plus")
+                Text("챌린지 예약")
+            }
+            .fontWeight(.medium)
+            .foregroundColor(.point)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 15)
+            .background {
+                RoundedRectangle(cornerRadius: 16)
+                    .foregroundColor(.cellFill)
+            }
         }
     }
 }
