@@ -44,7 +44,7 @@ class CoreDataManager {
     }
     
     func insertChallenge(_ challenge: Challenge) {
-        let currentTimeZoneDate = challenge.date.currentTimeZoneDate()
+        let currentTimeZoneDate = challenge.date.convertToCurrentTimeZone()
         guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
         
         let existing = getChallengeOf(currentTimeZoneDate)
@@ -52,26 +52,6 @@ class CoreDataManager {
             let managedObject = NSManagedObject(entity: entity, insertInto: context)
             managedObject.setValue(challenge.id, forKey: "id")
             managedObject.setValue(currentTimeZoneDate, forKey: "date")
-            managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
-            managedObject.setValue(challenge.content, forKey: "content")
-            do {
-                try context.save()
-            } catch {
-                print(error.localizedDescription)
-            }
-        } else {
-            print("이미 등록된 내용이 있습니다")
-        }
-    }
-    
-    func insertPastChallenge(_ challenge: Challenge) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
-        
-        let existing = getChallengeOf(challenge.date)
-        if existing.isEmpty {
-            let managedObject = NSManagedObject(entity: entity, insertInto: context)
-            managedObject.setValue(challenge.id, forKey: "id")
-            managedObject.setValue(challenge.date, forKey: "date")
             managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
             managedObject.setValue(challenge.content, forKey: "content")
             do {
@@ -131,7 +111,7 @@ class CoreDataManager {
     
     
     func getChallengeOf(_ date: Date) -> [Challenge] {
-        let currentTimeZoneDate = convertTimezone(date)
+        let currentTimeZoneDate = date.convertToCurrentTimeZone()
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
@@ -227,9 +207,5 @@ extension CoreDataManager {
         } else {
             return false
         }
-    }
-    
-    private func convertTimezone(_ date: Date) -> Date {
-        return Calendar.current.date(from: DateComponents.convertTime(date)) ?? Date()
     }
 }

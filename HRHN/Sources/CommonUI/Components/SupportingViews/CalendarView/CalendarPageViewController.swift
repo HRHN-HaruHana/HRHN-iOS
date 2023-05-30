@@ -167,7 +167,7 @@ extension CalendarPageViewController {
     
     private func undoDeletionAndDismissToastMessage() {
         guard let selectedChallenge = self.selectedChallenge else { return }
-        CoreDataManager.shared.insertPastChallenge(selectedChallenge)
+        CoreDataManager.shared.insertChallenge(selectedChallenge)
         guard let hc = viewControllers?.first as? UIHostingController<CalendarView> else { return }
         hc.rootView.viewModel.fetchSelectedChallenge()
         dismissToastMessage()

@@ -33,7 +33,7 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
-        let currentTimeZoneDate = Date().currentTimeZoneDate()
+        let currentTimeZoneDate = Date().convertToCurrentTimeZone()
         let midnight = Calendar.current.startOfDay(for: currentTimeZoneDate)
         let nextMidnight = Calendar.current.date(
             byAdding: .day,
