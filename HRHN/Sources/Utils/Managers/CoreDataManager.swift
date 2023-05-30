@@ -64,6 +64,26 @@ class CoreDataManager {
         }
     }
     
+    func insertPastChallenge(_ challenge: Challenge) {
+        guard let entity = NSEntityDescription.entity(forEntityName: "Challenge", in: context) else { return }
+        
+        let existing = getChallengeOf(challenge.date)
+        if existing.isEmpty {
+            let managedObject = NSManagedObject(entity: entity, insertInto: context)
+            managedObject.setValue(challenge.id, forKey: "id")
+            managedObject.setValue(challenge.date, forKey: "date")
+            managedObject.setValue(challenge.emoji.rawValue, forKey: "emoji")
+            managedObject.setValue(challenge.content, forKey: "content")
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        } else {
+            print("이미 등록된 내용이 있습니다")
+        }
+    }
+    
     private func fetchChallenges() -> [ChallengeMO] {
         
         let fetchRequest = NSFetchRequest<ChallengeMO>(entityName: "Challenge")
@@ -132,10 +152,9 @@ class CoreDataManager {
     }
     
     func deleteChallenge(_ date: Date) {
-        let currentTimeZoneDate = date
         let fetchResults = fetchChallenges()
         if fetchResults.count > 0 {
-            let challenge = fetchResults.filter({ isSameDay(date1: currentTimeZoneDate, date2: $0.date) })[0]
+            let challenge = fetchResults.filter({ isSameDay(date1: date, date2: $0.date) })[0]
             context.delete(challenge)
             do {
                 try context.save()
