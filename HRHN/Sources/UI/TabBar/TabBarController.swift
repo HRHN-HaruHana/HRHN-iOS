@@ -30,6 +30,8 @@ class TabBarController: UITabBarController {
         tabBar.scrollEdgeAppearance = appearance
         tabBar.tintColor = UIColor.cellLabel
         tabBar.unselectedItemTintColor = UIColor.tertiaryLabel
+        
+        dimmedView.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
     }
     
     private func setLayout() {
