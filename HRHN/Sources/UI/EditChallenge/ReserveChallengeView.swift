@@ -58,7 +58,6 @@ final class ReserveChallengeView: UIView {
     
     private let titleLabel: UILabel = {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-//        $0.text = "챌린지 예약"
         return $0
     }(UILabel())
     
@@ -72,7 +71,6 @@ final class ReserveChallengeView: UIView {
         $0.numberOfLines = 0
         $0.textAlignment = .center
         $0.layer.opacity = 0.3
-//        $0.isHidden = true
         return $0
     }(UILabel())
     

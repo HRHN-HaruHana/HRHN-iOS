@@ -11,13 +11,20 @@ import SwiftUI
 struct CalendarView: View {
     
     @ObservedObject var viewModel: CalendarViewModel
+    @State private var selectedDayState: DayState?
     let willPresentReviewSheet = PassthroughSubject<Void, Never>()
     let willPresentReserveSheet = PassthroughSubject<Void, Never>()
     let fetchReviewSheetContent = PassthroughSubject<Challenge?, Never>()
     let fetchReserveSheetContent = PassthroughSubject<(Date?, Challenge?), Never>()
     let goToCurrentMonth = PassthroughSubject<Void, Never>()
     
-    private enum calendarViewCGFloat {
+    private enum DayState {
+        case noChallengePast, hasChallengePast
+        case noChallengeToday, hasChallengeToday
+        case noChallengeFuture, hasChallengeFuture
+    }
+    
+    private enum CalendarViewCGFloat {
         static let margin: CGFloat =  20.verticallyAdjusted
         static let mediumVerticalSpacing: CGFloat = 20.verticallyAdjusted
         static let smallVerticalSpaicng: CGFloat = 10.verticallyAdjusted
@@ -36,40 +43,83 @@ struct CalendarView: View {
                 monthLabel(viewModel.calendarDate.monthName)
                 todayButton
             }
-            .padding(.bottom, calendarViewCGFloat.mediumVerticalSpacing)
+            .padding(.bottom, CalendarViewCGFloat.mediumVerticalSpacing)
             weekLabels
-                .padding(.bottom, calendarViewCGFloat.smallVerticalSpaicng)
+                .padding(.bottom, CalendarViewCGFloat.smallVerticalSpaicng)
             calendar
             Spacer()
-            if viewModel.selectedChallenge != nil {
+            switch selectedDayState {
+            case .hasChallengePast, .hasChallengeToday, .hasChallengeFuture:
                 challengeCell
                 Spacer()
-            } else if let selectedDay = viewModel.selectedDay {
-                if selectedDay.isFuture() {
-                    reserveChallengeButton
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                }
+            case .noChallengeFuture:
+                reserveChallengeButton
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+            default:
+                EmptyView()
             }
-//            if let selectedDay = viewModel.selectedDay {
-//                if selectedDay.isFuture() {
-//                    reserveChallengeButton
-//                        .frame(maxWidth: .infinity, alignment: .trailing)
-//                } else {
-//                    challengeCell
-//                    Spacer()
-//                }
-//            }
         }
-        .padding(calendarViewCGFloat.margin)
+        .padding(CalendarViewCGFloat.margin)
         .onAppear {
             if viewModel.selectedDay == nil {
                 viewModel.setInitialSelectedDayAndChallenge()
             }
             viewModel.fetchSelectedChallenge()
         }
-        .onChange(of: viewModel.selectedDay) { _ in
+        .onChange(of: viewModel.selectedDay) { selectedDay in
             viewModel.fetchSelectedChallenge()
             viewModel.fetchSelectedDayState()
+            setSelectedDayState(selectedDay)
+        }
+    }
+}
+
+// MARK: - Methods
+
+extension CalendarView {
+    
+    private func setSelectedDayState(_ selectedDay: Date?) {
+        guard let selectedDay else { return }
+        if selectedDay.isPast() {
+            if viewModel.selectedChallenge == nil {
+                selectedDayState = .noChallengePast
+            } else {
+                selectedDayState = .hasChallengePast
+            }
+        } else if selectedDay.isFuture() {
+            if viewModel.selectedChallenge == nil {
+                selectedDayState = .noChallengeFuture
+            } else {
+                selectedDayState = .hasChallengeFuture
+            }
+        } else if selectedDay.isToday() {
+            if viewModel.selectedChallenge == nil {
+                selectedDayState = .noChallengeToday
+            } else {
+                selectedDayState = .hasChallengeToday
+            }
+        }
+    }
+    
+    private func dayState(date: Date, challenge: Challenge?) -> DayState {
+        if date.isPast() {
+            if challenge == nil {
+                return .noChallengePast
+            } else {
+                return .hasChallengePast
+            }
+        } else if date.isFuture() {
+            if challenge == nil {
+                return .noChallengeFuture
+            } else {
+                return .hasChallengeFuture
+            }
+        } else {
+            if challenge == nil {
+                return .noChallengeToday
+            } else {
+                return .hasChallengeToday
+            }
         }
     }
 }
@@ -180,15 +230,15 @@ extension CalendarView {
             viewModel.selectedDay = date
             viewModel.selectedChallenge = challenge
         } label: {
-            VStack(spacing: calendarViewCGFloat.dayButtonSpacing) {
+            VStack(spacing: CalendarViewCGFloat.dayButtonSpacing) {
                 if let challenge {
                     Image(challenge.emoji.rawValue)
                         .resizable()
-                        .frame(width: calendarViewCGFloat.calendarEmojiSize, height: calendarViewCGFloat.calendarEmojiSize)
+                        .frame(width: CalendarViewCGFloat.calendarEmojiSize, height: CalendarViewCGFloat.calendarEmojiSize)
                 } else {
                     Rectangle()
                         .foregroundColor(.clear)
-                        .frame(width: calendarViewCGFloat.calendarEmojiSize, height: calendarViewCGFloat.calendarEmojiSize)
+                        .frame(width: CalendarViewCGFloat.calendarEmojiSize, height: CalendarViewCGFloat.calendarEmojiSize)
                 }
                 ZStack(alignment: .topTrailing) {
                     Text("\(date.day)")
@@ -199,9 +249,13 @@ extension CalendarView {
                         Image("redDot")
                             .offset(x: 3, y: -3)
                     }
+                    if dayState(date: date, challenge: challenge) == .hasChallengeFuture {
+                        Image("redDot")
+                            .offset(x: 3, y: -3)
+                    }
                 }
             }
-            .padding(.vertical, calendarViewCGFloat.calendarButtonMargin)
+            .padding(.vertical, CalendarViewCGFloat.calendarButtonMargin)
             .frame(maxWidth: .infinity)
             .background {
                 RoundedRectangle(cornerRadius: 8)
@@ -212,14 +266,14 @@ extension CalendarView {
     
     @ViewBuilder
     private var emptyDay: some View {
-        VStack(spacing: calendarViewCGFloat.dayButtonSpacing) {
+        VStack(spacing: CalendarViewCGFloat.dayButtonSpacing) {
             Rectangle()
                 .foregroundColor(.clear)
-                .frame(width: calendarViewCGFloat.calendarEmojiSize, height: calendarViewCGFloat.calendarEmojiSize)
+                .frame(width: CalendarViewCGFloat.calendarEmojiSize, height: CalendarViewCGFloat.calendarEmojiSize)
             Text("0")
                 .font(.system(size: 13))
         }
-        .padding(.vertical, calendarViewCGFloat.calendarButtonMargin)
+        .padding(.vertical, CalendarViewCGFloat.calendarButtonMargin)
         .frame(maxWidth: .infinity)
         .background {
             RoundedRectangle(cornerRadius: 8)
@@ -234,14 +288,14 @@ extension CalendarView {
                 .font(.system(size: 20))
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity)
-                .padding(calendarViewCGFloat.margin)
+                .padding(CalendarViewCGFloat.margin)
                 .background {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(.cellFill)
                 }
                 .onTapGesture {
                     guard let selectedDay = viewModel.selectedDay else { return }
-                    if !selectedDay.isToday() && !selectedDay.isFuture() {
+                    if selectedDay.isPast() {
                         willPresentReviewSheet.send()
                         fetchReviewSheetContent.send(viewModel.selectedChallenge)
                     } else if selectedDay.isFuture() {

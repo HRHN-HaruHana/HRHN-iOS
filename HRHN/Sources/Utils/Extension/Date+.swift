@@ -110,4 +110,13 @@ extension Date {
             return false
         }
     }
+    
+    func isPast() -> Bool {
+        let today = Date()
+        if self < today && !self.isToday() {
+            return true
+        } else {
+            return false
+        }
+    }
 }
