@@ -28,7 +28,7 @@ final class CalendarViewModel: ObservableObject {
     }
     
     enum SelectedDayState {
-        case today, currentMonth, otherMonth, undefined
+        case today, currentMonth, pastMonth, futureMonth, undefined
     }
     
     init(calendarDate: Date) {
@@ -63,8 +63,10 @@ extension CalendarViewModel {
             selectedDayState = .today
         } else if selectedDay.isCurrentMonth() {
             selectedDayState = .currentMonth
+        } else if selectedDay.isPast() {
+            selectedDayState = .pastMonth
         } else {
-            selectedDayState = .otherMonth
+            selectedDayState = .futureMonth
         }
     }
     

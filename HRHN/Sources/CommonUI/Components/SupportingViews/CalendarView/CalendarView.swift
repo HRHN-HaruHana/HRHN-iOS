@@ -16,7 +16,8 @@ struct CalendarView: View {
     let willPresentReserveSheet = PassthroughSubject<Void, Never>()
     let fetchReviewSheetContent = PassthroughSubject<Challenge?, Never>()
     let fetchReserveSheetContent = PassthroughSubject<(Date?, Challenge?), Never>()
-    let goToCurrentMonth = PassthroughSubject<Void, Never>()
+    let goToCurrentMonthFromPast = PassthroughSubject<Void, Never>()
+    let goToCurrentMonthFromFuture = PassthroughSubject<Void, Never>()
     
     private enum DayState {
         case noChallengePast, hasChallengePast
@@ -65,6 +66,7 @@ struct CalendarView: View {
                 viewModel.setInitialSelectedDayAndChallenge()
             }
             viewModel.fetchSelectedChallenge()
+            setSelectedDayState(viewModel.selectedDay)
         }
         .onChange(of: viewModel.selectedDay) { selectedDay in
             viewModel.fetchSelectedChallenge()
@@ -148,9 +150,15 @@ extension CalendarView {
             } label: {
                 todayButtonLabel
             }
-        case .otherMonth:
+        case .pastMonth:
             Button {
-                goToCurrentMonth.send()
+                goToCurrentMonthFromPast.send()
+            } label: {
+                todayButtonLabel
+            }
+        case .futureMonth:
+            Button {
+                goToCurrentMonthFromFuture.send()
             } label: {
                 todayButtonLabel
             }
@@ -299,6 +307,9 @@ extension CalendarView {
                         willPresentReviewSheet.send()
                         fetchReviewSheetContent.send(viewModel.selectedChallenge)
                     } else if selectedDay.isFuture() {
+                        willPresentReserveSheet.send()
+                        fetchReserveSheetContent.send((viewModel.selectedDay, viewModel.selectedChallenge))
+                    } else if selectedDay.isToday() {
                         willPresentReserveSheet.send()
                         fetchReserveSheetContent.send((viewModel.selectedDay, viewModel.selectedChallenge))
                     }

@@ -123,9 +123,14 @@ extension CalendarPageViewController {
                     self?.reserveSheetContentView.viewModel.selectedChallenge = selectedChallenge                    
                 }
                 .store(in: &cancelBag)
-            hc.rootView.goToCurrentMonth
+            hc.rootView.goToCurrentMonthFromPast
                 .sink{ [weak self] in
-                    self?.goToCurrentMonth()
+                    self?.goToCurrentMonthFromPast()
+                }
+                .store(in: &cancelBag)
+            hc.rootView.goToCurrentMonthFromFuture
+                .sink{ [weak self] in
+                    self?.goToCurrentMonthFromFuture()
                 }
                 .store(in: &cancelBag)
         }
@@ -156,12 +161,12 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let hc = viewController as? UIHostingController<CalendarView> else { return nil }
         let currentViewDate = hc.rootView.viewModel.calendarDate
-        if currentViewDate.isCurrentMonth() {
-            return nil
-        } else {
+//        if currentViewDate.isCurrentMonth() {
+//            return nil
+//        } else {
             let nextMonth = viewModel.addMonths(1, to: currentViewDate)
             return UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: nextMonth)))
-        }
+//        }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
@@ -171,9 +176,15 @@ extension CalendarPageViewController: UIPageViewControllerDataSource, UIPageView
 
 extension CalendarPageViewController {
     
-    private func goToCurrentMonth() {
+    private func goToCurrentMonthFromPast() {
         let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: Date())))
         setViewControllers([hc], direction: .forward, animated: true)
+        bind()
+    }
+    
+    private func goToCurrentMonthFromFuture() {
+        let hc = UIHostingController(rootView: CalendarView(viewModel: CalendarViewModel(calendarDate: Date())))
+        setViewControllers([hc], direction: .reverse, animated: true)
         bind()
     }
 }
