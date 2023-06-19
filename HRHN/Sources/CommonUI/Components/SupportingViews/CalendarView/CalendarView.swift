@@ -73,6 +73,9 @@ struct CalendarView: View {
             viewModel.fetchSelectedDayState()
             setSelectedDayState(selectedDay)
         }
+        .onChange(of: viewModel.selectedChallenge) { _ in
+            setSelectedDayState(viewModel.selectedDay)
+        }
     }
 }
 
