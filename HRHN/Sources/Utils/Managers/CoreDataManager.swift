@@ -79,7 +79,7 @@ class CoreDataManager {
         return []
     }
     
-    func getChallenges() -> [Challenge] {
+    func getAllChallenges() -> [Challenge] {
         var challenges: [Challenge] = []
         let fetchResults = fetchChallenges()
         for result in fetchResults {
@@ -90,6 +90,23 @@ class CoreDataManager {
                 emoji: Emoji(rawValue: result.emoji)!
             )
             challenges.append(challenge)
+        }
+        return challenges
+    }
+    
+    func getPastChallenges() -> [Challenge] {
+        var challenges: [Challenge] = []
+        let fetchResults = fetchChallenges()
+        for result in fetchResults {
+            if !result.date.isFuture() && !result.date.isToday() {
+                let challenge = Challenge(
+                    id: result.id,
+                    date: result.date,
+                    content: result.content,
+                    emoji: Emoji(rawValue: result.emoji)!
+                )
+                challenges.append(challenge)
+            }
         }
         return challenges
     }

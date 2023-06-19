@@ -28,7 +28,7 @@ extension EditChallenge where Self: ObservableObject {
     }
     
     func getPreviousChallenge() -> Challenge? {
-        let challenges = CoreDataManager.shared.getChallenges()
+        let challenges = CoreDataManager.shared.getPastChallenges()
         if challenges.count > 0 && challenges[0].emoji == .none {
             return challenges[0]
         } else {

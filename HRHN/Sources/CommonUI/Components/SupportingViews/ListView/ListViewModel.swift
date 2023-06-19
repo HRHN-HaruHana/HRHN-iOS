@@ -14,7 +14,7 @@ final class ListViewModel {
     private let coreDataManager = CoreDataManager.shared
     
     func fetchPreviousChallenges() {
-        let challenges = self.coreDataManager.getChallenges().filter { (challenge: Challenge) -> Bool in
+        let challenges = self.coreDataManager.getAllChallenges().filter { (challenge: Challenge) -> Bool in
             let current = Calendar.current
             return !current.isDateInToday(challenge.date)
         }
