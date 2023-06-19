@@ -11,8 +11,10 @@ import SwiftUI
 struct CalendarView: View {
     
     @ObservedObject var viewModel: CalendarViewModel
-    let willPresentBottomSheet = PassthroughSubject<Void, Never>()
-    let fetchBottomSheetContent = PassthroughSubject<Challenge?, Never>()
+    let willPresentReviewSheet = PassthroughSubject<Void, Never>()
+    let willPresentReserveSheet = PassthroughSubject<Void, Never>()
+    let fetchReviewSheetContent = PassthroughSubject<Challenge?, Never>()
+    let fetchReserveSheetContent = PassthroughSubject<(Date?, Challenge?), Never>()
     let goToCurrentMonth = PassthroughSubject<Void, Never>()
     
     private enum calendarViewCGFloat {
@@ -39,15 +41,24 @@ struct CalendarView: View {
                 .padding(.bottom, calendarViewCGFloat.smallVerticalSpaicng)
             calendar
             Spacer()
-            if let selectedDay = viewModel.selectedDay {
+            if viewModel.selectedChallenge != nil {
+                challengeCell
+                Spacer()
+            } else if let selectedDay = viewModel.selectedDay {
                 if selectedDay.isFuture() {
                     reserveChallengeButton
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                } else {
-                    challengeCell
-                    Spacer()
                 }
             }
+//            if let selectedDay = viewModel.selectedDay {
+//                if selectedDay.isFuture() {
+//                    reserveChallengeButton
+//                        .frame(maxWidth: .infinity, alignment: .trailing)
+//                } else {
+//                    challengeCell
+//                    Spacer()
+//                }
+//            }
         }
         .padding(calendarViewCGFloat.margin)
         .onAppear {
@@ -179,9 +190,16 @@ extension CalendarView {
                         .foregroundColor(.clear)
                         .frame(width: calendarViewCGFloat.calendarEmojiSize, height: calendarViewCGFloat.calendarEmojiSize)
                 }
-                Text("\(date.day)")
-                    .font(.system(size: 13))
-                    .foregroundColor(dateLabelColor)
+                ZStack(alignment: .topTrailing) {
+                    Text("\(date.day)")
+                        .font(.system(size: 13))
+                        .foregroundColor(dateLabelColor)
+                    if (date.isFuture() && challenge != nil) {
+                        // || (!date.isToday() && challenge?.emoji == Emoji.none)
+                        Image("redDot")
+                            .offset(x: 3, y: -3)
+                    }
+                }
             }
             .padding(.vertical, calendarViewCGFloat.calendarButtonMargin)
             .frame(maxWidth: .infinity)
@@ -224,8 +242,11 @@ extension CalendarView {
                 .onTapGesture {
                     guard let selectedDay = viewModel.selectedDay else { return }
                     if !selectedDay.isToday() && !selectedDay.isFuture() {
-                        willPresentBottomSheet.send()
-                        fetchBottomSheetContent.send(viewModel.selectedChallenge)
+                        willPresentReviewSheet.send()
+                        fetchReviewSheetContent.send(viewModel.selectedChallenge)
+                    } else if selectedDay.isFuture() {
+                        willPresentReserveSheet.send()
+                        fetchReserveSheetContent.send((viewModel.selectedDay, viewModel.selectedChallenge))
                     }
                 }
         }
@@ -234,7 +255,8 @@ extension CalendarView {
     @ViewBuilder
     private var reserveChallengeButton: some View {
         Button {
-            
+            willPresentReserveSheet.send()
+            fetchReserveSheetContent.send((viewModel.selectedDay, viewModel.selectedChallenge))
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: "plus")

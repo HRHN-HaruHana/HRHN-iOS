@@ -11,7 +11,7 @@ final class BottomSheetController: UIViewController {
     
     // MARK: Properties
     
-    private let content: UIView
+    let content: UIView
     var sheetWillDismiss: (() -> Void)?
     var emojiDidTap: (() -> Void)?
     var deleteButtonDidTap: (() -> Void)?
@@ -51,11 +51,6 @@ final class BottomSheetController: UIViewController {
     
     // MARK: Life Cycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setLayout()
-    }
-    
     init(content: UIView) {
         self.content = content
         super.init(nibName: nil, bundle: nil)
@@ -63,6 +58,27 @@ final class BottomSheetController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        bottomSheetCellView.snp.remakeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-20)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        bottomSheetCellView.snp.remakeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+        }
     }
 }
 
@@ -81,7 +97,7 @@ extension BottomSheetController {
 
         bottomSheetCellView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            $0.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-20)
         }
         
         bottomSheetCellView.addSubview(
@@ -102,6 +118,10 @@ extension BottomSheetController {
             $0.width.equalTo(60)
             $0.height.equalTo(6)
         }
+        
+        content.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview()
+        }
     }
 }
 
@@ -114,10 +134,6 @@ extension BottomSheetController {
     
     func emojiTap() {
         emojiDidTap?()
-    }
-    
-    func deleteButtonWillTap() {
-        deleteButtonDidTap?()
     }
 }
 

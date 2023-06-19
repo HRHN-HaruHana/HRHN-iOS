@@ -12,29 +12,42 @@ import SwiftUI
 final class CalendarPageViewController: UIPageViewController {
     
     private let viewModel: CalendarPageViewModel
+    private let reserveChallengeMethodHandler = ReserveChallengeViewHandler()
     private var cancelBag = Set<AnyCancellable>()
     
     private var isToastMessagePresented = false
     private var selectedChallenge: Challenge?
     private var toastMessageTimer: Timer?
     
-    private lazy var bottomSheet: BottomSheetController = {
+    private lazy var reviewSheet: BottomSheetController = {
         $0.sheetWillDismiss = { [weak self] in
-            self?.dismissBottomSheet()
+            self?.dismissSheet()
         }
         $0.deleteButtonDidTap = { [weak self] in
             self?.presentToastMessage()
         }
         return $0
-    }(BottomSheetController(content: bottomSheetContentView))
-
-    private let bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .calendar))
+    }(BottomSheetController(content: reviewSheetContentView))
+    private let reviewSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .calendar))
+    
+    private lazy var reserveSheet: BottomSheetController = {
+        $0.sheetWillDismiss = { [weak self] in
+            self?.dismissSheet()
+            self?.reserveChallengeMethodHandler.sheetDidDismissSubject.send()
+        }
+        return $0
+    }(BottomSheetController(content: reserveSheetContentView))
+    private lazy var reserveSheetContentView = ReserveChallengeView(
+        viewModel: ReserveChallengeViewModel(),
+        methodHandler: reserveChallengeMethodHandler
+    )
     
     private lazy var toastMessage: ToastMessage = {
-        let action = UIAction { _ in
-            self.undoDeletionAndDismissToastMessage()
+        let undoAction = UIAction { _ in
+            self.undoDeletion()
+            self.dismissToastMessage()
         }
-        $0.addAction(action, for: .touchUpInside)
+        $0.addAction(undoAction, for: .touchUpInside)
         
         $0.pauseTimer = { [weak self] in
             self?.toastMessageTimer?.invalidate()
@@ -85,16 +98,29 @@ extension CalendarPageViewController {
     private func bind() {
         cancelBag.removeAll()
         if let hc = viewControllers?.first as? UIHostingController<CalendarView> {
-            hc.rootView.willPresentBottomSheet
+            hc.rootView.willPresentReviewSheet
                 .sink { [weak self] in
-                    self?.presentBottomSheet()
+                    self?.presentSheet(sheet: self?.reviewSheet)
                 }
                 .store(in: &cancelBag)
-            hc.rootView.fetchBottomSheetContent
+            hc.rootView.willPresentReserveSheet
+                .sink { [weak self] in
+                    self?.presentSheet(sheet: self?.reserveSheet)
+                    self?.reserveChallengeMethodHandler.sheetWillPresentSubject.send()
+                }
+                .store(in: &cancelBag)
+            hc.rootView.fetchReviewSheetContent
                 .sink { [weak self] challenge in
-                    self?.bottomSheetContentView.viewModel.challenge = challenge
-                    self?.bottomSheetContentView.viewModel.selectedEmoji = challenge?.emoji
                     self?.selectedChallenge = challenge
+                    self?.reviewSheetContentView.viewModel.challenge = challenge
+                    self?.reviewSheetContentView.viewModel.selectedEmoji = challenge?.emoji
+                }
+                .store(in: &cancelBag)
+            hc.rootView.fetchReserveSheetContent
+                .sink { [weak self] selectedDate, selectedChallenge in
+                    self?.selectedChallenge = selectedChallenge
+                    self?.reserveSheetContentView.viewModel.selectedDate = selectedDate
+                    self?.reserveSheetContentView.viewModel.selectedChallenge = selectedChallenge                    
                 }
                 .store(in: &cancelBag)
             hc.rootView.goToCurrentMonth
@@ -103,6 +129,18 @@ extension CalendarPageViewController {
                 }
                 .store(in: &cancelBag)
         }
+        reserveChallengeMethodHandler.sheetDidDismissSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.dismissSheet()
+            }
+            .store(in: &cancelBag)
+        reserveChallengeMethodHandler.deleteButtonDidTapSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.presentToastMessage()
+            }
+            .store(in: &cancelBag)
     }
 }
 
@@ -144,18 +182,22 @@ extension CalendarPageViewController {
 
 extension CalendarPageViewController {
     
-    private func presentBottomSheet() {
+    private func presentSheet(sheet: BottomSheetController?) {
         guard let tabBar = tabBarController as? TabBarController else { return }
         tabBar.dim()
-        bottomSheet.modalPresentationStyle = .overFullScreen
-        bottomSheet.modalTransitionStyle = .coverVertical
-        present(bottomSheet, animated: true)
+        
+        guard let sheet else { return }
+        sheet.modalPresentationStyle = .overFullScreen
+        sheet.modalTransitionStyle = .coverVertical
+        present(sheet, animated: true)
     }
     
-    private func dismissBottomSheet() {
+    private func dismissSheet() {
         guard let tabBar = tabBarController as? TabBarController else { return }
         tabBar.brighten()
+        
         dismiss(animated: true)
+        
         guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
         hc.rootView.viewModel.fetchSelectedChallenge()
     }
@@ -165,12 +207,11 @@ extension CalendarPageViewController {
 
 extension CalendarPageViewController {
     
-    private func undoDeletionAndDismissToastMessage() {
+    private func undoDeletion() {
         guard let selectedChallenge = self.selectedChallenge else { return }
         CoreDataManager.shared.insertChallenge(selectedChallenge)
         guard let hc = viewControllers?.first as? UIHostingController<CalendarView> else { return }
         hc.rootView.viewModel.fetchSelectedChallenge()
-        dismissToastMessage()
     }
     
     private func setToastMessageLayout() {
