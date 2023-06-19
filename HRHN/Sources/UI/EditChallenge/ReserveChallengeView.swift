@@ -65,7 +65,7 @@ final class ReserveChallengeView: UIView {
     
     private lazy var placeholderLabel: UILabel = {
         $0.attributedText = NSAttributedString(
-            string: " ",
+            string: "챌린지를 작성하세요",
             attributes: mainTextAttributes
         )
         $0.numberOfLines = 0
@@ -167,36 +167,6 @@ final class ReserveChallengeView: UIView {
     }
     
     private func bind() {
-        viewModel.$selectedDate
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] date in
-                guard let date else { return }
-                self?.placeholderLabel.attributedText = NSAttributedString(
-                    string: "\(date.month)월 \(date.day)일 챌린지",
-                    attributes: self?.mainTextAttributes
-                )
-                var weekday = ""
-                switch date.weekdayNumber() {
-                case 1:
-                    weekday = "일요일"
-                case 2:
-                    weekday = "월요일"
-                case 3:
-                    weekday = "화요일"
-                case 4:
-                    weekday = "수요일"
-                case 5:
-                    weekday = "목요일"
-                case 6:
-                    weekday = "금요일"
-                case 7:
-                    weekday = "토요일"
-                default:
-                    break
-                }
-                self?.titleLabel.text = "\(date.month)월 \(date.day)일 \(weekday) 예약"
-            }
-            .store(in: &cancelBag)
         viewModel.$selectedChallenge
             .receive(on: DispatchQueue.main)
             .sink { [weak self] selectedChallenge in
@@ -212,6 +182,11 @@ final class ReserveChallengeView: UIView {
             .sink { [weak self] in
                 self?.challengeTextView.becomeFirstResponder()
                 self?.checkTextLength(textView: self?.challengeTextView)
+                if self?.viewModel.selectedChallenge != nil {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self?.challengeTextView.selectAll(nil)
+                    }
+                }
             }
             .store(in: &cancelBag)
         methodHandler.sheetDidDismissSubject
@@ -286,7 +261,7 @@ extension ReserveChallengeView {
     
     private func setReserveMode() {
         guard let selectedDate = viewModel.selectedDate else { return }
-        titleLabel.text = "n주후 (\(selectedDate.month)/\(selectedDate.day))"
+        titleLabel.text = getDescription(of: selectedDate)
         challengeTextView.text = .none
         
         placeholderLabel.isHidden = false
@@ -295,21 +270,54 @@ extension ReserveChallengeView {
     
     private func setEditMode() {
         guard let selectedDate = viewModel.selectedDate else { return }
-        titleLabel.text = "n주후 (\(selectedDate.month)/\(selectedDate.day))"
+        if selectedDate.isToday() {
+            titleLabel.text = "오늘 챌린지 수정"
+        } else {
+            titleLabel.text = getDescription(of: selectedDate)
+        }
         challengeTextView.text = viewModel.selectedChallenge?.content
         
         placeholderLabel.isHidden = true
         contextMenuButton.isHidden = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.challengeTextView.selectAll(nil)
-        }
     }
 }
 
 extension ReserveChallengeView {
+    
     @objc private func cancelButtonDidTap() {
         methodHandler.sheetDidDismissSubject.send()
+    }
+    
+    private func dayDifferenceBetweenToday(and date: Date) -> Int {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        let components = calendar.dateComponents([.day], from: today, to: date)
+        return components.day ?? 0
+    }
+    
+    private func getDescription(of date: Date) -> String {
+        let today = Date()
+        let dayDifference = dayDifferenceBetweenToday(and: date)
+        let weekDifference = Int((dayDifference+(today.weekdayNumber()-1))/7)
+        let footerWithoutDayName = " (\(date.month)/\(date.day))"
+        let footerWithDayName = " (\(date.month)/\(date.day), \(date.dayName))"
+        
+        switch weekDifference {
+        case 0:
+            switch dayDifference {
+            case 1:
+                return "내일" + footerWithDayName
+            case 2:
+                return "내일 모레" + footerWithDayName
+            default:
+                return "이번 주 \(date.dayName)" + footerWithoutDayName
+            }
+        case 1:
+            return "다음 주 \(date.dayName)" + footerWithoutDayName
+        default:
+            return "\(weekDifference)주 후 \(date.dayName)" + footerWithoutDayName
+        }
     }
 }
 

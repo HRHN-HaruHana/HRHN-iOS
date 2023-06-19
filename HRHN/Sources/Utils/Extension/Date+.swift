@@ -67,6 +67,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    var dayName: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .autoupdatingCurrent
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.string(from: self)
+    }
+    
     /**
      # weekdayNumber
      오늘 요일을 반환합니다.
