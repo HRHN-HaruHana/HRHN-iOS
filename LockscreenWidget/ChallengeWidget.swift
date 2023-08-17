@@ -66,6 +66,7 @@ struct ChallengeWidgetEntryView : View {
         case .accessoryRectangular:
             Text(entry.challenge)
                 .multilineTextAlignment(.center)
+                .widgetBackground(.clear)
         case .systemSmall:
             Text(entry.challenge)
                 .font(.system(size: 16))
@@ -76,6 +77,7 @@ struct ChallengeWidgetEntryView : View {
                          : 1)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
+                .widgetBackground(.clear)
         case .systemMedium:
             Text(entry.challenge)
                 .font(.system(size: 16))
@@ -86,8 +88,10 @@ struct ChallengeWidgetEntryView : View {
                          : 1)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 20)
+                .widgetBackground(.clear)
         default:
             Text("Not Implemented")
+                .widgetBackground(.clear)
         }
     }
 }
@@ -132,5 +136,15 @@ struct LockscreenWidget_Previews: PreviewProvider {
         )
         .previewContext(WidgetPreviewContext(family: .systemMedium))
         .previewDisplayName("Medium")
+    }
+}
+
+extension View {
+    @ViewBuilder func widgetBackground(_ color: Color) -> some View {
+        if #available(iOSApplicationExtension 17.0, macOSApplicationExtension 14.0, *) {
+            return  containerBackground(color, for: .widget)
+        } else {
+            return background(color)
+        }
     }
 }
