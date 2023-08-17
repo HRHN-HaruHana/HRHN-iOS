@@ -13,6 +13,7 @@ final class ReviewView: UIView {
     // MARK: - Properties
     
     var viewModel: ReviewViewModel!
+    var handler: ReviewViewHandler?
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: - UI Properties
@@ -92,20 +93,15 @@ final class ReviewView: UIView {
             title: "내용 수정",
             image: UIImage(systemName: "pencil")
         ) { _ in
-            // TODO: transition to edit challenge view
-//            self.firstContextMenuButtonDidTap?()
+            self.handler?.editButtonDidTapSubject.send()
         }
         let deleteAction = UIAction(
             title: "삭제",
             image: UIImage(systemName: "trash"),
             attributes: .destructive
         ) { _ in
-            // TODO: Delete Challenge
-            guard let bottomSheetVC = self.superview?.superview?.superview?.next as? BottomSheetController else { return }
             self.viewModel.deleteChallenge()
-            bottomSheetVC.dismissBottomSheet()
-            // TODO: presentToastMessage()
-            bottomSheetVC.deleteButtonDidTap?()
+            self.handler?.deleteButtonDidTapSubject.send()
         }
         let menu = UIMenu(children: [editAction, deleteAction])
         $0.menu = menu
@@ -115,9 +111,10 @@ final class ReviewView: UIView {
     
     // MARK: - Life Cycle
 
-    init(viewModel: ReviewViewModel) {
+    init(viewModel: ReviewViewModel, handler: ReviewViewHandler? = nil) {
         super.init(frame: .zero)
         self.viewModel = viewModel
+        self.handler = handler
         setLayout()
         bind()
     }
@@ -161,10 +158,9 @@ final class ReviewView: UIView {
             .store(in: &cancelBag)
         
         viewModel.emojiDidTap
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] in
-                guard let bottomSheetVC = self?.superview?.superview?.superview?.next as? BottomSheetController else { return }
-                bottomSheetVC.dismissBottomSheet()
-                bottomSheetVC.emojiTap()
+                self?.handler?.sheetWillDismissSubject.send()
             }
             .store(in: &cancelBag)
     }

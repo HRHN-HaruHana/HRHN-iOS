@@ -1,5 +1,5 @@
 //
-//  EditChallengeView.swift
+//  EditView.swift
 //  HRHN
 //
 //  Created by 민채호 on 2023/05/30.
@@ -8,12 +8,12 @@
 import Combine
 import UIKit
 
-final class ReserveChallengeView: UIView {
+final class EditView: UIView {
     
     // MARK: - Properties
     
-    var viewModel: ReserveChallengeViewModel!
-    var methodHandler: ReserveChallengeViewHandler!
+    var viewModel: EditViewModel!
+    var handler: EditViewHandler!
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: - Edit Challenge
@@ -133,8 +133,8 @@ final class ReserveChallengeView: UIView {
             attributes: .destructive
         ) { _ in
             self.viewModel.deleteChallenge()
-            self.methodHandler.sheetDidDismissSubject.send()
-            self.methodHandler.deleteButtonDidTapSubject.send()
+            self.handler.sheetWillDismissSubject.send()
+            self.handler.deleteButtonDidTapSubject.send()
         }
         let menu = UIMenu(children: [deleteAction])
         $0.menu = menu
@@ -153,10 +153,10 @@ final class ReserveChallengeView: UIView {
     
     // MARK: Life Cycles
     
-    init(viewModel: ReserveChallengeViewModel, methodHandler: ReserveChallengeViewHandler) {
+    init(viewModel: EditViewModel, handler: EditViewHandler) {
         super.init(frame: .zero)
         self.viewModel = viewModel
-        self.methodHandler = methodHandler
+        self.handler = handler
         challengeTextView.text = .none
         setLayout()
         bind()
@@ -177,7 +177,7 @@ final class ReserveChallengeView: UIView {
                 }
             }
             .store(in: &cancelBag)
-        methodHandler.sheetWillPresentSubject
+        handler.sheetWillPresentSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.challengeTextView.becomeFirstResponder()
@@ -189,7 +189,7 @@ final class ReserveChallengeView: UIView {
                 }
             }
             .store(in: &cancelBag)
-        methodHandler.sheetDidDismissSubject
+        handler.sheetWillDismissSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.challengeTextView.resignFirstResponder()
@@ -199,7 +199,7 @@ final class ReserveChallengeView: UIView {
     }
 }
 
-extension ReserveChallengeView {
+extension EditView {
     
     private func setLayout() {
         addSubviews(
@@ -272,8 +272,14 @@ extension ReserveChallengeView {
         guard let selectedDate = viewModel.selectedDate else { return }
         if selectedDate.isToday() {
             titleLabel.text = "오늘 챌린지 수정"
-        } else {
+        } else if selectedDate.isFuture() {
             titleLabel.text = getDescription(of: selectedDate)
+        } else if selectedDate.isPast() {
+            titleLabel.text = "\(selectedDate.month)/\(selectedDate.day) 챌린지 수정"
+            
+            var titleAttribute = AttributedString("수정")
+            titleAttribute.font = .systemFont(ofSize: 16, weight: .medium)
+            saveButton.configuration?.attributedTitle = titleAttribute
         }
         challengeTextView.text = viewModel.selectedChallenge?.content
         
@@ -282,10 +288,10 @@ extension ReserveChallengeView {
     }
 }
 
-extension ReserveChallengeView {
+extension EditView {
     
     @objc private func cancelButtonDidTap() {
-        methodHandler.sheetDidDismissSubject.send()
+        handler.sheetWillDismissSubject.send()
     }
     
     private func dayDifferenceBetweenToday(and date: Date) -> Int {
@@ -323,7 +329,7 @@ extension ReserveChallengeView {
 
 // MARK: - UITextViewDelegate
 
-extension ReserveChallengeView: UITextViewDelegate {
+extension EditView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         deleteOverFlowedTexts(textView: textView)
         checkTextLength(textView: textView)
@@ -342,7 +348,7 @@ extension ReserveChallengeView: UITextViewDelegate {
     }
 }
 
-extension ReserveChallengeView {
+extension EditView {
     private func checkTextLength(textView: UITextView?) {
         guard let textView else { return }
         if textView.text.isEmpty {
@@ -366,6 +372,6 @@ extension ReserveChallengeView {
     
     @objc private func reserveChallengeAndDismissSheet() {
         viewModel.reserveChallenge(challengeTextView.text)
-        methodHandler.sheetDidDismissSubject.send()
+        handler.sheetWillDismissSubject.send()
     }
 }

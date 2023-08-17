@@ -12,7 +12,8 @@ import SwiftUI
 final class CalendarPageViewController: UIPageViewController {
     
     private let viewModel: CalendarPageViewModel
-    private let reserveChallengeMethodHandler = ReserveChallengeViewHandler()
+    private let editViewHandler = EditViewHandler()
+    private let reviewViewHandler = ReviewViewHandler()
     private var cancelBag = Set<AnyCancellable>()
     
     private var isToastMessagePresented = false
@@ -22,24 +23,25 @@ final class CalendarPageViewController: UIPageViewController {
     private lazy var reviewSheet: BottomSheetController = {
         $0.sheetWillDismiss = { [weak self] in
             self?.dismissSheet()
-        }
-        $0.deleteButtonDidTap = { [weak self] in
-            self?.presentToastMessage()
+            self?.reviewViewHandler.sheetWillDismissSubject.send()
         }
         return $0
     }(BottomSheetController(content: reviewSheetContentView))
-    private let reviewSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .calendar))
+    private lazy var reviewSheetContentView = ReviewView(
+        viewModel: ReviewViewModel(from: .calendar),
+        handler: reviewViewHandler
+    )
     
     private lazy var reserveSheet: BottomSheetController = {
         $0.sheetWillDismiss = { [weak self] in
             self?.dismissSheet()
-            self?.reserveChallengeMethodHandler.sheetDidDismissSubject.send()
+            self?.editViewHandler.sheetWillDismissSubject.send()
         }
         return $0
     }(BottomSheetController(content: reserveSheetContentView))
-    private lazy var reserveSheetContentView = ReserveChallengeView(
-        viewModel: ReserveChallengeViewModel(),
-        methodHandler: reserveChallengeMethodHandler
+    private lazy var reserveSheetContentView = EditView(
+        viewModel: EditViewModel(),
+        handler: editViewHandler
     )
     
     private lazy var toastMessage: ToastMessage = {
@@ -106,7 +108,7 @@ extension CalendarPageViewController {
             hc.rootView.willPresentReserveSheet
                 .sink { [weak self] in
                     self?.presentSheet(sheet: self?.reserveSheet)
-                    self?.reserveChallengeMethodHandler.sheetWillPresentSubject.send()
+                    self?.editViewHandler.sheetWillPresentSubject.send()
                 }
                 .store(in: &cancelBag)
             hc.rootView.fetchReviewSheetContent
@@ -134,13 +136,47 @@ extension CalendarPageViewController {
                 }
                 .store(in: &cancelBag)
         }
-        reserveChallengeMethodHandler.sheetDidDismissSubject
+        
+        reviewViewHandler.sheetWillPresentSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                
+            }
+            .store(in: &cancelBag)
+        reviewViewHandler.sheetWillDismissSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.dismissSheet()
             }
             .store(in: &cancelBag)
-        reserveChallengeMethodHandler.deleteButtonDidTapSubject
+        reviewViewHandler.editButtonDidTapSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.dismiss(animated: true)
+                self?.editViewHandler.sheetWillPresentSubject.send()
+            }
+            .store(in: &cancelBag)
+        reviewViewHandler.deleteButtonDidTapSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.dismissSheet()
+                self?.presentToastMessage()
+            }
+            .store(in: &cancelBag)
+        
+        editViewHandler.sheetWillPresentSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.presentSheet(sheet: self?.reserveSheet)
+            }
+            .store(in: &cancelBag)
+        editViewHandler.sheetWillDismissSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.dismissSheet()
+            }
+            .store(in: &cancelBag)
+        editViewHandler.deleteButtonDidTapSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.presentToastMessage()
@@ -212,6 +248,13 @@ extension CalendarPageViewController {
         guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
         hc.rootView.viewModel.fetchSelectedChallenge()
     }
+    
+//    private func dismissSheetWithoutBrighten() {
+//        dismiss(animated: true)
+//        
+//        guard let hc = self.viewControllers?.first as? UIHostingController<CalendarView> else { return }
+//        hc.rootView.viewModel.fetchSelectedChallenge()
+//    }
 }
 
 // MARK: ToastMessage Methods

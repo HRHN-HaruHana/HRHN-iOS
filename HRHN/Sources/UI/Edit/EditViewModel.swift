@@ -1,5 +1,5 @@
 //
-//  ReserveChallengeViewModel.swift
+//  EditViewModel.swift
 //  HRHN
 //
 //  Created by 민채호 on 2023/06/13.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-final class ReserveChallengeViewModel: ObservableObject {
+final class EditViewModel: ObservableObject {
     
     @Published var selectedChallenge: Challenge?
     @Published var selectedDate: Date?

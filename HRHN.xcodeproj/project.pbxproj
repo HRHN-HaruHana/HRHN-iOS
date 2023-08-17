@@ -17,7 +17,7 @@
 		5041F1D829B9BE2900D464D3 /* UIEmojiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5041F1D729B9BE2900D464D3 /* UIEmojiButton.swift */; };
 		505B953829599976005F00C8 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505B953729599976005F00C8 /* UIViewController+.swift */; };
 		505ED00129B6F0D300491C96 /* UIAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505ED00029B6F0D300491C96 /* UIAlertButton.swift */; };
-		506C3BA12A3F192200D6B927 /* ReserveChallengeViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C3BA02A3F192200D6B927 /* ReserveChallengeViewHandler.swift */; };
+		506C3BA12A3F192200D6B927 /* EditViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506C3BA02A3F192200D6B927 /* EditViewHandler.swift */; };
 		506E58FD29B4E3740040FB41 /* Panable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E58FC29B4E3740040FB41 /* Panable.swift */; };
 		507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089AF295ABC2B00DD8D85 /* Color+.swift */; };
 		507089B2295ADE1A00DD8D85 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507089B1295ADE1A00DD8D85 /* View+.swift */; };
@@ -46,19 +46,18 @@
 		50A5FFFB295D784B00710B5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A5FFFA295D784B00710B5D /* Assets.xcassets */; };
 		50A8D07429AF09120044545C /* UIGrabber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8D07329AF09120044545C /* UIGrabber.swift */; };
 		50A8D07629AF09160044545C /* UIDimmedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A8D07529AF09160044545C /* UIDimmedView.swift */; };
-		50B051122A25EB78007CF3F4 /* ReserveChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B051112A25EB78007CF3F4 /* ReserveChallengeView.swift */; };
+		50B051122A25EB78007CF3F4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B051112A25EB78007CF3F4 /* EditView.swift */; };
 		50BD589E29580C3E009F9556 /* UIFullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */; };
 		50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD589F29587240009F9556 /* FullWidthButton.swift */; };
 		50C1BE3A295C7539009A57BA /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C1BE39295C7539009A57BA /* UITextView+.swift */; };
-		50C8FD5B2A381791002E3E01 /* ReserveChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8FD5A2A381791002E3E01 /* ReserveChallengeViewModel.swift */; };
+		50C8FD5B2A381791002E3E01 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C8FD5A2A381791002E3E01 /* EditViewModel.swift */; };
+		50D3D6052A409C7F00BD7C2F /* ReviewViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3D6042A409C7F00BD7C2F /* ReviewViewHandler.swift */; };
 		50DBEA0A2952E94400ED00FD /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50DBEA092952E94400ED00FD /* Colors.xcassets */; };
 		50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DBEA0E2952EBC300ED00FD /* UIColor+.swift */; };
 		50EAB9082A12693200713A79 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB9072A12693200713A79 /* AlertController.swift */; };
 		50EAB90A2A13891B00713A79 /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB9092A13891B00713A79 /* ToastMessage.swift */; };
 		50EAB90C2A16217500713A79 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EAB90B2A16217500713A79 /* CALayer+.swift */; };
 		50ED21192A0A4C0800080238 /* BottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ED21182A0A4C0800080238 /* BottomSheetController.swift */; };
-		50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */; };
-		50F0C07A295EDDD6009D49B5 /* EditChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */; };
 		A74C751529751DBE0046B1B1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A74C751729751DBE0046B1B1 /* Localizable.strings */; };
 		A74C751A2975325B0046B1B1 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C75192975325B0046B1B1 /* String+.swift */; };
 		A74C751C297534EE0046B1B1 /* I18N.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C751B297534EE0046B1B1 /* I18N.swift */; };
@@ -157,7 +156,7 @@
 		5041F1D729B9BE2900D464D3 /* UIEmojiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmojiButton.swift; sourceTree = "<group>"; };
 		505B953729599976005F00C8 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		505ED00029B6F0D300491C96 /* UIAlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertButton.swift; sourceTree = "<group>"; };
-		506C3BA02A3F192200D6B927 /* ReserveChallengeViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveChallengeViewHandler.swift; sourceTree = "<group>"; };
+		506C3BA02A3F192200D6B927 /* EditViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewHandler.swift; sourceTree = "<group>"; };
 		506E58FC29B4E3740040FB41 /* Panable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panable.swift; sourceTree = "<group>"; };
 		507089AF295ABC2B00DD8D85 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		507089B1295ADE1A00DD8D85 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
@@ -177,19 +176,18 @@
 		50A5FFFC295D784B00710B5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50A8D07329AF09120044545C /* UIGrabber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGrabber.swift; sourceTree = "<group>"; };
 		50A8D07529AF09160044545C /* UIDimmedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDimmedView.swift; sourceTree = "<group>"; };
-		50B051112A25EB78007CF3F4 /* ReserveChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveChallengeView.swift; sourceTree = "<group>"; };
+		50B051112A25EB78007CF3F4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		50BD589D29580C3E009F9556 /* UIFullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFullWidthButton.swift; sourceTree = "<group>"; };
 		50BD589F29587240009F9556 /* FullWidthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthButton.swift; sourceTree = "<group>"; };
 		50C1BE39295C7539009A57BA /* UITextView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+.swift"; sourceTree = "<group>"; };
-		50C8FD5A2A381791002E3E01 /* ReserveChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveChallengeViewModel.swift; sourceTree = "<group>"; };
+		50C8FD5A2A381791002E3E01 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		50D3D6042A409C7F00BD7C2F /* ReviewViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewHandler.swift; sourceTree = "<group>"; };
 		50DBEA092952E94400ED00FD /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		50DBEA0E2952EBC300ED00FD /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		50EAB9072A12693200713A79 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		50EAB9092A13891B00713A79 /* ToastMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		50EAB90B2A16217500713A79 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
 		50ED21182A0A4C0800080238 /* BottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetController.swift; sourceTree = "<group>"; };
-		50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewController.swift; sourceTree = "<group>"; };
-		50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewModel.swift; sourceTree = "<group>"; };
 		A74C751629751DBE0046B1B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A74C751829751E140046B1B1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A74C75192975325B0046B1B1 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -576,7 +574,7 @@
 				A79263602993E00F00E3B621 /* Today */,
 				A79263632993E03900E3B621 /* Record */,
 				A79263642993E04300E3B621 /* Review */,
-				A79263612993E02600E3B621 /* EditChallenge */,
+				A79263612993E02600E3B621 /* Edit */,
 				A79263622993E03100E3B621 /* Setting */,
 			);
 			path = UI;
@@ -611,16 +609,14 @@
 			path = Today;
 			sourceTree = "<group>";
 		};
-		A79263612993E02600E3B621 /* EditChallenge */ = {
+		A79263612993E02600E3B621 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				50F0C077295EDBFD009D49B5 /* EditChallengeViewController.swift */,
-				50F0C079295EDDD6009D49B5 /* EditChallengeViewModel.swift */,
-				50B051112A25EB78007CF3F4 /* ReserveChallengeView.swift */,
-				50C8FD5A2A381791002E3E01 /* ReserveChallengeViewModel.swift */,
-				506C3BA02A3F192200D6B927 /* ReserveChallengeViewHandler.swift */,
+				50B051112A25EB78007CF3F4 /* EditView.swift */,
+				50C8FD5A2A381791002E3E01 /* EditViewModel.swift */,
+				506C3BA02A3F192200D6B927 /* EditViewHandler.swift */,
 			);
-			path = EditChallenge;
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		A79263622993E03100E3B621 /* Setting */ = {
@@ -648,6 +644,7 @@
 				505B9539295999EA005F00C8 /* SupportingViews */,
 				5041F1D529B9B9B100D464D3 /* ReviewView.swift */,
 				507089B3295AE9D600DD8D85 /* ReviewViewModel.swift */,
+				50D3D6042A409C7F00BD7C2F /* ReviewViewHandler.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -861,7 +858,6 @@
 				A79121622954C2D60044E652 /* ChallengeMO+CoreDataClass.swift in Sources */,
 				500FB4B529E932B9003567DA /* RecordViewController.swift in Sources */,
 				5080B2ED29601A2A005115AA /* DateComponents+.swift in Sources */,
-				50F0C07A295EDDD6009D49B5 /* EditChallengeViewModel.swift in Sources */,
 				5090CBD529F12D72000C9BE7 /* CalendarViewModel.swift in Sources */,
 				505B953829599976005F00C8 /* UIViewController+.swift in Sources */,
 				A79121792955FBCE0044E652 /* CustomColor.swift in Sources */,
@@ -891,10 +887,10 @@
 				A791218229560B580044E652 /* ListHeaderView.swift in Sources */,
 				507089B4295AE9D600DD8D85 /* ReviewViewModel.swift in Sources */,
 				503F1CF629AD9FF50056850F /* EditChallenge.swift in Sources */,
-				50B051122A25EB78007CF3F4 /* ReserveChallengeView.swift in Sources */,
-				50F0C078295EDBFD009D49B5 /* EditChallengeViewController.swift in Sources */,
+				50B051122A25EB78007CF3F4 /* EditView.swift in Sources */,
 				506E58FD29B4E3740040FB41 /* Panable.swift in Sources */,
 				505ED00129B6F0D300491C96 /* UIAlertButton.swift in Sources */,
+				50D3D6052A409C7F00BD7C2F /* ReviewViewHandler.swift in Sources */,
 				50A8D07629AF09160044545C /* UIDimmedView.swift in Sources */,
 				A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */,
 				A79121802956066E0044E652 /* ListViewModel.swift in Sources */,
@@ -905,7 +901,7 @@
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
 				A79121692954FB600044E652 /* Date+.swift in Sources */,
 				503612A729D6B6B90060A464 /* CalendarPageViewController.swift in Sources */,
-				506C3BA12A3F192200D6B927 /* ReserveChallengeViewHandler.swift in Sources */,
+				506C3BA12A3F192200D6B927 /* EditViewHandler.swift in Sources */,
 				A791212B2950D5A20044E652 /* UIView+.swift in Sources */,
 				A7912189295775E00044E652 /* Observable.swift in Sources */,
 				5041F1D829B9BE2900D464D3 /* UIEmojiButton.swift in Sources */,
@@ -922,7 +918,7 @@
 				50A50017295D951600710B5D /* URL+.swift in Sources */,
 				A791217D2956037B0044E652 /* ChallengeCell.swift in Sources */,
 				A79120D4294A0A5F0044E652 /* SceneDelegate.swift in Sources */,
-				50C8FD5B2A381791002E3E01 /* ReserveChallengeViewModel.swift in Sources */,
+				50C8FD5B2A381791002E3E01 /* EditViewModel.swift in Sources */,
 				5036129D29D69D660060A464 /* CalendarView.swift in Sources */,
 				50DBEA0F2952EBC300ED00FD /* UIColor+.swift in Sources */,
 			);

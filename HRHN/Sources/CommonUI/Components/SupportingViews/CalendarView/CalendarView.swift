@@ -309,6 +309,7 @@ extension CalendarView {
                     if selectedDay.isPast() {
                         willPresentReviewSheet.send()
                         fetchReviewSheetContent.send(viewModel.selectedChallenge)
+                        fetchReserveSheetContent.send((viewModel.selectedDay, viewModel.selectedChallenge))
                     } else if selectedDay.isFuture() {
                         willPresentReserveSheet.send()
                         fetchReserveSheetContent.send((viewModel.selectedDay, viewModel.selectedChallenge))

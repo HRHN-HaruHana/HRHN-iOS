@@ -16,6 +16,7 @@ final class TodayViewController: UIViewController {
     // MARK: - Combine
     
     private let viewModel: TodayViewModel
+    private let reviewViewHandler = ReviewViewHandler()
     private var cancelBag = Set<AnyCancellable>()
     
     // MARK: - TextAttributes
@@ -266,7 +267,10 @@ final class TodayViewController: UIViewController {
         return $0
     }(BottomSheetController(content: bottomSheetContentView))
 
-    private let bottomSheetContentView = ReviewView(viewModel: ReviewViewModel(from: .today))
+    private lazy var bottomSheetContentView = ReviewView(
+        viewModel: ReviewViewModel(from: .today),
+        handler: reviewViewHandler
+    )
     
     // MARK: - Life Cycle
     
@@ -670,6 +674,13 @@ extension TodayViewController {
                     self?.challengeTextView.tintColor = .clear
                     self?.emptyState()
                 }
+            }
+            .store(in: &cancelBag)
+        
+        reviewViewHandler.sheetWillDismissSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.dismissBottomSheet()
             }
             .store(in: &cancelBag)
     }
