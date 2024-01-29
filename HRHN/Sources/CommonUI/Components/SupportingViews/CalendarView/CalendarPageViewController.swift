@@ -137,12 +137,12 @@ extension CalendarPageViewController {
                 .store(in: &cancelBag)
         }
         
-        reviewViewHandler.sheetWillPresentSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                
-            }
-            .store(in: &cancelBag)
+//        reviewViewHandler.sheetWillPresentSubject
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] in
+//                
+//            }
+//            .store(in: &cancelBag)
         reviewViewHandler.sheetWillDismissSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
@@ -153,6 +153,7 @@ extension CalendarPageViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.dismiss(animated: true)
+                self?.presentSheet(sheet: self?.reserveSheet)
                 self?.editViewHandler.sheetWillPresentSubject.send()
             }
             .store(in: &cancelBag)
@@ -164,12 +165,12 @@ extension CalendarPageViewController {
             }
             .store(in: &cancelBag)
         
-        editViewHandler.sheetWillPresentSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.presentSheet(sheet: self?.reserveSheet)
-            }
-            .store(in: &cancelBag)
+//        editViewHandler.sheetWillPresentSubject
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] in
+//                
+//            }
+//            .store(in: &cancelBag)
         editViewHandler.sheetWillDismissSubject
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in

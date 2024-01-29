@@ -30,10 +30,12 @@ extension UIColor {
 
 extension UIColor {
     
-    static let background = appearanceColor(light: .white, dark: .gray14)
+    static let background = appearanceColor(light: .pureWhite, dark: .gray04)
     
-    static let whiteLabel = resolvedColor(.white)
-    static let reverseLabel = appearanceColor(light: .white, dark: .black)
+    static let navigationBarButton = appearanceColor(light: .hierarchyLight, dark: .hierarchyDark).withAlphaComponent(0.4)
+    
+    static let whiteLabel = resolvedColor(.pureWhite)
+    static let reverseLabel = appearanceColor(light: .pureWhite, dark: .pureBlack)
     
     static let disabled = appearanceColor(light: .grayEF, dark: .gray1D)
     static let disabledLabel = appearanceColor(light: .grayB9, dark: .gray59)
@@ -42,6 +44,13 @@ extension UIColor {
     static let point = resolvedColor(.red01)
     
     static let cellFill = appearanceColor(light: .grayFB, dark: .gray22)
-    static let cellLabel = appearanceColor(light: .gray4A, dark: .grayD4)
+    static let cellLabel = appearanceColor(light: .gray10, dark: .grayD4)
     static let settingIconFill = resolvedColor(.grayC5)
+    
+    static let nonEmojiDay = appearanceColor(light: .hierarchyLight, dark: .hierarchyDark).withAlphaComponent(0.3)
+    static let nonEmojiDaySelected = appearanceColor(light: .hierarchyDark, dark: .hierarchyLight).withAlphaComponent(0.3)
+    static let selectedReviewBackground = resolvedColor(.gray54)
+    
+    static let ellipsisButtonBackground = appearanceColor(light: .grayF4, dark: .gray4A)
+    static let sheetBackground = appearanceColor(light: .pureWhite, dark: .gray14)
 }

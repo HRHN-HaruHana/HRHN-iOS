@@ -9,10 +9,13 @@ import Foundation
 
 enum CustomColor: String {
     
-    case white
-    case black
+    case pureWhite
+    case pureBlack
+    case hierarchyLight
+    case hierarchyDark
     
     case grayFB
+    case grayF4
     case grayEF
     case grayD4
     case grayD0
@@ -24,6 +27,8 @@ enum CustomColor: String {
     case gray22
     case gray1D
     case gray14
+    case gray10
+    case gray04
     
     case red01
 }

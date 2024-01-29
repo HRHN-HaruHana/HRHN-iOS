@@ -18,7 +18,6 @@
 /* 탭 */
 "tab-today" = "Today";
 "tab-record" = "Record";
-"tab-storage" = "Storage";
 
 /* 버튼 */
 "btn-start" = "Start";
@@ -63,9 +62,6 @@
 
 /* 지난챌린지 */
 "record-title" = "Achivements";
-
-/* 챌린지 바구니 */
-"storage-title" = "Storage";
 
 /* 설정 */
 "setting-title" = "Settings";

@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Record_unselected.svg",
+      "filename" : "Record_unselected_light.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Record_unselected_dark.svg",
       "idiom" : "universal"
     }
   ],

@@ -61,6 +61,7 @@ struct CalendarView: View {
             }
         }
         .padding(CalendarViewCGFloat.margin)
+        .setBackgroundColor(.background)
         .onAppear {
             if viewModel.selectedDay == nil {
                 viewModel.setInitialSelectedDayAndChallenge()
@@ -173,7 +174,14 @@ extension CalendarView {
     @ViewBuilder
     private var todayButtonLabel: some View {
         HStack(spacing: 2) {
-            Image(systemName: "arrow.uturn.forward")
+            switch selectedDayState {
+            case .hasChallengePast, .noChallengePast:
+                Image(systemName: "arrow.uturn.forward")
+            case .hasChallengeFuture, .noChallengeFuture:
+                Image(systemName: "arrow.uturn.backward")
+            default:
+                Image(systemName: "arrow.uturn.forward")
+            }
             VStack(spacing: 0) {
                 Rectangle()
                     .foregroundColor(.clear)
@@ -255,22 +263,35 @@ extension CalendarView {
                     Text("\(date.day)")
                         .font(.system(size: 13))
                         .foregroundColor(dateLabelColor)
-                    if (date.isFuture() && challenge != nil) {
-                        // || (!date.isToday() && challenge?.emoji == Emoji.none)
+                    switch dayState(date: date, challenge: challenge) {
+                    case .hasChallengePast:
+                        if challenge?.emoji == Emoji.none {
+                            Circle()
+                                .foregroundStyle(viewModel.isSelectedDay(date) ? Color.nonEmojiDaySelected : .nonEmojiDay)
+                                .frame(width: 5, height: 5)
+                                .offset(x: 3, y: -3)
+                        }
+                    case .hasChallengeToday, .hasChallengeFuture:
                         Image("redDot")
                             .offset(x: 3, y: -3)
-                    }
-                    if dayState(date: date, challenge: challenge) == .hasChallengeFuture {
-                        Image("redDot")
-                            .offset(x: 3, y: -3)
+                    default:
+                        EmptyView()
                     }
                 }
             }
             .padding(.vertical, CalendarViewCGFloat.calendarButtonMargin)
             .frame(maxWidth: .infinity)
             .background {
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(viewModel.isSelectedDay(date) ? .dim : .clear)
+                if viewModel.isSelectedDay(date) {
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundStyle(Color.cellLabel)
+                } else if date.isToday() {
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundStyle(Color.cellLabel.opacity(0.1))
+                } else {
+                    RoundedRectangle(cornerRadius: 8)
+                        .foregroundStyle(.clear)
+                }
             }
         }
     }

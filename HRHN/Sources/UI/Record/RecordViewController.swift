@@ -13,7 +13,7 @@ final class RecordViewController: UIViewController {
     private let listViewController = ListViewController(with: ListViewModel())
     
     private lazy var viewModeBarButtonItem = UIBarButtonItem(
-        image: UIImage(systemName: "calendar"),
+        image: UIImage(systemName: "list.bullet"),
         style: .plain,
         target: self,
         action: #selector(viewModeBarButtonDidTap)
@@ -54,17 +54,18 @@ extension RecordViewController: CustomNavBar {
         setNavigationBarAppLogo()
         setNavigationBarBackButton()
         setNavigationBarRightIconButton(systemName: "gearshape.fill", action: #selector(settingsDidTap))
+        viewModeBarButtonItem.tintColor = .navigationBarButton
         navigationItem.rightBarButtonItems?.append(viewModeBarButtonItem)
     }
     
     @objc private func viewModeBarButtonDidTap() {
         if let _ = self.children.first(where: { $0 is CalendarPageViewController }) as? CalendarPageViewController {
             showListView()
-            changeFirstNavigationBarButton(to: UIImage(systemName: "list.bullet"))
+            changeFirstNavigationBarButton(to: UIImage(systemName: "calendar"))
             
         } else if let _ = self.children.first(where: { $0 is ListViewController }) as? ListViewController {
             showCalendarView()
-            changeFirstNavigationBarButton(to: UIImage(systemName: "calendar"))
+            changeFirstNavigationBarButton(to: UIImage(systemName: "list.bullet"))
         }
     }
     
@@ -75,6 +76,6 @@ extension RecordViewController: CustomNavBar {
     }
     
     private func changeFirstNavigationBarButton(to uiImage: UIImage?) {
-        navigationItem.rightBarButtonItems?[1].image = uiImage?.withRenderingMode(.alwaysOriginal).withTintColor(.tintColor)
+        navigationItem.rightBarButtonItems?[1].image = uiImage?.withRenderingMode(.alwaysOriginal).withTintColor(.navigationBarButton)
     }
 }

@@ -24,7 +24,7 @@ final class UIEmojiButton: UIButton {
         didSet {
             switch isSelected {
             case true:
-                backgroundColor = .dim
+                backgroundColor = .selectedReviewBackground
                 emojiLabel.textColor = .whiteLabel
             case false:
                 backgroundColor = .clear
@@ -125,12 +125,12 @@ final class UIEmojiButton: UIButton {
         }
         
         labelStackView.addArrangedSubviews(
-            emojiLabel,
-            dotImageView
+            emojiLabel
+//            dotImageView
         )
         
-        dotImageView.snp.makeConstraints {
-            $0.height.width.equalTo(4)
-        }
+//        dotImageView.snp.makeConstraints {
+//            $0.height.width.equalTo(4)
+//        }
     }
 }

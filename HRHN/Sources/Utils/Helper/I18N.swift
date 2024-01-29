@@ -20,7 +20,6 @@ struct I18N {
     /* 탭 */
     static let tabToday = "tab-today".localized()
     static let tabRecord = "tab-record".localized()
-    static let tabStorage = "tab-storage".localized()
     
     /* 버튼 */
     static let btnStart = "btn-start".localized()
@@ -66,9 +65,6 @@ struct I18N {
     /* 지난챌린지 */
     static let recordTitle = "record-title".localized()
     
-    /* 챌린지 바구니 */
-    static let storageTitle = "storage-title".localized()
-        
     /* 설정 */
     static let settingTitle = "setting-title".localized()
     static let settingNoti1 = "setting-noti-1".localized()

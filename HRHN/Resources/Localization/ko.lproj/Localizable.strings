@@ -18,7 +18,6 @@
 /* 탭 */
 "tab-today" = "오늘";
 "tab-record" = "기록";
-"tab-storage" = "바구니";
 
 /* 버튼 */
 "btn-start" = "시작하기";
@@ -34,7 +33,7 @@
 /* 온보딩 */
 "ob-widget-title" = "위젯으로 챌린지를\n리마인드하세요";
 "ob-widget-title2" = "*락스크린 지원 (지원예정 = 홈/사이드 위젯)";
-"ob-noti-title" = "하루한번;\n알림을 드릴게요";
+"ob-noti-title" = "하루한번,\n알림을 드릴게요";
 "ob-noti-title2" = "오늘의 챌린지를 설정하고 지난 챌린지를 점검하세요";
 "ob-noti-deny" = "혹은 알림받지않기";
 "ob-noti-desc" = "* 알림설정은 얼마든지 변경할 수 있어요\n* 설정에서 알림을 켜주세요";
@@ -64,13 +63,10 @@
 /* 지난챌린지 */
 "record-title" = "지난 챌린지";
 
-/* 챌린지 바구니 */
-"storage-title" = "바구니";
-
 /* 설정 */
 "setting-title" = "설정";
 "setting-noti-1" = "알림";
-"setting-noti-2" = "하루 한 번; 알림을 드릴게요";
+"setting-noti-2" = "하루 한 번, 알림을 드릴게요";
 "setting-noti-time" = "알림 시간";
 
 "support-help" = "문의 및 지원";

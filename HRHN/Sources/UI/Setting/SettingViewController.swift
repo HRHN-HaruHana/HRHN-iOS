@@ -30,6 +30,7 @@ final class SettingViewController: UIViewController {
         $0.dataSource = self
         $0.alwaysBounceVertical = false
         $0.showsVerticalScrollIndicator = false
+        $0.separatorStyle = .none
         return $0
     }(UITableView())
     
@@ -69,7 +70,7 @@ extension SettingViewController {
         titleView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(66)
+            $0.height.equalTo(60)
         }
         titleView.addSubviews(titleLabel)
         titleLabel.snp.makeConstraints {
@@ -138,5 +139,9 @@ extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.list.value[section].header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
     }
 }

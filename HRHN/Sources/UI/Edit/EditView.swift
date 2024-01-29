@@ -123,7 +123,7 @@ final class EditView: UIView {
         )
         $0.setImage(UIImage(systemName: "ellipsis", withConfiguration: imageConfig), for: .normal)
         
-        $0.configuration?.baseBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+        $0.configuration?.baseBackgroundColor = .ellipsisButtonBackground
         $0.configuration?.baseForegroundColor = .cellLabel
         $0.configuration?.cornerStyle = .capsule
         

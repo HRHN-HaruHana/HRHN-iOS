@@ -88,7 +88,7 @@ final class AlertController: UIViewController {
     private let grabber = UIGrabber()
     
     private lazy var alertView: UIView = {
-        $0.backgroundColor = .background
+        $0.backgroundColor = .sheetBackground
         $0.layer.cornerRadius = 24
         $0.clipsToBounds = true
         let panGestureRecognizer = UIPanGestureRecognizer(

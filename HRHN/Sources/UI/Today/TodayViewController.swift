@@ -86,7 +86,7 @@ final class TodayViewController: UIViewController {
         $0.configuration?.background.cornerRadius = 16
         $0.configuration?.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         
-        $0.addTarget(self, action: #selector(addButtonDidTap), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(self?.addButtonDidTap), for: .touchUpInside)
         
         return $0
     }(UIButton(configuration: .filled()))
@@ -195,16 +195,10 @@ final class TodayViewController: UIViewController {
         )
         $0.setImage(UIImage(systemName: "ellipsis", withConfiguration: imageConfig), for: .normal)
         
-        $0.configuration?.baseBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+        $0.configuration?.baseBackgroundColor = .ellipsisButtonBackground
         $0.configuration?.baseForegroundColor = .cellLabel
         $0.configuration?.cornerStyle = .capsule
         
-        let storageAction = UIAction(
-            title: "바구니",
-            image: UIImage(systemName: "archivebox")
-        ) { _ in
-            // TODO: connect storage view
-        }
         let deleteAction = UIAction(
             title: "삭제",
             image: UIImage(systemName: "trash"),
@@ -213,7 +207,7 @@ final class TodayViewController: UIViewController {
             self.challengeTextView.resignFirstResponder()
             self.presentAlert()
         }
-        let menu = UIMenu(children: [storageAction, deleteAction])
+        let menu = UIMenu(children: [deleteAction])
         $0.menu = menu
         $0.showsMenuAsPrimaryAction = true
         
@@ -229,7 +223,7 @@ final class TodayViewController: UIViewController {
 
         $0.cancelTitle = "취소"
         $0.cancelForegroundColor = .label
-        $0.cancelBackgroundColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1)
+        $0.cancelBackgroundColor = .ellipsisButtonBackground
         $0.cancelAction = UIAction { _ in
             self.dismissAlert()
             self.challengeTextView.becomeFirstResponder()
@@ -608,11 +602,12 @@ extension TodayViewController {
     }
     
     @objc private func addButtonDidTap() {
-        if viewModel.previousChallenge?.emoji == Emoji.none {
-            presentBottomSheet()
-        } else {
-            addState()
-        }
+//        if viewModel.previousChallenge?.emoji == Emoji.none {
+//            presentBottomSheet()
+//        } else {
+//            addState()
+//        }
+        addState()
     }
     
     private func presentBottomSheet() {

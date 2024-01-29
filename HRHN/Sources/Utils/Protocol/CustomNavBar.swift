@@ -21,7 +21,7 @@ extension CustomNavBar where Self: UIViewController {
         let leftBarTitle: UILabel = {
             $0.text = "1D1C"
             $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-            $0.textColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.4)
+            $0.textColor = .navigationBarButton
             return $0
         }(UILabel())
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBarTitle)
@@ -34,7 +34,7 @@ extension CustomNavBar where Self: UIViewController {
             target: self,
             action: nil
         )
-        backButton.tintColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.4)
+        backButton.tintColor = .navigationBarButton
         navigationItem.backBarButtonItem = backButton
     }
     
@@ -45,7 +45,7 @@ extension CustomNavBar where Self: UIViewController {
             target: self,
             action: action
         )
-//        rightBarButton.tintColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.4)
+        rightBarButton.tintColor = .navigationBarButton
         navigationItem.rightBarButtonItem = rightBarButton
     }
     

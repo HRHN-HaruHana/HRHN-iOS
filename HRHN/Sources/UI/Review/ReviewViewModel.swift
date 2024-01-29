@@ -14,7 +14,6 @@ class ReviewViewModel: ObservableObject {
         case today
         case list
         case calendar
-        case storage
         case unknown
     }
     

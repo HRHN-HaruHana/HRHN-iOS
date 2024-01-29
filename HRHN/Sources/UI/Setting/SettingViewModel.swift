@@ -34,41 +34,41 @@ struct SettingSection {
                 SettingItem(text: I18N.settingNoti1,
                             secondaryText: I18N.settingNoti2,
                             type: .alertToggle,
-                            imageName: "bell.fill",
+                            imageName: "Alarm",
                             link: nil,
                             isOn: UserDefaults.isNotiAllowed,
                             time: nil),
                 SettingItem(text: I18N.settingNotiTime,
                             secondaryText: nil,
                             type: .alertTime,
-                            imageName: "clock.fill",
+                            imageName: "Time",
                             link: nil,
                             isOn: nil,
                             time: UserDefaults.notiTime)
-            ], header: "NOTIFICATION"),
+            ], header: " "),
             SettingSection(items: [
                 SettingItem(text: I18N.supportHelp,
                             secondaryText: nil,
                             type: .defaultItem,
-                            imageName: "phone.fill",
+                            imageName: "Contact",
                             link: "https://hrhn.notion.site/d56ff2386c464543bbeb20284e3f3469",
                             isOn: nil,
                             time: nil),
                 SettingItem(text: I18N.supportPage,
                             secondaryText: nil,
                             type: .defaultItem,
-                            imageName: "globe",
+                            imageName: "Website",
                             link: "https://hrhn.notion.site/f7ecd6dca58046b298ad8debfbcc762e",
                             isOn: nil,
                             time: nil),
                 SettingItem(text: I18N.supportLicences,
                             secondaryText: nil,
                             type: .defaultItem,
-                            imageName: "chevron.left.forwardslash.chevron.right",
+                            imageName: "OpenSource",
                             link: "https://hrhn.notion.site/2dd3252ad190433392c58f77e975cb18",
                             isOn: nil,
                             time: nil)
-            ], header: "SUPPORT")
+            ], header: " ")
         ]
     }
 }

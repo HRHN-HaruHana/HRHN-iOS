@@ -142,9 +142,9 @@ struct LockscreenWidget_Previews: PreviewProvider {
 extension View {
     @ViewBuilder func widgetBackground(_ color: Color) -> some View {
         if #available(iOSApplicationExtension 17.0, macOSApplicationExtension 14.0, *) {
-            return  containerBackground(color, for: .widget)
+            containerBackground(color, for: .widget)
         } else {
-            return background(color)
+            background(color)
         }
     }
 }

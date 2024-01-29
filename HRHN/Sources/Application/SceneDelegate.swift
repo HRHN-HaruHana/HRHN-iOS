@@ -18,11 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         lazy var initialViewController = TabBarController()
         lazy var onBoarding = OnBoardingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
-        if UserDefaults.hasOnBoarded {
+//        if UserDefaults.hasOnBoarded {
             self.window?.rootViewController = initialViewController
-        } else {
-            self.window?.rootViewController = onBoarding
-        }
+//        } else {
+//            self.window?.rootViewController = onBoarding
+//        }
         
         self.window?.makeKeyAndVisible()
     }

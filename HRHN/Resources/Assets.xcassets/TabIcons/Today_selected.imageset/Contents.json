@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Today_selected.svg",
+      "filename" : "Today_selected_light.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Today_selected_dark.svg",
       "idiom" : "universal"
     }
   ],

@@ -23,7 +23,7 @@ class SettingCell: UITableViewCell {
         configuration.text = item.text
         configuration.secondaryText = item.secondaryText
         configuration.secondaryTextProperties.color = .secondaryLabel
-        configuration.image = UIImage(systemName: item.imageName)
+        configuration.image = UIImage(named: item.imageName)
         configuration.imageProperties.tintColor = item.type == .defaultItem ? .settingIconFill : .point
         contentConfiguration = configuration
         selectionStyle = .none
