@@ -16,7 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         lazy var initialViewController = TabBarController()
-        lazy var onBoarding = OnBoardingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
 //        if UserDefaults.hasOnBoarded {
             self.window?.rootViewController = initialViewController

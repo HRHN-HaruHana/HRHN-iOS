@@ -100,11 +100,6 @@
 		A7ED3EF8295C2FEF00342CC8 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */; };
 		A7ED3EFA295C6E6E00342CC8 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */; };
 		A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */; };
-		A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */; };
-		A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */; };
-		A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */; };
-		A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */; };
-		A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -231,11 +226,6 @@
 		A7ED3EF7295C2FEF00342CC8 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		A7ED3EF9295C6E6E00342CC8 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		A7ED3EFB295C735100342CC8 /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
-		A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPageViewController.swift; sourceTree = "<group>"; };
-		A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBFirstViewController.swift; sourceTree = "<group>"; };
-		A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBSecondViewController.swift; sourceTree = "<group>"; };
-		A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBThirdViewController.swift; sourceTree = "<group>"; };
-		A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -570,7 +560,6 @@
 			isa = PBXGroup;
 			children = (
 				A792635F2993E00400E3B621 /* TabBar */,
-				A792635E2993DFCA00E3B621 /* OnBoarding */,
 				A79263602993E00F00E3B621 /* Today */,
 				A79263632993E03900E3B621 /* Record */,
 				A79263642993E04300E3B621 /* Review */,
@@ -578,18 +567,6 @@
 				A79263622993E03100E3B621 /* Setting */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		A792635E2993DFCA00E3B621 /* OnBoarding */ = {
-			isa = PBXGroup;
-			children = (
-				A7ED3F06295E053600342CC8 /* OBFirstViewController.swift */,
-				A7ED3F08295E186F00342CC8 /* OBSecondViewController.swift */,
-				A7ED3F0A295E192E00342CC8 /* OBThirdViewController.swift */,
-				A7ED3F0C295E23A700342CC8 /* OnBoardingViewModel.swift */,
-				A7ED3F03295E021100342CC8 /* OnBoardingPageViewController.swift */,
-			);
-			path = OnBoarding;
 			sourceTree = "<group>";
 		};
 		A792635F2993E00400E3B621 /* TabBar */ = {
@@ -865,7 +842,6 @@
 				A7ED3EF6295C284200342CC8 /* SettingViewController.swift in Sources */,
 				50ED21192A0A4C0800080238 /* BottomSheetController.swift in Sources */,
 				A79121272950D12A0044E652 /* TabBarController.swift in Sources */,
-				A7ED3F07295E053600342CC8 /* OBFirstViewController.swift in Sources */,
 				A74C751A2975325B0046B1B1 /* String+.swift in Sources */,
 				A79121632954C2D60044E652 /* ChallengeMO+CoreDataProperties.swift in Sources */,
 				500CA071299697320012779B /* CustomNavBar.swift in Sources */,
@@ -879,7 +855,6 @@
 				507089B0295ABC2B00DD8D85 /* Color+.swift in Sources */,
 				5090CBD729F13EFC000C9BE7 /* CalendarPageViewModel.swift in Sources */,
 				A791214B295227230044E652 /* DeviceManager.swift in Sources */,
-				A7ED3F0B295E192E00342CC8 /* OBThirdViewController.swift in Sources */,
 				507305F42996652500A20CA1 /* UINavigationBar+.swift in Sources */,
 				A79120D2294A0A5F0044E652 /* AppDelegate.swift in Sources */,
 				50BD58A029587240009F9556 /* FullWidthButton.swift in Sources */,
@@ -892,10 +867,8 @@
 				505ED00129B6F0D300491C96 /* UIAlertButton.swift in Sources */,
 				50D3D6052A409C7F00BD7C2F /* ReviewViewHandler.swift in Sources */,
 				50A8D07629AF09160044545C /* UIDimmedView.swift in Sources */,
-				A7ED3F0D295E23A700342CC8 /* OnBoardingViewModel.swift in Sources */,
 				A79121802956066E0044E652 /* ListViewModel.swift in Sources */,
 				A7912186295775C00044E652 /* TodayViewModel.swift in Sources */,
-				A7ED3F09295E186F00342CC8 /* OBSecondViewController.swift in Sources */,
 				50EAB90C2A16217500713A79 /* CALayer+.swift in Sources */,
 				A74C751C297534EE0046B1B1 /* I18N.swift in Sources */,
 				A79121752955F1180044E652 /* ChallengeCellView.swift in Sources */,
@@ -909,7 +882,6 @@
 				A791212D2950D5B00044E652 /* UIStackView+.swift in Sources */,
 				A7912121294B1B440044E652 /* CoreDataManager.swift in Sources */,
 				50A8D07429AF09120044545C /* UIGrabber.swift in Sources */,
-				A7ED3F04295E021100342CC8 /* OnBoardingPageViewController.swift in Sources */,
 				A7ED3EFC295C735100342CC8 /* UserDefaults+.swift in Sources */,
 				5041F1D629B9B9B100D464D3 /* ReviewView.swift in Sources */,
 				A791214F295228530044E652 /* Double+.swift in Sources */,
