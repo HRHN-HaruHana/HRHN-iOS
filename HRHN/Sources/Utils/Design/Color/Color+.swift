@@ -30,4 +30,5 @@ extension Color {
     
     static let ellipsisButtonBackground = Color(UIColor.ellipsisButtonBackground)
     static let sheetBackground = Color(UIColor.sheetBackground)
+    static let toastMessageBackground = Color(UIColor.sheetBackground)
 }

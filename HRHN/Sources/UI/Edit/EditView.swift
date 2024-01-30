@@ -184,6 +184,7 @@ final class EditView: UIView {
                 self?.checkTextLength(textView: self?.challengeTextView)
                 if self?.viewModel.selectedChallenge != nil {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self?.challengeTextView.tintColor = .tintColor
                         self?.challengeTextView.selectAll(nil)
                     }
                 }

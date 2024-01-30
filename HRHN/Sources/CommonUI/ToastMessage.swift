@@ -88,7 +88,7 @@ extension ToastMessage {
         isUserInteractionEnabled = isButton
         layer.applyFigmaShadow()
         
-        configuration?.baseBackgroundColor = .background
+        configuration?.baseBackgroundColor = .toastMessageBackground
         configuration?.cornerStyle = .capsule
         configuration?.contentInsets = .init(top: 0, leading: 25, bottom: 0, trailing: 25)
         

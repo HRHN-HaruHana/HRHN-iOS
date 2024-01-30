@@ -53,4 +53,5 @@ extension UIColor {
     
     static let ellipsisButtonBackground = appearanceColor(light: .grayF4, dark: .gray4A)
     static let sheetBackground = appearanceColor(light: .pureWhite, dark: .gray14)
+    static let toastMessageBackground = appearanceColor(light: .pureWhite, dark: .gray22)
 }

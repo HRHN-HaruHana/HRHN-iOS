@@ -19,7 +19,7 @@ extension CustomNavBar where Self: UIViewController {
     
     func setNavigationBarAppLogo() {
         let leftBarTitle: UILabel = {
-            $0.text = "1D1C"
+            $0.text = I18N.appName
             $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
             $0.textColor = .navigationBarButton
             return $0
