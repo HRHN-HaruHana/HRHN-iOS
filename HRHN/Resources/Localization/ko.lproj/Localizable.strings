@@ -13,7 +13,7 @@
 /* Challenge Widget */
 "widget-challenge-title" = "오늘의 챌린지";
 "widget-challenge-desc" = "오늘의 챌린지를 확인합니다.";
-"widget-challenge-placeholder" = "오늘의 챌린지를 등록하세요!";
+"widget-challenge-placeholder" = "챌린지 없음";
 
 /* 탭 */
 "tab-today" = "오늘";

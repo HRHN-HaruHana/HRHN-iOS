@@ -66,6 +66,7 @@ struct ChallengeWidgetEntryView : View {
         case .accessoryRectangular:
             Text(entry.challenge)
                 .multilineTextAlignment(.center)
+                .foregroundStyle(entry.challenge == I18N.challengeWidgetPlaceholder ? .secondary : .primary)
                 .widgetBackground(.clear)
         case .systemSmall:
             Text(entry.challenge)

@@ -13,7 +13,7 @@
 /* Challenge Widget */
 "widget-challenge-title" = "Challenge of The day";
 "widget-challenge-desc" = "Check challenge of the day";
-"widget-challenge-placeholder" = "Add challenge of the day";
+"widget-challenge-placeholder" = "No challenge";
 
 /* 탭 */
 "tab-today" = "Today";
