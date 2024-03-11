@@ -85,6 +85,7 @@ final class SettingViewModel: ObservableObject {
         if UserDefaults.isNotiAllowed == false {
             removeNotification()
         } else {
+            requestNotificationAuthorization()
             setNotification(time: UserDefaults.notiTime ?? "09:00")
         }
         list = Observable(SettingSection.generateData())
@@ -121,4 +122,12 @@ final class SettingViewModel: ObservableObject {
         center.removeAllPendingNotificationRequests()
     }
 
+    private func requestNotificationAuthorization() {
+        let authOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
+        center.requestAuthorization(options: authOptions) { success, error in
+            if let error = error {
+                print("Auth Error: ", error)
+            }
+        }
+    }
 }
