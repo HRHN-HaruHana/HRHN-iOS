@@ -7,7 +7,6 @@
 
 import CoreData
 import Foundation
-import UIKit
 
 class CoreDataManager {
     
